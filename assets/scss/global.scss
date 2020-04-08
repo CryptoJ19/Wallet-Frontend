@@ -1,0 +1,17 @@
+@import './reset';
+
+body {
+  color: #000;
+  font-family: $raleway;
+
+}
+
+.cont-console {
+  display: flex;
+  background: $grey-bg;
+  height: 100vh;
+
+  &__main {
+    width: 100%;
+  }
+}

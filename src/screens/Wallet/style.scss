@@ -1,0 +1,105 @@
+.wallet {
+  padding: 0 50px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+
+  &__item {
+    border-radius: 13px;
+    background: #FFF;
+
+  }
+
+  &__item:nth-child(3) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  &__item:nth-child(1), &__item:nth-child(2) {
+    height: 264px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      color: #000;
+      font-weight: bold;
+      font-size: 22px;
+    }
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mainnum {
+      color: #000;
+      font-weight: 800;
+      font-size: 50px;
+      //margin: 0 0 1px;
+    }
+    .subnum {
+      color: $grey;
+      font-weight: 600;
+      font-size: 20px;
+      margin: 0 0 14px;
+    }
+  }
+
+  .btns {
+    display: flex;
+    .btn {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFF;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 16px;
+      color: $grey;
+    }
+    .btn:nth-child(2), .btn:nth-child(3) {
+      padding: 1px 8px 0 13px ;
+    }
+    .icon {
+      margin: 0 0 0 8px;
+    }
+    .btn:nth-child(1) {
+      width: 28px;
+      margin: 0 8px 0 0;
+    }
+    .btn:nth-child(2) {
+      margin: 0 14px 0 0;
+    }
+    .btn:nth-child(3) {
+      .icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+
+  .balance {
+    background: $yellow-gradient;
+    border: 3px solid $grey;
+
+    &__link a {
+      color: $grey;
+    }
+  }
+  .token {
+    .btns {
+      .btn {
+        background: $grey-bg;
+      }
+    }
+  }
+
+  .history {
+
+  }
+
+}
