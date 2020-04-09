@@ -120,7 +120,7 @@
               :popup-class="'custom-date-picker'"
               range
               :format="'DD.MM.YY'"
-              :range-separator="' - '"
+              :range-separator="' -  '"
             >
               <template v-slot:icon-calendar>
                 <img
