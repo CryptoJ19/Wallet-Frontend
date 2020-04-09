@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "nuxt": "^2.0.0",
-    "nuxt-i18n": "^6.6.0"
+    "nuxt-i18n": "^6.6.0",
+    "vue-tippy": "^4.4.0",
+    "vue2-datepicker": "^3.4.1"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",

@@ -99,7 +99,58 @@
   }
 
   .history {
+    .head {
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__title {
+        color: #000;
+        font-weight: bold;
+        font-size: 22px;
+      }
+      &__right {
+        display: flex;
+        align-items: center;
+      }
+      .dd {
+        margin: 0 30px 0 0;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        &__arrow {
+          margin: 0 0 0 16px;
+        }
+      }
+    }
+    .table {
 
+      &__head, &__row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &__body {
+        padding: 0 20px 20px;
+      }
+      &__row {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 23px 0;
+        font-size: 18px;
+      }
+      &__head {
+        width: 100%;
+        background: $yellow;
+        color: rgba($grey, .5);
+        font-size: 14px;
+        //line-height: 143.4%;
+        padding: 5px 20px 4px;
+      }
+      &__item {
+        margin: 0 10px 0 0;
+      }
+    }
   }
-
 }
+

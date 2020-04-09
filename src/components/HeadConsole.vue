@@ -20,10 +20,23 @@
         >
       </div>
       <div class="head-console__item head-console__info">
-        <img
-          src="~assets/imgs/icons/info.svg"
-          alt="info"
+        <tippy
+          animation="shift-toward"
+          placement="bottom"
+          theme="light"
+          arrow
         >
+          <template v-slot:trigger>
+            <img
+              src="~assets/imgs/icons/info.svg"
+              alt="info"
+            >
+          </template>
+
+          <div>
+            йцуйу
+          </div>
+        </tippy>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import localeRU from './assets/locales/ru.json';
 import localeEN from './assets/locales/en.json';
 
 module.exports = {
+  plugins: ['~plugins/tippy'],
   head: {
     title: 'CashFlash',
     meta: [
