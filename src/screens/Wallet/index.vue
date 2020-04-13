@@ -176,6 +176,7 @@ export default {
       time1: null,
       time2: null,
       time3: null,
+
     };
   },
 };
