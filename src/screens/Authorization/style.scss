@@ -5,26 +5,129 @@
   height: 100vh;
   overflow: hidden;
   &__main {
+    overflow: auto;
     width: 906px;
     background: #FFF;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 500;
   }
   &__bg {
     position: absolute;
     right: -190px;
     bottom: -190px;
   }
-  &__form {}
+  &__box {
+    width: 435px;
+    height: 490px;
+  }
+  .form {
+    display: none;
+
+    &.form_active {
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    &__item {
+      margin: 0 0 2px;
+      input {
+        background: #FFF;
+        width: 100%;
+        border-radius: 15px;
+        padding: 0 20px;
+        height: 44px;
+        border: 1px solid $stroke;
+        transition: .2s;
+        &::placeholder {
+          color: rgba($grey, .5);
+          transition: .2s;
+
+        }
+        &:focus, &:hover {
+          border-color: #000;
+          &::placeholder {
+            color: #000;
+          }
+        }
+      }
+    }
+    &__er {
+      height: 18px;
+      font-size: 12px;
+    }
+    .check {
+      margin: 0 0 53px;
+      input {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+        margin: 0;
+      }
+      &__label {
+        display: flex;
+        align-items: center;
+      }
+      .check__box {
+        display: flex;
+        position: relative;
+        width: 17px;
+        height: 17px;
+        border-radius: 4px;
+        background: #FFF;
+        border: 1px solid $stroke;
+        transition: .2s;
+      }
+      &__title {
+        font-size: 16px;
+        color: $grey;
+        margin: 0 0 0 9px;
+      }
+      &__icon {
+        position: absolute;
+        top: 4px;
+        left: 2px;
+        display: none;
+      }
+      .check__label input:checked ~ .check__box {
+        background: $yellow;
+        border-color: transparent;
+        .check__icon {
+          display: flex;
+        }
+      }
+    }
+  }
   &__title {
     font-weight: 800;
     font-size: 30px;
     margin: 0 0 50px;
   }
-  &__btns {}
-  &__btn {}
+  &__btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__btn {
+    border-radius: 20px;
+    height: 56px;
+    font-weight: bold;
+    font-size: 18px;
+
+
+    background: $yellow;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    padding: 0 55px;
+
+  }
   .remember {
     &__check {}
     &__title {}
@@ -32,16 +135,19 @@
   .menu {
     display: flex;
     justify-content: space-between;
+    margin: 0 0 30px;
     &__items {
       display: flex;
       position: relative;
     }
     &__item {
+      cursor: pointer;
+      transition: .2s;
       font-weight: 500;
       font-size:   18px;
-      color: #000000;
       border-bottom: 2px solid transparent;
 
+      color: rgba($grey, .3);
       padding: 0 0 2px;
 
       &:not(:last-child) {
@@ -51,8 +157,37 @@
 
     &__item.menu__item_active {
       border-color: $yellow;
+      color: #000000;
+
     }
 
-    &__forgot {}
+    &__forgot {
+      transition: .2s;
+      font-weight: 500;
+      font-size: 18px;
+      cursor: pointer;
+      color: rgba($grey, .3);
+      &:hover {
+        color: #000;
+      }
+      &.forgot_active {
+        color: #000;
+      }
+    }
+  }
+  @media (max-width: 1199px) {
+    &__bg {
+      display: none;
+    }
+    &__main {
+      width: 100%;
+    }
+  }
+  @media (max-width: 767px) {
+    &__box {
+      width: 100%;
+      //height: initial;
+      padding: 20px;
+    }
   }
 }
