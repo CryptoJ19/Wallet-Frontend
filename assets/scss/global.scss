@@ -4,6 +4,8 @@
 @import 'bootstrap-vue/src/index.scss';
 
 @import 'form.scss';
+@import 'customDatePicker.scss';
+@import 'modal.scss';
 
 @include input;
 
@@ -15,12 +17,12 @@ body {
 
 .modal-content {
   border: none;
+  border-radius: 13px;
 }
 
 .modal-body {
   padding: 0;
 }
-
 
 .cont-console {
   display: flex;
@@ -33,49 +35,6 @@ body {
   }
 }
 
-.custom-date-picker {
-  width: initial !important;
-  color: initial !important;
-  font-family: $raleway !important;
-
-  .mx-input:hover, .mx-input:focus {
-    border-color: $yellow;
-  }
-
-  .mx-input {
-    color: initial !important;
-    cursor: pointer;
-  }
-  .mx-btn {
-    color: initial;
-    &:hover {
-      color: initial;
-    }
-  }
-
-  .mx-table-date .today {
-    color: rgba(#000, .6);
-  }
-
-  .mx-calendar-panel-date:nth-child(2) {
-    display: none !important;
-  }
-  .mx-calendar-content {
-    .cell:hover {
-      background: rgba($yellow, .1);
-      color: initial;
-    }
-    .cell.in-range {
-      background: rgba($yellow, .2);
-      color: initial;
-
-    }
-    .cell.active {
-      background: rgba($yellow, 1);
-      color: initial;
-    }
-  }
-}
 
 
 

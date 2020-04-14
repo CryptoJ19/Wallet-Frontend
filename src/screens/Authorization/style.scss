@@ -88,9 +88,7 @@
     }
   }
 
-  .mod {
 
-  }
 
   @media (max-width: 1199px) {
     &__bg {
@@ -107,4 +105,20 @@
       padding: 20px;
     }
   }
+  @media (max-width: 479px) {
+    .menu {
+      &__item, &__forgot {
+        font-size: 16px;
+      }
+      &__item {
+        &:not(:last-child) {
+          margin: 0 16px 0 0;
+        }
+      }
+    }
+  }
 }
+
+
+
+

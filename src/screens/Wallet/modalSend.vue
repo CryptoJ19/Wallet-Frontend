@@ -1,6 +1,6 @@
 <template>
   <b-modal
-    id="check-email"
+    id="modal-wallet-send"
     centered
     hide-header
     hide-footer
