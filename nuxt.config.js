@@ -3,7 +3,10 @@ import localeRU from './assets/locales/ru.json';
 import localeEN from './assets/locales/en.json';
 
 module.exports = {
-  plugins: ['~plugins/tippy'],
+  plugins: [
+    '~plugins/tippy',
+    '~plugins/vue-js-modal',
+  ],
   head: {
     title: 'CashFlash',
     meta: [
@@ -39,7 +42,16 @@ module.exports = {
     '~assets/scss/global.scss',
     '~assets/scss/vars.scss',
   ],
-  modules: ['@nuxtjs/style-resources', 'nuxt-i18n'],
+  modules: [
+    '@nuxtjs/style-resources',
+    'nuxt-i18n',
+    'bootstrap-vue/nuxt',
+  ],
+  bootstrapVue: {
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false, // Or `bvCSS: false`
+    icons: true,
+  },
   i18n: {
     locales: ['ru', 'en'],
     defaultLocale: 'ru',

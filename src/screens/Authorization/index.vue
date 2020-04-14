@@ -1,6 +1,7 @@
 <template>
   <div class="auth">
-    <div class="auth__main">
+    <modalCheckEmail />
+    <div class="auth__main container">
       <div class="auth__box">
         <div class="auth__title">
           Welcome to
@@ -72,6 +73,14 @@
               </span>
             </label>
           </div>
+          <div class="auth__btns">
+            <button
+              class="auth__btn"
+              @click="showCheckEmail()"
+            >
+              Log in
+            </button>
+          </div>
         </div>
         <div
           class="form"
@@ -105,6 +114,14 @@
             >
             <div class="form__er" />
           </div>
+          <div class="auth__btns">
+            <button
+              class="auth__btn"
+              @click="showCheckEmail()"
+            >
+              Log Up
+            </button>
+          </div>
         </div>
         <div
           class="form"
@@ -117,11 +134,14 @@
             >
             <div class="form__er" />
           </div>
-        </div>
-        <div class="auth__btns">
-          <button class="auth__btn">
-            Log in
-          </button>
+          <div class="auth__btns">
+            <button
+              class="auth__btn"
+              @click="showCheckEmail()"
+            >
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>

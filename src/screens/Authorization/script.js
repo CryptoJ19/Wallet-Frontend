@@ -1,4 +1,9 @@
+import modalCheckEmail from './modalCheckEmail';
+
 export default {
+  components: {
+    modalCheckEmail,
+  },
   data: () => ({
     mode: 1,
     test: false,
@@ -18,6 +23,9 @@ export default {
   methods: {
     setMode(i) {
       this.mode = i;
+    },
+    showCheckEmail() {
+      this.$bvModal.show('check-email');
     },
   },
 };

@@ -1,0 +1,38 @@
+@mixin input {
+  input {
+    background: #FFF;
+    width: 100%;
+    border-radius: 15px;
+    padding: 0 20px;
+    height: 44px;
+    border: 1px solid $stroke;
+    transition: .2s;
+    &::placeholder {
+      color: rgba($grey, .5);
+      transition: .2s;
+    }
+    &:focus, &:hover {
+      border-color: #000;
+      &::placeholder {
+        color: #000;
+      }
+    }
+  }
+}
+
+@mixin btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@mixin btn-yellow {
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  background: $yellow;
+  height: 56px;
+  padding: 0 55px;
+}

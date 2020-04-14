@@ -1,0 +1,56 @@
+.form {
+  display: none;
+  &.form_active {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    margin: 0 0 2px;
+
+  }
+  &__er {
+    height: 18px;
+    font-size: 12px;
+  }
+  .check {
+    margin: 0 0 53px;
+    input {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      margin: 0;
+    }
+    &__label {
+      display: flex;
+      align-items: center;
+    }
+    .check__box {
+      display: flex;
+      position: relative;
+      width: 17px;
+      height: 17px;
+      border-radius: 4px;
+      background: #FFF;
+      border: 1px solid $stroke;
+      transition: .2s;
+    }
+    &__title {
+      font-size: 16px;
+      color: $grey;
+      margin: 0 0 0 9px;
+    }
+    &__icon {
+      position: absolute;
+      top: 4px;
+      left: 2px;
+      display: none;
+    }
+    .check__label input:checked ~ .check__box {
+      background: $yellow;
+      border-color: transparent;
+      .check__icon {
+        display: flex;
+      }
+    }
+  }
+}

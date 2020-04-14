@@ -1,10 +1,26 @@
 @import './reset';
 
+@import './bootstrap/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
+
+@import 'form.scss';
+
+@include input;
+
 body {
   color: #000;
   font-family: $raleway;
 
 }
+
+.modal-content {
+  border: none;
+}
+
+.modal-body {
+  padding: 0;
+}
+
 
 .cont-console {
   display: flex;
@@ -60,6 +76,14 @@ body {
     }
   }
 }
+
+
+
+
+
+
+
+
 
 @media (max-width: 1599px) {}
 @media (max-width: 1199px) {}
