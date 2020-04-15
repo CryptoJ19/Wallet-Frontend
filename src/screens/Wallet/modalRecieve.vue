@@ -37,18 +37,18 @@
                 class=""
                 menu-class="w-100"
               >
-                <b-dropdown-item href="#">
+                <b-dropdown-item-button>
                   Action
-                </b-dropdown-item>
-                <b-dropdown-item href="#">
+                </b-dropdown-item-button>
+                <b-dropdown-item-button>
                   Another action
-                </b-dropdown-item>
-                <b-dropdown-item href="#">
+                </b-dropdown-item-button>
+                <b-dropdown-item-button>
                   Something else here
-                </b-dropdown-item>
-                <b-dropdown-item href="#">
+                </b-dropdown-item-button>
+                <b-dropdown-item-button>
                   Something else here
-                </b-dropdown-item>
+                </b-dropdown-item-button>
               </b-dropdown>
             </div>
             <div class="mod__er" />
