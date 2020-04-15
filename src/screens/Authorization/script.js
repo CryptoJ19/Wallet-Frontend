@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import modalCheckEmail from './modalCheckEmail';
 
 
@@ -31,6 +31,18 @@ export default {
     },
     preludeSignup() {
       console.log('nice');
+
+      // const fd = new FormData();
+      // fd.append('firstName', 'Test');
+      // fd.append('lastName', 'Test');
+      // fd.append('email', 'tesqwt@test.ru');
+      // fd.append('password', 'Qwgjqwghrtj124123');
+      //
+      // axios({
+      //   method: 'post',
+      //   url: 'https://cashflash.hedpay.com/api/auth/register',
+      //   data: fd,
+      // });
     },
   },
 };
