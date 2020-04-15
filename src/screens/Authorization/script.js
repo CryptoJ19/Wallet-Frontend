@@ -1,4 +1,6 @@
+import axios from 'axios';
 import modalCheckEmail from './modalCheckEmail';
+
 
 export default {
   components: {
@@ -26,6 +28,9 @@ export default {
     },
     showCheckEmail() {
       this.$bvModal.show('check-email');
+    },
+    preludeSignup() {
+      console.log('nice');
     },
   },
 };

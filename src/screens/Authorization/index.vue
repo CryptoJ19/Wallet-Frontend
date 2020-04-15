@@ -117,7 +117,7 @@
           <div class="auth__btns">
             <button
               class="auth__btn"
-              @click="showCheckEmail()"
+              @click="preludeSignup()"
             >
               Sign Up
             </button>
