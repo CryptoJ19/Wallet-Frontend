@@ -1,5 +1,8 @@
 <template>
   <div class="wallet">
+    <modalSendBalance />
+    <modalRecieve />
+
     <div class="wallet__item balance">
       <div class="title">
         Balance
@@ -24,7 +27,10 @@
                 alt="arrow"
               >
             </button>
-            <button class="btn">
+            <button
+              class="btn"
+              @click="showSendBalance()"
+            >
               <div>
                 Send
               </div>
@@ -35,7 +41,10 @@
                 >
               </div>
             </button>
-            <button class="btn">
+            <button
+              class="btn"
+              @click="showRecieve()"
+            >
               <div>
                 Recieve
               </div>
@@ -70,7 +79,10 @@
                 alt="arrow"
               >
             </button>
-            <button class="btn">
+            <button
+              class="btn"
+              @click="showSendBalance()"
+            >
               <div>
                 Send
               </div>
@@ -81,7 +93,10 @@
                 >
               </div>
             </button>
-            <button class="btn">
+            <button
+              class="btn"
+              @click="showRecieve()"
+            >
               <div>
                 Recieve
               </div>
@@ -165,20 +180,5 @@
     </div>
   </div>
 </template>
-<script>
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
-
-export default {
-  components: { DatePicker },
-  data() {
-    return {
-      time1: null,
-      time2: null,
-      time3: null,
-
-    };
-  },
-};
-</script>
+<script src="./script.js" />
 <style lang="scss" scoped src="./style.scss" />

@@ -74,6 +74,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: fixed;
     &__logo {
       display: flex;
       justify-content: center;

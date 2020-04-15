@@ -78,7 +78,7 @@
               class="auth__btn"
               @click="showCheckEmail()"
             >
-              Log in
+              Sign In
             </button>
           </div>
         </div>
@@ -119,7 +119,7 @@
               class="auth__btn"
               @click="showCheckEmail()"
             >
-              Log Up
+              Sign Up
             </button>
           </div>
         </div>

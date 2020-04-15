@@ -8,23 +8,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 40px;
   }
   &__title {
     font-weight: bold;
     font-size: 22px;
     color: #000000;
   }
-  &__text {
-    font-size: 16px;
-    opacity: 0.5;
-    color: #000000;
-    margin: 0 0 30px;
+  &__er {
+    height: 18px;
+    font-size: 12px;
   }
-
-  &__input {
-    @include input;
-    margin: 0 0 12px;
+  &__item {
+    margin: 0 0 2px;
   }
   &__btns {
     display: flex;

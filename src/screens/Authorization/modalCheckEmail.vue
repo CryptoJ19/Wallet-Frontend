@@ -49,10 +49,25 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
   .modal-dialog {
     max-width: 430px;
+  }
+
+  .mod {
+    &__head {
+      margin: 0 0 40px;
+    }
+    &__input {
+      margin: 0 0 12px;
+    }
+    &__text {
+      font-size: 16px;
+      opacity: 0.5;
+      color: #000000;
+      margin: 0 0 30px;
+    }
   }
 
 </style>

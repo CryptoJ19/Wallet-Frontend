@@ -1,0 +1,129 @@
+<template>
+  <b-modal
+    id="modal-send-balance"
+    centered
+    hide-header
+    hide-footer
+  >
+    <div class="mod">
+      <div class="mod__head">
+        <div class="mod__title">
+          Send
+        </div>
+        <button
+          class="mod__closs"
+          @click="closeSendBalance()"
+        >
+          <img
+            src="~assets/imgs/icons/cross.svg"
+            alt="close"
+          >
+        </button>
+      </div>
+      <div class="mod__body">
+        <div class="mod__text">
+          Balance
+        </div>
+        <div class="mod__balance">
+          EOS 3.44
+        </div>
+        <div class="mod__items">
+          <div class="mod__item mod__input">
+            <input
+              type="text"
+              placeholder="Code"
+            >
+            <div class="mod__er" />
+          </div>
+          <div class="mod__item">
+            <div class="dd">
+              <b-dropdown
+                text="Token"
+                block
+                variant="primary"
+                class=""
+                menu-class="w-100"
+              >
+                <b-dropdown-item href="#">
+                  Action
+                </b-dropdown-item>
+                <b-dropdown-item href="#">
+                  Another action
+                </b-dropdown-item>
+                <b-dropdown-item href="#">
+                  Something else here
+                </b-dropdown-item>
+                <b-dropdown-item href="#">
+                  Something else here
+                </b-dropdown-item>
+              </b-dropdown>
+            </div>
+            <div class="mod__er" />
+          </div>
+          <div class="mod__item mod__input">
+            <div class="btn-max__p ui-input__body">
+              <input
+                type="text"
+                placeholder="Code"
+              >
+              <button class="btn-max">
+                Max
+              </button>
+            </div>
+            <div class="mod__er" />
+          </div>
+          <div class="mod__item mod__input">
+            <div class="">
+              <input
+                type="text"
+                placeholder="Memo"
+              >
+            </div>
+            <div class="mod__er" />
+          </div>
+        </div>
+      </div>
+      <div class="mod__btns">
+        <div class="mod__btn">
+          Send
+        </div>
+      </div>
+    </div>
+  </b-modal>
+</template>
+<script>
+export default {
+  methods: {
+    closeSendBalance() {
+      this.$bvModal.hide('modal-send-balance');
+    },
+  },
+};
+</script>
+<style lang="scss">
+
+  .modal-dialog {
+    max-width: 572px;
+  }
+
+  .mod {
+    &__head {
+      margin: 0 0 40px;
+    }
+    &__text {
+      font-size: 16px;
+      color: $grey;
+      opacity: 0.4;
+      margin: 0 0 3px;
+    }
+    &__balance {
+      font-weight: 800;
+      font-size: 50px;
+      color: #000;
+      margin: 0 0 10px;
+    }
+    &__items {
+      margin: 0 0 25px;
+    }
+  }
+</style>
