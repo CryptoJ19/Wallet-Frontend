@@ -158,34 +158,31 @@ export default {
       &__plus {
         transform: rotate(45deg);
       }
-    }
-  }
-
-  .dd-user {
-    .dropdown-toggle, .dropdown-item {
-      display: flex;
-      align-items: center;
-      border-radius: 22px;
-      height: 40px;
-      padding: 0 5px 0 14px;
-      cursor: pointer;
-      background: $grey-bg;
-      &:after {
-        display: none;
+      .dropdown-toggle, .dropdown-item {
+        display: flex;
+        align-items: center;
+        border-radius: 22px;
+        height: 40px;
+        padding: 0 5px 0 14px;
+        cursor: pointer;
+        background: $grey-bg;
+        &:after {
+          display: none;
+        }
       }
-    }
-    .dropdown-toggle, .dd-user__active .dropdown-item {
-      background: $yellow;
-    }
-    .dropdown-menu {
-      margin: 14px 0 0;
-      padding: 16px 18px;
-      border: none;
-      box-shadow: 0px 6px 10px rgba(27, 26, 25, 0.1);
-      border-radius: 18px;
-      li {
-        &:not(:last-child) {
-          margin: 0 0 15px;
+      .dropdown-toggle, .dd-user__active .dropdown-item {
+        background: $yellow;
+      }
+      .dropdown-menu {
+        margin: 14px 0 0;
+        padding: 16px 18px;
+        border: none;
+        box-shadow: 0px 6px 10px rgba(27, 26, 25, 0.1);
+        border-radius: 18px;
+        li {
+          &:not(:last-child) {
+            margin: 0 0 15px;
+          }
         }
       }
     }
