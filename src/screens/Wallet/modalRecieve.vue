@@ -51,7 +51,7 @@
                 </b-dropdown-item-button>
               </b-dropdown>
             </div>
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
           <div class="mod__item mod__input">
             <div class="btn-max__p ui-input__body">
@@ -77,7 +77,7 @@
                 </div>
               </tippy>
             </div>
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
           <div class="mod__item mod__input">
             <div class="btn-max__p ui-input__body">
@@ -92,7 +92,7 @@
                 >
               </div>
             </div>
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
         </div>
       </div>

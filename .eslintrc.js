@@ -23,6 +23,8 @@ module.exports = {
     'vue/no-unused-components': 'off',
     'global-require': 'off',
     'import/no-dynamic-require': 'off',
-    'import/no-extraneous-dependencies': 'off'
+    'import/no-extraneous-dependencies': 'off',
+    'no-param-reassign': 'off',
+    'no-useless-escape': 'off'
   }
 }

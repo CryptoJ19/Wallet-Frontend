@@ -4,6 +4,7 @@
     centered
     hide-header
     hide-footer
+    no-close-on-backdrop
   >
     <div class="mod">
       <div class="mod__head">
@@ -26,6 +27,7 @@
         </div>
         <div class="mod__input">
           <input
+            v-model="code"
             type="text"
             placeholder="Code"
           >
@@ -33,18 +35,27 @@
         </div>
       </div>
       <div class="mod__btns">
-        <div class="mod__btn">
-          Sign Un
-        </div>
+        <button
+          class="mod__btn"
+          @click="preludeValidateEmail()"
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   </b-modal>
 </template>
 <script>
 export default {
+  data: () => ({
+    code: '',
+  }),
   methods: {
     closeCheckEmail() {
       this.$bvModal.hide('check-email');
+    },
+    preludeValidateEmail() {
+      this.$emit('preludeValidateEmail', this.code);
     },
   },
 };

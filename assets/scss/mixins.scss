@@ -20,7 +20,7 @@
     cursor: pointer;
   }
   .btn-max__p input {
-    padding-right: 57px;
+    padding-right: 47px;
   }
 
   .info {
@@ -32,7 +32,7 @@
     }
   }
   .info__p input {
-    padding-right: 50px;
+    padding-right: 40px;
   }
   .qr {
     position: absolute;
@@ -41,9 +41,18 @@
     cursor: pointer;
   }
   .qr__p input {
-    padding-right: 57px;
+    padding-right: 47px;
   }
 
+  .password-hide {
+    position: absolute;
+    right: 5px;
+    padding: 0 7px;
+    cursor: pointer;
+  }
+  .password-hide__p input {
+    padding-right: 49px;
+  }
 
   input {
     background: #FFF;

@@ -1,6 +1,6 @@
 <template>
   <div class="auth">
-    <modalCheckEmail />
+    <modalCheckEmail @preludeValidateEmail="preludeValidateEmail" />
     <div class="auth__main container">
       <div class="auth__box">
         <div class="auth__title">
@@ -39,17 +39,47 @@
         >
           <div class="form__item">
             <input
-              placeholder="Name"
+              v-model="signin.email"
+              placeholder="Email"
               type="text"
             >
-            <div class="form__er" />
+            <div class="form__er">
+              <div v-if="getEr(0)">
+                Введите email
+              </div>
+              <div v-if="getEr(1)">
+                Введите корректный email
+              </div>
+            </div>
           </div>
           <div class="form__item">
-            <input
-              placeholder="Password"
-              type="text"
-            >
-            <div class="form__er" />
+            <div class="password-hide__p ui-input__body">
+              <input
+                v-model="signin.password"
+                placeholder="Password"
+                :type="signin.passwordType"
+              >
+              <button
+                class="password-hide"
+                @click="togglePasswordType()"
+              >
+                <img
+                  v-if="signin.passwordType === 'password'"
+                  src="~assets/imgs/icons/eye__open.svg"
+                  alt="eye"
+                >
+                <img
+                  v-else
+                  src="~assets/imgs/icons/eye__close.svg"
+                  alt="eye"
+                >
+              </button>
+            </div>
+            <div class="form__er">
+              <div v-if="getEr(2)">
+                Введите пароль
+              </div>
+            </div>
           </div>
           <div class="check">
             <label
@@ -58,7 +88,7 @@
             >
               <input
                 id="form-auth"
-                v-model="test"
+                v-model="signin.remember"
                 type="checkbox"
               >
               <span class="check__box">
@@ -76,7 +106,7 @@
           <div class="auth__btns">
             <button
               class="auth__btn"
-              @click="showCheckEmail()"
+              @click="preludeSignin()"
             >
               Sign In
             </button>
@@ -88,32 +118,85 @@
         >
           <div class="form__item">
             <input
+              v-model="signup.firstName"
               placeholder="First name"
               type="text"
             >
-            <div class="form__er" />
+            <div class="form__er">
+              <div v-if="getEr(0)">
+                Введите имя
+              </div>
+            </div>
           </div>
           <div class="form__item">
             <input
+              v-model="signup.lastName"
               placeholder="Last name"
               type="text"
             >
-            <div class="form__er" />
+            <div class="form__er">
+              <div v-if="getEr(1)">
+                Введите фамилию
+              </div>
+            </div>
           </div>
           <div class="form__item">
             <input
+              v-model="signup.email"
               placeholder="Email"
               type="text"
             >
-            <div class="form__er" />
+            <div class="form__er">
+              <div v-if="getEr(2)">
+                Введите email
+              </div>
+              <div v-if="getEr(4)">
+                Введите корректный email
+              </div>
+            </div>
           </div>
           <div class="form__item">
-            <input
-              placeholder="Password"
-              type="text"
-            >
-            <div class="form__er" />
+            <div class="password-hide__p ui-input__body">
+              <input
+                v-model="signup.password"
+                placeholder="Password"
+                :type="signup.passwordType"
+              >
+              <button
+                class="password-hide"
+                @click="togglePasswordType()"
+              >
+                <img
+                  v-if="signup.passwordType === 'password'"
+                  src="~assets/imgs/icons/eye__open.svg"
+                  alt="eye"
+                >
+                <img
+                  v-else
+                  src="~assets/imgs/icons/eye__close.svg"
+                  alt="eye"
+                >
+              </button>
+            </div>
+            <div class="form__er">
+              <div v-if="getEr(3)">
+                Введите пароль
+              </div>
+              <div v-if="getEr(5)">
+                Пароль должен содержать спец символ
+              </div>
+              <div v-if="getEr(6)">
+                Пароль должен содержать заглавную букву
+              </div>
+              <div v-if="getEr(7)">
+                Пароль должен содержать строчную букву
+              </div>
+              <div v-if="getEr(8)">
+                Пароль не должен содержать пробелы
+              </div>
+            </div>
           </div>
+
           <div class="auth__btns">
             <button
               class="auth__btn"
@@ -143,6 +226,23 @@
             </button>
           </div>
         </div>
+        <div>
+          <!--          <nuxt-link to="/wallet">-->
+          <!--            w-->
+          <!--          </nuxt-link>-->
+          <!--          <div>-->
+          <!--            {{ accessToken }}-->
+          <!--          </div>-->
+          <!--          <div>-->
+          <!--            {{ refreshToken }}-->
+          <!--          </div>-->
+        </div>
+      </div>
+      <div
+        class="auth__loader"
+        :class="{'auth__loader_show': loader}"
+      >
+        <Loader />
       </div>
     </div>
     <div class="auth__bg">

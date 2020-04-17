@@ -42,6 +42,9 @@
       >
         EOS MAINNET
       </a>
+      <nuxt-link to="/authorization">
+        authorization
+      </nuxt-link>
     </div>
   </div>
 </template>

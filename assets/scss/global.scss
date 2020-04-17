@@ -9,9 +9,26 @@
 
 @include input;
 
+@font-face {
+  font-family: Raleway;
+  font-weight: normal;
+  src: url(~assets/fonts/Raleway-Medium.ttf);
+}
+
+@font-face {
+  font-family: Raleway;
+  font-weight: 500;
+  src: url(~assets/fonts/Raleway-SemiBold.ttf);
+}
+@font-face {
+  font-family: Raleway;
+  font-weight: 600;
+  src: url(~assets/fonts/Raleway-Bold.ttf);
+}
+
 body {
   color: #000;
-  font-family: $raleway;
+  font-family: 'Raleway';
   background: $grey-bg;
 
 }
@@ -38,6 +55,11 @@ body {
   }
 }
 
+.form__er {
+  height: 18px;
+  font-size: 12px;
+  color: #db2c2c;
+}
 
 
 .dd {

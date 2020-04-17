@@ -38,12 +38,23 @@
   &__btn {
     @include btn;
     @include btn-yellow;
+  }
 
+  &__loader {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    background: rgba(#FFF, .6);
+    align-items: center;
+    justify-content: center;
+    display: none;
+    &_show {
+      display: flex;
+    }
   }
-  .remember {
-    &__check {}
-    &__title {}
-  }
+
   .menu {
     display: flex;
     justify-content: space-between;

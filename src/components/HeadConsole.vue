@@ -150,14 +150,7 @@ export default {
         background-size: cover;
         background-position: center center;
       }
-      &__add .dropdown-item {
-        background: transparent;
-        padding-right: 14px;
-        justify-content: space-between;
-      }
-      &__plus {
-        transform: rotate(45deg);
-      }
+
       .dropdown-toggle, .dropdown-item {
         display: flex;
         align-items: center;
@@ -169,6 +162,14 @@ export default {
         &:after {
           display: none;
         }
+      }
+      &__add .dropdown-item {
+        background: transparent;
+        padding-right: 14px;
+        justify-content: space-between;
+      }
+      &__plus {
+        transform: rotate(45deg);
       }
       .dropdown-toggle, .dd-user__active .dropdown-item {
         background: $yellow;

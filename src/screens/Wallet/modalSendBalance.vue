@@ -33,7 +33,7 @@
               type="text"
               placeholder="Code"
             >
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
           <div class="mod__item">
             <div class="dd">
@@ -58,7 +58,7 @@
                 </b-dropdown-item-button>
               </b-dropdown>
             </div>
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
           <div class="mod__item mod__input">
             <div class="btn-max__p ui-input__body">
@@ -70,7 +70,7 @@
                 Max
               </button>
             </div>
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
           <div class="mod__item mod__input">
             <div class="">
@@ -79,7 +79,7 @@
                 placeholder="Memo"
               >
             </div>
-            <div class="mod__er" />
+            <div class="form__er" />
           </div>
         </div>
       </div>
