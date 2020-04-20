@@ -31,7 +31,9 @@
             type="text"
             placeholder="Code"
           >
-          <div class="form__er" />
+          <div class="form__er">
+            {{ erCheckEmail }}
+          </div>
         </div>
       </div>
       <div class="mod__btns">
@@ -43,10 +45,25 @@
         </button>
       </div>
     </div>
+    <div
+      class="loader__body"
+      :class="{'loader__body_show': loaderModal}"
+    >
+      <Loader />
+    </div>
   </b-modal>
 </template>
 <script>
+import Loader from '../../ui/Loader';
+
 export default {
+  components: {
+    Loader,
+  },
+  props: {
+    erCheckEmail: String,
+    loaderModal: Boolean,
+  },
   data: () => ({
     code: '',
   }),
@@ -64,6 +81,10 @@ export default {
 
   .modal-dialog {
     max-width: 430px;
+  }
+
+  .loader__body {
+    border-radius: 13px;
   }
 
   .mod {

@@ -1,6 +1,10 @@
 <template>
   <div class="auth">
-    <modalCheckEmail @preludeValidateEmail="preludeValidateEmail" />
+    <modalCheckEmail
+      :er-check-email="erCheckEmail"
+      :loader-modal="loaderModal"
+      @preludeValidateEmail="preludeValidateEmail"
+    />
     <div class="auth__main container">
       <div class="auth__box">
         <div class="auth__title">

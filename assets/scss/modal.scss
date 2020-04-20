@@ -1,5 +1,16 @@
+.modal-content {
+  border: none;
+  border-radius: 13px;
+}
+
+.modal-body {
+  padding: 0;
+  position: relative;
+}
+
 .mod {
   margin: 30px;
+  &__loader
   &__closs {
     padding: 10px;
     margin: -10px;

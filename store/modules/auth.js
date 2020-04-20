@@ -1,11 +1,4 @@
-const customFetch = (url, method, data) => fetch(url, {
-  method,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-});
+import { customFetch, customFetchToken } from '../../helpers/customFetch';
 
 export default {
   state: {
@@ -13,64 +6,78 @@ export default {
     refreshToken: 'refreshToken',
   },
   actions: {
-    async fetchSignin(ctx, data, remember, successCallback, errorCallback) {
+    async fetchSignin(ctx, data) {
       const rawResponse = await customFetch(
         'https://cashflash.hedpay.com/api/auth/login',
         'POST',
-        data,
+        data.data,
       );
       const content = await rawResponse.json();
-      console.log('fetchSignin', content);
       if (content.ok) {
-        if (remember) {
-          ctx.commit('updateAccess', content);
-          ctx.commit('updateRefresh', content);
+        if (data.remember) {
+          ctx.commit('updateAccess', content.result.access);
+          ctx.commit('updateRefresh', content.result.refresh);
+        } else {
+          ctx.commit('temporaryAccess', content.result.access);
+          ctx.commit('temporaryRefresh', content.result.refresh);
         }
-        successCallback();
       }
-      console.log(ctx, data, remember, successCallback, errorCallback);
-      if (errorCallback) errorCallback(content);
+      return content;
     },
-
     async fetchSignup(ctx, data) {
       const rawResponse = await customFetch(
         'https://cashflash.hedpay.com/api/auth/register',
         'POST',
         data,
       );
-
       const content = await rawResponse.json();
       console.log('fetchSignup', content);
       if (content.ok) {
-        ctx.commit('updateAccess', content);
-        ctx.commit('updateRefresh', content);
-        return true;
+        ctx.commit('updateAccess', content.result.access);
+        ctx.commit('updateRefresh', content.result.refresh);
       }
-      return false;
+      return content;
     },
-
     async fetchValidateEmail(ctx, data) {
-      const rawResponse = await customFetch(
-        'https://cashflash.hedpay.com/api/auth/validate-email',
-        'POST',
-        data,
-      );
-      const content = await rawResponse.json();
-      console.log('fetchValidateEmail', content);
-      if (content.ok) {
-        return true;
-      }
-      return false;
+      const res = await customFetchToken(ctx, async () => {
+        let token;
+        if (localStorage.getItem('accessToken') !== null) {
+          token = localStorage.getItem('accessToken');
+        } else {
+          token = sessionStorage.getItem('accessToken');
+        }
+        const header = {
+          Authorization: `Bearer ${token}`,
+        };
+        const rawResponse = await customFetch(
+          'https://cashflash.hedpay.com/api/auth/validate-email',
+          'POST',
+          data,
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      // console.log(res);
+      return res;
     },
   },
   mutations: {
-    updateAccess(state, data) {
-      localStorage.setItem('accessToken', data.result.access);
-      state.accessToken = data.result.access;
+    updateAccess(state, value) {
+      localStorage.setItem('accessToken', value);
+      state.accessToken = value;
     },
-    updateRefresh(state, data) {
-      localStorage.setItem('refreshToken', data.result.refresh);
-      state.refreshToken = data.result.refresh;
+    updateRefresh(state, value) {
+      localStorage.setItem('refreshToken', value);
+      state.refreshToken = value;
+    },
+    temporaryAccess(state, value) {
+      sessionStorage.setItem('accessToken', value);
+      state.accessToken = value;
+    },
+    temporaryRefresh(state, value) {
+      sessionStorage.setItem('refreshToken', value);
+      state.refreshToken = value;
     },
   },
   getters: {

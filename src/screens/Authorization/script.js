@@ -13,20 +13,37 @@ export default {
     loader: false,
 
     er: [],
+    erCheckEmail: '',
+    loaderModal: false,
+
 
     signin: {
       email: '',
       password: '',
-      passwordType: 'password',
+      passwordType: '',
       remember: false,
     },
     signup: {
-      firstName: 'T',
-      lastName: 'T',
+      firstName: '',
+      lastName: '',
       email: '',
-      password: 'qweQWE@',
+      password: '',
       passwordType: 'text',
     },
+
+    // signin: {
+    //   email: 'testtest123@2go-mail.com',
+    //   password: 'qweQWE@',
+    //   passwordType: 'password',
+    //   remember: false,
+    // },
+    // signup: {
+    //   firstName: 'T',
+    //   lastName: 'T',
+    //   email: 'test45313@2go-mail.com', // testtest123@2go-mail.com
+    //   password: 'qweQWE@',
+    //   passwordType: 'text',
+    // },
 
     forgotEmail: '',
   }),
@@ -72,13 +89,11 @@ export default {
         password: '',
         passwordType: 'password',
       };
-
       this.signin = {
         email: '',
         password: '',
         passwordType: 'password',
       };
-
       this.forgotEmail = '';
       this.er = [];
       this.mode = i;
@@ -132,7 +147,6 @@ export default {
       if (password === '') {
         this.er.push(2);
       }
-
       if (this.er.length !== 0) {
         return false;
       }
@@ -213,9 +227,6 @@ export default {
         }
       }
     },
-    errorSignin(res) {
-      console.log('er', res);
-    },
     async preludeSignin() {
       this.trimSignin();
       if (this.checkSignin()) {
@@ -234,19 +245,35 @@ export default {
             password,
           },
           remember,
-          errorSignin: this.errorSignin,
         });
         this.loader = false;
-        console.log('res', res);
+        console.log('fetchSignin', res);
+        // if (res.ok) {
+        //
+        // }
+        this.$router.push({ path: 'wallet' });
       }
     },
 
     async preludeValidateEmail(code) {
-      console.log('Validate', code);
+      this.erCheckEmail = '';
+      this.loaderModal = true;
 
-      await this.fetchValidateEmail({
-        code,
-      });
+      if (code === '') {
+        this.erCheckEmail = 'Введите код';
+      } else {
+        const res = await this.fetchValidateEmail({
+          code,
+        });
+        this.loaderModal = false;
+        console.log('fetchValidateEmail', res);
+
+        if (res && res.ok) {
+          this.$router.push({ path: 'wallet' });
+        } else {
+          this.erCheckEmail = 'Неверный код подтверждения';
+        }
+      }
     },
   },
 };
