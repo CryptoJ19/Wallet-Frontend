@@ -19,14 +19,14 @@
               class="menu__item"
               @click="setMode(0)"
             >
-              Sing in
+              Sign in
             </button>
             <button
               :class="authBtnClass[1]"
               class="menu__item"
               @click="setMode(1)"
             >
-              Sing Up
+              Sign Up
             </button>
           </div>
           <button
