@@ -1,10 +1,10 @@
 import { mapGetters, mapActions } from 'vuex';
-import modalCheckEmail from './modalCheckEmail';
+import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
 
 export default {
   components: {
-    modalCheckEmail,
+    ModalCheckEmail,
     Loader,
   },
   data: () => ({
@@ -13,16 +13,16 @@ export default {
     loader: false,
 
     er: [],
+    erMes: '',
     erCheckEmail: '',
     loaderModal: false,
 
-
-    signin: {
-      email: '',
-      password: '',
-      passwordType: '',
-      remember: false,
-    },
+    // signin: {
+    //   email: '',
+    //   password: '',
+    //   passwordType: '',
+    //   remember: false,
+    // },
     signup: {
       firstName: '',
       lastName: '',
@@ -31,12 +31,12 @@ export default {
       passwordType: 'text',
     },
 
-    // signin: {
-    //   email: 'testtest123@2go-mail.com',
-    //   password: 'qweQWE@',
-    //   passwordType: 'password',
-    //   remember: false,
-    // },
+    signin: {
+      email: 'testtest123@2go-mail.com',
+      password: 'qweQWE@',
+      passwordType: 'password',
+      remember: false,
+    },
     // signup: {
     //   firstName: 'T',
     //   lastName: 'T',
@@ -44,20 +44,23 @@ export default {
     //   password: 'qweQWE@',
     //   passwordType: 'text',
     // },
-
-    forgotEmail: '',
+    forgot: {
+      email: 'testtest123@2go-mail.com',
+      code: '',
+    },
   }),
   computed: {
     ...mapGetters(['accessToken', 'refreshToken']),
     authBtnClass: ({ mode }) => ([
       { menu__item_active: (mode === 0) },
       { menu__item_active: (mode === 1) },
-      { forgot_active: (mode === 2) },
+      { forgot_active: (mode === 2) || (mode === 3) },
     ]),
     authFormClass: ({ mode }) => ([
       { form_active: (mode === 0) },
       { form_active: (mode === 1) },
       { form_active: (mode === 2) },
+      { form_active: (mode === 3) },
     ]),
   },
   methods: {
@@ -65,6 +68,7 @@ export default {
       'fetchSignup',
       'fetchValidateEmail',
       'fetchSignin',
+      'fetchForgotSend',
     ]),
     togglePasswordType() {
       if (this.mode === 0) {
@@ -94,7 +98,11 @@ export default {
         password: '',
         passwordType: 'password',
       };
-      this.forgotEmail = '';
+      this.forgot = {
+        email: '',
+        code: '',
+        password: '',
+      };
       this.er = [];
       this.mode = i;
     },
@@ -129,6 +137,16 @@ export default {
         ...this.signin,
         email: emailLocal,
       };
+    },
+    checkForgotSend() {
+      this.er = [];
+      if (this.forgot.email === '') {
+        this.er.push(0);
+      }
+      if (this.er.length !== 0) {
+        return false;
+      }
+      return true;
     },
     checkSignin() {
       this.er = [];
@@ -228,6 +246,7 @@ export default {
       }
     },
     async preludeSignin() {
+      this.erMes = '';
       this.trimSignin();
       if (this.checkSignin()) {
         const {
@@ -235,10 +254,7 @@ export default {
           password,
           remember,
         } = this.signin;
-
         this.loader = true;
-
-
         const res = await this.fetchSignin({
           data: {
             email,
@@ -248,13 +264,30 @@ export default {
         });
         this.loader = false;
         console.log('fetchSignin', res);
-        // if (res.ok) {
-        //
-        // }
-        this.$router.push({ path: 'wallet' });
+        if (res.ok) {
+          this.$router.push({ path: 'wallet' });
+        } else if (res.code === 401000) {
+          this.erMes = res.msg;
+        }
       }
     },
-
+    async preludeForgotSend() {
+      this.forgot.email = this.forgot.email.trim();
+      if (this.checkForgotSend()) {
+        this.loader = true;
+        const res = await this.fetchForgotSend({
+          email: this.forgot.email,
+        });
+        this.loader = false;
+        console.log('fetchForgotSend', res);
+        if (res.ok) {
+          this.mode = 3;
+        }
+      }
+    },
+    preludeForgotChange() {
+      console.log('nice');
+    },
     async preludeValidateEmail(code) {
       this.erCheckEmail = '';
       this.loaderModal = true;
@@ -268,7 +301,7 @@ export default {
         this.loaderModal = false;
         console.log('fetchValidateEmail', res);
 
-        if (res && res.ok) {
+        if (res.ok) {
           this.$router.push({ path: 'wallet' });
         } else {
           this.erCheckEmail = 'Неверный код подтверждения';

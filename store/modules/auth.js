@@ -2,10 +2,31 @@ import { customFetch, customFetchToken } from '../../helpers/customFetch';
 
 export default {
   state: {
-    accessToken: 'accessToken',
-    refreshToken: 'refreshToken',
+    email: '',
+    isAuthorized: false,
   },
   actions: {
+    async fetchForgotChange(ctx, data) {
+      const rawResponse = await customFetch(
+        'https://cashflash.hedpay.com/api/auth/restore/change',
+        'POST',
+        data,
+      );
+      const content = await rawResponse.json();
+      console.log('fetchForgotChange', content);
+      return content;
+    },
+
+    async fetchForgotSend(ctx, data) {
+      const rawResponse = await customFetch(
+        'https://cashflash.hedpay.com/api/auth/restore/send',
+        'POST',
+        data,
+      );
+      const content = await rawResponse.json();
+      console.log('fetchForgotSend', content);
+      return content;
+    },
     async fetchSignin(ctx, data) {
       const rawResponse = await customFetch(
         'https://cashflash.hedpay.com/api/auth/login',
@@ -14,6 +35,9 @@ export default {
       );
       const content = await rawResponse.json();
       if (content.ok) {
+        console.log('data.data.email', data, data.data.email);
+        ctx.commit('updateEmail', data.data.email);
+        ctx.commit('updateIsAuthorized', true);
         if (data.remember) {
           ctx.commit('updateAccess', content.result.access);
           ctx.commit('updateRefresh', content.result.refresh);
@@ -63,29 +87,28 @@ export default {
     },
   },
   mutations: {
+    updateIsAuthorized(state, value) {
+      state.isAuthorized = value;
+    },
+    updateEmail(state, value) {
+      state.email = value;
+    },
     updateAccess(state, value) {
       localStorage.setItem('accessToken', value);
-      state.accessToken = value;
     },
     updateRefresh(state, value) {
       localStorage.setItem('refreshToken', value);
-      state.refreshToken = value;
     },
     temporaryAccess(state, value) {
       sessionStorage.setItem('accessToken', value);
-      state.accessToken = value;
     },
     temporaryRefresh(state, value) {
       sessionStorage.setItem('refreshToken', value);
-      state.refreshToken = value;
     },
   },
   getters: {
-    accessToken(state) {
-      return state.accessToken;
-    },
-    refreshToken(state) {
-      return state.refreshToken;
+    getEmail(state) {
+      return state.email;
     },
   },
 };

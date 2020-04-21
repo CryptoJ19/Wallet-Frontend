@@ -1,6 +1,6 @@
 <template>
   <div class="auth">
-    <modalCheckEmail
+    <ModalCheckEmail
       :er-check-email="erCheckEmail"
       :loader-modal="loaderModal"
       @preludeValidateEmail="preludeValidateEmail"
@@ -83,6 +83,7 @@
               <div v-if="getEr(2)">
                 Введите пароль
               </div>
+              {{ erMes }}
             </div>
           </div>
           <div class="check">
@@ -216,18 +217,31 @@
         >
           <div class="form__item">
             <input
+              v-model="forgot.email"
               placeholder="Email"
               type="text"
             >
-            <div class="form__er" />
+            <div class="form__er">
+              <div v-if="getEr(0)">
+                Введите email
+              </div>
+            </div>
           </div>
           <div class="auth__btns">
             <button
               class="auth__btn"
-              @click="showCheckEmail()"
+              @click="preludeForgotSend()"
             >
               Send
             </button>
+          </div>
+        </div>
+        <div
+          class="form"
+          :class="authFormClass[3]"
+        >
+          <div class="form__text">
+            На ваш email отправлено письмо для восстановления пароля.
           </div>
         </div>
         <div>
