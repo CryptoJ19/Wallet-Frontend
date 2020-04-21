@@ -1,7 +1,18 @@
 <template>
   <div class="head-console">
     <div class="head-console__title">
-      {{ title }}
+      <button
+        class="head-console__burger"
+        @click="toggleMenu"
+      >
+        <img
+          src="~assets/imgs/icons/burger.svg"
+          alt="menu"
+        >
+      </button>
+      <div>
+        {{ title }}
+      </div>
     </div>
     <div class="head-console__right">
       <!--      <div class="head-console__item dd-user__body">-->
@@ -95,6 +106,9 @@ export default {
     imagePath() {
       return require('assets/imgs/ava.png');
     },
+    toggleMenu() {
+      this.$emit('toggleMenu');
+    },
   },
 };
 </script>
@@ -113,6 +127,11 @@ export default {
       font-weight: bold;
       font-size: 50px;
       color: #000;
+      display: flex;
+      align-items: center;
+    }
+    &__burger {
+      display: none;
     }
     &__item {
       cursor: pointer;
@@ -187,5 +206,28 @@ export default {
         }
       }
     }
+    @media (max-width: 1599px) {}
+    @media (max-width: 1199px) {
+      position: fixed;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 200;
+      left: 0;
+      right: 0;
+      padding: 0 25px;
+      height: 74px;
+      &__title {
+        font-size: 20px;
+      }
+      &__burger {
+        display: flex;
+        margin: 0 25px 0 0;
+      }
+    }
+    @media (max-width: 991px) {}
+    @media (max-width: 767px) {}
+    @media (max-width: 575px) {}
+    @media (max-width: 479px) {}
+    @media (max-width: 399px) {}
   }
 </style>

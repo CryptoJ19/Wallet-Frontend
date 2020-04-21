@@ -22,11 +22,12 @@ export default {
     resetData: {},
   }),
   mounted() {
-    console.log('Текущий путь', this.$route);
-
+    // console.log('Текущий путь', this.$route);
     if (this.$route.path === '/reset') {
       this.mode = 2;
       this.resetData = this.$route.query;
+    } else {
+      this.mode = 1;
     }
   },
   head() {

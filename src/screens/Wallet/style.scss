@@ -150,5 +150,20 @@
       }
     }
   }
+  @media (max-width: 1599px) {}
+  @media (max-width: 1199px) {
+    grid-template-columns: 1fr;
+    &__item {
+      grid-column-start: 1 !important;
+      grid-column-end: 2 !important;
+    }
+  }
+  @media (max-width: 991px) {
+    padding: 20px;
+  }
+  @media (max-width: 767px) {}
+  @media (max-width: 575px) {}
+  @media (max-width: 479px) {}
+  @media (max-width: 399px) {}
 }
 

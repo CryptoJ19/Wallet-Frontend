@@ -1,5 +1,8 @@
 <template>
-  <div class="main-menu">
+  <div
+    class="main-menu"
+    :class="{'main-menu_show': showMenu}"
+  >
     <div class="main-menu__top">
       <div class="main-menu__logo">
         <img
@@ -13,7 +16,7 @@
           :key="`nav-${item.router}`"
           :to="`/${item.router}`"
           class="main-menu__item "
-          :class="{'main-menu__item_active': item.title === title}"
+          :class="navItemClass(item, title)"
         >
           <div class="main-menu__title">
             {{ item.title }}
@@ -52,6 +55,7 @@
 export default {
   props: {
     title: String,
+    showMenu: Boolean,
   },
   data: () => ({
     menuItems: [
@@ -59,7 +63,10 @@ export default {
       { title: 'Profile', router: 'profile' },
     ],
   }),
+  computed: {
+  },
   methods: {
+    navItemClass: (item, title) => ({ 'main-menu__item_active': item.title === title }),
     imagePath(i, active = false) {
       if (active) {
         return require(`assets/imgs/icons/MainMenu/${i}_active.svg`);
@@ -78,6 +85,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
+    /*z-index: 190;*/
     &__logo {
       display: flex;
       justify-content: center;
@@ -145,5 +153,29 @@ export default {
         }
       }
     }
+    @media (max-width: 1599px) {}
+    @media (max-width: 1199px) {
+      top: 74px;
+      width: 280px;
+      left: -280px;
+      transition: .4s ease;
+      &_show {
+        left: 0;
+        /*display: flex;*/
+      }
+      &__items {
+        padding: 0;
+      }
+      &__logo {
+        display: none;
+      }
+    }
+    @media (max-width: 991px) {}
+    @media (max-width: 767px) {}
+    @media (max-width: 575px) {}
+    @media (max-width: 479px) {}
+    @media (max-width: 399px) {}
   }
+
+
 </style>

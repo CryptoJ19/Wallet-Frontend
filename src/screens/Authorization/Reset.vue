@@ -33,9 +33,6 @@
               {{ erMes }}
             </div>
           </div>
-          <!--          <div>-->
-          <!--            {{ resetData }}-->
-          <!--          </div>-->
           <div class="auth__btns">
             <button
               class="auth__btn"
