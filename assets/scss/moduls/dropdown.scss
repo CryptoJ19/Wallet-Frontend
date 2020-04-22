@@ -2,10 +2,8 @@
   .b-dropdown {
     background: #FFF;
     width: 100%;
-
     display: flex;
     align-items: center;
-
     &:hover {
       border-color: #000;
     }
@@ -29,7 +27,6 @@
       background: url(~assets/imgs/icons/arrow_dd.svg) no-repeat;
       background-position: center center;
     }
-
   }
   .show .dropdown-toggle, .dropdown-toggle:hover {
     color: #000;
@@ -45,14 +42,5 @@
     background: $yellow;
     color: #000;
   }
-  @media (max-width: 1599px) {}
-  @media (max-width: 1199px) {}
-  @media (max-width: 991px) {
-
-  }
-  @media (max-width: 767px) {}
-  @media (max-width: 575px) {}
-  @media (max-width: 479px) {}
-  @media (max-width: 399px) {}
 }
 

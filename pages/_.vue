@@ -22,8 +22,9 @@ export default {
     resetData: {},
   }),
   mounted() {
-    // console.log('Текущий путь', this.$route);
-    if (this.$route.path === '/reset' && this.$route.query.email !== '' && this.$route.query.code !== '') {
+    if (this.$route.path === '/reset'
+      && this.$route.query.email !== ''
+      && this.$route.query.code !== '') {
       this.mode = 2;
       this.resetData = this.$route.query;
     } else {

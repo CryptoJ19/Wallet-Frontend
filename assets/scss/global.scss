@@ -68,7 +68,7 @@ body {
   color: #db2c2c;
 }
 
-@media (max-width: 1599px) {}
+
 @media (max-width: 1199px) {
   .cont-console {
     &__menu {
@@ -79,6 +79,9 @@ body {
     }
   }
 }
+
+@media (max-width: 1599px) {}
+@media (max-width: 1199px) {}
 @media (max-width: 991px) {}
 @media (max-width: 767px) {}
 @media (max-width: 575px) {}

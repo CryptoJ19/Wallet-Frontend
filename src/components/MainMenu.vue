@@ -45,9 +45,6 @@
       >
         EOS MAINNET
       </a>
-      <!--      <nuxt-link to="/authorization">-->
-      <!--        authorization-->
-      <!--      </nuxt-link>-->
     </div>
   </div>
 </template>
@@ -153,7 +150,6 @@ export default {
         }
       }
     }
-    @media (max-width: 1599px) {}
     @media (max-width: 1199px) {
       top: 74px;
       width: 280px;
@@ -171,11 +167,6 @@ export default {
         display: none;
       }
     }
-    @media (max-width: 991px) {}
-    @media (max-width: 767px) {}
-    @media (max-width: 575px) {}
-    @media (max-width: 479px) {}
-    @media (max-width: 399px) {}
   }
 
 
