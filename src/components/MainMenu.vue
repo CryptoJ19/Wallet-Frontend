@@ -85,7 +85,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    /*z-index: 190;*/
+    z-index: 190;
     &__logo {
       display: flex;
       justify-content: center;
@@ -158,10 +158,11 @@ export default {
       top: 74px;
       width: 280px;
       left: -280px;
+      height: initial;
+      bottom: 0;
       transition: .4s ease;
       &_show {
         left: 0;
-        /*display: flex;*/
       }
       &__items {
         padding: 0;

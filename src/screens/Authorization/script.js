@@ -8,7 +8,7 @@ export default {
     Loader,
   },
   data: () => ({
-    mode: 0,
+    mode: 1,
     test: false,
     loader: false,
 
@@ -23,13 +23,13 @@ export default {
     //   passwordType: '',
     //   remember: false,
     // },
-    signup: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordType: 'text',
-    },
+    // signup: {
+    //   firstName: '',
+    //   lastName: '',
+    //   email: '',
+    //   password: '',
+    //   passwordType: 'text',
+    // },
 
     signin: {
       email: 'testtest123@2go-mail.com',
@@ -37,13 +37,13 @@ export default {
       passwordType: 'password',
       remember: false,
     },
-    // signup: {
-    //   firstName: 'T',
-    //   lastName: 'T',
-    //   email: 'test45313@2go-mail.com', // testtest123@2go-mail.com
-    //   password: 'qweQWE@',
-    //   passwordType: 'text',
-    // },
+    signup: {
+      firstName: 'T',
+      lastName: 'T',
+      email: 'test45313@2go-mail.com', // testtest123@2go-mail.com
+      password: 'qweQWE@',
+      passwordType: 'text',
+    },
     forgot: {
       email: 'testtest123@2go-mail.com',
       code: '',

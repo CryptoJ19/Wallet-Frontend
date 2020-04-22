@@ -1,7 +1,7 @@
 <template>
   <div class="wallet">
-    <modalSendBalance />
-    <modalRecieve />
+    <ModalSendBalance />
+    <ModalRecieve />
 
     <div class="wallet__item balance">
       <div class="title">
@@ -116,36 +116,36 @@
         <div class="head__title">
           History
         </div>
-        <div class="head__right">
-          <div class="dd">
-            <div class="dd__toggler">
-              All action
-            </div>
-            <div class="dd__arrow">
-              <img
-                src="~assets/imgs/icons/arrow_default.svg"
-                alt="arrow"
-              >
-            </div>
-          </div>
-          <div class="head__picker">
-            <date-picker
-              v-model="time3"
-              class="custom-date-picker"
-              :popup-class="'custom-date-picker'"
-              range
-              :format="'DD.MM.YY'"
-              :range-separator="' - '"
-            >
-              <template v-slot:icon-calendar>
-                <img
-                  src="~assets/imgs/icons/calendar.svg"
-                  alt="info"
-                >
-              </template>
-            </date-picker>
-          </div>
-        </div>
+        <!--        <div class="head__right">-->
+        <!--          <div class="dd">-->
+        <!--            <div class="dd__toggler">-->
+        <!--              All action-->
+        <!--            </div>-->
+        <!--            <div class="dd__arrow">-->
+        <!--              <img-->
+        <!--                src="~assets/imgs/icons/arrow_default.svg"-->
+        <!--                alt="arrow"-->
+        <!--              >-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="head__picker">-->
+        <!--            <date-picker-->
+        <!--              v-model="time3"-->
+        <!--              class="custom-date-picker"-->
+        <!--              :popup-class="'custom-date-picker'"-->
+        <!--              range-->
+        <!--              :format="'DD.MM.YY'"-->
+        <!--              :range-separator="' - '"-->
+        <!--            >-->
+        <!--              <template v-slot:icon-calendar>-->
+        <!--                <img-->
+        <!--                  src="~assets/imgs/icons/calendar.svg"-->
+        <!--                  alt="info"-->
+        <!--                >-->
+        <!--              </template>-->
+        <!--            </date-picker>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
       <div class="table">
         <div class="table__head">

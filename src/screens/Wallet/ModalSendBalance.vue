@@ -1,6 +1,6 @@
 <template>
   <b-modal
-    id="modal-recieve"
+    id="modal-send-balance"
     centered
     hide-header
     hide-footer
@@ -12,7 +12,7 @@
         </div>
         <button
           class="mod__closs"
-          @click="closeRecieve()"
+          @click="closeSendBalance()"
         >
           <img
             src="~assets/imgs/icons/cross.svg"
@@ -28,10 +28,17 @@
           EOS 3.44
         </div>
         <div class="mod__items">
+          <div class="mod__item mod__input">
+            <input
+              type="text"
+              placeholder="Code"
+            >
+            <div class="form__er" />
+          </div>
           <div class="mod__item">
             <div class="dd">
               <b-dropdown
-                text="Send to EOS address"
+                text="Token"
                 block
                 variant="primary"
                 class=""
@@ -59,38 +66,18 @@
                 type="text"
                 placeholder="Code"
               >
-              <tippy
-                animation="shift-toward"
-                placement="bottom"
-                theme="light"
-                arrow
-                class="info"
-              >
-                <template v-slot:trigger>
-                  <img
-                    src="~assets/imgs/icons/info-input.svg"
-                    alt="info"
-                  >
-                </template>
-                <div>
-                  info
-                </div>
-              </tippy>
+              <button class="btn-max">
+                Max
+              </button>
             </div>
             <div class="form__er" />
           </div>
           <div class="mod__item mod__input">
-            <div class="btn-max__p ui-input__body">
+            <div class="">
               <input
                 type="text"
                 placeholder="Memo"
               >
-              <div class="qr">
-                <img
-                  src="~assets/imgs/icons/qr-input.svg"
-                  alt="info"
-                >
-              </div>
             </div>
             <div class="form__er" />
           </div>
@@ -98,7 +85,7 @@
       </div>
       <div class="mod__btns">
         <div class="mod__btn">
-          Recieve
+          Send
         </div>
       </div>
     </div>
@@ -107,37 +94,10 @@
 <script>
 export default {
   methods: {
-    closeRecieve() {
-      this.$bvModal.hide('modal-recieve');
+    closeSendBalance() {
+      this.$bvModal.hide('modal-send-balance');
     },
   },
 };
 </script>
-<style lang="scss" >
-
-  .modal-dialog {
-    max-width: 572px;
-  }
-
-  .mod {
-    &__head {
-      margin: 0 0 40px;
-    }
-    &__text {
-      font-size: 16px;
-      color: $grey;
-      opacity: 0.4;
-      margin: 0 0 3px;
-    }
-    &__balance {
-      font-weight: 800;
-      font-size: 50px;
-      color: #000;
-      margin: 0 0 10px;
-    }
-    &__items {
-      margin: 0 0 25px;
-    }
-  }
-
-</style>
+<style lang="scss" src="./styleModal.scss"/>

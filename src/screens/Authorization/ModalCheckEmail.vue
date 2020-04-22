@@ -83,10 +83,6 @@ export default {
     max-width: 430px;
   }
 
-  .loader__body {
-    border-radius: 13px;
-  }
-
   .mod {
     &__head {
       margin: 0 0 40px;

@@ -224,7 +224,32 @@ export default {
         margin: 0 25px 0 0;
       }
     }
-    @media (max-width: 991px) {}
+    @media (max-width: 991px) {
+      .dd-user {
+        &__name {
+          display: none;
+        }
+        &__add {
+          .dropdown-item {
+            display: flex;
+            justify-content: center;
+          }
+        }
+        &__plus {
+          img {
+            width: 8px;
+            height: 8px;
+          }
+        }
+        .dropdown-menu {
+          margin: 0 -18px 0 0;
+        }
+        .dropdown-toggle, .dropdown-item {
+          padding: 0 5px;
+        }
+      }
+
+    }
     @media (max-width: 767px) {}
     @media (max-width: 575px) {}
     @media (max-width: 479px) {}

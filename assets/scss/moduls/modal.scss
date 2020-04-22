@@ -10,7 +10,6 @@
 
 .mod {
   margin: 30px;
-  &__loader
   &__closs {
     padding: 10px;
     margin: -10px;
@@ -38,8 +37,35 @@
   }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 767px) {
   .modal-dialog {
-    max-width: initial;
+    margin: 0;
+    max-width: 100% !important;
+    width: 100%;
+  }
+  .modal-dialog-centered {
+    height: 100%;
+  }
+  .modal-body {
+
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+
+    background: #FFF;
+    position: fixed;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    max-height: 80%;
+    overflow: scroll;
+  }
+  .mod {
+    margin-bottom: 60px;
   }
 }
+
+//@media (max-width: 575px) {
+//  .modal-dialog {
+//    max-width: initial;
+//  }
+//}

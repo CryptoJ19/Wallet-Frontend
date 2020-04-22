@@ -1,14 +1,14 @@
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
-import modalSendBalance from './modalSendBalance';
-import modalRecieve from './modalRecieve';
+import ModalSendBalance from './ModalSendBalance';
+import ModalRecieve from './ModalRecieve';
 
 export default {
   components: {
     DatePicker,
-    modalSendBalance,
-    modalRecieve,
+    ModalSendBalance,
+    ModalRecieve,
   },
   data() {
     return {
