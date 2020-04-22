@@ -1,14 +1,43 @@
 import baseUrl from '../config';
 
-const customFetch = (url, method, data, header = null) => fetch(url, {
-  method,
-  headers: {
-    ...header,
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-});
+const getAccessToken = () => {
+  if (localStorage.getItem('accessToken') !== null) {
+    return localStorage.getItem('accessToken');
+  } if (sessionStorage.getItem('accessToken') !== null) {
+    return sessionStorage.getItem('accessToken');
+  }
+  return false;
+};
+
+const getHeaderWithToken = () => {
+  const token = getAccessToken();
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+};
+
+const customFetch = (url, method, header = null, data = null) => {
+  console.log(data);
+  if (data !== null) {
+    return fetch(url, {
+      method,
+      headers: {
+        ...header,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  }
+  return fetch(url, {
+    method,
+    headers: {
+      ...header,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+};
 
 const customFetchToken = async (ctx, callback) => {
   const res = await callback();
@@ -26,12 +55,12 @@ const customFetchToken = async (ctx, callback) => {
     const rawResponseRefresh = await customFetch(
       'https://cashflash.hedpay.com/api/auth/refresh-token',
       'POST',
-      null,
       header,
     );
     const contentResresh = await rawResponseRefresh.json();
     if (contentResresh.code === 401001) {
       document.location.replace(`${baseUrl}/authorization`);
+      ctx.commit('logout');
       return false;
     }
     ctx.commit('updateAccess', contentResresh.result.access);
@@ -42,4 +71,6 @@ const customFetchToken = async (ctx, callback) => {
   return res;
 };
 
-export { customFetch, customFetchToken };
+export {
+  customFetch, customFetchToken, getAccessToken, getHeaderWithToken,
+};

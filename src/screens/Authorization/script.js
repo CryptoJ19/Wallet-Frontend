@@ -1,4 +1,4 @@
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
 
@@ -8,7 +8,7 @@ export default {
     Loader,
   },
   data: () => ({
-    mode: 1,
+    mode: 0,
     test: false,
     loader: false,
 
@@ -17,40 +17,39 @@ export default {
     erCheckEmail: '',
     loaderModal: false,
 
-    // signin: {
-    //   email: '',
-    //   password: '',
-    //   passwordType: '',
-    //   remember: false,
-    // },
-    // signup: {
-    //   firstName: '',
-    //   lastName: '',
-    //   email: '',
-    //   password: '',
-    //   passwordType: 'text',
-    // },
-
     signin: {
-      email: 'testtest123@2go-mail.com',
-      password: 'qweQWE@',
-      passwordType: 'password',
+      email: '',
+      password: '',
+      passwordType: '',
       remember: false,
     },
     signup: {
-      firstName: 'T',
-      lastName: 'T',
-      email: 'test45313@2go-mail.com', // testtest123@2go-mail.com
-      password: 'qweQWE@',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
       passwordType: 'text',
     },
+
+    // signin: {
+    //   email: 'testtest123@2go-mail.com',
+    //   password: 'qweQWE@',
+    //   passwordType: 'password',
+    //   remember: false,
+    // },
+    // signup: {
+    //   firstName: 'T',
+    //   lastName: 'T',
+    //   email: 'test45313@2go-mail.com', // testtest123@2go-mail.com
+    //   password: 'qweQWE@',
+    //   passwordType: 'text',
+    // },
     forgot: {
       email: 'testtest123@2go-mail.com',
       code: '',
     },
   }),
   computed: {
-    ...mapGetters(['accessToken', 'refreshToken']),
     authBtnClass: ({ mode }) => ([
       { menu__item_active: (mode === 0) },
       { menu__item_active: (mode === 1) },
@@ -290,11 +289,11 @@ export default {
     },
     async preludeValidateEmail(code) {
       this.erCheckEmail = '';
-      this.loaderModal = true;
 
       if (code === '') {
         this.erCheckEmail = 'Введите код';
       } else {
+        this.loaderModal = true;
         const res = await this.fetchValidateEmail({
           code,
         });

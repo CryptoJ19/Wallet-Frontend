@@ -54,6 +54,12 @@ body {
   display: flex;
   height: 100vh;
 
+  &__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
   &__menu {
     min-width: 323px;
   }
