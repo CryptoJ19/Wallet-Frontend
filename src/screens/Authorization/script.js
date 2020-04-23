@@ -1,6 +1,7 @@
 import { mapActions } from 'vuex';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
+import baseUrl from '../../../config';
 
 export default {
   components: {
@@ -20,7 +21,7 @@ export default {
     signin: {
       email: '',
       password: '',
-      passwordType: '',
+      passwordType: 'password',
       remember: false,
     },
     signup: {
@@ -44,8 +45,9 @@ export default {
     //   password: 'qweQWE@',
     //   passwordType: 'text',
     // },
+
     forgot: {
-      email: 'testtest123@2go-mail.com',
+      email: '',
       code: '',
     },
   }),
@@ -264,7 +266,8 @@ export default {
         this.loader = false;
         console.log('fetchSignin', res);
         if (res.ok) {
-          this.$router.push({ path: 'wallet' });
+          document.location.replace(`${baseUrl}/wallet`);
+          // this.$router.replace({ path: 'wallet' });
         } else if (res.code === 401000) {
           this.erMes = res.msg;
         }
@@ -301,7 +304,7 @@ export default {
         console.log('fetchValidateEmail', res);
 
         if (res.ok) {
-          this.$router.push({ path: 'wallet' });
+          document.location.replace(`${baseUrl}/wallet`);
         } else {
           this.erCheckEmail = 'Неверный код подтверждения';
         }

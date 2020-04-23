@@ -62,6 +62,7 @@
 import { mapActions } from 'vuex';
 import modalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
+import baseUrl from '../../../config';
 
 export default {
   components: {
@@ -131,7 +132,7 @@ export default {
         this.loader = false;
         console.log('fetchForgotChange', res, res.code, res.code === 404000, res.msg);
         if (res.ok) {
-          this.$router.push({ path: 'wallet' });
+          document.location.replace(`${baseUrl}/wallet`);
         } else if (res.code === 404000) {
           this.erMes = res.msg;
         }

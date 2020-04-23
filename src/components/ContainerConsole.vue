@@ -44,6 +44,7 @@ import MainMenu from '~/src/components/MainMenu';
 import HeadConsole from '~/src/components/HeadConsole';
 import Loader from '~/src/ui/Loader';
 import { getAccessToken } from '~/helpers/customFetch';
+import baseUrl from '../../config';
 
 export default {
   components: {
@@ -74,12 +75,13 @@ export default {
     ]),
     async init() {
       if (getAccessToken() === false) {
-        this.$router.push({ path: 'authorization' });
+        // this.$router.push({ path: 'authorization' });
+        document.location.replace(`${baseUrl}/authorization`);
+      } else if (this.getIsAuthorized === false) {
+        const res = await this.fetchGetProfile();
+        console.log('GetProfile', res);
+        this.globalLoader = false;
       } else {
-        if (this.getIsAuthorized === false) {
-          const res = await this.fetchGetProfile();
-          console.log('GetProfile', res);
-        }
         this.globalLoader = false;
       }
     },
