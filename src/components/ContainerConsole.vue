@@ -18,7 +18,7 @@
       </div>
       <div class="cont-console__main">
         <div
-          v-if="contentLoader"
+          v-if="contentLoader === true"
           class="cont-console__loader"
         >
           <Loader />

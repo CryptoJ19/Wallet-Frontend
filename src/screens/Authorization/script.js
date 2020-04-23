@@ -29,11 +29,11 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      passwordType: 'text',
+      passwordType: 'password',
     },
 
     // signin: {
-    //   email: 'testtest123@2go-mail.com',
+    //   email: 'testtest123@2go-mail.com', //test54@2go-mail.com
     //   password: 'qweQWE@',
     //   passwordType: 'password',
     //   remember: false,
@@ -105,6 +105,7 @@ export default {
         password: '',
       };
       this.er = [];
+      this.erMes = '';
       this.mode = i;
     },
     showCheckEmail() {
@@ -223,6 +224,7 @@ export default {
     },
 
     async preludeSignup() {
+      this.erMes = '';
       this.trimSignup();
       if (this.checkSignup()) {
         const {
@@ -241,8 +243,10 @@ export default {
         });
         this.loader = false;
         console.log('res', res);
-        if (res) {
+        if (res.ok) {
           this.showCheckEmail();
+        } else {
+          this.erMes = res.msg;
         }
       }
     },

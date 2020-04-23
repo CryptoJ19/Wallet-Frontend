@@ -33,7 +33,7 @@ export default {
     ContainerConsole,
   },
   data: () => ({
-    title: 'index',
+    title: 'CashFlash',
   }),
   mounted() {
     if (getAccessToken() === false) {
