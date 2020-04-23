@@ -1,27 +1,38 @@
 <template>
-  <div class="cont-console">
-    <div class="cont-console__menu">
-      <MainMenu
-        :show-menu="showMenu"
-        :title="title"
-      />
+  <div>
+    <div
+      v-if="globalLoader"
+      class="cont-console__loader cont-console__loader_global"
+    >
+      <Loader />
     </div>
-    <div class="cont-console__main">
-      <div
-        v-if="contentLoader"
-        class="cont-console__loader"
-      >
-        <Loader />
+    <div
+      v-if="!globalLoader"
+      class="cont-console"
+    >
+      <div class="cont-console__menu">
+        <MainMenu
+          :show-menu="showMenu"
+          :title="title"
+        />
       </div>
-      <div v-else>
-        <div class="cont-console_submenu">
-          <HeadConsole
-            :title="title"
-            @toggleMenu="toggleMenu"
-          />
+      <div class="cont-console__main">
+        <div
+          v-if="contentLoader"
+          class="cont-console__loader"
+        >
+          <Loader />
         </div>
-        <div class="cont-console__content">
-          <slot />
+        <div v-else>
+          <div class="cont-console_submenu">
+            <HeadConsole
+              :title="title"
+              @toggleMenu="toggleMenu"
+            />
+          </div>
+          <div class="cont-console__content">
+            <slot />
+          </div>
         </div>
       </div>
     </div>
@@ -46,7 +57,8 @@ export default {
   },
   data: () => ({
     showMenu: false,
-    contentLoader: true,
+    contentLoader: false,
+    globalLoader: true,
   }),
   mounted() {
     document.body.addEventListener('click', (e) => this.closeOnDocClick(e));
@@ -62,16 +74,13 @@ export default {
     ]),
     async init() {
       if (getAccessToken() === false) {
-        console.log(getAccessToken());
-
         this.$router.push({ path: 'authorization' });
-      } else if (this.getIsAuthorized === false) {
-        console.log('стор пуст');
-        const res = await this.fetchGetProfile();
-        console.log('GetProfile', res);
       } else {
-        console.log('стор уже заполнен');
-        this.contentLoader = false;
+        if (this.getIsAuthorized === false) {
+          const res = await this.fetchGetProfile();
+          console.log('GetProfile', res);
+        }
+        this.globalLoader = false;
       }
     },
     closeOnDocClick(e) {

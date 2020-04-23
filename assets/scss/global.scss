@@ -59,6 +59,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    &_global {
+      height: 100vh;
+    }
   }
   &__menu {
     min-width: 323px;

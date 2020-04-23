@@ -1,4 +1,5 @@
 import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers/customFetch';
+import baseUrl from '../../config';
 
 export default {
   state: {
@@ -6,6 +7,10 @@ export default {
     isAuthorized: false,
   },
   actions: {
+    logout(ctx) {
+      ctx.commit('logout');
+      document.location.replace(`${baseUrl}/authorization`);
+    },
     async fetchGetProfile(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -17,7 +22,10 @@ export default {
         const content = await rawResponse.json();
         return content;
       });
-      // console.log(res);
+      if (res.ok) {
+        ctx.commit('updateEmail', res.result.email);
+        ctx.commit('updateIsAuthorized', true);
+      }
       return res;
     },
     async fetchForgotChange(ctx, data) {
