@@ -43,8 +43,8 @@ import { mapGetters, mapActions } from 'vuex';
 import MainMenu from '~/src/components/MainMenu';
 import HeadConsole from '~/src/components/HeadConsole';
 import Loader from '~/src/ui/Loader';
-import { getAccessToken } from '~/helpers/customFetch';
-import baseUrl from '../../config';
+import { getAccessToken, getAccessTokens } from '~/helpers/customFetch';
+// import baseUrl from '../../config';
 
 export default {
   components: {
@@ -54,7 +54,6 @@ export default {
   },
   props: {
     title: String,
-
   },
   data: () => ({
     showMenu: false,
@@ -72,14 +71,19 @@ export default {
   methods: {
     ...mapActions([
       'fetchGetProfile',
+      'logout',
     ]),
     async init() {
+      // localStorage.setItem('accessToken2', 'test');
+      // console.log('localStorage', localStorage.getItem('accessToken2'));
       if (getAccessToken() === false) {
-        // this.$router.push({ path: 'authorization' });
-        document.location.replace(`${baseUrl}/authorization`);
+        this.logout();
+        // document.location.replace(`${baseUrl}/authorization`);
       } else if (this.getIsAuthorized === false) {
         const res = await this.fetchGetProfile();
         console.log('GetProfile', res);
+        console.log('все токены: ', getAccessTokens());
+
         this.globalLoader = false;
       } else {
         this.globalLoader = false;

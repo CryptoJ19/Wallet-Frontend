@@ -18,12 +18,12 @@ export default {
     erCheckEmail: '',
     loaderModal: false,
 
-    signin: {
-      email: '',
-      password: '',
-      passwordType: 'password',
-      remember: false,
-    },
+    // signin: {
+    //   email: '',
+    //   password: '',
+    //   passwordType: 'password',
+    //   remember: false,
+    // },
     signup: {
       firstName: '',
       lastName: '',
@@ -32,12 +32,12 @@ export default {
       passwordType: 'password',
     },
 
-    // signin: {
-    //   email: 'testtest123@2go-mail.com', //test54@2go-mail.com
-    //   password: 'qweQWE@',
-    //   passwordType: 'password',
-    //   remember: false,
-    // },
+    signin: {
+      email: 'testtest123@2go-mail.com', // test54@2go-mail.com
+      password: 'qweQWE@',
+      passwordType: 'password',
+      remember: false,
+    },
     // signup: {
     //   firstName: 'T',
     //   lastName: 'T',
@@ -270,8 +270,19 @@ export default {
         this.loader = false;
         console.log('fetchSignin', res);
         if (res.ok) {
-          document.location.replace(`${baseUrl}/wallet`);
-          // this.$router.replace({ path: 'wallet' });
+          // console.log('data.data.email', data, data.data.email);
+          this.$store.commit('updateEmail', email);
+          this.$store.commit('updateIsAuthorized', true);
+          if (remember) {
+            this.$store.commit('updateAccess', res.result.access);
+            this.$store.commit('updateRefresh', res.result.refresh);
+          } else {
+            this.$store.commit('temporaryAccess', res.result.access);
+            this.$store.commit('temporaryRefresh', res.result.refresh);
+          }
+
+          // document.location.replace(`${baseUrl}/wallet`);
+          this.$router.replace({ path: 'wallet' });
         } else if (res.code === 401000) {
           this.erMes = res.msg;
         }

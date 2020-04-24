@@ -1,5 +1,6 @@
 <template>
   <div class="head-console">
+    <ModalAddUser />
     <div class="head-console__title">
       <button
         class="head-console__burger"
@@ -15,16 +16,6 @@
       </div>
     </div>
     <div class="head-console__right">
-      <!--      <div class="head-console__item dd-user__body">-->
-      <!--        <div class="dd-user__name">-->
-      <!--          nickname-->
-      <!--        </div>-->
-      <!--        <div-->
-      <!--          class="dd-user__ava"-->
-      <!--          :style="`background-image: url(${imagePath()})`"-->
-      <!--        />-->
-      <!--      </div>-->
-
       <b-dropdown
         class="dd-user head-console__item"
         right
@@ -56,7 +47,10 @@
             :style="`background-image: url(${imagePath()})`"
           />
         </b-dropdown-item-button>
-        <b-dropdown-item-button class="dd-user__add">
+        <b-dropdown-item-button
+          class="dd-user__add"
+          @click="showAddUser()"
+        >
           <div class="dd-user__name">
             add new
           </div>
@@ -98,7 +92,12 @@
   </div>
 </template>
 <script>
+import ModalAddUser from './ModalAddUser';
+
 export default {
+  components: {
+    ModalAddUser,
+  },
   props: {
     title: String,
   },
@@ -108,6 +107,10 @@ export default {
     },
     toggleMenu() {
       this.$emit('toggleMenu');
+    },
+    showAddUser() {
+      console.log('add');
+      this.$bvModal.show('modal-add-user');
     },
   },
 };
@@ -206,7 +209,6 @@ export default {
         }
       }
     }
-    @media (max-width: 1599px) {}
     @media (max-width: 1199px) {
       position: fixed;
       background: #FFFFFF;
@@ -248,11 +250,6 @@ export default {
           padding: 0 5px;
         }
       }
-
     }
-    @media (max-width: 767px) {}
-    @media (max-width: 575px) {}
-    @media (max-width: 479px) {}
-    @media (max-width: 399px) {}
   }
 </style>

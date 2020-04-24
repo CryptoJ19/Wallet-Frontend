@@ -14,6 +14,28 @@
               placeholder="New password"
               type="text"
             >
+            <div class="password-hide__p ui-input__body">
+              <input
+                v-model="password"
+                placeholder="Password"
+                :type="passwordType"
+              >
+              <button
+                class="password-hide"
+                @click="togglePasswordType()"
+              >
+                <img
+                  v-if="signup.passwordType === 'password'"
+                  src="~assets/imgs/icons/eye__open.svg"
+                  alt="eye"
+                >
+                <img
+                  v-else
+                  src="~assets/imgs/icons/eye__close.svg"
+                  alt="eye"
+                >
+              </button>
+            </div>
             <div class="form__er">
               <div v-if="getEr(3)">
                 Введите пароль
@@ -62,7 +84,7 @@
 import { mapActions } from 'vuex';
 import modalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
-import baseUrl from '../../../config';
+// import baseUrl from '../../../config';
 
 export default {
   components: {
@@ -77,6 +99,7 @@ export default {
     password: '',
     er: [],
     erMes: '',
+    passwordType: 'password',
   }),
   methods: {
     ...mapActions([
@@ -85,11 +108,16 @@ export default {
     getEr(i) {
       return this.er.indexOf(i) !== -1;
     },
+    togglePasswordType() {
+      if (this.passwordType === 'password') {
+        this.passwordType = 'text';
+      } else {
+        this.passwordType = 'password';
+      }
+    },
     checkForgotChange() {
       this.er = [];
-
       const { password } = this;
-
       const passRegexSpecial = /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
       const passRegexUpper = /[A-Z]+/;
       const passRegexLower = /[a-z]+/;
@@ -132,7 +160,8 @@ export default {
         this.loader = false;
         console.log('fetchForgotChange', res, res.code, res.code === 404000, res.msg);
         if (res.ok) {
-          document.location.replace(`${baseUrl}/wallet`);
+          console.log('тут должен быть роутер');
+          // document.location.replace(`${baseUrl}/wallet`);
         } else if (res.code === 404000) {
           this.erMes = res.msg;
         }

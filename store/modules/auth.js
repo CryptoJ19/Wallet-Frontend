@@ -7,6 +7,21 @@ export default {
     isAuthorized: false,
   },
   actions: {
+
+    async fetchSendValidation(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          'https://cashflash.hedpay.com/api/auth/send-validation',
+          'GET',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      return res;
+    },
+
     logout(ctx) {
       ctx.commit('logout');
       document.location.replace(`${baseUrl}/authorization`);
@@ -59,18 +74,6 @@ export default {
         data.data,
       );
       const content = await rawResponse.json();
-      if (content.ok) {
-        console.log('data.data.email', data, data.data.email);
-        ctx.commit('updateEmail', data.data.email);
-        ctx.commit('updateIsAuthorized', true);
-        if (data.remember) {
-          ctx.commit('updateAccess', content.result.access);
-          ctx.commit('updateRefresh', content.result.refresh);
-        } else {
-          ctx.commit('temporaryAccess', content.result.access);
-          ctx.commit('temporaryRefresh', content.result.refresh);
-        }
-      }
       return content;
     },
     async fetchSignup(ctx, data) {
