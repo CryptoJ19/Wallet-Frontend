@@ -1,6 +1,5 @@
 <template>
   <div class="head-console">
-    <ModalAddUser />
     <div class="head-console__title">
       <button
         class="head-console__burger"
@@ -49,7 +48,6 @@
         </b-dropdown-item-button>
         <b-dropdown-item-button
           class="dd-user__add"
-          @click="showAddUser()"
         >
           <div class="dd-user__name">
             add new
@@ -84,7 +82,7 @@
           </template>
 
           <div>
-            йцуйу
+            text
           </div>
         </tippy>
       </div>
@@ -92,12 +90,8 @@
   </div>
 </template>
 <script>
-import ModalAddUser from './ModalAddUser';
 
 export default {
-  components: {
-    ModalAddUser,
-  },
   props: {
     title: String,
   },
@@ -107,10 +101,6 @@ export default {
     },
     toggleMenu() {
       this.$emit('toggleMenu');
-    },
-    showAddUser() {
-      console.log('add');
-      this.$bvModal.show('modal-add-user');
     },
   },
 };

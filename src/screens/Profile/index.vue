@@ -3,9 +3,6 @@
     <button @click="logout()">
       logout
     </button>
-    <button @click="fetchSendValidation()">
-      SendValidation
-    </button>
   </div>
 </template>
 <script>
@@ -15,7 +12,6 @@ export default {
   methods: {
     ...mapActions([
       'logout',
-      'fetchSendValidation',
     ]),
   },
 };
