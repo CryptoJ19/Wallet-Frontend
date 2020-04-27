@@ -30,6 +30,7 @@
         <div class="mod__items">
           <div class="mod__item mod__input">
             <input
+              maxlength="40"
               type="text"
               placeholder="Code"
             >
@@ -63,6 +64,7 @@
           <div class="mod__item mod__input">
             <div class="btn-max__p ui-input__body">
               <input
+                maxlength="40"
                 type="text"
                 placeholder="Code"
               >
@@ -75,6 +77,7 @@
           <div class="mod__item mod__input">
             <div class="">
               <input
+                maxlength="40"
                 type="text"
                 placeholder="Memo"
               >

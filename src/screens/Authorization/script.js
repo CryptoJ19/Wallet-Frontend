@@ -1,7 +1,7 @@
 import { mapActions } from 'vuex';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
-import baseUrl from '../../../config';
+import { getAccessToken } from '~/helpers/customFetch';
 
 export default {
   components: {
@@ -18,12 +18,12 @@ export default {
     erCheckEmail: '',
     loaderModal: false,
 
-    // signin: {
-    //   email: '',
-    //   password: '',
-    //   passwordType: 'password',
-    //   remember: false,
-    // },
+    signin: {
+      email: '',
+      password: '',
+      passwordType: 'password',
+      remember: false,
+    },
     signup: {
       firstName: '',
       lastName: '',
@@ -32,12 +32,12 @@ export default {
       passwordType: 'password',
     },
 
-    signin: {
-      email: 'testtest123@2go-mail.com', // test54@2go-mail.com
-      password: 'qweQWE@',
-      passwordType: 'password',
-      remember: false,
-    },
+    // signin: {
+    //   email: 'testtest123@2go-mail.com', // test54@2go-mail.com
+    //   password: 'qweQWE@',
+    //   passwordType: 'password',
+    //   remember: false,
+    // },
     // signup: {
     //   firstName: 'T',
     //   lastName: 'T',
@@ -63,6 +63,11 @@ export default {
       { form_active: (mode === 2) },
       { form_active: (mode === 3) },
     ]),
+  },
+  mounted() {
+    if (getAccessToken() !== false) {
+      this.$router.replace({ path: 'wallet' });
+    }
   },
   methods: {
     ...mapActions([
@@ -280,8 +285,6 @@ export default {
             this.$store.commit('temporaryAccess', res.result.access);
             this.$store.commit('temporaryRefresh', res.result.refresh);
           }
-
-          // document.location.replace(`${baseUrl}/wallet`);
           this.$router.replace({ path: 'wallet' });
         } else if (res.code === 401000) {
           this.erMes = res.msg;
@@ -289,6 +292,7 @@ export default {
       }
     },
     async preludeForgotSend() {
+      this.erMes = '';
       this.forgot.email = this.forgot.email.trim();
       if (this.checkForgotSend()) {
         this.loader = true;
@@ -299,6 +303,8 @@ export default {
         console.log('fetchForgotSend', res);
         if (res.ok) {
           this.mode = 3;
+        } else {
+          this.erMes = res.msg;
         }
       }
     },
@@ -319,7 +325,7 @@ export default {
         console.log('fetchValidateEmail', res);
 
         if (res.ok) {
-          document.location.replace(`${baseUrl}/wallet`);
+          this.$router.replace({ path: 'wallet' });
         } else {
           this.erCheckEmail = 'Неверный код подтверждения';
         }

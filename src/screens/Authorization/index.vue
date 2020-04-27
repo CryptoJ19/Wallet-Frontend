@@ -44,6 +44,7 @@
           <div class="form__item">
             <input
               v-model="signin.email"
+              maxlength="40"
               placeholder="Email"
               type="text"
             >
@@ -60,6 +61,7 @@
             <div class="password-hide__p ui-input__body">
               <input
                 v-model="signin.password"
+                maxlength="40"
                 placeholder="Password"
                 :type="signin.passwordType"
               >
@@ -124,6 +126,7 @@
           <div class="form__item">
             <input
               v-model="signup.firstName"
+              maxlength="40"
               placeholder="First name"
               type="text"
             >
@@ -136,6 +139,7 @@
           <div class="form__item">
             <input
               v-model="signup.lastName"
+              maxlength="40"
               placeholder="Last name"
               type="text"
             >
@@ -148,6 +152,7 @@
           <div class="form__item">
             <input
               v-model="signup.email"
+              maxlength="40"
               placeholder="Email"
               type="text"
             >
@@ -164,6 +169,7 @@
             <div class="password-hide__p ui-input__body">
               <input
                 v-model="signup.password"
+                maxlength="40"
                 placeholder="Password"
                 :type="signup.passwordType"
               >
@@ -219,6 +225,7 @@
           <div class="form__item">
             <input
               v-model="forgot.email"
+              maxlength="40"
               placeholder="Email"
               type="text"
             >
@@ -226,6 +233,7 @@
               <div v-if="getEr(0)">
                 Введите email
               </div>
+              {{ erMes }}
             </div>
           </div>
           <div class="auth__btns">

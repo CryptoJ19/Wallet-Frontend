@@ -28,6 +28,7 @@
         <div class="mod__input">
           <input
             v-model="code"
+            maxlength="40"
             type="text"
             placeholder="Code"
           >

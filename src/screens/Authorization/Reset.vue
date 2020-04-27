@@ -9,23 +9,20 @@
           class="form form_active"
         >
           <div class="form__item">
-            <input
-              v-model="password"
-              placeholder="New password"
-              type="text"
-            >
             <div class="password-hide__p ui-input__body">
               <input
                 v-model="password"
+                maxlength="40"
                 placeholder="Password"
                 :type="passwordType"
+                autocomplete="off"
               >
               <button
                 class="password-hide"
                 @click="togglePasswordType()"
               >
                 <img
-                  v-if="signup.passwordType === 'password'"
+                  v-if="passwordType === 'password'"
                   src="~assets/imgs/icons/eye__open.svg"
                   alt="eye"
                 >
@@ -104,6 +101,7 @@ export default {
   methods: {
     ...mapActions([
       'fetchForgotChange',
+      'logout',
     ]),
     getEr(i) {
       return this.er.indexOf(i) !== -1;
@@ -160,8 +158,7 @@ export default {
         this.loader = false;
         console.log('fetchForgotChange', res, res.code, res.code === 404000, res.msg);
         if (res.ok) {
-          console.log('тут должен быть роутер');
-          // document.location.replace(`${baseUrl}/wallet`);
+          this.logout();
         } else if (res.code === 404000) {
           this.erMes = res.msg;
         }
