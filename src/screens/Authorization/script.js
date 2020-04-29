@@ -2,6 +2,7 @@ import { mapActions } from 'vuex';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
 import { getAccessToken } from '~/helpers/customFetch';
+import baseUrl from '../../../config';
 
 export default {
   components: {
@@ -66,7 +67,8 @@ export default {
   },
   mounted() {
     if (getAccessToken() !== false) {
-      this.$router.replace({ path: 'wallet' });
+      // this.$router.replace({ path: 'wallet' });
+      document.location.replace(`${baseUrl}/wallet`);
     }
   },
   methods: {
@@ -285,7 +287,8 @@ export default {
             this.$store.commit('temporaryAccess', res.result.access);
             this.$store.commit('temporaryRefresh', res.result.refresh);
           }
-          this.$router.replace({ path: 'wallet' });
+          // this.$router.replace({ path: 'wallet' });
+          document.location.replace(`${baseUrl}/wallet`);
         } else if (res.code === 401000) {
           this.erMes = res.msg;
         }
@@ -325,7 +328,8 @@ export default {
         console.log('fetchValidateEmail', res);
 
         if (res.ok) {
-          this.$router.replace({ path: 'wallet' });
+          // this.$router.replace({ path: 'wallet' });
+          document.location.replace(`${baseUrl}/wallet`);
         } else {
           this.erCheckEmail = 'Неверный код подтверждения';
         }
