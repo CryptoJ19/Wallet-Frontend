@@ -67,35 +67,29 @@
           alt="settings"
         >
       </div>
-      <div class="head-console__item head-console__info">
-        <tippy
-          animation="shift-toward"
-          placement="bottom"
-          theme="light"
-          arrow
+      <button
+        class="head-console__item head-console__info"
+        @click="logout()"
+      >
+        <img
+          src="~assets/imgs/icons/out.svg"
+          alt="out"
         >
-          <template v-slot:trigger>
-            <img
-              src="~assets/imgs/icons/info.svg"
-              alt="info"
-            >
-          </template>
-
-          <div>
-            text
-          </div>
-        </tippy>
-      </div>
+      </button>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 
 export default {
   props: {
     title: String,
   },
   methods: {
+    ...mapActions([
+      'logout',
+    ]),
     imagePath() {
       return require('assets/imgs/ava.png');
     },
@@ -199,7 +193,7 @@ export default {
         }
       }
     }
-    @media (max-width: 1199px) {
+    @media (max-width: 1499px) {
       position: fixed;
       background: #FFFFFF;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);

@@ -150,7 +150,7 @@ export default {
         }
       }
     }
-    @media (max-width: 1199px) {
+    @media (max-width: 1499px) {
       top: 74px;
       width: 280px;
       left: -280px;

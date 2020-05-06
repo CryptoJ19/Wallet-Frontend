@@ -150,7 +150,10 @@
       }
     }
   }
-  @media (max-width: 1599px) {}
+  @media (max-width: 1499px) {
+    padding: 50px;
+
+  }
   @media (max-width: 1199px) {
     grid-template-columns: 1fr;
 

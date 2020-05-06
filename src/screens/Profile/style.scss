@@ -1,0 +1,211 @@
+.pro {
+  display: flex;
+  padding: 0 50px 50px;
+  &__items {
+    width: 100%;
+  }
+  &__item {
+    background: #FFFFFF;
+    border-radius: 13px;
+    padding: 30px;
+  }
+  .change-pass {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+      font-weight: bold;
+      font-size: 18px;
+      color: #000000;
+      margin: 0 20px 0 0;
+    }
+    .btn {
+      @include btn-yellow;
+    }
+  }
+  .tfa {
+    width: 100%;
+    margin: 0 0 20px;
+    &__title {
+      color: #000000;
+      font-weight: bold;
+      font-size: 22px;
+      margin: 0 0 57px;
+    }
+    &__body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &__items {
+      display: flex;
+      align-items: center;
+    }
+    &__item {
+      display: flex;
+      align-items: center;
+      margin: 0 30px 0 0;
+      //&:first-child {
+      //  margin: 0 30px 0 0;
+      //}
+    }
+    &__text {
+      margin: 0 0 0 20px;
+    }
+    &__main {
+      font-weight: bold;
+      font-size: 18px;
+      margin: 0 0 5px;
+    }
+    &__sub {
+      opacity: 0.4;
+    }
+    .btn {
+      @include btn-yellow;
+    }
+  }
+  .user {
+    min-width: 612px;
+    margin: 0 20px 0 0;
+    .ava {
+      width: 127px;
+      height: 127px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      /* background-image: url(~assets/imgs/ava.png); */
+      background-size: cover;
+      background-position: center center;
+    }
+    .header {
+      position: relative;
+      border-bottom: 1px solid $stroke;
+      padding: 0 0 30px;
+      margin: 0 0 30px;
+      &__body {
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        padding: 82px 0 0 20px;
+      }
+      &__name {
+        position: relative;
+        margin: 0 0 6px 24px;
+      }
+      &__main {
+        color: #000000;
+        font-weight: bold;
+        font-size: 25px;
+        margin: 0 0 5px;
+      }
+      &__sub {
+        color: $grey;
+        font-size: 14px;
+      }
+      &__shape {
+        position: absolute;
+        width: 100%;
+        height: 127px;
+        border-radius: 13px;
+        background: $yellow-gradient;
+      }
+    }
+    &__items {
+      margin: 0 0 35px;
+    }
+    &__item {
+      display: flex;
+      flex-direction: column;
+      &:not(:last-child) {
+        margin: 0 0 10px;
+      }
+    }
+    &__title {
+      color: #000000;
+      font-weight: normal;
+      font-size: 16px;
+      margin: 0 0 10px;
+    }
+    &__value {
+      margin: 0 0 0 20px;
+      color: $grey;
+      opacity: 0.5;
+    }
+    .btns {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn {
+      width: 50%;
+      &:first-child {
+        @include btn;
+        @include btn_out;
+        margin: 0 60px 0 0;
+      }
+      &:last-child {
+        @include btn;
+        @include btn-yellow;
+      }
+    }
+  }
+  @media (max-width: 1799px) {
+    .tfa {
+      &__items{
+        width: 100%;
+        margin: 0 0 30px;
+      }
+      .btn {
+        margin: 0 0 0 auto;
+      }
+      &__body {
+        flex-direction: column;
+      }
+    }
+  }
+  @media (max-width: 1499px) {
+    padding: 50px;
+  }
+  @media (max-width: 1199px) {
+    .tfa {
+      &__items {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      &__item {
+        &:not(:last-child) {
+          margin: 0 0 17px;
+        }
+        &:last-child {
+          margin: 0 0 0 40px;
+        }
+      }
+    }
+    .change-pass {
+      flex-direction: column;
+      align-items: flex-start;
+      &__title {
+        margin: 0 0 33px;
+      }
+      .btn {
+        margin: 0 0 0 auto;
+      }
+    }
+    .user {
+      min-width: initial;
+      width: 100%;
+    }
+  }
+  @media (max-width: 991px) {
+    padding: 20px;
+    flex-direction: column;
+    .user {
+      margin: 0 0 20px;
+    }
+    .tfa {
+      &__text {
+        margin: 0 0 0 12px;
+      }
+    }
+  }
+}

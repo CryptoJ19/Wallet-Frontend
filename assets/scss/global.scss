@@ -78,13 +78,13 @@ body {
 }
 
 
-@media (max-width: 1199px) {
+@media (max-width: 1499px) {
   .cont-console {
     &__menu {
       min-width: initial;
     }
     &__content {
-      margin: 74px 0 0;
+      padding: 74px 0 0;
     }
   }
 }

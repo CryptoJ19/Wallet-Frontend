@@ -82,6 +82,17 @@
   cursor: pointer;
 }
 
+@mixin btn_out {
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  border: 1px solid $stroke;
+  background: #FFF;
+  height: 56px;
+  padding: 0 55px;
+}
+
 @mixin btn-yellow {
   border-radius: 20px;
   font-weight: bold;
