@@ -1,9 +1,11 @@
 import { mapActions } from 'vuex';
 import ModalChangePass from './components/ModalChangePass';
+import ModalEnableGA from './components/ModalEnableGA';
 
 export default {
   components: {
     ModalChangePass,
+    ModalEnableGA,
   },
   methods: {
     ...mapActions([
@@ -14,6 +16,9 @@ export default {
     },
     showChangePass() {
       this.$bvModal.show('modal-change-pass');
+    },
+    showEnableGA() {
+      this.$bvModal.show('modal-enable-ga');
     },
   },
 };

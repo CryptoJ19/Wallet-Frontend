@@ -1,6 +1,7 @@
 <template>
   <div class="pro content__item">
     <ModalChangePass />
+    <ModalEnableGA />
     <div class="pro__item user">
       <div class="header">
         <div class="header__shape" />
@@ -93,7 +94,10 @@
               </div>
             </div>
           </div>
-          <button class="btn">
+          <button
+            class="btn"
+            @click="showEnableGA()"
+          >
             Enable
           </button>
         </div>
