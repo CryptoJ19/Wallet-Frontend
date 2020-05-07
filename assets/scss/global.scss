@@ -71,6 +71,10 @@ body {
   }
 }
 
+.content__item {
+  padding: 50px;
+}
+
 .form__er {
   height: 18px;
   font-size: 12px;
@@ -87,10 +91,17 @@ body {
       padding: 74px 0 0;
     }
   }
+  .content__item {
+    padding: 50px;
+  }
 }
 
 @media (max-width: 1599px) {}
-@media (max-width: 1199px) {}
+@media (max-width: 1199px) {
+  .content__item {
+    padding: 20px;
+  }
+}
 @media (max-width: 991px) {}
 @media (max-width: 767px) {}
 @media (max-width: 575px) {}

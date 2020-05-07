@@ -1,5 +1,6 @@
 <template>
-  <div class="pro">
+  <div class="pro content__item">
+    <ModalChangePass />
     <div class="pro__item user">
       <div class="header">
         <div class="header__shape" />
@@ -101,7 +102,10 @@
         <div class="change-pass__title">
           Change password
         </div>
-        <button class="btn">
+        <button
+          class="btn"
+          @click="showChangePass()"
+        >
           Change
         </button>
       </div>

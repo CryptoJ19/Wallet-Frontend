@@ -1,5 +1,5 @@
 <template>
-  <div class="wallet">
+  <div class="wallet content__item">
     <ModalSendBalance />
     <ModalRecieve />
 

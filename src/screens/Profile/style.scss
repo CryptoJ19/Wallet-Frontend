@@ -1,6 +1,6 @@
 .pro {
   display: flex;
-  padding: 0 50px 50px;
+  //padding: 0 50px 50px;
   &__items {
     width: 100%;
   }
@@ -163,9 +163,9 @@
       }
     }
   }
-  @media (max-width: 1499px) {
-    padding: 50px;
-  }
+  //@media (max-width: 1499px) {
+  //  padding: 50px;
+  //}
   @media (max-width: 1199px) {
     .tfa {
       &__items {
@@ -197,7 +197,7 @@
     }
   }
   @media (max-width: 991px) {
-    padding: 20px;
+    //padding: 20px;
     flex-direction: column;
     .user {
       margin: 0 0 20px;
@@ -205,6 +205,46 @@
     .tfa {
       &__text {
         margin: 0 0 0 12px;
+      }
+    }
+  }
+  @media (max-width: 575px) {
+    .user {
+      .header {
+        &__main {
+          font-size: 18px;
+          word-break: break-word;
+        }
+        &__body {
+          padding: 0;
+          align-items: center;
+        }
+        &__shape {
+          display: none;
+        }
+        &__name {
+          margin: 0 0 0 12px;
+        }
+        &__sub {
+          word-break: break-all;
+        }
+      }
+      .ava {
+        width: 66px;
+        height: 66px;
+      }
+      .btn {
+        width: initial;
+        padding: 0 30px !important;
+        &:first-child {
+          margin: 0;
+          padding: 0 15px !important;
+        }
+      }
+    }
+    .tfa, .change-pass {
+      .btn {
+        width: 100%;
       }
     }
   }
