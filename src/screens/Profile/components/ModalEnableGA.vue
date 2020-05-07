@@ -32,7 +32,10 @@
                 Install mobile app
               </div>
             </div>
-            <div class="steps__item">
+            <div
+              class="steps__item"
+              :class="stepItemClass(2)"
+            >
               <div class="steps__num">
                 2
               </div>
@@ -40,7 +43,10 @@
                 Scan QR code
               </div>
             </div>
-            <div class="steps__item">
+            <div
+              class="steps__item"
+              :class="stepItemClass(3)"
+            >
               <div class="steps__num">
                 3
               </div>
@@ -48,7 +54,10 @@
                 Backup key
               </div>
             </div>
-            <div class="steps__item">
+            <div
+              class="steps__item"
+              :class="stepItemClass(4)"
+            >
               <div class="steps__num">
                 4
               </div>
@@ -58,16 +67,26 @@
             </div>
           </div>
           <div>
-            <!--            qwe-->
+            {{ step }}
           </div>
         </div>
         <div class="ega__bottom">
-          <button class="btn">
+          <button
+            v-if="step !== 1"
+            class="btn"
+            @click="prevStep()"
+          >
             Back
           </button>
-          <button class="btn">
+          <div v-else />
+          <button
+            v-if="step !== 4"
+            class="btn"
+            @click="nextStep()"
+          >
             Next
           </button>
+          <div v-else />
         </div>
       </div>
     </div>
@@ -90,8 +109,18 @@ export default {
     loader: Boolean,
   },
   data: () => ({
+    step: 1,
   }),
   methods: {
+    stepItemClass(i) {
+      return { steps__item_active: this.step >= i };
+    },
+    nextStep() {
+      this.step += 1;
+    },
+    prevStep() {
+      this.step -= 1;
+    },
     closeCheckEmail() {
       this.$bvModal.hide('modal-change-pass');
     },
@@ -133,7 +162,6 @@ export default {
           background: $stroke;
         }
         &__num {
-          transition: .35s;
           width: 24px;
           height: 24px;
           border-radius: 100px;
@@ -145,14 +173,13 @@ export default {
           justify-content: center;
         }
         &__text {
-          transition: .35s;
           color: #000000;
           font-size: 14px;
           opacity: 0.4;
         }
         &__item {
           position: relative;
-          background: #FFF;
+          background: linear-gradient(99.4deg, #ffffff 0.73%, #ffffff 100%);
           height: 54px;
           display: flex;
           align-items: center;
