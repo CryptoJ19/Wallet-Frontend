@@ -19,12 +19,12 @@ export default {
     erCheckEmail: '',
     loaderModal: false,
 
-    // signin: {
-    //   email: '',
-    //   password: '',
-    //   passwordType: 'password',
-    //   remember: false,
-    // },
+    signin: {
+      email: '',
+      password: '',
+      passwordType: 'password',
+      remember: false,
+    },
     signup: {
       firstName: '',
       lastName: '',
@@ -33,12 +33,12 @@ export default {
       passwordType: 'password',
     },
 
-    signin: {
-      email: 'testtest123@2go-mail.com', // test54@2go-mail.com
-      password: 'qweQWE@',
-      passwordType: 'password',
-      remember: false,
-    },
+    // signin: {
+    //   email: 'testtest123@2go-mail.com', // test54@2go-mail.com
+    //   password: 'qweQWE@',
+    //   passwordType: 'password',
+    //   remember: false,
+    // },
     // signup: {
     //   firstName: 'T',
     //   lastName: 'T',
