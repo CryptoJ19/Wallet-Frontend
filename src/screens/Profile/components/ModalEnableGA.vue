@@ -4,6 +4,7 @@
     centered
     hide-header
     hide-footer
+    @hidden="resetModal()"
   >
     <div class="mod ega">
       <div class="ega__top">
@@ -22,7 +23,15 @@
           </button>
         </div>
         <div class="steps">
-          <div class="steps__line" />
+          <div class="steps__line steps__line_active" />
+          <div
+            class="steps__line"
+            :class="{'steps__line_active': step >= 2}"
+          />
+          <div
+            class="steps__line"
+            :class="{'steps__line_active': step >= 3}"
+          />
           <button
             class="steps__item steps__item_active"
             @click="setStep(1)"
@@ -178,6 +187,9 @@
               </button>
             </div>
             <div class="ga-code">
+              <div class="ga-code__title">
+                Google Authenticator Coder
+              </div>
               <div class="ga-code__items">
                 <input
                   type="text"
@@ -213,7 +225,14 @@
         </button>
         <div v-else />
         <button
-          v-if="step !== 4"
+          v-if="step === 4"
+          class="btn"
+          @click="preludeSubmite()"
+        >
+          Sudmite
+        </button>
+        <button
+          v-else-if="step !== 4"
           class="btn"
           @click="nextStep()"
         >
@@ -224,7 +243,7 @@
     </div>
     <div
       class="loader__body"
-      :class="{'loader__body_show': loader}"
+      :class="{'loader__body_show': loading}"
     >
       <Loader />
     </div>
@@ -237,15 +256,24 @@ export default {
   components: {
     Loader,
   },
-  props: {
-    loader: Boolean,
-  },
   data: () => ({
     step: 1,
     passwordType: 'password',
     password: '',
+    loading: false,
   }),
   methods: {
+    resetModal() {
+      this.loading = false;
+    },
+    preludeSubmite() {
+      this.closeCheckEmail();
+
+      this.loading = true;
+      setTimeout(() => {
+        this.$emit('GASubmiteSuccess');
+      }, 600);
+    },
     togglePasswordType() {
       if (this.passwordType === 'password') {
         this.passwordType = 'text';
@@ -280,6 +308,7 @@ export default {
       max-width: 895px;
     }
     .modal-content {
+      margin-right: 15px;
     }
 
     .ega {
@@ -322,16 +351,20 @@ export default {
         width: 396px;
       }
       .ga-code {
+        margin: 30px 0 0;
         &__title {
           font-size: 16px;
           opacity: 0.5;
           color: $grey;
+          margin: 0 0 15px 20px;
         }
         &__items {
           display: flex;
           justify-content: space-between;
         }
         &__item {
+          padding: 0;
+          text-align: center;
           &:not(:last-child) {
             margin: 0 10px 0 0;
           }
@@ -347,9 +380,6 @@ export default {
           display: flex;
         }
         &:nth-child(1) {
-          /*.ega__text {*/
-          /*  margin: 0 0 36px;*/
-          /*}*/
           .download {
             display: flex;
             &__item {
@@ -359,11 +389,6 @@ export default {
             }
           }
         }
-        /*&:nth-child(2) {*/
-        /*  .ega__text {*/
-        /*    margin: 0 0 30px;*/
-        /*  }*/
-        /*}*/
       }
       .steps {
         align-items: center;
@@ -374,9 +399,22 @@ export default {
         &__line {
           position: absolute;
           height: 1px;
-          left: 0;
-          right: 0;
           background: $stroke;
+          &_active {
+            background: $yellow;
+          }
+          &:nth-child(1) {
+            left: 0;
+            right: 66%;
+          }
+          &:nth-child(2) {
+            left: 33%;
+            right: 36%;
+          }
+          &:nth-child(3) {
+            left: 63%;
+            right: 0;
+          }
         }
         &__num {
           width: 24px;
@@ -406,7 +444,8 @@ export default {
           border-radius: 13px;
           &.steps__item_active {
             background: $yellow-gradient;
-            border-color: #fff;
+            border: none;
+            padding: 1px 19px;
             .steps__num {
               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
@@ -416,7 +455,6 @@ export default {
           }
         }
       }
-
       &__bottom {
         display: flex;
         justify-content: space-between;
@@ -427,8 +465,70 @@ export default {
           @include btn-yellow;
         }
       }
-
-
+    }
+    @media (max-width: 991px) {
+      .ega {
+        .steps {
+          &__num {
+            margin: 0 7px 0 0;
+          }
+          &__item {
+            padding: 0 8px;
+            height: 38px;
+            &.steps__item_active {
+              padding: 1px 9px;
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: 767px) {
+      .ega {
+        .steps {
+          &__num {
+            margin: 0;
+          }
+          &__text {
+            display: none;
+          }
+          &__item {
+            padding: 0;
+            width: 44px;
+            height: 44px;
+            &.steps__item_active {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: 575px) {
+      .ega {
+        &__form {
+          width: initial;
+        }
+        &__content:nth-child(1) {
+          .download {
+            flex-direction: column;
+            align-items: center;
+            &__item {
+              &:first-child {
+                margin: 0 0 10px;
+              }
+            }
+          }
+        }
+        &__bottom {
+          display: flex;
+          .btn:first-child {
+            display: none;
+          }
+          .btn:last-child {
+            width: 100%;
+            @include btn-yellow;
+          }
+        }
+      }
     }
   }
 </style>

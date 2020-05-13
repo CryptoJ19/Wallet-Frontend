@@ -1,6 +1,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import ModalChangePass from './components/ModalChangePass';
 import ModalEnableGA from './components/ModalEnableGA';
+import ModalSuccessGA from './components/ModalSuccessGA';
 import Loader from '~/src/ui/Loader';
 
 export default {
@@ -16,6 +17,7 @@ export default {
     Loader,
     ModalChangePass,
     ModalEnableGA,
+    ModalSuccessGA,
   },
   computed: {
     ...mapGetters([
@@ -24,15 +26,17 @@ export default {
     // profile: ({ getProfile }) => ({ ...getProfile }),
     userBoxClass: ({ userEditMode }) => ({ user_disable: userEditMode === 0 }),
   },
-  watch: {
-    profile() {
-      console.log('getProfile 2');
-    },
-  },
   methods: {
     ...mapActions([
       'logout',
     ]),
+    GASubmiteSuccess() {
+      this.$bvModal.hide('modal-enable-ga');
+      this.$bvModal.show('modal-success-ga');
+
+      setTimeout(() => {
+      }, 600);
+    },
     saveUser() {
       this.userLoader = true;
 

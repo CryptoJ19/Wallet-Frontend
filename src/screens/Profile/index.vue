@@ -1,7 +1,8 @@
 <template>
   <div class="pro content__item">
     <ModalChangePass />
-    <ModalEnableGA />
+    <ModalEnableGA @GASubmiteSuccess="GASubmiteSuccess" />
+    <ModalSuccessGA />
     <div
       class="pro__item user"
       :class="userBoxClass"
