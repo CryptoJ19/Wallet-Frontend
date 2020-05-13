@@ -102,3 +102,16 @@
   height: 56px;
   padding: 0 55px;
 }
+
+@mixin loader-body {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  background: rgba(#FFF, .6);
+  align-items: center;
+  justify-content: center;
+  display: none;
+  border-radius: 13px;
+}

@@ -1,9 +1,17 @@
 import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers/customFetch';
 import baseUrl from '../../config';
 
+const apiUrl = 'https://test.cashflash.io/api';
+
 export default {
   state: {
-    email: '',
+    profile: {
+      id: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      nickname: '',
+    },
     isAuthorized: false,
   },
   actions: {
@@ -12,7 +20,7 @@ export default {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(
-          'https://cashflash.hedpay.com/api/auth/send-validation',
+          `${apiUrl}/auth/send-validation`,
           'GET',
           header,
         );
@@ -30,7 +38,7 @@ export default {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(
-          'https://cashflash.hedpay.com/api/profile/me',
+          `${apiUrl}/profile/me`,
           'GET',
           header,
         );
@@ -38,14 +46,14 @@ export default {
         return content;
       });
       if (res.ok) {
-        ctx.commit('updateEmail', res.result.email);
+        ctx.commit('updateProfile', res.result);
         ctx.commit('updateIsAuthorized', true);
       }
       return res;
     },
     async fetchForgotChange(ctx, data) {
       const rawResponse = await customFetch(
-        'https://cashflash.hedpay.com/api/auth/restore/change',
+        `${apiUrl}/auth/restore/change`,
         'POST',
         null,
         data,
@@ -57,7 +65,7 @@ export default {
 
     async fetchForgotSend(ctx, data) {
       const rawResponse = await customFetch(
-        'https://cashflash.hedpay.com/api/auth/restore/send',
+        `${apiUrl}/auth/restore/send`,
         'POST',
         null,
         data,
@@ -68,7 +76,7 @@ export default {
     },
     async fetchSignin(ctx, data) {
       const rawResponse = await customFetch(
-        'https://cashflash.hedpay.com/api/auth/login',
+        `${apiUrl}/auth/login`,
         'POST',
         null,
         data.data,
@@ -78,7 +86,7 @@ export default {
     },
     async fetchSignup(ctx, data) {
       const rawResponse = await customFetch(
-        'https://cashflash.hedpay.com/api/auth/register',
+        `${apiUrl}/auth/register`,
         'POST',
         null,
         data,
@@ -95,7 +103,7 @@ export default {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(
-          'https://cashflash.hedpay.com/api/auth/validate-email',
+          `${apiUrl}/auth/validate-email`,
           'POST',
           header,
           data,
@@ -118,8 +126,12 @@ export default {
     updateIsAuthorized(state, value) {
       state.isAuthorized = value;
     },
-    updateEmail(state, value) {
-      state.email = value;
+    updateProfile(state, value) {
+      state.profile.id = value.id;
+      state.profile.email = value.email;
+      state.profile.firstName = value.firstName;
+      state.profile.lastName = value.lastName;
+      // state.profile.nickname = value.nickname
     },
     updateAccess(state, value) {
       localStorage.setItem('accessToken', value);
@@ -135,6 +147,9 @@ export default {
     },
   },
   getters: {
+    getProfile(state) {
+      return state.profile;
+    },
     getIsAuthorized(state) {
       return state.isAuthorized;
     },

@@ -2,7 +2,10 @@
   <div class="pro content__item">
     <ModalChangePass />
     <ModalEnableGA />
-    <div class="pro__item user">
+    <div
+      class="pro__item user"
+      :class="userBoxClass"
+    >
       <div class="header">
         <div class="header__shape" />
         <div class="header__body">
@@ -22,14 +25,21 @@
           </div>
         </div>
       </div>
+      <!--      <div>-->
+      <!--        {{ getProfile }}-->
+      <!--      </div>-->
+      <!--      <div>-->
+      <!--        {{ localProfile }}-->
+      <!--      </div>-->
       <div class="user__items">
         <div class="user__item">
           <div class="user__title">
             First name
           </div>
           <input
+            v-model="localProfile.firstName"
+            :disabled="userEditMode === 0"
             type="text"
-            value="Name"
           >
         </div>
         <div class="user__item">
@@ -37,8 +47,9 @@
             Second name
           </div>
           <input
+            v-model="localProfile.lastName"
+            :disabled="userEditMode === 0"
             type="text"
-            value="Surname"
           >
         </div>
         <div class="user__item">
@@ -46,18 +57,46 @@
             Nickname
           </div>
           <input
+            v-model="localProfile.nickname"
+            :disabled="userEditMode === 0"
             type="text"
-            value="Surname123123"
           >
         </div>
       </div>
-      <div class="btns">
-        <div class="btn">
+      <div
+        v-if="userEditMode === 0"
+        class="btns"
+      >
+        <div />
+        <div
+          class="btn"
+          @click="editUser()"
+        >
+          Edit
+        </div>
+      </div>
+      <div
+        v-if="userEditMode === 1"
+        class="btns"
+      >
+        <div
+          class="btn"
+          @click="cancelEditUser()"
+        >
           Cancel
         </div>
-        <div class="btn">
+        <div
+          class="btn"
+          @click="saveUser()"
+        >
           Save
         </div>
+      </div>
+      <div
+        class="user__loader"
+        :class="{'user__loader_show': userLoader}"
+      >
+        <Loader />
       </div>
     </div>
     <div class="pro__items">
