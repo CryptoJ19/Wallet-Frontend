@@ -18,10 +18,10 @@
           </div>
           <div class="header__name">
             <div class="header__main">
-              Name Surnmae
+              {{ getProfile.firstName }} {{ getProfile.lastName }}
             </div>
             <div class="header__sub">
-              aiubadubsidub@gmail.com
+              {{ getProfile.email }}
             </div>
           </div>
         </div>
@@ -42,6 +42,11 @@
             :disabled="userEditMode === 0"
             type="text"
           >
+          <div class="form__er">
+            <div v-if="getUserEr(0)">
+              Введите имя
+            </div>
+          </div>
         </div>
         <div class="user__item">
           <div class="user__title">
@@ -52,6 +57,11 @@
             :disabled="userEditMode === 0"
             type="text"
           >
+          <div class="form__er">
+            <div v-if="getUserEr(1)">
+              Введите фамилию
+            </div>
+          </div>
         </div>
         <div class="user__item">
           <div class="user__title">
@@ -62,6 +72,11 @@
             :disabled="userEditMode === 0"
             type="text"
           >
+          <div class="form__er">
+            <div v-if="getUserEr(2)">
+              Введите ник
+            </div>
+          </div>
         </div>
       </div>
       <div

@@ -16,6 +16,26 @@ export default {
   },
   actions: {
 
+    async fetchEditProfile(ctx, data) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me`,
+          'PUT',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      console.log('fetchEditProfile', res);
+      if (res.ok) {
+        // ctx.commit('updateProfile', res.result);
+        // ctx.commit('updateIsAuthorized', true);
+      }
+      return res;
+    },
+
     async fetchSendValidation(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
