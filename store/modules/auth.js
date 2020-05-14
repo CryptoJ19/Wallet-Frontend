@@ -155,14 +155,14 @@ export default {
       const content = await rawResponse.json();
 
       if (content.ok) {
-        this.$store.commit('updateEmail', data.data.email);
-        this.$store.commit('updateIsAuthorized', true);
+        ctx.commit('updateEmail', data.data.email);
+        ctx.commit('updateIsAuthorized', true);
         if (data.remember) {
-          this.$store.commit('updateAccess', content.result.access);
-          this.$store.commit('updateRefresh', content.result.refresh);
+          ctx.commit('updateAccess', content.result.access);
+          ctx.commit('updateRefresh', content.result.refresh);
         } else {
-          this.$store.commit('temporaryAccess', content.result.access);
-          this.$store.commit('temporaryRefresh', content.result.refresh);
+          ctx.commit('temporaryAccess', content.result.access);
+          ctx.commit('temporaryRefresh', content.result.refresh);
         }
       }
       return content;

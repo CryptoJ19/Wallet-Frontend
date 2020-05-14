@@ -24,7 +24,21 @@ export default {
       password: '',
       passwordType: 'password',
       remember: false,
+      GAEnabled: false,
+      GACode: '',
+      GACodeType: 'password',
     },
+
+    // signin: {
+    //   email: 'testtest123@2go-mail.com', // test54@2go-mail.com
+    //   password: 'qweQWE@',
+    //   passwordType: 'password',
+    //   remember: false,
+    //   GAEnabled: false,
+    //   GACode: '',
+    //   GACodeType: 'password',
+    // },
+
     signup: {
       firstName: '',
       lastName: '',
@@ -33,19 +47,6 @@ export default {
       passwordType: 'password',
     },
 
-    // signin: {
-    //   email: 'testtest123@2go-mail.com', // test54@2go-mail.com
-    //   password: 'qweQWE@',
-    //   passwordType: 'password',
-    //   remember: false,
-    // },
-    // signup: {
-    //   firstName: 'T',
-    //   lastName: 'T',
-    //   email: 'test45313@2go-mail.com', // testtest123@2go-mail.com
-    //   password: 'qweQWE@',
-    //   passwordType: 'text',
-    // },
 
     forgot: {
       email: '',
@@ -71,6 +72,17 @@ export default {
       document.location.replace(`${baseUrl}/wallet`);
     }
   },
+  watch: {
+    'signin.email': function () {
+      this.signin.GAEnabled = false;
+    },
+    'signin.password': function () {
+      this.signin.GAEnabled = false;
+    },
+    'signin.GAEnabled': function () {
+      this.erMes = '';
+    },
+  },
   methods: {
     ...mapActions([
       'fetchSignup',
@@ -79,6 +91,13 @@ export default {
       'fetchForgotSend',
       'fetchCheckGA',
     ]),
+    toggleGACodeType() {
+      if (this.signin.GACodeType === 'password') {
+        this.signin.GACodeType = 'text';
+      } else {
+        this.signin.GACodeType = 'password';
+      }
+    },
     togglePasswordType() {
       if (this.mode === 0) {
         if (this.signin.passwordType === 'password') {
@@ -106,6 +125,10 @@ export default {
         email: '',
         password: '',
         passwordType: 'password',
+        remember: false,
+        GAEnabled: false,
+        GACode: '',
+        GACodeType: 'password',
       };
       this.forgot = {
         email: '',
@@ -164,6 +187,8 @@ export default {
       const {
         email,
         password,
+        GAEnabled,
+        GACode,
       } = this.signin;
       if (email === '') {
         this.er.push(0);
@@ -174,6 +199,9 @@ export default {
       }
       if (password === '') {
         this.er.push(2);
+      }
+      if (GAEnabled && GACode === '') {
+        this.er.push(3);
       }
       if (this.er.length !== 0) {
         return false;
@@ -266,19 +294,34 @@ export default {
           email,
           password,
           remember,
+          GACode,
+          GAEnabled,
         } = this.signin;
         this.loader = true;
 
         // const resCheckGA = await this.fetchCheckGA();
         // console.log('resCheckGA', resCheckGA);
+        let data;
+        if (GAEnabled) {
+          data = {
+            data: {
+              email,
+              password,
+              totp: GACode,
+            },
+            remember,
+          };
+        } else {
+          data = {
+            data: {
+              email,
+              password,
+            },
+            remember,
+          };
+        }
 
-        const resSignin = await this.fetchSignin({
-          data: {
-            email,
-            password,
-          },
-          remember,
-        });
+        const resSignin = await this.fetchSignin(data);
         this.loader = false;
         console.log('fetchSignin', resSignin);
         if (resSignin.ok) {
@@ -286,6 +329,10 @@ export default {
           document.location.replace(`${baseUrl}/wallet`);
         } else if (resSignin.code === 401000) {
           this.erMes = resSignin.msg;
+        } else if (resSignin.code === 400000 && GAEnabled === false) {
+          this.signin.GAEnabled = true;
+        } else if (resSignin.code === 400000) {
+          this.erMes = 'Неверный GA код';
         }
       }
     },

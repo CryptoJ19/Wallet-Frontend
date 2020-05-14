@@ -85,7 +85,9 @@
               <div v-if="getEr(2)">
                 Введите пароль
               </div>
-              {{ erMes }}
+              <div v-if="signin.GAEnabled === false">
+                {{ erMes }}
+              </div>
             </div>
           </div>
           <div class="check">
@@ -109,6 +111,40 @@
                 Remember me?
               </span>
             </label>
+          </div>
+          <div
+            v-if="signin.GAEnabled"
+            class="form__item"
+          >
+            <div class="password-hide__p ui-input__body">
+              <input
+                v-model="signin.GACode"
+                maxlength="40"
+                placeholder="Код авторизации"
+                :type="signin.GACodeType"
+              >
+              <button
+                class="password-hide"
+                @click="toggleGACodeType()"
+              >
+                <img
+                  v-if="signin.passwordType === 'password'"
+                  src="~assets/imgs/icons/eye__open.svg"
+                  alt="eye"
+                >
+                <img
+                  v-else
+                  src="~assets/imgs/icons/eye__close.svg"
+                  alt="eye"
+                >
+              </button>
+            </div>
+            <div class="form__er">
+              <div v-if="getEr(3)">
+                Введите GA код.
+              </div>
+              {{ erMes }}
+            </div>
           </div>
           <div class="auth__btns">
             <button

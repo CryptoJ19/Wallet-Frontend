@@ -34,6 +34,7 @@
   &__btns {
     display: flex;
     justify-content: flex-end;
+    margin: 40px 0 0;
   }
   &__btn {
     @include btn;
