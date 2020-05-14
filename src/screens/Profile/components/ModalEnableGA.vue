@@ -195,27 +195,12 @@
               <div class="ga-code__title">
                 Google Authenticator Coder
               </div>
-              <input
-                v-model="GACode"
-                type="text"
-              >
               <div class="ga-code__items">
                 <input
-                  type="text"
-                  class="ga-code__item"
-                ><input
-                  type="text"
-                  class="ga-code__item"
-                ><input
-                  type="text"
-                  class="ga-code__item"
-                ><input
-                  type="text"
-                  class="ga-code__item"
-                ><input
-                  type="text"
-                  class="ga-code__item"
-                ><input
+                  v-for="(item, i) in GACode"
+                  :key="`ga-code__item_${i}`"
+                  v-model="GACode[i]"
+                  maxlength="1"
                   type="text"
                   class="ga-code__item"
                 >
@@ -273,12 +258,13 @@ export default {
     passwordType: 'password',
     password: 'qweQWE@',
     loading: false,
-    GACode: '',
+    GACode: ['', '', '', '', '', ''],
   }),
   computed: {
     ...mapGetters([
       'getGAToken',
       'getProfile',
+      'getGAEnabled',
     ]),
   },
   methods: {
@@ -292,21 +278,26 @@ export default {
     async resetModal() {
       this.loading = false;
       this.step = 1;
-      await this.fetchTempGAToken();
-      // const test =
-      // console.log('fetchTempGAToken', test);
+      if (this.getGAEnabled === false) {
+        await this.fetchTempGAToken();
+      }
     },
     async preludeSubmite() {
-      this.closeCheckEmail();
-
+      // const { GACode } = this;
+      const totp = this.GACode.join('');
+      // this.loading = true;
       const res = await this.fetchСonfirmationGA({
-        totp: this.GACode,
+        totp,
         password: this.password,
       });
+      // this.loading =false;
 
       console.log('fetchСonfirmationGA', res);
 
-      // this.loading = true;
+      if (res.ok) {
+        this.$emit('GASubmiteSuccess');
+      }
+
       //
       //
       //
@@ -336,7 +327,7 @@ export default {
     prevStep() {
       this.step -= 1;
     },
-    closeCheckEmail() {
+    close() {
       this.$bvModal.hide('modal-change-pass');
     },
   },

@@ -143,13 +143,30 @@
                 <div class="tfa__main">
                   Status
                 </div>
-                <div class="tfa__sub">
-                  DIsable
+                <div
+                  v-if="getGAEnabled"
+                  class="tfa__sub tfa__sub_green"
+                >
+                  Enable
+                </div>
+                <div
+                  v-if="!getGAEnabled"
+                  class="tfa__sub"
+                >
+                  Disable
                 </div>
               </div>
             </div>
           </div>
           <button
+            v-if="getGAEnabled"
+            class="btn-out"
+            @click="disableGABtn()"
+          >
+            Disable
+          </button>
+          <button
+            v-if="!getGAEnabled"
             class="btn"
             @click="showEnableGA()"
           >

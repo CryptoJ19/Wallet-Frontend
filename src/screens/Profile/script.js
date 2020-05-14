@@ -25,6 +25,7 @@ export default {
   computed: {
     ...mapGetters([
       'getProfile',
+      'getGAEnabled',
     ]),
     // profile: ({ getProfile }) => ({ ...getProfile }),
     userBoxClass: ({ userEditMode }) => ({ user_disable: userEditMode === 0 }),
@@ -35,6 +36,10 @@ export default {
       'fetchEditProfile',
       'fetchGetProfile',
     ]),
+
+    disableGABtn() {
+
+    },
     GASubmiteSuccess() {
       this.$bvModal.hide('modal-enable-ga');
       this.$bvModal.show('modal-success-ga');

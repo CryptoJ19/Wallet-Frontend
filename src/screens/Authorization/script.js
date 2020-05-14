@@ -30,7 +30,7 @@ export default {
     },
 
     // signin: {
-    //   email: 'testtest123@2go-mail.com', // test54@2go-mail.com
+    //   email: 'test54@2go-mail.com', // test54@2go-mail.com testtest123@2go-mail.com
     //   password: 'qweQWE@',
     //   passwordType: 'password',
     //   remember: false,
@@ -89,7 +89,6 @@ export default {
       'fetchValidateEmail',
       'fetchSignin',
       'fetchForgotSend',
-      'fetchCheckGA',
     ]),
     toggleGACodeType() {
       if (this.signin.GACodeType === 'password') {
@@ -298,9 +297,6 @@ export default {
           GAEnabled,
         } = this.signin;
         this.loader = true;
-
-        // const resCheckGA = await this.fetchCheckGA();
-        // console.log('resCheckGA', resCheckGA);
         let data;
         if (GAEnabled) {
           data = {
@@ -326,7 +322,7 @@ export default {
         console.log('fetchSignin', resSignin);
         if (resSignin.ok) {
           // this.$router.replace({ path: 'wallet' });
-          document.location.replace(`${baseUrl}/wallet`);
+          document.location.replace(`${baseUrl}/`);
         } else if (resSignin.code === 401000) {
           this.erMes = resSignin.msg;
         } else if (resSignin.code === 400000 && GAEnabled === false) {

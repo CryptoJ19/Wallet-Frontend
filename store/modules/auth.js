@@ -13,6 +13,7 @@ export default {
       nickname: '',
     },
     GAToken: '',
+    GAEnabled: false,
     isAuthorized: false,
   },
   actions: {
@@ -49,7 +50,7 @@ export default {
       });
       // console.log('fetchTempGAToken', res);
       if (res.ok) {
-        // ctx.commit('updateGAToken', res);
+        ctx.commit('updateGAEnabled', true);
       }
       return res;
     },
@@ -155,7 +156,6 @@ export default {
       const content = await rawResponse.json();
 
       if (content.ok) {
-        ctx.commit('updateEmail', data.data.email);
         ctx.commit('updateIsAuthorized', true);
         if (data.remember) {
           ctx.commit('updateAccess', content.result.access);
@@ -198,6 +198,9 @@ export default {
     },
   },
   mutations: {
+    updateGAEnabled(state, value) {
+      state.GAEnabled = value;
+    },
     updateGAToken(state, value) {
       state.GAToken = value.result.tempTotp;
     },
@@ -233,6 +236,9 @@ export default {
     },
   },
   getters: {
+    getGAEnabled(state) {
+      return state.GAEnabled;
+    },
     getGAToken(state) {
       return state.GAToken;
     },

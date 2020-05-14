@@ -60,8 +60,15 @@
     &__sub {
       opacity: 0.4;
     }
+    &__sub_green {
+      opacity: 1;
+      color: #27AE60;
+    }
     .btn {
       @include btn-yellow;
+    }
+    .btn-out {
+      @include btn-yellow-out;
     }
   }
   .user {

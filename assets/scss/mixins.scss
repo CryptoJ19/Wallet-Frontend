@@ -103,6 +103,16 @@
   padding: 0 55px;
 }
 
+@mixin btn-yellow-out {
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  border: 2px solid $yellow;
+  height: 56px;
+  padding: 0 55px;
+}
+
 @mixin loader-body {
   position: absolute;
   bottom: 0;

@@ -72,12 +72,17 @@ export default {
       'fetchGetProfile',
       'fetchTempGAToken',
       'logout',
+      'fetchCheckGA',
     ]),
     async init() {
       if (getAccessToken() === false) {
         this.logout();
       } else if (this.getIsAuthorized === false) {
-        await this.fetchTempGAToken();
+        const resCheckGA = await this.fetchCheckGA();
+        console.log('resCheckGA', resCheckGA);
+        if (resCheckGA.ok && !resCheckGA.result.enabled) {
+          await this.fetchTempGAToken();
+        }
         const res = await this.fetchGetProfile();
         console.log('GetProfile', res);
         this.globalLoader = false;
