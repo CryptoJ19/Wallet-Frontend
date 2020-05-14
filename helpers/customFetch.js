@@ -1,3 +1,4 @@
+import baseUrl from '../config';
 
 const getAccessToken = () => {
   if (localStorage.getItem('accessToken') !== null) {
@@ -60,7 +61,7 @@ const customFetchToken = async (ctx, callback) => {
     );
     const contentResresh = await rawResponseRefresh.json();
     if (contentResresh.code === 401001) {
-      // document.location.replace(`${baseUrl}/authorization`);
+      document.location.replace(`${baseUrl}/authorization`);
       ctx.commit('logout');
       return false;
     }

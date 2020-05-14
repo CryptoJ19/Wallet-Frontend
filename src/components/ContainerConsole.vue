@@ -70,12 +70,14 @@ export default {
   methods: {
     ...mapActions([
       'fetchGetProfile',
+      'fetchTempGAToken',
       'logout',
     ]),
     async init() {
       if (getAccessToken() === false) {
         this.logout();
       } else if (this.getIsAuthorized === false) {
+        await this.fetchTempGAToken();
         const res = await this.fetchGetProfile();
         console.log('GetProfile', res);
         this.globalLoader = false;

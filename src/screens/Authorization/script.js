@@ -77,6 +77,7 @@ export default {
       'fetchValidateEmail',
       'fetchSignin',
       'fetchForgotSend',
+      'fetchCheckGA',
     ]),
     togglePasswordType() {
       if (this.mode === 0) {
@@ -267,7 +268,11 @@ export default {
           remember,
         } = this.signin;
         this.loader = true;
-        const res = await this.fetchSignin({
+
+        // const resCheckGA = await this.fetchCheckGA();
+        // console.log('resCheckGA', resCheckGA);
+
+        const resSignin = await this.fetchSignin({
           data: {
             email,
             password,
@@ -275,22 +280,12 @@ export default {
           remember,
         });
         this.loader = false;
-        console.log('fetchSignin', res);
-        if (res.ok) {
-          // console.log('data.data.email', data, data.data.email);
-          this.$store.commit('updateEmail', email);
-          this.$store.commit('updateIsAuthorized', true);
-          if (remember) {
-            this.$store.commit('updateAccess', res.result.access);
-            this.$store.commit('updateRefresh', res.result.refresh);
-          } else {
-            this.$store.commit('temporaryAccess', res.result.access);
-            this.$store.commit('temporaryRefresh', res.result.refresh);
-          }
+        console.log('fetchSignin', resSignin);
+        if (resSignin.ok) {
           // this.$router.replace({ path: 'wallet' });
           document.location.replace(`${baseUrl}/wallet`);
-        } else if (res.code === 401000) {
-          this.erMes = res.msg;
+        } else if (resSignin.code === 401000) {
+          this.erMes = resSignin.msg;
         }
       }
     },

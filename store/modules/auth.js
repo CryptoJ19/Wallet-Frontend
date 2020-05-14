@@ -12,10 +12,65 @@ export default {
       lastName: '',
       nickname: '',
     },
+    GAToken: '',
     isAuthorized: false,
   },
   actions: {
 
+    async fetchCheckGA(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/auth/totp/enabled`,
+          'GET',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      // console.log('fetchTempGAToken', res);
+      // if (res.ok) {
+      //   ctx.commit('updateGAToken', res);
+      // }
+      return res;
+    },
+
+    async fetchСonfirmationGA(ctx, data) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/auth/totp/validate`,
+          'POST',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      // console.log('fetchTempGAToken', res);
+      if (res.ok) {
+        // ctx.commit('updateGAToken', res);
+      }
+      return res;
+    },
+
+    async fetchTempGAToken(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/auth/totp/enable`,
+          'POST',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      console.log('fetchTempGAToken', res);
+      if (res.ok) {
+        ctx.commit('updateGAToken', res);
+      }
+      return res;
+    },
     async fetchEditProfile(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -28,11 +83,7 @@ export default {
         const content = await rawResponse.json();
         return content;
       });
-      console.log('fetchEditProfile', res);
-      if (res.ok) {
-        // ctx.commit('updateProfile', res.result);
-        // ctx.commit('updateIsAuthorized', true);
-      }
+      // console.log('fetchEditProfile', res);
       return res;
     },
 
@@ -102,6 +153,18 @@ export default {
         data.data,
       );
       const content = await rawResponse.json();
+
+      if (content.ok) {
+        this.$store.commit('updateEmail', data.data.email);
+        this.$store.commit('updateIsAuthorized', true);
+        if (data.remember) {
+          this.$store.commit('updateAccess', content.result.access);
+          this.$store.commit('updateRefresh', content.result.refresh);
+        } else {
+          this.$store.commit('temporaryAccess', content.result.access);
+          this.$store.commit('temporaryRefresh', content.result.refresh);
+        }
+      }
       return content;
     },
     async fetchSignup(ctx, data) {
@@ -135,6 +198,9 @@ export default {
     },
   },
   mutations: {
+    updateGAToken(state, value) {
+      state.GAToken = value.result.tempTotp;
+    },
     logout(state) {
       state.email = '';
       state.isAuthorized = false;
@@ -167,6 +233,9 @@ export default {
     },
   },
   getters: {
+    getGAToken(state) {
+      return state.GAToken;
+    },
     getProfile(state) {
       return state.profile;
     },

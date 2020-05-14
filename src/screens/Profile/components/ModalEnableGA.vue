@@ -125,13 +125,21 @@
             Scan this QR code with the Google Authenticator or enter code manually into the app.
           </div>
           <div class="ega__qr">
-            <img
-              src="~assets/imgs/qrcode_ex.svg"
-              alt="qr"
-            >
+            <!--            <qrcode-vue-->
+            <!--              :value="getGAToken"-->
+            <!--              :size="120"-->
+            <!--            />-->
+            <!--            <vue-qrcode-->
+            <!--              :size="120"-->
+            <!--              value="qweqew"-->
+            <!--            />-->
+            <qrcode
+              :value="getQrCodeData()"
+              :options="{ width: 150 }"
+            />
           </div>
           <div class="ega__code">
-            K67ROU2647JY244M
+            {{ getGAToken }}
           </div>
         </div>
         <div
@@ -146,7 +154,7 @@
             recover your Google Authenticator in case of phone loss.
           </div>
           <div class="ega__code">
-            K67ROU2647JY244M
+            {{ getGAToken }}
           </div>
         </div>
         <div
@@ -159,9 +167,6 @@
           <div class="ega__text">
             Enable Google Authenticator
           </div>
-          <!--          <div class="ega__code">-->
-          <!--            K67ROU2647JY244M-->
-          <!--          </div>-->
           <div class="ega__form">
             <div class="password-hide__p ui-input__body">
               <input
@@ -190,6 +195,10 @@
               <div class="ga-code__title">
                 Google Authenticator Coder
               </div>
+              <input
+                v-model="GACode"
+                type="text"
+              >
               <div class="ga-code__items">
                 <input
                   type="text"
@@ -250,29 +259,60 @@
   </b-modal>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 import Loader from '../../../ui/Loader';
 
 export default {
   components: {
+    qrcode: VueQrcode,
     Loader,
   },
   data: () => ({
     step: 1,
     passwordType: 'password',
-    password: '',
+    password: 'qweQWE@',
     loading: false,
+    GACode: '',
   }),
+  computed: {
+    ...mapGetters([
+      'getGAToken',
+      'getProfile',
+    ]),
+  },
   methods: {
-    resetModal() {
-      this.loading = false;
+    ...mapActions([
+      'fetchTempGAToken',
+      'fetchСonfirmationGA',
+    ]),
+    getQrCodeData() {
+      return `otpauth://totp/${this.getProfile.email}?secret=${this.getGAToken}&issuer=CashFlash`;
     },
-    preludeSubmite() {
+    async resetModal() {
+      this.loading = false;
+      this.step = 1;
+      await this.fetchTempGAToken();
+      // const test =
+      // console.log('fetchTempGAToken', test);
+    },
+    async preludeSubmite() {
       this.closeCheckEmail();
 
-      this.loading = true;
-      setTimeout(() => {
-        this.$emit('GASubmiteSuccess');
-      }, 600);
+      const res = await this.fetchСonfirmationGA({
+        totp: this.GACode,
+        password: this.password,
+      });
+
+      console.log('fetchСonfirmationGA', res);
+
+      // this.loading = true;
+      //
+      //
+      //
+      // setTimeout(() => {
+      //   this.$emit('GASubmiteSuccess');
+      // }, 600);
     },
     togglePasswordType() {
       if (this.passwordType === 'password') {
