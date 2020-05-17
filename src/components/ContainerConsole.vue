@@ -69,7 +69,8 @@ export default {
   },
   watch: {
     getGAEnabled(v) {
-      if (v === true) {
+      console.log('watch getGAEnabled', v);
+      if (v === false) {
         this.fetchTempGAToken();
       }
     },
@@ -87,9 +88,9 @@ export default {
       } else if (this.getIsAuthorized === false) {
         const resCheckGA = await this.fetchCheckGA();
         console.log('resCheckGA', resCheckGA);
-        // if (resCheckGA.ok && !resCheckGA.result.enabled) {
-        //   await this.fetchTempGAToken();
-        // }
+        if (resCheckGA.ok && !resCheckGA.result.enabled) {
+          await this.fetchTempGAToken();
+        }
         const res = await this.fetchGetProfile();
         console.log('GetProfile', res);
         this.globalLoader = false;
