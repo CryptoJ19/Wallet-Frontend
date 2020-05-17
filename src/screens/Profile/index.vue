@@ -2,7 +2,9 @@
   <div class="pro content__item">
     <ModalChangePass />
     <ModalEnableGA @GASubmiteSuccess="GASubmiteSuccess" />
-    <ModalSuccessGA />
+    <ModalDisableGA @GADisableSuccess="GADisableSuccess" />
+    <ModalSuccessEnableGA />
+    <ModalSuccessDisableGA />
     <div
       class="pro__item user"
       :class="userBoxClass"
@@ -161,7 +163,7 @@
           <button
             v-if="getGAEnabled"
             class="btn-out"
-            @click="disableGABtn()"
+            @click="showDisableGA()"
           >
             Disable
           </button>

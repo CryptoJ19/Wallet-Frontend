@@ -1,6 +1,6 @@
 <template>
   <b-modal
-    id="modal-success-ga"
+    id="modal-success-enable-ga"
     centered
     hide-header
     hide-footer
@@ -11,15 +11,12 @@
         <div class="mod__title">
           Check your email
         </div>
-        <button
-          class="mod__closs"
-          @click="close()"
-        >
+        <div class="mod__closs">
           <img
-            src="~assets/imgs/icons/cross.svg"
+            src="~assets/imgs/icons/v_green.svg"
             alt="close"
           >
-        </button>
+        </div>
       </div>
       <div class="mod__body">
         <div class="mod__text">
@@ -42,20 +39,8 @@
 export default {
   methods: {
     close() {
-      this.$bvModal.hide('modal-success-ga');
+      this.$bvModal.hide('modal-success-enable-ga');
     },
   },
 };
 </script>
-<style lang="scss">
-  #modal-success-ga {
-    .modal-dialog {
-      max-width: 376px;
-    }
-    .mod {
-      &__text {
-        margin: 0 0 40px;
-      }
-    }
-  }
-</style>

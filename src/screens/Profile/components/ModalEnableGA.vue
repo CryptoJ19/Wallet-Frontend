@@ -14,7 +14,7 @@
           </div>
           <button
             class="mod__closs"
-            @click="closeCheckEmail()"
+            @click="close()"
           >
             <img
               src="~assets/imgs/icons/cross.svg"
@@ -191,6 +191,14 @@
                 >
               </button>
             </div>
+            <div class="form__er">
+              <div v-if="getUserEr(0)">
+                Введите пароль
+              </div>
+              <div v-if="getUserEr(2)">
+                Неверный пароль
+              </div>
+            </div>
             <div class="ga-code">
               <div class="ga-code__title">
                 Google Authenticator Coder
@@ -198,12 +206,22 @@
               <div class="ga-code__items">
                 <input
                   v-for="(item, i) in GACode"
+                  :id="`ga-code__item_${i}`"
                   :key="`ga-code__item_${i}`"
                   v-model="GACode[i]"
                   maxlength="1"
                   type="text"
                   class="ga-code__item"
+                  @keyup="onChangeCode"
                 >
+              </div>
+              <div class="form__er">
+                <div v-if="getUserEr(1)">
+                  Введите GA
+                </div>
+                <div v-if="getUserEr(3)">
+                  Неверный GA
+                </div>
               </div>
             </div>
           </div>
@@ -256,9 +274,11 @@ export default {
   data: () => ({
     step: 1,
     passwordType: 'password',
-    password: 'qweQWE@',
+    password: '',
     loading: false,
     GACode: ['', '', '', '', '', ''],
+    er: [],
+    erMes: '',
   }),
   computed: {
     ...mapGetters([
@@ -267,43 +287,67 @@ export default {
       'getGAEnabled',
     ]),
   },
+  watch: {
+    GACode() {
+
+    },
+  },
   methods: {
     ...mapActions([
       'fetchTempGAToken',
       'fetchСonfirmationGA',
     ]),
+    async onChangeCode(e) {
+      const { id } = e.target;
+      if (e.key === 'Backspace' && +id[id.length - 1] !== 0) {
+        document.querySelector(`#ga-code__item_${+id[id.length - 1] - 1}`).focus();
+      } else if (e.key !== 'Backspace' && +id[id.length - 1] !== 5) {
+        document.querySelector(`#ga-code__item_${+id[id.length - 1] + 1}`).focus();
+      }
+    },
     getQrCodeData() {
       return `otpauth://totp/${this.getProfile.email}?secret=${this.getGAToken}&issuer=CashFlash`;
     },
     async resetModal() {
       this.loading = false;
       this.step = 1;
+      this.passwordType = 'password';
+      this.password = '';
+      this.GACode = ['', '', '', '', '', ''];
+      this.er = [];
+      this.erMes = '';
       if (this.getGAEnabled === false) {
         await this.fetchTempGAToken();
       }
     },
+    check() {
+      if (this.GACode.join('') === '') {
+        this.er.push(0);
+      }
+      if (this.password === '') {
+        this.er.push(1);
+      }
+      return (this.er.length === 0);
+    },
     async preludeSubmite() {
-      // const { GACode } = this;
+      this.er = [];
+      this.erMes = '';
       const totp = this.GACode.join('');
-      // this.loading = true;
+      this.loading = true;
       const res = await this.fetchСonfirmationGA({
         totp,
         password: this.password,
       });
-      // this.loading =false;
-
-      console.log('fetchСonfirmationGA', res);
-
+      this.loading = false;
+      if (!res.ok && res.data.field === 'password') {
+        this.er.push(2);
+      }
+      if (!res.ok && res.data.field === 'totp') {
+        this.er.push(3);
+      }
       if (res.ok) {
         this.$emit('GASubmiteSuccess');
       }
-
-      //
-      //
-      //
-      // setTimeout(() => {
-      //   this.$emit('GASubmiteSuccess');
-      // }, 600);
     },
     togglePasswordType() {
       if (this.passwordType === 'password') {
@@ -328,238 +372,11 @@ export default {
       this.step -= 1;
     },
     close() {
-      this.$bvModal.hide('modal-change-pass');
+      this.$bvModal.hide('modal-enable-ga');
+    },
+    getUserEr(i) {
+      return this.er.indexOf(i) !== -1;
     },
   },
 };
 </script>
-<style lang="scss">
-  #modal-enable-ga {
-    .modal-dialog {
-      max-width: 895px;
-    }
-    .modal-content {
-      margin-right: 15px;
-    }
-
-    .ega {
-      padding: 30px;
-      margin: 0;
-      height: 600px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      &__code {
-        letter-spacing: 0.16em;
-        font-weight: bold;
-        font-size: 16px;
-        color: #000000;
-        background: $stroke;
-        border-radius: 10px;
-        height: 35px;
-        padding: 0 20px;
-        display: flex;
-        align-items: center;
-        margin: 20px 0 0;
-      }
-      &__title {
-        color: #000000;
-        font-weight: 600;
-        font-size: 20px;
-        margin: 0 0 20px;
-      }
-      &__text {
-        font-size: 16px;
-        color: #000000;
-        opacity: 0.4;
-        margin: 0 0 30px;
-        max-width: 388px;
-        text-align: center;
-      }
-      &__form {
-        width: 396px;
-      }
-      .ga-code {
-        margin: 30px 0 0;
-        &__title {
-          font-size: 16px;
-          opacity: 0.5;
-          color: $grey;
-          margin: 0 0 15px 20px;
-        }
-        &__items {
-          display: flex;
-          justify-content: space-between;
-        }
-        &__item {
-          padding: 0;
-          text-align: center;
-          &:not(:last-child) {
-            margin: 0 10px 0 0;
-          }
-        }
-      }
-      &__content {
-        display: none;
-        align-items: center;
-        /*justify-content: center;*/
-        flex-direction: column;
-
-        &_active {
-          display: flex;
-        }
-        &:nth-child(1) {
-          .download {
-            display: flex;
-            &__item {
-              &:first-child {
-                margin: 0 20px 0 0;
-              }
-            }
-          }
-        }
-      }
-      .steps {
-        align-items: center;
-        position: relative;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        &__line {
-          position: absolute;
-          height: 1px;
-          background: $stroke;
-          &_active {
-            background: $yellow;
-          }
-          &:nth-child(1) {
-            left: 0;
-            right: 66%;
-          }
-          &:nth-child(2) {
-            left: 33%;
-            right: 36%;
-          }
-          &:nth-child(3) {
-            left: 63%;
-            right: 0;
-          }
-        }
-        &__num {
-          width: 24px;
-          height: 24px;
-          border-radius: 100px;
-          background: #fff;
-          display: flex;
-          font-weight: bold;
-          align-items: center;
-          margin: 0 10px 0 0;
-          justify-content: center;
-        }
-        &__text {
-          color: #000000;
-          font-size: 14px;
-          opacity: 0.4;
-        }
-        &__item {
-          position: relative;
-          background: linear-gradient(99.4deg, #ffffff 0.73%, #ffffff 100%);
-          height: 54px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0 18px;
-          border: 1px solid $stroke;
-          border-radius: 13px;
-          &.steps__item_active {
-            background: $yellow-gradient;
-            border: none;
-            padding: 1px 19px;
-            .steps__num {
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-            .steps__text {
-              opacity: 1;
-            }
-          }
-        }
-      }
-      &__bottom {
-        display: flex;
-        justify-content: space-between;
-        .btn:first-child {
-          @include btn_out;
-        }
-        .btn:last-child {
-          @include btn-yellow;
-        }
-      }
-    }
-    @media (max-width: 991px) {
-      .ega {
-        .steps {
-          &__num {
-            margin: 0 7px 0 0;
-          }
-          &__item {
-            padding: 0 8px;
-            height: 38px;
-            &.steps__item_active {
-              padding: 1px 9px;
-            }
-          }
-        }
-      }
-    }
-    @media (max-width: 767px) {
-      .ega {
-        .steps {
-          &__num {
-            margin: 0;
-          }
-          &__text {
-            display: none;
-          }
-          &__item {
-            padding: 0;
-            width: 44px;
-            height: 44px;
-            &.steps__item_active {
-              padding: 0;
-            }
-          }
-        }
-      }
-    }
-    @media (max-width: 575px) {
-      .ega {
-        &__form {
-          width: initial;
-        }
-        &__content:nth-child(1) {
-          .download {
-            flex-direction: column;
-            align-items: center;
-            &__item {
-              &:first-child {
-                margin: 0 0 10px;
-              }
-            }
-          }
-        }
-        &__bottom {
-          display: flex;
-          .btn:first-child {
-            display: none;
-          }
-          .btn:last-child {
-            width: 100%;
-            @include btn-yellow;
-          }
-        }
-      }
-    }
-  }
-</style>

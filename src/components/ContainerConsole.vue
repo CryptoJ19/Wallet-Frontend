@@ -91,8 +91,8 @@ export default {
       }
     },
     closeOnDocClick(e) {
-      console.log(e.target.closest('.main-menu') === null
-        && e.target.closest('.head-console') === null);
+      // console.log(e.target.closest('.main-menu') === null
+      //   && e.target.closest('.head-console') === null);
       if (e.target.closest('.main-menu') === null
         && e.target.closest('.head-console') === null) {
         this.showMenu = false;

@@ -1,8 +1,10 @@
 import { mapActions, mapGetters } from 'vuex';
 import ModalChangePass from './components/ModalChangePass';
 import ModalEnableGA from './components/ModalEnableGA';
-import ModalSuccessGA from './components/ModalSuccessGA';
+import ModalSuccessEnableGA from './components/ModalSuccessEnableGA';
+import ModalSuccessDisableGA from './components/ModalSuccessDisableGA';
 import Loader from '~/src/ui/Loader';
+import ModalDisableGA from './components/ModalDisableGA';
 
 export default {
   data: () => ({
@@ -20,7 +22,9 @@ export default {
     Loader,
     ModalChangePass,
     ModalEnableGA,
-    ModalSuccessGA,
+    ModalSuccessEnableGA,
+    ModalDisableGA,
+    ModalSuccessDisableGA,
   },
   computed: {
     ...mapGetters([
@@ -42,10 +46,12 @@ export default {
     },
     GASubmiteSuccess() {
       this.$bvModal.hide('modal-enable-ga');
-      this.$bvModal.show('modal-success-ga');
-
-      setTimeout(() => {
-      }, 600);
+      this.$bvModal.show('modal-success-enable-ga');
+    },
+    GADisableSuccess() {
+      console.log('GADisableSuccess() {');
+      this.$bvModal.hide('modal-disable-ga');
+      this.$bvModal.show('modal-success-disable-ga');
     },
     async saveUser() {
       if (this.checkUserValidation()) {
@@ -57,10 +63,7 @@ export default {
           nickname: this.localProfile.nickname,
         });
         console.log(res);
-
-
         await this.fetchGetProfile();
-
         this.userLoader = false;
         this.setUserEditMode(0);
       }
@@ -86,6 +89,9 @@ export default {
     },
     showEnableGA() {
       this.$bvModal.show('modal-enable-ga');
+    },
+    showDisableGA() {
+      this.$bvModal.show('modal-disable-ga');
     },
     checkUserValidation() {
       const {

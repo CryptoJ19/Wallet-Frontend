@@ -18,6 +18,24 @@ export default {
   },
   actions: {
 
+    async fetchDisableGA(ctx, data) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/auth/totp/disable`,
+          'POST',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      if (res.ok) {
+        ctx.commit('updateGAEnabled', false);
+      }
+      return res;
+    },
+
     async fetchCheckGA(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -30,9 +48,11 @@ export default {
         return content;
       });
       // console.log('fetchTempGAToken', res);
-      // if (res.ok) {
-      //   ctx.commit('updateGAToken', res);
-      // }
+      if (res.ok && res.result.enabled) {
+        ctx.commit('updateGAEnabled', true);
+      } else if (res.ok && !res.result.enabled) {
+        ctx.commit('updateGAEnabled', false);
+      }
       return res;
     },
 
