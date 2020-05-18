@@ -12,86 +12,9 @@ export default {
       lastName: '',
       nickname: '',
     },
-    GAToken: '',
-    GAEnabled: false,
     isAuthorized: false,
   },
   actions: {
-
-    async fetchDisableGA(ctx, data) {
-      const res = await customFetchToken(ctx, async () => {
-        const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/auth/totp/disable`,
-          'POST',
-          header,
-          data,
-        );
-        const content = await rawResponse.json();
-        return content;
-      });
-      if (res.ok) {
-        ctx.commit('updateGAEnabled', false);
-      }
-      return res;
-    },
-
-    async fetchCheckGA(ctx) {
-      const res = await customFetchToken(ctx, async () => {
-        const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/auth/totp/enabled`,
-          'GET',
-          header,
-        );
-        const content = await rawResponse.json();
-        return content;
-      });
-      // console.log('fetchTempGAToken', res);
-      if (res.ok && res.result.enabled) {
-        ctx.commit('updateGAEnabled', true);
-      } else if (res.ok && !res.result.enabled) {
-        ctx.commit('updateGAEnabled', false);
-      }
-      return res;
-    },
-
-    async fetchСonfirmationGA(ctx, data) {
-      const res = await customFetchToken(ctx, async () => {
-        const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/auth/totp/validate`,
-          'POST',
-          header,
-          data,
-        );
-        const content = await rawResponse.json();
-        return content;
-      });
-      // console.log('fetchTempGAToken', res);
-      if (res.ok) {
-        ctx.commit('updateGAEnabled', true);
-      }
-      return res;
-    },
-
-    async fetchTempGAToken(ctx) {
-      const res = await customFetchToken(ctx, async () => {
-        const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/auth/totp/enable`,
-          'POST',
-          header,
-        );
-        const content = await rawResponse.json();
-        return content;
-      });
-      console.log('fetchTempGAToken', res);
-      if (res.ok) {
-        ctx.commit('updateGAToken', res);
-      }
-      return res;
-    },
     async fetchEditProfile(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -218,12 +141,6 @@ export default {
     },
   },
   mutations: {
-    updateGAEnabled(state, value) {
-      state.GAEnabled = value;
-    },
-    updateGAToken(state, value) {
-      state.GAToken = value.result.tempTotp;
-    },
     logout(state) {
       state.email = '';
       state.isAuthorized = false;
@@ -256,12 +173,6 @@ export default {
     },
   },
   getters: {
-    getGAEnabled(state) {
-      return state.GAEnabled;
-    },
-    getGAToken(state) {
-      return state.GAToken;
-    },
     getProfile(state) {
       return state.profile;
     },
