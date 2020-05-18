@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Check your email
+          Success
         </div>
         <div class="mod__closs">
           <img

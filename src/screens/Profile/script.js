@@ -3,6 +3,7 @@ import ModalChangePass from './components/ModalChangePass';
 import ModalEnableGA from './components/ModalEnableGA';
 import ModalSuccessEnableGA from './components/ModalSuccessEnableGA';
 import ModalSuccessDisableGA from './components/ModalSuccessDisableGA';
+import ModalSuccessChangePass from './components/ModalSuccessChangePass';
 import Loader from '~/src/ui/Loader';
 import ModalDisableGA from './components/ModalDisableGA';
 
@@ -25,6 +26,7 @@ export default {
     ModalSuccessEnableGA,
     ModalDisableGA,
     ModalSuccessDisableGA,
+    ModalSuccessChangePass,
   },
   computed: {
     ...mapGetters([
@@ -43,6 +45,10 @@ export default {
 
     disableGABtn() {
 
+    },
+    changePassSuccess() {
+      this.$bvModal.hide('modal-change-pass');
+      this.$bvModal.show('modal-success-change-pass');
     },
     GASubmiteSuccess() {
       this.$bvModal.hide('modal-enable-ga');

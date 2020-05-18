@@ -15,6 +15,22 @@ export default {
     isAuthorized: false,
   },
   actions: {
+    async fetchEditProfilePassword(ctx, data) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me/password`,
+          'PUT',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      console.log('fetchEditProfilePassword', res);
+      return res;
+    },
+
     async fetchEditProfile(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();

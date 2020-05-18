@@ -1,10 +1,11 @@
 <template>
   <div class="pro content__item">
-    <ModalChangePass />
+    <ModalChangePass @changePassSuccess="changePassSuccess" />
     <ModalEnableGA @GASubmiteSuccess="GASubmiteSuccess" />
     <ModalDisableGA @GADisableSuccess="GADisableSuccess" />
     <ModalSuccessEnableGA />
     <ModalSuccessDisableGA />
+    <ModalSuccessChangePass />
     <div
       class="pro__item user"
       :class="userBoxClass"

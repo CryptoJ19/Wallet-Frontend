@@ -1,6 +1,6 @@
 <template>
   <b-modal
-    id="modal-success-enable-ga"
+    id="modal-success-change-pass"
     centered
     hide-header
     hide-footer
@@ -20,7 +20,7 @@
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          Google Authenticator Successfully added.
+          Password changed.
         </div>
       </div>
       <div class="mod__btns">
@@ -39,7 +39,7 @@
 export default {
   methods: {
     close() {
-      this.$bvModal.hide('modal-success-enable-ga');
+      this.$bvModal.hide('modal-success-change-pass');
     },
   },
 };
