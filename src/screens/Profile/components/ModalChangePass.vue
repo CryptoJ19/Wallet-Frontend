@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Check your email
+          Change password
         </div>
         <button
           class="mod__closs"
