@@ -1,9 +1,9 @@
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
-import ModalSendBalance from './ModalSendBalance';
-import ModalRecieve from './ModalRecieve';
-import ModalSuccessSend from './ModalSuccessSend';
+import ModalSendBalance from './components/ModalSendBalance';
+import ModalRecieve from './components/ModalRecieve';
+import ModalSuccessSend from './components/ModalSuccessSend';
 
 export default {
   components: {
