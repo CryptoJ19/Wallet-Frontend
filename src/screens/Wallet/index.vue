@@ -1,7 +1,8 @@
 <template>
   <div class="wallet content__item">
-    <ModalSendBalance />
+    <ModalSendBalance @sendSuccess="sendSuccess" />
     <ModalRecieve />
+    <ModalSuccessSend />
 
     <div class="wallet__item balance">
       <div class="title">

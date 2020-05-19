@@ -187,6 +187,22 @@
           </div>
           <div class="form__item">
             <input
+              v-model="signup.memo"
+              maxlength="40"
+              placeholder="CF Name"
+              type="text"
+            >
+            <div class="form__er">
+              <div v-if="getEr(9)">
+                Введите CF Name
+              </div>
+              <div v-if="getEr(10)">
+                CF Name должен содержать 12 английских символов или цифры от 1 до 5.
+              </div>
+            </div>
+          </div>
+          <div class="form__item">
+            <input
               v-model="signup.email"
               maxlength="40"
               placeholder="Email"

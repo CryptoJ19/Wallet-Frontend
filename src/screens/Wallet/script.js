@@ -3,12 +3,14 @@ import 'vue2-datepicker/index.css';
 
 import ModalSendBalance from './ModalSendBalance';
 import ModalRecieve from './ModalRecieve';
+import ModalSuccessSend from './ModalSuccessSend';
 
 export default {
   components: {
     DatePicker,
     ModalSendBalance,
     ModalRecieve,
+    ModalSuccessSend,
   },
   data() {
     return {
@@ -18,6 +20,10 @@ export default {
     };
   },
   methods: {
+    sendSuccess() {
+      this.$bvModal.hide('modal-send-balance');
+      this.$bvModal.show('modal-success-send');
+    },
     showSendBalance() {
       this.$bvModal.show('modal-send-balance');
     },

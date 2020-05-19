@@ -27,40 +27,33 @@
         <div class="mod__balance">
           EOS 3.44
         </div>
-        <div class="mod__items">
-          <div class="mod__item mod__input">
-            <input
-              maxlength="40"
-              type="text"
-              placeholder="Code"
-            >
-            <div class="form__er" />
-          </div>
-          <div class="mod__item">
-            <div class="dd">
-              <b-dropdown
-                text="Token"
-                block
-                variant="primary"
-                class=""
-                menu-class="w-100"
-              >
-                <b-dropdown-item-button>
-                  Action
-                </b-dropdown-item-button>
-                <b-dropdown-item-button>
-                  Another action
-                </b-dropdown-item-button>
-                <b-dropdown-item-button>
-                  Something else here
-                </b-dropdown-item-button>
-                <b-dropdown-item-button>
-                  Something else here
-                </b-dropdown-item-button>
-              </b-dropdown>
+        <div class="mode-select">
+          <button
+            class="mode-select__item"
+            :class="{'mode-select__item_active': mode === 0}"
+            @click="setMode(0)"
+          >
+            <div class="circle">
+              <div class="circle__small" />
             </div>
-            <div class="form__er" />
-          </div>
+            <div class="mode-select__text">
+              Send within CashFlash
+            </div>
+          </button>
+          <button
+            class="mode-select__item"
+            :class="{'mode-select__item_active': mode === 1}"
+            @click="setMode(1)"
+          >
+            <div class="circle">
+              <div class="circle__small" />
+            </div>
+            <div class="mode-select__text">
+              Send outside CashFlash
+            </div>
+          </button>
+        </div>
+        <div class="mod__items">
           <div class="mod__item mod__input">
             <div class="btn-max__p ui-input__body">
               <input
@@ -74,29 +67,60 @@
             </div>
             <div class="form__er" />
           </div>
+          <div
+            v-if="mode === 1"
+            class="mod__item mod__input"
+          >
+            <input
+              maxlength="40"
+              type="text"
+              placeholder="Fee"
+            >
+            <div class="form__er" />
+          </div>
           <div class="mod__item mod__input">
             <div class="">
               <input
                 maxlength="40"
                 type="text"
-                placeholder="Memo"
+                placeholder="Recipient"
               >
             </div>
+            <div class="form__er" />
+          </div>
+          <div class="mod__item mod__input">
+            <input
+              maxlength="40"
+              type="text"
+              placeholder="Memo"
+            >
             <div class="form__er" />
           </div>
         </div>
       </div>
       <div class="mod__btns">
-        <div class="mod__btn">
+        <button
+          class="mod__btn"
+          @click="preludeSend()"
+        >
           Send
-        </div>
+        </button>
       </div>
     </div>
   </b-modal>
 </template>
 <script>
 export default {
+  data: () => ({
+    mode: 0,
+  }),
   methods: {
+    setMode(value) {
+      this.mode = value;
+    },
+    preludeSend() {
+      this.$emit('sendSuccess');
+    },
     closeSendBalance() {
       this.$bvModal.hide('modal-send-balance');
     },
