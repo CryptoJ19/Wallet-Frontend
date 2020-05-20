@@ -6,11 +6,12 @@
 
     <div class="wallet__item balance">
       <div class="title">
-        Balance
+        {{ $t('wallet.balance') }}
       </div>
       <div>
         <div class="mainnum">
-          EOS 3.44
+          {{ $t('wallet.eos') }}
+          3.44
         </div>
         <div class="subnum">
           $ 123.234
@@ -18,7 +19,7 @@
         <div class="bottom">
           <div class="balance__link">
             <a href="/">
-              open in block explorer
+              {{ $t('wallet.openExplorer') }}
             </a>
           </div>
           <div class="btns">
@@ -33,7 +34,7 @@
               @click="showSendBalance()"
             >
               <div>
-                Send
+                {{ $t('wallet.send') }}
               </div>
               <div class="icon">
                 <img
@@ -47,7 +48,7 @@
               @click="showRecieve()"
             >
               <div>
-                Recieve
+                {{ $t('wallet.recieve') }}
               </div>
               <div class="icon">
                 <img
@@ -62,7 +63,7 @@
     </div>
     <div class="wallet__item token">
       <div class="title">
-        Balance
+        {{ $t('wallet.balance') }}
       </div>
       <div>
         <div class="mainnum">
@@ -85,7 +86,7 @@
               @click="showSendBalance()"
             >
               <div>
-                Send
+                {{ $t('wallet.send') }}
               </div>
               <div class="icon">
                 <img
@@ -99,7 +100,7 @@
               @click="showRecieve()"
             >
               <div>
-                Recieve
+                {{ $t('wallet.recieve') }}
               </div>
               <div class="icon">
                 <img
@@ -151,13 +152,13 @@
       <div class="table">
         <div class="table__head">
           <div class="table__item">
-            Amount
+            {{ $t('wallet.amount') }}
           </div>
           <div class="table__item">
-            Date
+            {{ $t('wallet.date') }}
           </div>
           <div class="table__item">
-            Status
+            {{ $t('wallet.status') }}
           </div>
         </div>
         <div class="table__body">

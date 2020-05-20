@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Success
+          {{ $t('wallet.modalSend.successTitle') }}
         </div>
         <div class="mod__closs">
           <img
@@ -20,7 +20,7 @@
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          Lorem ipsum dolor sit amet
+          {{ $t('wallet.modalSend.successText') }}
         </div>
       </div>
       <div class="mod__btns">

@@ -45,5 +45,35 @@
       "incorrectTotp": "Неверный GA код",
       "incorrectCode": "Неверный код подтверждения (который приходит на email)"
     }
+  },
+  "wallet": {
+    "balance": "Balance",
+    "eos": "EOS",
+    "openExplorer": "open in block explorer",
+    "send": "Send",
+    "recieve": "Recieve",
+    "amount": "Amount",
+    "date": "Date",
+    "status": "Status",
+    "modalRecieve": {
+      "title": "Recieve",
+      "cashFlash": "CashFlash",
+      "eos": "EOS",
+      "subtext": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
+      "close": "Close",
+    },
+    "modalSend": {
+      "title": "Send",
+      "subtext": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
+      "close": "Close",
+      "sendCashFlash": "Send within CashFlash",
+      "sendOutCashFlash": "Send outside CashFlash",
+      "code": "Code",
+      "fee": "Fee",
+      "recipient": "Recipient",
+      "sendBtn": "Send",
+      "successTitle": "Success",
+      "successText": "Lorem ipsum dolor sit amet"
+    }
   }
 }

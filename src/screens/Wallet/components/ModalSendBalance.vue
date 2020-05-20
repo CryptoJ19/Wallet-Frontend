@@ -9,6 +9,7 @@
       <div class="mod__head">
         <div class="mod__title">
           Send
+          {{ $t('wallet.modalSend.title') }}
         </div>
         <button
           class="mod__closs"
@@ -22,10 +23,11 @@
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          Balance
+          {{ $t('wallet.balance') }}
         </div>
         <div class="mod__balance">
-          EOS 3.44
+          {{ $t('wallet.eos') }}
+          3.44
         </div>
         <div class="mode-select">
           <button
@@ -37,7 +39,7 @@
               <div class="circle__small" />
             </div>
             <div class="mode-select__text">
-              Send within CashFlash
+              {{ $t('wallet.modalSend.sendCashFlash') }}
             </div>
           </button>
           <button
@@ -49,7 +51,7 @@
               <div class="circle__small" />
             </div>
             <div class="mode-select__text">
-              Send outside CashFlash
+              {{ $t('wallet.modalSend.sendOutCashFlash') }}
             </div>
           </button>
         </div>
@@ -59,7 +61,7 @@
               <input
                 maxlength="40"
                 type="text"
-                placeholder="Code"
+                :placeholder="$t('wallet.modalSend.code')"
               >
               <button class="btn-max">
                 Max
@@ -74,7 +76,7 @@
             <input
               maxlength="40"
               type="text"
-              placeholder="Fee"
+              :placeholder="$t('wallet.modalSend.fee')"
             >
             <div class="form__er" />
           </div>
@@ -83,7 +85,7 @@
               <input
                 maxlength="40"
                 type="text"
-                placeholder="Recipient"
+                :placeholder="$t('wallet.modalSend.recipient')"
               >
             </div>
             <div class="form__er" />
@@ -103,7 +105,7 @@
           class="mod__btn"
           @click="preludeSend()"
         >
-          Send
+          {{ $t('wallet.modalSend.sendBtn') }}
         </button>
       </div>
     </div>

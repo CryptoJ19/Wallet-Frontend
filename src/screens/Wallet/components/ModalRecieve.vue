@@ -8,7 +8,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Recieve
+          {{ $t('wallet.modalRecieve.title') }}
         </div>
         <button
           class="mod__closs"
@@ -24,7 +24,7 @@
         <div class="recieve__qr">
           <div class="qr__item">
             <div class="qr__title">
-              CashFlash
+              {{ $t('wallet.modalRecieve.cashFlash') }}
             </div>
             <div class="qr__address">
               <div class="address__value">
@@ -46,7 +46,7 @@
           </div>
           <div class="qr__item">
             <div class="qr__title">
-              EOS
+              {{ $t('wallet.eos') }}
             </div>
             <div class="qr__address">
               <div class="address__value">
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="recieve__epitaph">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
+          {{ $t('wallet.modalRecieve.subtext') }}
         </div>
       </div>
       <div class="mod__btns">
@@ -76,7 +76,7 @@
           class="mod__btn"
           @click="closeRecieve()"
         >
-          Close
+          {{ $t('wallet.modalRecieve.close') }}
         </button>
       </div>
     </div>
