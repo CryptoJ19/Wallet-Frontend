@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Check your email
+          {{ $t('auth.modalCheckEmail.title') }}
         </div>
         <button
           class="mod__closs"
@@ -23,14 +23,14 @@
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
+          {{ $t('auth.modalCheckEmail.text') }}
         </div>
         <div class="mod__input">
           <input
             v-model="code"
             maxlength="40"
             type="text"
-            placeholder="Code"
+            :placeholder="$t('auth.modalCheckEmail.restoreCode')"
           >
           <div class="form__er">
             {{ erCheckEmail }}
@@ -42,7 +42,7 @@
           class="mod__btn"
           @click="preludeValidateEmail()"
         >
-          Sign Up
+          {{ $t('auth.modalCheckEmail.signup_btn') }}
         </button>
       </div>
     </div>

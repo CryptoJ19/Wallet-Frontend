@@ -1,4 +1,7 @@
 {
+  "default": {
+    "serverEr": "Ошибка сервера"
+  },
   "auth": {
     "welcome": "Welcome to\n CashFlash",
     "signin": "Sign in",
@@ -9,12 +12,19 @@
     "forgotPassword__send": "Send",
     "email": "Email",
     "checkEmailToRestorePass": "На ваш email отправлено письмо для восстановления пароля.",
+    "modalCheckEmail": {
+      "title": "Check your email",
+      "text": "text Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
+      "signup_btn": "Sign Up",
+      "restoreCode": "Code"
+    },
     "rememberMe": "Remember me?",
     "codeAuth": "Код авторизации",
     "password": "Password",
     "firstName": "First name",
     "lastName": "Last name",
     "nickname": "CF Name",
+    "changePass": "Change",
     "er": {
       "enterEmail": "Введите email",
       "enterValidEmail": "Введите корректный email",

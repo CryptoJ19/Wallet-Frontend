@@ -35,19 +35,19 @@
             </div>
             <div class="form__er">
               <div v-if="getEr(3)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
               <div v-if="getEr(5)">
-                Пароль должен содержать спец символ
+                {{ $t('auth.er.enterPassSpecial') }}
               </div>
               <div v-if="getEr(6)">
-                Пароль должен содержать заглавную букву
+                {{ $t('auth.er.enterPassUp') }}
               </div>
               <div v-if="getEr(7)">
-                Пароль должен содержать строчную букву
+                {{ $t('auth.er.enterPassDown') }}
               </div>
               <div v-if="getEr(8)">
-                Пароль не должен содержать пробелы
+                {{ $t('auth.er.enterPassSpace') }}
               </div>
               {{ erMes }}
             </div>
@@ -57,7 +57,7 @@
               class="auth__btn"
               @click="preludeForgotChange()"
             >
-              Change
+              {{ $t('auth.changePass') }}
             </button>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default {
         if (res.ok) {
           this.logout();
         } else if (res.code === 404000) {
-          this.erMes = res.msg;
+          this.erMes = this.$t('default.serverEr'); // todo
         }
       }
     },
