@@ -22,7 +22,7 @@
   }
   &__box {
     width: 435px;
-    height: 490px;
+    height: 620px;
   }
 
 
@@ -112,9 +112,15 @@
     }
   }
   @media (max-width: 767px) {
+    height: initial;
+
+    &__main {
+      min-height: 100vh;
+
+    }
     &__box {
       width: 100%;
-      //height: initial;
+      height: initial;
       padding: 20px;
     }
   }

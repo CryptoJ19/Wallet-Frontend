@@ -60,7 +60,7 @@
       "cashFlash": "CashFlash",
       "eos": "EOS",
       "subtext": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
-      "close": "Close",
+      "close": "Close"
     },
     "modalSend": {
       "title": "Send",

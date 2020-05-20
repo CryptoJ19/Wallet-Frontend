@@ -173,6 +173,7 @@ export default {
       state.profile.email = value.email;
       state.profile.firstName = value.firstName;
       state.profile.lastName = value.lastName;
+      state.profile.nickname = value.nickname;
       // state.profile.nickname = value.nickname
     },
     updateAccess(state, value) {

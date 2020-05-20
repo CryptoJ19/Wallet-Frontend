@@ -7,9 +7,10 @@
     />
     <div class="auth__main container">
       <div class="auth__box">
-        <div class="auth__title">
-          {{ $t('auth.welcome') }}
-        </div>
+        <div
+          class="auth__title"
+          v-html="$t('auth.welcome')"
+        />
         <div class="menu">
           <div class="menu__items">
             <button

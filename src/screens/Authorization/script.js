@@ -43,6 +43,7 @@ export default {
       firstName: '',
       lastName: '',
       email: '',
+      memo: '',
       password: '',
       passwordType: 'password',
     },
@@ -119,6 +120,7 @@ export default {
         email: '',
         password: '',
         passwordType: 'password',
+        memo: '',
       };
       this.signin = {
         email: '',
@@ -149,15 +151,18 @@ export default {
         firstName,
         lastName,
         email,
+        memo,
       } = this.signup;
       const firstNameLocal = firstName.trim();
       const lastNameLocal = lastName.trim();
       const emailLocal = email.trim();
+      const memoLocal = memo.trim();
       this.signup = {
         ...this.signup,
         firstName: firstNameLocal,
         lastName: lastNameLocal,
         email: emailLocal,
+        memo: memoLocal,
       };
     },
     trimSignin() {
@@ -214,11 +219,13 @@ export default {
       const passRegexUpper = /[A-Z]+/;
       const passRegexLower = /[a-z]+/;
       const passRegexSpaces = /\s+/g;
+      const memoRegex = /^[a-z1-5]{12}$/g;
       const {
         firstName,
         lastName,
         email,
         password,
+        memo,
       } = this.signup;
       if (firstName === '') {
         this.er.push(0);
@@ -252,10 +259,14 @@ export default {
       ) {
         this.er.push(8);
       }
-      if (this.er.length !== 0) {
-        return false;
+      if (memo === '') {
+        this.er.push(9);
+      } else if (
+        memo.match(memoRegex) === null
+      ) {
+        this.er.push(10);
       }
-      return true;
+      return this.er.length === 0;
     },
 
     async preludeSignup() {
@@ -267,6 +278,7 @@ export default {
           lastName,
           email,
           password,
+          memo,
         } = this.signup;
 
         this.loader = true;
@@ -275,12 +287,14 @@ export default {
           lastName,
           email,
           password,
+          nickname: memo,
         });
         this.loader = false;
         console.log('res', res);
         if (res.ok) {
           this.showCheckEmail();
         } else {
+          // if (!res.ok && res.data.field === 'nickname')
           this.erMes = this.$t('auth.er.emailExists'); // todo
         }
       }
