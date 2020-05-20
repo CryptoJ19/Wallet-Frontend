@@ -1,3 +1,39 @@
 {
-  "hello": "Привет мир"
+  "auth": {
+    "welcome": "Welcome to\n CashFlash",
+    "signin": "Sign in",
+    "signin_btn": "Sign in",
+    "signup": "Sign up",
+    "signup_btn": "Sign up",
+    "forgotPassword": "Forgot Password",
+    "forgotPassword__send": "Send",
+    "email": "Email",
+    "checkEmailToRestorePass": "На ваш email отправлено письмо для восстановления пароля.",
+    "rememberMe": "Remember me?",
+    "codeAuth": "Код авторизации",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "nickname": "CF Name",
+    "er": {
+      "enterEmail": "Введите email",
+      "enterValidEmail": "Введите корректный email",
+      "enterPass": "Введите пароль",
+      "enterPassSpecial": "Пароль должен содержать спец символ",
+      "enterPassUp": "Пароль должен содержать заглавную букву",
+      "enterPassDown": "Пароль должен содержать строчную букву",
+      "enterPassSpace": "Пароль не должен содержать пробелы",
+      "enterTotp": "Введите GA код.",
+      "enterFirstName": "Введите имя",
+      "enterSecondName": "Введите фамилию",
+      "enterNickname": "Введите CF Name",
+      "enterValidNickname": "***Описание требования для CF Name***",
+      "enterCode": "Введите код (который приходит на email)",
+      "incorrectEmailToReset": "Email не найден (при восстановлении пароля )",
+      "emailExists": "Такой email уже есть",
+      "incorrectLog": "Неверный логин или пароль",
+      "incorrectTotp": "Неверный GA код",
+      "incorrectCode": "Неверный код подтверждения (который приходит на email)"
+    }
+  }
 }

@@ -281,7 +281,7 @@ export default {
         if (res.ok) {
           this.showCheckEmail();
         } else {
-          this.erMes = res.msg;
+          this.erMes = this.$t('auth.er.emailExists'); // todo
         }
       }
     },
@@ -324,11 +324,11 @@ export default {
           // this.$router.replace({ path: 'wallet' });
           document.location.replace(`${baseUrl}/`);
         } else if (resSignin.code === 401000) {
-          this.erMes = resSignin.msg;
+          this.erMes = this.$t('auth.er.incorrectLog');
         } else if (resSignin.code === 400000 && GAEnabled === false) {
           this.signin.GAEnabled = true;
         } else if (resSignin.code === 400000) {
-          this.erMes = 'Неверный GA код';
+          this.erMes = this.$t('auth.er.incorrectTotp');
         }
       }
     },
@@ -345,18 +345,15 @@ export default {
         if (res.ok) {
           this.mode = 3;
         } else {
-          this.erMes = res.msg;
+          this.erMes = this.$t('auth.er.incorrectEmailToReset');
         }
       }
-    },
-    preludeForgotChange() {
-      console.log('nice');
     },
     async preludeValidateEmail(code) {
       this.erCheckEmail = '';
 
       if (code === '') {
-        this.erCheckEmail = 'Введите код';
+        this.erCheckEmail = this.$t('auth.er.enterCode');
       } else {
         this.loaderModal = true;
         const res = await this.fetchValidateEmail({
@@ -369,7 +366,7 @@ export default {
           // this.$router.replace({ path: 'wallet' });
           document.location.replace(`${baseUrl}/wallet`);
         } else {
-          this.erCheckEmail = 'Неверный код подтверждения';
+          this.erCheckEmail = this.$t('auth.er.incorrectCode');
         }
       }
     },

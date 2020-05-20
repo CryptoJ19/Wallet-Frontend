@@ -8,9 +8,7 @@
     <div class="auth__main container">
       <div class="auth__box">
         <div class="auth__title">
-          Welcome to
-          <br>
-          CashFlash
+          {{ $t('auth.welcome') }}
         </div>
         <div class="menu">
           <div class="menu__items">
@@ -19,14 +17,14 @@
               class="menu__item"
               @click="setMode(0)"
             >
-              Sign in
+              {{ $t('auth.signin') }}
             </button>
             <button
               :class="authBtnClass[1]"
               class="menu__item"
               @click="setMode(1)"
             >
-              Sign Up
+              {{ $t('auth.signup') }}
             </button>
           </div>
           <button
@@ -34,7 +32,7 @@
             class="menu__forgot"
             @click="setMode(2)"
           >
-            Forgot Password
+            {{ $t('auth.forgotPassword') }}
           </button>
         </div>
         <div
@@ -45,15 +43,15 @@
             <input
               v-model="signin.email"
               maxlength="40"
-              placeholder="Email"
+              :placeholder="$t('auth.email')"
               type="text"
             >
             <div class="form__er">
               <div v-if="getEr(0)">
-                Введите email
+                {{ $t('auth.er.enterEmail') }}
               </div>
               <div v-if="getEr(1)">
-                Введите корректный email
+                {{ $t('auth.er.enterValidEmail') }}
               </div>
             </div>
           </div>
@@ -62,7 +60,7 @@
               <input
                 v-model="signin.password"
                 maxlength="40"
-                placeholder="Password"
+                :placeholder="$t('auth.password')"
                 :type="signin.passwordType"
               >
               <button
@@ -83,7 +81,7 @@
             </div>
             <div class="form__er">
               <div v-if="getEr(2)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
               <div v-if="signin.GAEnabled === false">
                 {{ erMes }}
@@ -108,7 +106,7 @@
                 >
               </span>
               <span class="check__title">
-                Remember me?
+                {{ $t('auth.rememberMe') }}
               </span>
             </label>
           </div>
@@ -120,7 +118,7 @@
               <input
                 v-model="signin.GACode"
                 maxlength="40"
-                placeholder="Код авторизации"
+                :placeholder="$t('auth.codeAuth')"
                 :type="signin.GACodeType"
               >
               <button
@@ -141,7 +139,7 @@
             </div>
             <div class="form__er">
               <div v-if="getEr(3)">
-                Введите GA код.
+                {{ $t('auth.er.enterTotp') }}
               </div>
               {{ erMes }}
             </div>
@@ -151,7 +149,7 @@
               class="auth__btn"
               @click="preludeSignin()"
             >
-              Sign In
+              {{ $t('auth.signin_btn') }}
             </button>
           </div>
         </div>
@@ -163,12 +161,12 @@
             <input
               v-model="signup.firstName"
               maxlength="40"
-              placeholder="First name"
+              :placeholder="$t('auth.firstName')"
               type="text"
             >
             <div class="form__er">
               <div v-if="getEr(0)">
-                Введите имя
+                {{ $t('auth.er.enterFirstName') }}
               </div>
             </div>
           </div>
@@ -176,12 +174,12 @@
             <input
               v-model="signup.lastName"
               maxlength="40"
-              placeholder="Last name"
+              :placeholder="$t('auth.lastName')"
               type="text"
             >
             <div class="form__er">
               <div v-if="getEr(1)">
-                Введите фамилию
+                {{ $t('auth.er.enterSecondName') }}
               </div>
             </div>
           </div>
@@ -189,15 +187,15 @@
             <input
               v-model="signup.memo"
               maxlength="40"
-              placeholder="CF Name"
+              :placeholder="$t('auth.nickname')"
               type="text"
             >
             <div class="form__er">
               <div v-if="getEr(9)">
-                Введите CF Name
+                {{ $t('auth.er.enterNickname') }}
               </div>
               <div v-if="getEr(10)">
-                CF Name должен содержать 12 английских символов или цифры от 1 до 5.
+                {{ $t('auth.er.enterValidNickname') }}
               </div>
             </div>
           </div>
@@ -205,15 +203,15 @@
             <input
               v-model="signup.email"
               maxlength="40"
-              placeholder="Email"
+              :placeholder="$t('auth.email')"
               type="text"
             >
             <div class="form__er">
               <div v-if="getEr(2)">
-                Введите email
+                {{ $t('auth.er.enterEmail') }}
               </div>
               <div v-if="getEr(4)">
-                Введите корректный email
+                {{ $t('auth.er.enterValidEmail') }}
               </div>
             </div>
           </div>
@@ -222,7 +220,7 @@
               <input
                 v-model="signup.password"
                 maxlength="40"
-                placeholder="Password"
+                :placeholder="$t('auth.password')"
                 :type="signup.passwordType"
               >
               <button
@@ -243,19 +241,19 @@
             </div>
             <div class="form__er">
               <div v-if="getEr(3)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
               <div v-if="getEr(5)">
-                Пароль должен содержать спец символ
+                {{ $t('auth.er.enterPassSpecial') }}
               </div>
               <div v-if="getEr(6)">
-                Пароль должен содержать заглавную букву
+                {{ $t('auth.er.enterPassUp') }}
               </div>
               <div v-if="getEr(7)">
-                Пароль должен содержать строчную букву
+                {{ $t('auth.er.enterPassDown') }}
               </div>
               <div v-if="getEr(8)">
-                Пароль не должен содержать пробелы
+                {{ $t('auth.er.enterPassSpace') }}
               </div>
               {{ erMes }}
             </div>
@@ -266,7 +264,7 @@
               class="auth__btn"
               @click="preludeSignup()"
             >
-              Sign Up
+              {{ $t('auth.signup_btn') }}
             </button>
           </div>
         </div>
@@ -278,12 +276,12 @@
             <input
               v-model="forgot.email"
               maxlength="40"
-              placeholder="Email"
+              :placeholder="$t('auth.email')"
               type="text"
             >
             <div class="form__er">
               <div v-if="getEr(0)">
-                Введите email
+                {{ $t('auth.er.enterEmail') }}
               </div>
               {{ erMes }}
             </div>
@@ -293,7 +291,7 @@
               class="auth__btn"
               @click="preludeForgotSend()"
             >
-              Send
+              {{ $t('auth.forgotPassword__send') }}
             </button>
           </div>
         </div>
@@ -302,19 +300,8 @@
           :class="authFormClass[3]"
         >
           <div class="form__text">
-            На ваш email отправлено письмо для восстановления пароля.
+            {{ $t('auth.checkEmailToRestorePass') }}
           </div>
-        </div>
-        <div>
-          <!--          <nuxt-link to="/wallet">-->
-          <!--            w-->
-          <!--          </nuxt-link>-->
-          <!--          <div>-->
-          <!--            {{ accessToken }}-->
-          <!--          </div>-->
-          <!--          <div>-->
-          <!--            {{ refreshToken }}-->
-          <!--          </div>-->
         </div>
       </div>
       <div
