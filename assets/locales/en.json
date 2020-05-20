@@ -1,3 +1,127 @@
 {
-  "hello": "Hello world"
+  "default": {
+    "serverEr": "Ошибка сервера"
+  },
+  "auth": {
+    "welcome": "Welcome to\n CashFlash",
+    "signin": "Sign in",
+    "signin_btn": "Sign in",
+    "signup": "Sign up",
+    "signup_btn": "Sign up",
+    "forgotPassword": "Forgot Password",
+    "forgotPassword__send": "Send",
+    "email": "Email",
+    "checkEmailToRestorePass": "На ваш email отправлено письмо для восстановления пароля.",
+    "modalCheckEmail": {
+      "title": "Check your email",
+      "text": "text Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
+      "signup_btn": "Sign Up",
+      "restoreCode": "Code"
+    },
+    "rememberMe": "Remember me?",
+    "codeAuth": "Код авторизации",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "nickname": "CF Name",
+    "changePass": "Change",
+    "er": {
+      "enterEmail": "Введите email",
+      "enterValidEmail": "Введите корректный email",
+      "enterPass": "Введите пароль",
+      "enterPassSpecial": "Пароль должен содержать спец символ",
+      "enterPassUp": "Пароль должен содержать заглавную букву",
+      "enterPassDown": "Пароль должен содержать строчную букву",
+      "enterPassSpace": "Пароль не должен содержать пробелы",
+      "enterTotp": "Введите GA код.",
+      "enterFirstName": "Введите имя",
+      "enterSecondName": "Введите фамилию",
+      "enterNickname": "Введите CF Name",
+      "enterValidNickname": "***Описание требования для CF Name***",
+      "enterCode": "Введите код (который приходит на email)",
+      "incorrectEmailToReset": "Email не найден (при восстановлении пароля )",
+      "emailExists": "Такой email уже есть",
+      "incorrectLog": "Неверный логин или пароль",
+      "incorrectTotp": "Неверный GA код",
+      "incorrectCode": "Неверный код подтверждения (который приходит на email)"
+    }
+  },
+  "wallet": {
+    "balance": "Balance",
+    "eos": "EOS",
+    "openExplorer": "open in block explorer",
+    "send": "Send",
+    "recieve": "Recieve",
+    "amount": "Amount",
+    "date": "Date",
+    "status": "Status",
+    "modalRecieve": {
+      "title": "Recieve",
+      "cashFlash": "CashFlash",
+      "eos": "EOS",
+      "subtext": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
+      "close": "Close"
+    },
+    "modalSend": {
+      "title": "Send",
+      "subtext": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
+      "close": "Close",
+      "sendCashFlash": "Send within CashFlash",
+      "sendOutCashFlash": "Send outside CashFlash",
+      "code": "Code",
+      "fee": "Fee",
+      "recipient": "Recipient",
+      "sendBtn": "Send",
+      "successTitle": "Success",
+      "successText": "Lorem ipsum dolor sit amet"
+    }
+  },
+  "profile": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "2fa": "2FA",
+    "ga": "Google Authenticator",
+    "gaSub": "qweq qwe qwe",
+    "enable": "Enable",
+    "disable": "Disable",
+    "changePass": "Change password",
+    "changePassBtn": "Change",
+    "modalChangePass": {
+      "title": "Change password",
+      "newPass": "New password",
+      "saveBtn": "Save",
+      "titleSuccess": "Success",
+      "textSuccess": "Password changed.",
+      "closeSuccess": "Ok"
+    },
+    "modalDisableGA": {
+      "title": "Disable GA",
+      "incorrectPass": "Неверный пароль",
+      "code": "Code(ga)",
+      "disableBtn": "Disable",
+      "titleSuccess": "Success",
+      "textSuccess": "Google Authenticator disabled.",
+      "closeSuccess": "Ok"
+    },
+    "modalEnableGA": {
+      "title": "Enable 2FA",
+      "step1Title": "Install mobile app",
+      "step2Title": "Scan QR code",
+      "step3Title": "Backup key",
+      "step4Title": "Enable Google Authenticator",
+      "step": "Step",
+      "installApp": "Install the Google Authenticator mobile app",
+      "scanQr": "Scan this QR code with the Google Authenticator or enter code manually into the app.",
+      "savePaper": "Please save this Key on paper. This Key will allow you to recover your Google Authenticator in case of phone loss.",
+      "enableGA": "Enable Google Authenticator",
+      "GACodeTitle": "Google Authenticator Code",
+      "back": "Back",
+      "sendGA": "Submite",
+      "next": "Next",
+      "titleSuccess": "Success",
+      "textSuccess": "Google Authenticator disabled.",
+      "closeSuccess": "Ok"
+    }
+  }
 }
