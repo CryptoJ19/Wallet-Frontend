@@ -75,5 +75,53 @@
       "successTitle": "Success",
       "successText": "Lorem ipsum dolor sit amet"
     }
+  },
+  "profile": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "2fa": "2FA",
+    "ga": "Google Authenticator",
+    "gaSub": "qweq qwe qwe",
+    "enable": "Enable",
+    "disable": "Disable",
+    "changePass": "Change password",
+    "changePassBtn": "Change",
+    "modalChangePass": {
+      "title": "Change password",
+      "newPass": "New password",
+      "saveBtn": "Save",
+      "titleSuccess": "Success",
+      "textSuccess": "Password changed.",
+      "closeSuccess": "Ok"
+    },
+    "modalDisableGA": {
+      "title": "Disable GA",
+      "incorrectPass": "Неверный пароль",
+      "code": "Code(ga)",
+      "disableBtn": "Disable",
+      "titleSuccess": "Success",
+      "textSuccess": "Google Authenticator disabled.",
+      "closeSuccess": "Ok"
+    },
+    "modalEnableGA": {
+      "title": "Enable 2FA",
+      "step1Title": "Install mobile app",
+      "step2Title": "Scan QR code",
+      "step3Title": "Backup key",
+      "step4Title": "Enable Google Authenticator",
+      "step": "Step",
+      "installApp": "Install the Google Authenticator mobile app",
+      "scanQr": "Scan this QR code with the Google Authenticator or enter code manually into the app.",
+      "savePaper": "Please save this Key on paper. This Key will allow you to recover your Google Authenticator in case of phone loss.",
+      "enableGA": "Enable Google Authenticator",
+      "GACodeTitle": "Google Authenticator Code",
+      "back": "Back",
+      "sendGA": "Submite",
+      "next": "Next",
+      "titleSuccess": "Success",
+      "textSuccess": "Google Authenticator disabled.",
+      "closeSuccess": "Ok"
+    }
   }
 }

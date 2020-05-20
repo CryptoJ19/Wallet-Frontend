@@ -38,7 +38,7 @@
       <div class="user__items">
         <div class="user__item">
           <div class="user__title">
-            First name
+            {{ $t('auth.firstName') }}
           </div>
           <input
             v-model="localProfile.firstName"
@@ -47,13 +47,13 @@
           >
           <div class="form__er">
             <div v-if="getUserEr(0)">
-              Введите имя
+              {{ $t('auth.er.enterFirstName') }}
             </div>
           </div>
         </div>
         <div class="user__item">
           <div class="user__title">
-            Second name
+            {{ $t('auth.secondName') }}
           </div>
           <input
             v-model="localProfile.lastName"
@@ -62,13 +62,13 @@
           >
           <div class="form__er">
             <div v-if="getUserEr(1)">
-              Введите фамилию
+              {{ $t('auth.er.enterSecondName') }}
             </div>
           </div>
         </div>
         <div class="user__item">
           <div class="user__title">
-            Nickname
+            {{ $t('auth.nickname') }}
           </div>
           <input
             v-model="localProfile.nickname"
@@ -77,8 +77,11 @@
           >
           <div class="form__er">
             <div v-if="getUserEr(2)">
-              Введите ник
+              {{ $t('auth.er.enterNickname') }}
             </div>
+            <!--            <div v-if="getEr(10)">-->
+            <!--              {{ $t('auth.er.enterValidNickname') }}-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
@@ -91,7 +94,7 @@
           class="btn"
           @click="editUser()"
         >
-          Edit
+          {{ $t('profile.edit') }}
         </div>
       </div>
       <div
@@ -102,13 +105,13 @@
           class="btn"
           @click="cancelEditUser()"
         >
-          Cancel
+          {{ $t('profile.cancel') }}
         </div>
         <div
           class="btn"
           @click="saveUser()"
         >
-          Save
+          {{ $t('profile.save') }}
         </div>
       </div>
       <div
@@ -121,7 +124,7 @@
     <div class="pro__items">
       <div class="pro__item tfa">
         <div class="tfa__title">
-          2FA
+          {{ $t('profile.2fa') }}
         </div>
         <div class="tfa__body">
           <div class="tfa__left tfa__items">
@@ -134,29 +137,29 @@
               </div>
               <div class="tfa__text">
                 <div class="tfa__main">
-                  Google Authenticator
+                  {{ $t('profile.ga') }}
                 </div>
                 <div class="tfa__sub">
-                  Lorem ipsum dolor sit amet
+                  {{ $t('profile.gaSub') }}
                 </div>
               </div>
             </div>
             <div class="tfa__item">
               <div class="tfa__text">
                 <div class="tfa__main">
-                  Status
+                  {{ $t('wallet.status') }}
                 </div>
                 <div
                   v-if="getGAEnabled"
                   class="tfa__sub tfa__sub_green"
                 >
-                  Enable
+                  {{ $t('profile.enable') }}
                 </div>
                 <div
                   v-if="!getGAEnabled"
                   class="tfa__sub"
                 >
-                  Disable
+                  {{ $t('profile.disable') }}
                 </div>
               </div>
             </div>
@@ -166,26 +169,26 @@
             class="btn-out"
             @click="showDisableGA()"
           >
-            Disable
+            {{ $t('profile.disable') }}
           </button>
           <button
             v-if="!getGAEnabled"
             class="btn"
             @click="showEnableGA()"
           >
-            Enable
+            {{ $t('profile.enable') }}
           </button>
         </div>
       </div>
       <div class="pro__item change-pass">
         <div class="change-pass__title">
-          Change password
+          {{ $t('profile.changePass') }}
         </div>
         <button
           class="btn"
           @click="showChangePass()"
         >
-          Change
+          {{ $t('profile.changePassBtn') }}
         </button>
       </div>
     </div>

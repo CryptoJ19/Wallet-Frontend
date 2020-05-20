@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Disable GA
+          {{ $t('profile.modalDisableGA.title') }}
         </div>
         <button
           class="mod__closs"
@@ -28,7 +28,7 @@
               <input
                 v-model="password"
                 maxlength="40"
-                placeholder="Password"
+                :placeholder="$t('auth.password')"
                 :type="passwordType"
               >
               <button
@@ -49,10 +49,10 @@
             </div>
             <div class="form__er">
               <div v-if="getUserEr(0)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
               <div v-if="getUserEr(2)">
-                Неверный пароль
+                {{ $t('profile.modalDisableGA.incorrectPass') }}
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
               <input
                 v-model="code"
                 maxlength="40"
-                placeholder="Code"
+                :placeholder="$t('profile.modalDisableGA.code')"
                 :type="codeType"
               >
               <button
@@ -82,10 +82,10 @@
             </div>
             <div class="form__er">
               <div v-if="getUserEr(1)">
-                Введите GA
+                {{ $t('auth.er.enterTotp') }}
               </div>
               <div v-if="getUserEr(3)">
-                Неверный GA
+                {{ $t('auth.er.incorrectTotp') }}
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@
           class="mod__btn"
           @click="preludeSend"
         >
-          Disable
+          {{ $t('auth.er.disableBtn') }}
         </button>
       </div>
     </div>

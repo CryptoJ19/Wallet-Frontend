@@ -10,7 +10,7 @@
       <div class="ega__top">
         <div class="mod__head">
           <div class="mod__title">
-            Enable 2FA
+            {{ $t('profile.modalEnableGA.modalEnableGA') }}
           </div>
           <button
             class="mod__closs"
@@ -40,7 +40,7 @@
               1
             </div>
             <div class="steps__text">
-              Install mobile app
+              {{ $t('profile.modalEnableGA.step1Title') }}
             </div>
           </button>
           <button
@@ -52,7 +52,7 @@
               2
             </div>
             <div class="steps__text">
-              Scan QR code
+              {{ $t('profile.modalEnableGA.step2Title') }}
             </div>
           </button>
           <button
@@ -64,7 +64,7 @@
               3
             </div>
             <div class="steps__text">
-              Backup key
+              {{ $t('profile.modalEnableGA.step3Title') }}
             </div>
           </button>
           <button
@@ -76,7 +76,7 @@
               4
             </div>
             <div class="steps__text">
-              Enable Google Authenticator
+              {{ $t('profile.modalEnableGA.step4Title') }}
             </div>
           </button>
         </div>
@@ -87,10 +87,10 @@
           :class="stepContentClass(1)"
         >
           <div class="ega__title">
-            Step 1
+            {{ $t('profile.modalEnableGA.step') }} 1
           </div>
           <div class="ega__text">
-            Install the Google Authenticator mobile app
+            {{ $t('profile.modalEnableGA.installApp') }}
           </div>
           <div class="download">
             <a
@@ -119,10 +119,10 @@
           :class="stepContentClass(2)"
         >
           <div class="ega__title">
-            Step 2
+            {{ $t('profile.modalEnableGA.step') }} 2
           </div>
           <div class="ega__text">
-            Scan this QR code with the Google Authenticator or enter code manually into the app.
+            {{ $t('profile.modalEnableGA.scanQr') }}
           </div>
           <div class="ega__qr">
             <!--            <qrcode-vue-->
@@ -147,11 +147,10 @@
           :class="stepContentClass(3)"
         >
           <div class="ega__title">
-            Step 3
+            {{ $t('profile.modalEnableGA.step') }} 3
           </div>
           <div class="ega__text">
-            Please save this Key on paper. This Key will allow you to
-            recover your Google Authenticator in case of phone loss.
+            {{ $t('profile.modalEnableGA.savePaper') }}
           </div>
           <div class="ega__code">
             {{ getGAToken }}
@@ -162,10 +161,10 @@
           :class="stepContentClass(4)"
         >
           <div class="ega__title">
-            Step 4
+            {{ $t('profile.modalEnableGA.step') }} 4
           </div>
           <div class="ega__text">
-            Enable Google Authenticator
+            {{ $t('profile.modalEnableGA.enableGA') }}
           </div>
           <div class="ega__form">
             <div class="password-hide__p ui-input__body">
@@ -193,15 +192,15 @@
             </div>
             <div class="form__er">
               <div v-if="getUserEr(0)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
               <div v-if="getUserEr(2)">
-                Неверный пароль
+                {{ $t('profile.modalEnableGA.incorrectPass') }}
               </div>
             </div>
             <div class="ga-code">
               <div class="ga-code__title">
-                Google Authenticator Coder
+                {{ $t('profile.modalEnableGA.GACodeTitle') }}
               </div>
               <div class="ga-code__items">
                 <input
@@ -217,10 +216,10 @@
               </div>
               <div class="form__er">
                 <div v-if="getUserEr(1)">
-                  Введите GA
+                  {{ $t('auth.er.enterTotp') }}
                 </div>
                 <div v-if="getUserEr(3)">
-                  Неверный GA
+                  {{ $t('auth.er.incorrectTotp') }}
                 </div>
               </div>
             </div>
@@ -233,7 +232,7 @@
           class="btn"
           @click="prevStep()"
         >
-          Back
+          {{ $t('profile.modalEnableGA.back') }}
         </button>
         <div v-else />
         <button
@@ -241,14 +240,14 @@
           class="btn"
           @click="preludeSubmite()"
         >
-          Sudmite
+          {{ $t('profile.modalEnableGA.sendGA') }}
         </button>
         <button
           v-else-if="step !== 4"
           class="btn"
           @click="nextStep()"
         >
-          Next
+          {{ $t('profile.modalEnableGA.next') }}
         </button>
         <div v-else />
       </div>

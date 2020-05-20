@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Success
+          {{ $t('profile.modalChangePass.titleSuccess') }}
         </div>
         <div class="mod__closs">
           <img
@@ -20,7 +20,7 @@
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          Password changed.
+          {{ $t('profile.modalChangePass.textSuccess') }}
         </div>
       </div>
       <div class="mod__btns">
@@ -28,7 +28,7 @@
           class="mod__btn"
           @click="close()"
         >
-          Ok
+          {{ $t('profile.modalChangePass.closeSuccess') }}
         </button>
       </div>
     </div>

@@ -9,7 +9,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Change password
+          {{ $t('profile.modalChangePass.title') }}
         </div>
         <button
           class="mod__closs"
@@ -28,7 +28,7 @@
               <input
                 v-model="password"
                 maxlength="40"
-                placeholder="Password"
+                :placeholder="$t('auth.password')"
                 :type="passwordType"
               >
               <button
@@ -49,7 +49,7 @@
             </div>
             <div class="form__er">
               <div v-if="getEr(0)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
               <input
                 v-model="newPassword"
                 maxlength="40"
-                placeholder="New password"
+                :placeholder="$t('profile.modalChangePass.newPass')"
                 :type="newPasswordType"
               >
               <button
@@ -79,19 +79,19 @@
             </div>
             <div class="form__er">
               <div v-if="getEr(3)">
-                Введите пароль
+                {{ $t('auth.er.enterPass') }}
               </div>
               <div v-if="getEr(5)">
-                Пароль должен содержать спец символ
+                {{ $t('auth.er.enterPassSpecial') }}
               </div>
               <div v-if="getEr(6)">
-                Пароль должен содержать заглавную букву
+                {{ $t('auth.er.enterPassUp') }}
               </div>
               <div v-if="getEr(7)">
-                Пароль должен содержать строчную букву
+                {{ $t('auth.er.enterPassDown') }}
               </div>
               <div v-if="getEr(8)">
-                Пароль не должен содержать пробелы
+                {{ $t('auth.er.enterPassSpace') }}
               </div>
               {{ erMes }}
             </div>
@@ -103,7 +103,7 @@
           class="mod__btn"
           @click="preludeChangePass()"
         >
-          Save
+          {{ $t('profile.modalChangePass.saveBtn') }}
         </button>
       </div>
     </div>
