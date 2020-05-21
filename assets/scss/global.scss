@@ -81,6 +81,24 @@ body {
   color: #db2c2c;
 }
 
+.vinput {
+  &__fake {
+    background: #FFF;
+    width: 100%;
+    border-radius: 15px;
+    padding: 0 20px;
+    height: 44px;
+    border: 1px solid $stroke;
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    font-size: 16px;
+    color: $grey;
+    margin: 0 0 3px;
+  }
+}
+
 
 @media (max-width: 1499px) {
   .cont-console {

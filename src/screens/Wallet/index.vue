@@ -1,6 +1,9 @@
 <template>
   <div class="wallet content__item">
-    <ModalSendBalance @sendSuccess="sendSuccess" />
+    <ModalSendBalance
+      :currency="modalSendCurrency"
+      @sendSuccess="sendSuccess"
+    />
     <ModalRecieve />
     <ModalSuccessSend />
 
@@ -31,7 +34,7 @@
             </button>
             <button
               class="btn"
-              @click="showSendBalance()"
+              @click="showSendBalance('EOS')"
             >
               <div>
                 {{ $t('wallet.send') }}
@@ -83,7 +86,7 @@
             </button>
             <button
               class="btn"
-              @click="showSendBalance()"
+              @click="showSendBalance('TNT')"
             >
               <div>
                 {{ $t('wallet.send') }}

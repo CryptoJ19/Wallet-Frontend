@@ -4,6 +4,9 @@
     centered
     hide-header
     hide-footer
+    no-close-on-backdrop
+    @shown="shownModal()"
+    @hide="hideModal()"
   >
     <div class="mod">
       <div class="mod__head">
@@ -26,7 +29,7 @@
           {{ $t('wallet.balance') }}
         </div>
         <div class="mod__balance">
-          {{ $t('wallet.eos') }}
+          {{ currency }}
           3.44
         </div>
         <div class="mode-select">
@@ -59,43 +62,57 @@
           <div class="mod__item mod__input">
             <div class="btn-max__p ui-input__body">
               <input
-                maxlength="40"
-                type="text"
-                :placeholder="$t('wallet.modalSend.code')"
+                v-model.trim.number="amount"
+                maxlength="70"
+                type="number"
+                :placeholder="$t('wallet.modalSend.amount')"
               >
               <button class="btn-max">
                 Max
               </button>
             </div>
-            <div class="form__er" />
+            <div class="form__er">
+              <div v-if="getEr(0)">
+                Введите сумму
+              </div>
+            </div>
+          </div>
+          <div class="mod__item mod__input">
+            <input
+              v-model.trim="recipient"
+              maxlength="70"
+              type="text"
+              :placeholder="$t('wallet.modalSend.recipient')"
+            >
+            <div class="form__er">
+              <div v-if="getEr(1)">
+                Введите адрес получателя
+              </div>
+            </div>
+          </div>
+          <div class="mod__item mod__input">
+            <input
+              v-model.trim="memo"
+              maxlength="70"
+              type="text"
+              :placeholder="$t('wallet.modalSend.memo')"
+            >
+            <div class="form__er">
+              <div v-if="getEr(2)">
+                Введите мемо
+              </div>
+            </div>
           </div>
           <div
             v-if="mode === 1"
             class="mod__item mod__input"
           >
-            <input
-              maxlength="40"
-              type="text"
-              :placeholder="$t('wallet.modalSend.fee')"
-            >
-            <div class="form__er" />
-          </div>
-          <div class="mod__item mod__input">
-            <div class="">
-              <input
-                maxlength="40"
-                type="text"
-                :placeholder="$t('wallet.modalSend.recipient')"
-              >
+            <div class="vinput__title">
+              Fee
             </div>
-            <div class="form__er" />
-          </div>
-          <div class="mod__item mod__input">
-            <input
-              maxlength="40"
-              type="text"
-              placeholder="Memo"
-            >
+            <div class="vinput__fake">
+              0.3
+            </div>
             <div class="form__er" />
           </div>
         </div>
@@ -109,19 +126,118 @@
         </button>
       </div>
     </div>
+    <div
+      class="loader__body"
+      :class="{'loader__body_show': loading}"
+    >
+      <Loader />
+    </div>
   </b-modal>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
+import Loader from '../../../ui/Loader';
+
 export default {
+  components: {
+    Loader,
+  },
+  props: {
+    currency: String,
+  },
   data: () => ({
+    loading: true,
     mode: 0,
+    amount: '',
+    recipient: '',
+    memo: '',
+    er: [],
+    fee: '-',
   }),
+  computed: {
+    ...mapGetters([
+      'getProfile',
+    ]),
+  },
+
   methods: {
+    ...mapActions([
+      'fetchGetWithdraw',
+      'fetchSendWithdraw',
+    ]),
     setMode(value) {
       this.mode = value;
     },
-    preludeSend() {
-      this.$emit('sendSuccess');
+    getEr(i) {
+      return this.er.indexOf(i) !== -1;
+    },
+    hideModal() {
+      setTimeout(() => {
+        this.resetModal();
+      }, 200);
+    },
+    shownModal() {
+      this.getWithdrawData();
+    },
+    async getWithdrawData() {
+      const res = await this.fetchGetWithdraw(this.currency);
+      this.loading = false;
+      console.log(res);
+      if (res.ok) {
+        this.fee = res.result.fee;
+      }
+    },
+    resetModal() {
+      this.fee = '-';
+      this.loading = true;
+      this.mode = 0;
+      this.amount = '';
+      this.recipient = '';
+      this.memo = '';
+      this.er = [];
+    },
+    check() {
+      this.er = [];
+      const {
+        amount,
+        memo,
+        recipient,
+      } = this;
+
+      if (amount === '') {
+        this.er.push(0);
+      }
+      if (recipient === '') {
+        this.er.push(1);
+      }
+      if (memo === '') {
+        this.er.push(2);
+      }
+      return this.er.length === 0;
+    },
+    async preludeSend() {
+      if (this.check()) {
+        // const currency = 'EOS';
+        // const res = await this.fetchGetWithdraw(currency);
+        const {
+          amount,
+          recipient,
+          memo,
+        } = this;
+        const data = {
+          amount,
+          address: recipient,
+          memo,
+          currency: 'EOS',
+          internal: (this.mode === 0),
+        };
+        this.loading = true;
+        const res = await this.fetchSendWithdraw(data);
+        this.loading = false;
+        console.log(res);
+
+        this.$emit('sendSuccess');
+      }
     },
     closeSendBalance() {
       this.$bvModal.hide('modal-send-balance');

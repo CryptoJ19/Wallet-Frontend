@@ -12,19 +12,19 @@ export default {
     ModalRecieve,
     ModalSuccessSend,
   },
-  data() {
-    return {
-      time1: null,
-      time2: null,
-      time3: null,
-    };
-  },
+  data: () => ({
+    modalSendCurrency: '',
+    time1: null,
+    time2: null,
+    time3: null,
+  }),
   methods: {
     sendSuccess() {
       this.$bvModal.hide('modal-send-balance');
       this.$bvModal.show('modal-success-send');
     },
-    showSendBalance() {
+    showSendBalance(currency) {
+      this.modalSendCurrency = currency;
       this.$bvModal.show('modal-send-balance');
     },
     showRecieve() {
