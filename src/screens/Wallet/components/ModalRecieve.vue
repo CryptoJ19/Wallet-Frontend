@@ -139,7 +139,7 @@ export default {
       console.log(promiseAll);
 
       this.addressEOS = promiseAll[0].result.address;
-      this.addressCF = promiseAll[1].result.address;
+      this.addressCF = promiseAll[1].result.memo;
     },
   },
 };
