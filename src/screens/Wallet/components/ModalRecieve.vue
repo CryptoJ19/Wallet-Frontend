@@ -4,6 +4,8 @@
     centered
     hide-header
     hide-footer
+    @shown="shownModal()"
+    @hide="hideModal()"
   >
     <div class="mod">
       <div class="mod__head">
@@ -28,7 +30,7 @@
             </div>
             <div class="qr__address">
               <div class="address__value">
-                wdqw2q1212d3dq23d1
+                {{ addressCF }}
               </div>
               <button class="address__btn">
                 <img
@@ -39,7 +41,8 @@
             </div>
             <div class="qr__code">
               <qrcode
-                :value="123123"
+                v-if="addressCF !== ''"
+                :value="addressCF"
                 :options="{ width: 230 }"
               />
             </div>
@@ -50,7 +53,7 @@
             </div>
             <div class="qr__address">
               <div class="address__value">
-                234532
+                {{ addressEOS }}
               </div>
               <button class="address__btn">
                 <img
@@ -61,7 +64,8 @@
             </div>
             <div class="qr__code">
               <qrcode
-                :value="124"
+                v-if="addressEOS !== ''"
+                :value="addressEOS"
                 :options="{ width: 230 }"
               />
             </div>
@@ -80,18 +84,62 @@
         </button>
       </div>
     </div>
+    <div
+      class="loader__body"
+      :class="{'loader__body_show': loading}"
+    >
+      <Loader />
+    </div>
   </b-modal>
 </template>
 <script>
 import VueQrcode from '@chenfengyuan/vue-qrcode';
+import { mapActions } from 'vuex';
+import Loader from '../../../ui/Loader';
+
 
 export default {
   components: {
     qrcode: VueQrcode,
+    Loader,
   },
+  data: () => ({
+    loading: true,
+    addressCF: '',
+    addressEOS: '',
+  }),
   methods: {
+    ...mapActions([
+      'fetchGetDeposit',
+    ]),
+
     closeRecieve() {
       this.$bvModal.hide('modal-recieve');
+    },
+    hideModal() {
+      setTimeout(() => {
+        this.resetModal();
+      }, 200);
+    },
+    shownModal() {
+      this.getDeposit();
+    },
+    resetModal() {
+      this.loading = true;
+      this.addressCF = '';
+      this.addressEOS = '';
+    },
+    async getDeposit() {
+      const resEOS = this.fetchGetDeposit('EOS');
+      const resCF = this.fetchGetDeposit('TNT');
+
+      const promiseAll = await Promise.all([resEOS, resCF]);
+      this.loading = false;
+
+      console.log(promiseAll);
+
+      this.addressEOS = promiseAll[0].result.address;
+      this.addressCF = promiseAll[1].result.address;
     },
   },
 };

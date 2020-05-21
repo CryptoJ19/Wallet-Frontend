@@ -30,7 +30,7 @@ export default {
     },
 
     // signin: {
-    //   email: 'test54@2go-mail.com', // test54@2go-mail.com testtest123@2go-mail.com
+    //   email: 'qwe123qwe123@provlst.com', // test54@2go-mail.com testtest123@2go-mail.com
     //   password: 'qweQWE@',
     //   passwordType: 'password',
     //   remember: false,
