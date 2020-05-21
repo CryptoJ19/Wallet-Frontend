@@ -65,7 +65,10 @@ export default {
     this.init();
   },
   computed: {
-    ...mapGetters(['getIsAuthorized', 'getGAEnabled']),
+    ...mapGetters([
+      'getIsAuthorized',
+      'getGAEnabled',
+    ]),
   },
   watch: {
     getGAEnabled(v) {
@@ -81,18 +84,23 @@ export default {
       'fetchTempGAToken',
       'logout',
       'fetchCheckGA',
+      'fetchGetTransactions',
     ]),
     async init() {
       if (getAccessToken() === false) {
         this.logout();
       } else if (this.getIsAuthorized === false) {
         const resCheckGA = await this.fetchCheckGA();
-        console.log('resCheckGA', resCheckGA);
+        console.log('fetchCheckGA', resCheckGA);
         if (resCheckGA.ok && !resCheckGA.result.enabled) {
           await this.fetchTempGAToken();
         }
-        const res = await this.fetchGetProfile();
-        console.log('GetProfile', res);
+        const resProfile = await this.fetchGetProfile();
+        console.log('fetchGetProfile', resProfile);
+
+        const resTrans = await this.fetchGetTransactions();
+        console.log('fetchGetTransactions', resTrans);
+
         this.globalLoader = false;
       } else {
         this.globalLoader = false;

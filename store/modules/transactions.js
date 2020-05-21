@@ -7,6 +7,24 @@ export default {
   },
   actions: {
 
+    async fetchGetTransactions(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        console.log(header);
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me/txs`,
+          'GET',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      // if (res.ok) {
+      //   ctx.commit('updateGAEnabled', false);
+      // }
+      return res;
+    },
+
     async fetchGetDeposit(ctx, currency) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
