@@ -14,7 +14,7 @@
       <div>
         <div class="mainnum">
           EOS
-          {{ getWallets[0].balance }}
+          {{ getWallets[0] && getWallets[0].balance }}
         </div>
         <div class="subnum">
           $ {{ convertEOSUSD(0) }}
@@ -70,7 +70,7 @@
       </div>
       <div>
         <div class="mainnum">
-          TNT {{ getWallets[1].balance }}
+          TNT {{ getWallets[1] && getWallets[1].balance }}
         </div>
         <div class="subnum">
           $ $ {{ convertEOSUSD(1) }}
