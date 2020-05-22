@@ -189,8 +189,7 @@
         margin: 0 0 9px;
         .address {
           &__value {
-            color: $grey;
-            opacity: 0.5;
+            color: rgba($grey, .5);
           }
           &__btn {
             margin: -10px;

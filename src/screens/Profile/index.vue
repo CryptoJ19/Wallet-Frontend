@@ -41,7 +41,7 @@
             {{ $t('auth.firstName') }}
           </div>
           <input
-            v-model="localProfile.firstName"
+            v-model.trim="localProfile.firstName"
             :disabled="userEditMode === 0"
             type="text"
           >
@@ -53,10 +53,10 @@
         </div>
         <div class="user__item">
           <div class="user__title">
-            {{ $t('auth.secondName') }}
+            {{ $t('auth.lastName') }}
           </div>
           <input
-            v-model="localProfile.lastName"
+            v-model.trim="localProfile.lastName"
             :disabled="userEditMode === 0"
             type="text"
           >
@@ -72,17 +72,23 @@
           </div>
           <input
             v-model="localProfile.nickname"
-            :disabled="userEditMode === 0"
+            class="vinput__disable"
+            :disabled="true"
             type="text"
           >
-          <div class="form__er">
-            <div v-if="getUserEr(2)">
-              {{ $t('auth.er.enterNickname') }}
-            </div>
-            <!--            <div v-if="getEr(10)">-->
-            <!--              {{ $t('auth.er.enterValidNickname') }}-->
-            <!--            </div>-->
+          <div class="form__er" />
+        </div>
+        <div class="user__item">
+          <div class="user__title">
+            {{ $t('auth.email') }}
           </div>
+          <input
+            v-model="localProfile.email"
+            class="vinput__disable"
+            :disabled="true"
+            type="text"
+          >
+          <div class="form__er" />
         </div>
       </div>
       <div

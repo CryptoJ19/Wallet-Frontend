@@ -66,7 +66,6 @@ export default {
         const res = await this.fetchEditProfile({
           firstName: this.localProfile.firstName,
           lastName: this.localProfile.lastName,
-          nickname: this.localProfile.nickname,
         });
         console.log(res);
         await this.fetchGetProfile();
@@ -81,6 +80,7 @@ export default {
       this.setUserEditMode(1);
     },
     cancelEditUser() {
+      this.erUser = [];
       this.localProfile = { ...this.getProfile };
       this.setUserEditMode(0);
     },
@@ -100,32 +100,12 @@ export default {
       this.$bvModal.show('modal-disable-ga');
     },
     checkUserValidation() {
-      const {
-        firstName,
-        lastName,
-        nickname,
-      } = this.localProfile;
-      const firstNameLocal = firstName.trim();
-      const lastNameLocal = lastName.trim();
-      const nicknameLocal = nickname.trim();
-      this.localProfile = {
-        ...this.localProfile,
-        firstName: firstNameLocal,
-        lastName: lastNameLocal,
-        nickname: nicknameLocal,
-      };
-
       this.erUser = [];
-      // const nicknameRegex = /^[a-zA-Z0-9-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;
-
       if (this.localProfile.firstName === '') {
         this.erUser.push(0);
       }
       if (this.localProfile.lastName === '') {
         this.erUser.push(1);
-      }
-      if (this.localProfile.nickname === '') {
-        this.erUser.push(2);
       }
       return this.erUser.length === 0;
     },

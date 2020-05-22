@@ -13,11 +13,11 @@
       </div>
       <div>
         <div class="mainnum">
-          {{ $t('wallet.eos') }}
-          3.44
+          EOS
+          {{ getWallets[0].balance }}
         </div>
         <div class="subnum">
-          $ 123.234
+          $ {{ convertEOSUSD(0) }}
         </div>
         <div class="bottom">
           <div class="balance__link">
@@ -70,10 +70,10 @@
       </div>
       <div>
         <div class="mainnum">
-          2
+          TNT {{ getWallets[1].balance }}
         </div>
         <div class="subnum">
-          $ 123.234
+          $ $ {{ convertEOSUSD(1) }}
         </div>
         <div class="bottom">
           <div />

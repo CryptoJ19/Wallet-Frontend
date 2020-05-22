@@ -1,6 +1,6 @@
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
-
+import { mapGetters } from 'vuex';
 import ModalSendBalance from './components/ModalSendBalance';
 import ModalRecieve from './components/ModalRecieve';
 import ModalSuccessSend from './components/ModalSuccessSend';
@@ -18,7 +18,15 @@ export default {
     time2: null,
     time3: null,
   }),
+  computed: {
+    ...mapGetters([
+      'getWallets',
+    ]),
+  },
   methods: {
+    convertEOSUSD(walletIndex) {
+      return this.getWallets[0].balance * this.getWallets[walletIndex].currency.currentRate;
+    },
     sendSuccess() {
       this.$bvModal.hide('modal-send-balance');
       this.$bvModal.show('modal-success-send');

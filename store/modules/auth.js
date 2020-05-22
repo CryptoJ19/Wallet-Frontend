@@ -11,6 +11,7 @@ export default {
       firstName: '',
       lastName: '',
       nickname: '',
+      wallets: [],
     },
     isAuthorized: false,
   },
@@ -158,7 +159,14 @@ export default {
   },
   mutations: {
     logout(state) {
-      state.email = '';
+      state.profile = {
+        id: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        nickname: '',
+        wallets: [],
+      };
       state.isAuthorized = false;
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
@@ -174,6 +182,7 @@ export default {
       state.profile.firstName = value.firstName;
       state.profile.lastName = value.lastName;
       state.profile.nickname = value.nickname;
+      state.profile.wallets = value.wallets;
       // state.profile.nickname = value.nickname
     },
     updateAccess(state, value) {
@@ -190,6 +199,9 @@ export default {
     },
   },
   getters: {
+    getWallets(state) {
+      return state.profile.wallets;
+    },
     getProfile(state) {
       return state.profile;
     },

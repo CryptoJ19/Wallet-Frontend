@@ -21,7 +21,7 @@
       >
         <template v-slot:button-content>
           <div class="dd-user__name">
-            nickname
+            {{ getProfile.nickname }}
           </div>
           <div
             class="dd-user__ava"
@@ -80,11 +80,14 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   props: {
     title: String,
+  },
+  computed: {
+    ...mapGetters(['getProfile']),
   },
   methods: {
     ...mapActions([

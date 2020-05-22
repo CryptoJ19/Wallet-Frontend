@@ -82,6 +82,20 @@ body {
 }
 
 .vinput {
+  &__disable {
+    border: 1px solid transparent;
+    &::placeholder {
+      color: rgba($grey, .5);
+      transition: .2s;
+    }
+    &:focus, &:hover {
+      border-color: transparent;
+      color: rgba($grey, .5) !important;
+      &::placeholder {
+        color: rgba($grey, .5);
+      }
+    }
+  }
   &__fake {
     background: #FFF;
     width: 100%;
