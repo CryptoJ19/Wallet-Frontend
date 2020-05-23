@@ -28,9 +28,11 @@
         <div class="mod__text">
           {{ $t('wallet.balance') }}
         </div>
-        <div class="mod__balance">
+        <div
+          class="mod__balance"
+        >
           {{ currency }}
-          3.44
+          {{ balance }}
         </div>
         <div class="mode-select">
           <button
@@ -67,7 +69,10 @@
                 type="number"
                 :placeholder="$t('wallet.modalSend.amount')"
               >
-              <button class="btn-max">
+              <button
+                class="btn-max"
+                @click="setMaxAmount()"
+              >
                 Max
               </button>
             </div>
@@ -157,14 +162,26 @@ export default {
   computed: {
     ...mapGetters([
       'getProfile',
+      'getWallets',
     ]),
+    balance: ({ currency, getWallets }) => {
+      if (currency === 'EOS') {
+        return ((getWallets[0] && getWallets[0].balance) || 0);
+      }
+      if (currency === 'TNT') {
+        return ((getWallets[1] && getWallets[1].balance) || 0);
+      }
+      return 0;
+    },
   },
-
   methods: {
     ...mapActions([
       'fetchGetWithdraw',
       'fetchSendWithdraw',
     ]),
+    setMaxAmount() {
+      this.amount = this.balance;
+    },
     setMode(value) {
       this.mode = value;
     },

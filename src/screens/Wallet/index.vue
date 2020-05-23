@@ -14,10 +14,10 @@
       <div>
         <div class="mainnum">
           EOS
-          {{ getWallets[0] && getWallets[0].balance }}
+          {{ getWallets[0] && getWallets[0].balance || 0 }}
         </div>
         <div class="subnum">
-          $ {{ convertEOSUSD(0) }}
+          $ {{ getWallets[0] && convertEOSUSD(0) || 0 }}
         </div>
         <div class="bottom">
           <div class="balance__link">
@@ -70,10 +70,10 @@
       </div>
       <div>
         <div class="mainnum">
-          TNT {{ getWallets[1] && getWallets[1].balance }}
+          TNT {{ getWallets[1] && getWallets[1].balance || 0 }}
         </div>
         <div class="subnum">
-          $ $ {{ convertEOSUSD(1) }}
+          $ {{ getWallets[1] && convertEOSUSD(1) || 0 }}
         </div>
         <div class="bottom">
           <div />
@@ -152,6 +152,7 @@
         <!--          </div>-->
         <!--        </div>-->
       </div>
+      <!--      {{ getTransactionList }}-->
       <div class="table">
         <div class="table__head">
           <div class="table__item">
@@ -166,18 +167,18 @@
         </div>
         <div class="table__body">
           <div
-            v-for="item in 4"
+            v-for="item in getTransactionList"
             :key="`row_${item}`"
             class="table__row"
           >
             <div class="table__item">
-              Lorem ipsum
+              {{ item.amount }}
             </div>
             <div class="table__item">
-              Lorem ipsum
+              {{ item.createdAt }}
             </div>
             <div class="table__item">
-              Lorem ipsum
+              {{ item.status }}
             </div>
           </div>
         </div>

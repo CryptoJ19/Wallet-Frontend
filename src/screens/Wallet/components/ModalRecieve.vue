@@ -32,7 +32,10 @@
               <div class="address__value">
                 {{ addressCF }}
               </div>
-              <button class="address__btn">
+              <button
+                class="address__btn"
+                @click="copy(addressCF)"
+              >
                 <img
                   src="~assets/imgs/icons/copy.svg"
                   alt="close"
@@ -55,7 +58,10 @@
               <div class="address__value">
                 {{ addressEOS }}
               </div>
-              <button class="address__btn">
+              <button
+                class="address__btn"
+                @click="copy(addressEOS)"
+              >
                 <img
                   src="~assets/imgs/icons/copy.svg"
                   alt="close"
@@ -112,7 +118,15 @@ export default {
     ...mapActions([
       'fetchGetDeposit',
     ]),
-
+    copy(str) {
+      const contentBody = document.querySelector('.modal .modal-body');
+      const el = document.createElement('textarea');
+      el.value = str;
+      contentBody.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      contentBody.removeChild(el);
+    },
     closeRecieve() {
       this.$bvModal.hide('modal-recieve');
     },

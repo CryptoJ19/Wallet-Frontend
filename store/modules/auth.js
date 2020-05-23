@@ -13,9 +13,28 @@ export default {
       nickname: '',
       wallets: [],
     },
+    transactions: {},
     isAuthorized: false,
   },
   actions: {
+    async fetchGetTransactions(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        console.log(header);
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me/txs`,
+          'GET',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      if (res.ok) {
+        ctx.commit('updateTransactions', res.result);
+      }
+      return res;
+    },
+
     async fetchEditProfilePassword(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -167,11 +186,16 @@ export default {
         nickname: '',
         wallets: [],
       };
+      state.transactions = {};
       state.isAuthorized = false;
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('refreshToken');
+    },
+    updateTransactions(state, value) {
+      console.log('value', value);
+      state.transactions = value;
     },
     updateIsAuthorized(state, value) {
       state.isAuthorized = value;
@@ -183,7 +207,6 @@ export default {
       state.profile.lastName = value.lastName;
       state.profile.nickname = value.nickname;
       state.profile.wallets = value.wallets;
-      // state.profile.nickname = value.nickname
     },
     updateAccess(state, value) {
       localStorage.setItem('accessToken', value);
@@ -199,6 +222,12 @@ export default {
     },
   },
   getters: {
+    getTransactionList(state) {
+      if (state.transactions.txs) {
+        return state.transactions.txs;
+      }
+      return false;
+    },
     getWallets(state) {
       return state.profile.wallets;
     },
