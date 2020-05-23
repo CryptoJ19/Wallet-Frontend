@@ -57,7 +57,7 @@ module.exports = {
   },
   i18n: {
     locales: ['ru', 'en'],
-    defaultLocale: 'ru',
+    defaultLocale: 'en',
     strategy: 'no_prefix',
     vueI18n: {
       messages: {
