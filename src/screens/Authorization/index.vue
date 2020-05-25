@@ -187,7 +187,7 @@
           <div class="form__item">
             <input
               v-model="signup.memo"
-              maxlength="40"
+              maxlength="12"
               :placeholder="$t('auth.nickname')"
               type="text"
             >

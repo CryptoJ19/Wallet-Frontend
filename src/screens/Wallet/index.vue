@@ -14,10 +14,10 @@
       <div>
         <div class="mainnum">
           EOS
-          {{ getWallets[0] && getWallets[0].balance || 0 }}
+          {{ getWallets[0] && mathCut(getWallets[0].balance) || 0 }}
         </div>
         <div class="subnum">
-          $ {{ getWallets[0] && convertEOSUSD(0) || 0 }}
+          $ {{ getWallets[0] && mathCut(convertEOSUSD(0)) || 0 }}
         </div>
         <div class="bottom">
           <div class="balance__link">
@@ -70,10 +70,10 @@
       </div>
       <div>
         <div class="mainnum">
-          TNT {{ getWallets[1] && getWallets[1].balance || 0 }}
+          TNT {{ getWallets[1] && mathCut(getWallets[1].balance) || 0 }}
         </div>
         <div class="subnum">
-          $ {{ getWallets[1] && convertEOSUSD(1) || 0 }}
+          $ {{ getWallets[1] && mathCut(convertEOSUSD(1)) || 0 }}
         </div>
         <div class="bottom">
           <div />

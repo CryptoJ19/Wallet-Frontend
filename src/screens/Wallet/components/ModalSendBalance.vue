@@ -178,6 +178,7 @@ export default {
     ...mapActions([
       'fetchGetWithdraw',
       'fetchSendWithdraw',
+      'fetchGetProfile',
     ]),
     setMaxAmount() {
       this.amount = this.balance;
@@ -252,7 +253,7 @@ export default {
         const res = await this.fetchSendWithdraw(data);
         this.loading = false;
         console.log(res);
-
+        this.fetchGetProfile();
         this.$emit('sendSuccess');
       }
     },

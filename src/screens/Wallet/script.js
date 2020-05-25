@@ -27,8 +27,10 @@ export default {
   methods: {
     convertEOSUSD(walletIndex) {
       return (this.getWallets[walletIndex].balance
-        * this.getWallets[walletIndex].currency.currentRate)
-        .toFixed(4);
+        * this.getWallets[walletIndex].currency.currentRate);
+    },
+    mathCut(i) {
+      return Math.floor(i * 100) / 100;
     },
     sendSuccess() {
       this.$bvModal.hide('modal-send-balance');

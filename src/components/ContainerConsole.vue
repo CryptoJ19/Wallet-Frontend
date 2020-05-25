@@ -7,7 +7,7 @@
       <Loader />
     </div>
     <div
-      v-if="!globalLoader"
+      v-if="!globalLoader && getIsAuthorized"
       class="cont-console"
     >
       <div class="cont-console__menu">
