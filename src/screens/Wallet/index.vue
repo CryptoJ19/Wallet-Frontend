@@ -173,12 +173,28 @@
           >
             <div class="table__item">
               {{ item.amount }}
+              {{ item.currencyId.toUpperCase() }}
             </div>
             <div class="table__item">
-              {{ item.createdAt }}
+              {{ formatDate(item.createdAt) }}
             </div>
-            <div class="table__item">
-              {{ item.status }}
+            <div
+              v-if="item.status === 0"
+              class="table__item"
+            >
+              {{ $t('wallet.statusFailed') }}
+            </div>
+            <div
+              v-if="item.status === 1"
+              class="table__item"
+            >
+              {{ $t('wallet.statusPending') }}
+            </div>
+            <div
+              v-if="item.status === 2"
+              class="table__item"
+            >
+              {{ $t('wallet.statusSuccess') }}
             </div>
           </div>
         </div>

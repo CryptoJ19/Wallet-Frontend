@@ -1,6 +1,7 @@
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import { mapGetters } from 'vuex';
+import moment from 'moment';
 import ModalSendBalance from './components/ModalSendBalance';
 import ModalRecieve from './components/ModalRecieve';
 import ModalSuccessSend from './components/ModalSuccessSend';
@@ -31,6 +32,10 @@ export default {
     },
     mathCut(i) {
       return Math.floor(i * 100) / 100;
+    },
+    formatDate(value) {
+      const date = new Date(value);
+      return `${moment(String(date)).format('DD/MM/YYYY')} at ${moment(String(date)).format('HH:mm')}`;
     },
     sendSuccess() {
       this.$bvModal.hide('modal-send-balance');

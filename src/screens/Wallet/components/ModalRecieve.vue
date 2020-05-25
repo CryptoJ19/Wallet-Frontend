@@ -44,10 +44,33 @@
             </div>
             <div class="qr__code">
               <qrcode
-                v-if="addressCF !== ''"
+                v-if="showQrOne && addressCF !== ''"
                 :value="addressCF"
                 :options="{ width: 230 }"
               />
+              <div v-else-if="addressCF === ''" />
+              <div
+                v-else
+                class="qr__hide-text"
+              >
+                QR code hiden
+              </div>
+              <button
+                class="qr__eye"
+                :class="{'qr__eye_show': showQrOne}"
+                @click="toggleShowQrOne"
+              >
+                <img
+                  v-if="showQrOne"
+                  src="~assets/imgs/icons/eye_b__open.svg"
+                  alt="eye"
+                >
+                <img
+                  v-else
+                  src="~assets/imgs/icons/eye_b__close.svg"
+                  alt="eye"
+                >
+              </button>
             </div>
           </div>
           <div class="qr__item">
@@ -70,10 +93,33 @@
             </div>
             <div class="qr__code">
               <qrcode
-                v-if="addressEOS !== ''"
+                v-if="showQrTwo && addressEOS !== ''"
                 :value="addressEOS"
                 :options="{ width: 230 }"
               />
+              <div v-else-if="addressEOS === ''" />
+              <div
+                v-else
+                class="qr__hide-text"
+              >
+                QR code hiden
+              </div>
+              <button
+                class="qr__eye"
+                :class="{'qr__eye_show': showQrTwo}"
+                @click="toggleShowQrTwo"
+              >
+                <img
+                  v-if="showQrTwo"
+                  src="~assets/imgs/icons/eye_b__open.svg"
+                  alt="eye"
+                >
+                <img
+                  v-else
+                  src="~assets/imgs/icons/eye_b__close.svg"
+                  alt="eye"
+                >
+              </button>
             </div>
           </div>
         </div>
@@ -113,11 +159,19 @@ export default {
     loading: true,
     addressCF: '',
     addressEOS: '',
+    showQrOne: false,
+    showQrTwo: false,
   }),
   methods: {
     ...mapActions([
       'fetchGetDeposit',
     ]),
+    toggleShowQrOne() {
+      this.showQrOne = !this.showQrOne;
+    },
+    toggleShowQrTwo() {
+      this.showQrTwo = !this.showQrTwo;
+    },
     copy(str) {
       const contentBody = document.querySelector('.modal .modal-body');
       const el = document.createElement('textarea');
