@@ -26,9 +26,25 @@ export default {
     ]),
   },
   methods: {
-    convertEOSUSD(walletIndex) {
-      return (this.getWallets[walletIndex].balance
-        * this.getWallets[walletIndex].currency.currentRate);
+    getWalletItem(symbol) {
+      if (this.getWallets.length !== 0) {
+        const res = this.getWallets.filter((item) => item.currency.symbol === symbol)[0];
+        if (res) {
+          return res;
+        }
+        return 0;
+      }
+      return 0;
+    },
+    getBalance(symbol) {
+      return this.getWalletItem(symbol).balance;
+    },
+    convertToUSD(symbol) {
+      const walletItem = this.getWalletItem(symbol);
+      if (walletItem) {
+        return walletItem.balance * walletItem.currency.currentRate;
+      }
+      return 0;
     },
     mathCut(i) {
       return Math.floor(i * 100) / 100;

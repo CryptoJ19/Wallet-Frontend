@@ -14,10 +14,10 @@
       <div>
         <div class="mainnum">
           EOS
-          {{ getWallets[0] && mathCut(getWallets[0].balance) || 0 }}
+          {{ mathCut(getBalance('EOS')) }}
         </div>
         <div class="subnum">
-          $ {{ getWallets[0] && mathCut(convertEOSUSD(0)) || 0 }}
+          $ {{ mathCut(convertToUSD('EOS')) }}
         </div>
         <div class="bottom">
           <div class="balance__link">
@@ -70,10 +70,11 @@
       </div>
       <div>
         <div class="mainnum">
-          TNT {{ getWallets[1] && mathCut(getWallets[1].balance) || 0 }}
+          CFT
+          {{ mathCut(getBalance('CFT')) }}
         </div>
         <div class="subnum">
-          $ {{ getWallets[1] && mathCut(convertEOSUSD(1)) || 0 }}
+          $ {{ mathCut(convertToUSD('CFT')) }}
         </div>
         <div class="bottom">
           <div />
@@ -86,7 +87,7 @@
             </button>
             <button
               class="btn"
-              @click="showSendBalance('TNT')"
+              @click="showSendBalance('CFT')"
             >
               <div>
                 {{ $t('wallet.send') }}

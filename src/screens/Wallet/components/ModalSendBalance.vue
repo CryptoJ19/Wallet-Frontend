@@ -32,7 +32,7 @@
           class="mod__balance"
         >
           {{ currency }}
-          {{ balance }}
+          {{ getBalance() }}
         </div>
         <div class="mode-select">
           <button
@@ -164,15 +164,6 @@ export default {
       'getProfile',
       'getWallets',
     ]),
-    balance: ({ currency, getWallets }) => {
-      if (currency === 'EOS') {
-        return ((getWallets[0] && getWallets[0].balance) || 0);
-      }
-      if (currency === 'TNT') {
-        return ((getWallets[1] && getWallets[1].balance) || 0);
-      }
-      return 0;
-    },
   },
   methods: {
     ...mapActions([
@@ -180,8 +171,21 @@ export default {
       'fetchSendWithdraw',
       'fetchGetProfile',
     ]),
+    getBalance() {
+      return this.getWalletItem(this.currency).balance;
+    },
+    getWalletItem(symbol) {
+      if (this.getWallets.length !== 0) {
+        const res = this.getWallets.filter((item) => item.currency.symbol === symbol)[0];
+        if (res) {
+          return res;
+        }
+        return 0;
+      }
+      return 0;
+    },
     setMaxAmount() {
-      this.amount = this.balance;
+      this.amount = this.getBalance();
     },
     setMode(value) {
       this.mode = value;
@@ -221,7 +225,6 @@ export default {
         memo,
         recipient,
       } = this;
-
       if (amount === '') {
         this.er.push(0);
       }
@@ -241,12 +244,13 @@ export default {
           amount,
           recipient,
           memo,
+          currency,
         } = this;
         const data = {
           amount,
           address: recipient,
           memo,
-          currency: 'EOS',
+          currency,
           internal: (this.mode === 0),
         };
         this.loading = true;
