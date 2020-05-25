@@ -19,25 +19,25 @@ export default {
     erCheckEmail: '',
     loaderModal: false,
 
-    // signin: {
-    //   email: '',
-    //   password: '',
-    //   passwordType: 'password',
-    //   remember: false,
-    //   GAEnabled: false,
-    //   GACode: '',
-    //   GACodeType: 'password',
-    // },
-
     signin: {
-      email: 'wer451451451@provlst.com', // test54@2go-mail.com testtest123@2go-mail.com
-      password: 'qweQWE@',
+      email: '',
+      password: '',
       passwordType: 'password',
       remember: false,
       GAEnabled: false,
       GACode: '',
       GACodeType: 'password',
     },
+
+    // signin: {
+    //   email: 'wer451451451@provlst.com', // test54@2go-mail.com testtest123@2go-mail.com
+    //   password: 'qweQWE@',
+    //   passwordType: 'password',
+    //   remember: false,
+    //   GAEnabled: false,
+    //   GACode: '',
+    //   GACodeType: 'password',
+    // },
 
     signup: {
       firstName: '',
