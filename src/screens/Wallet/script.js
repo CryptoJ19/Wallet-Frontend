@@ -37,7 +37,7 @@ export default {
       return 0;
     },
     getBalance(symbol) {
-      return this.getWalletItem(symbol).balance;
+      return this.getWalletItem(symbol).balance || 0;
     },
     convertToUSD(symbol) {
       const walletItem = this.getWalletItem(symbol);
