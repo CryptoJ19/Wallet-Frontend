@@ -270,10 +270,6 @@ export default {
         const res = await this.fetchSendWithdraw(data);
         this.loading = false;
         console.log(res);
-        this.fetchGetProfile();
-
-        this.$emit('sendSuccess');
-
         if (!res.ok) {
           if (res.data.reason === 'Wallet not found') {
             this.er.push(3);
@@ -283,7 +279,8 @@ export default {
           }
         }
         if (res.ok) {
-          this.$emit('changePassSuccess');
+          this.fetchGetProfile();
+          this.$emit('sendSuccess');
         }
       }
     },
