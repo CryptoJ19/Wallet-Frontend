@@ -154,7 +154,10 @@
         <!--        </div>-->
       </div>
       <!--      {{ getTransactionList }}-->
-      <div class="table">
+      <div
+        v-if="getTransactionList.length !== 0"
+        class="table"
+      >
         <div class="table__head">
           <div class="table__item">
             {{ $t('wallet.amount') }}
@@ -199,6 +202,12 @@
             </div>
           </div>
         </div>
+      </div>
+      <div
+        v-else
+        class="history__empty"
+      >
+        {{ $t('wallet.epmtyHistory') }}
       </div>
     </div>
   </div>

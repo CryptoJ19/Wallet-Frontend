@@ -99,6 +99,10 @@
   }
 
   .history {
+    &__empty {
+      color: rgba(#000, 0.4);
+      margin: 0 30px 30px;
+    }
     .head {
       padding: 30px;
       display: flex;
@@ -166,6 +170,9 @@
   }
   @media (max-width: 767px) {
     .history {
+      &__empty {
+        margin: 0 20px 20px;
+        }
       .head {
         padding: 20px;
       }

@@ -73,12 +73,12 @@
                 class="btn-max"
                 @click="setMaxAmount()"
               >
-                Max
+                {{ $t('wallet.modalSend.max') }}
               </button>
             </div>
             <div class="form__er">
               <div v-if="getEr(0)">
-                Введите сумму
+                {{ $t('wallet.modalSend.enterAmount') }}
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
             >
             <div class="form__er">
               <div v-if="getEr(1)">
-                Введите адрес получателя
+                {{ $t('wallet.modalSend.enterRecipient') }}
               </div>
             </div>
           </div>
@@ -102,11 +102,7 @@
               type="text"
               :placeholder="$t('wallet.modalSend.memo')"
             >
-            <div class="form__er">
-              <div v-if="getEr(2)">
-                Введите мемо
-              </div>
-            </div>
+            <div class="form__er" />
           </div>
           <div
             v-if="mode === 1"
@@ -118,7 +114,14 @@
             <div class="vinput__fake">
               0.3
             </div>
-            <div class="form__er" />
+          </div>
+          <div class="form__er">
+            <div v-if="getEr(3)">
+              {{ $t('wallet.modalSend.errorWalletNotFound') }}
+            </div>
+            <div v-if="getEr(4)">
+              {{ $t('wallet.modalSend.insufficientFounds') }}
+            </div>
           </div>
         </div>
       </div>
@@ -222,7 +225,6 @@ export default {
       this.er = [];
       const {
         amount,
-        memo,
         recipient,
       } = this;
       if (amount === '') {
@@ -231,9 +233,9 @@ export default {
       if (recipient === '') {
         this.er.push(1);
       }
-      if (memo === '') {
-        this.er.push(2);
-      }
+      // if (memo === '') {
+      //   this.er.push(2);
+      // }
       return this.er.length === 0;
     },
     async preludeSend() {
@@ -243,22 +245,46 @@ export default {
         const {
           amount,
           recipient,
-          memo,
           currency,
+          memo,
         } = this;
-        const data = {
-          amount,
-          address: recipient,
-          memo,
-          currency,
-          internal: (this.mode === 0),
-        };
+        let data;
+        if (memo !== '') {
+          data = {
+            amount,
+            address: recipient,
+            currency,
+            memo,
+            internal: (this.mode === 0),
+          };
+        } else {
+          data = {
+            amount,
+            address: recipient,
+            currency,
+            internal: (this.mode === 0),
+          };
+        }
+
         this.loading = true;
         const res = await this.fetchSendWithdraw(data);
         this.loading = false;
         console.log(res);
         this.fetchGetProfile();
+
         this.$emit('sendSuccess');
+
+        if (!res.ok) {
+          if (res.data.reason === 'Wallet not found') {
+            this.er.push(3);
+          }
+          if (res.data.reason === 'insufficient founds') {
+            this.er.push(4);
+          }
+        }
+        if (res.ok) {
+          this.$emit('changePassSuccess');
+        }
       }
     },
     closeSendBalance() {

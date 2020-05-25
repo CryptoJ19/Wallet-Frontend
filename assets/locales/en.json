@@ -47,6 +47,7 @@
     }
   },
   "wallet": {
+    "epmtyHistory": "Нет транзакций",
     "statusPending": "Pending",
     "statusFailed": "Failed",
     "statusSuccess": "Success",
@@ -67,7 +68,6 @@
     },
     "modalSend": {
       "title": "Send",
-      "subtext": "123 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
       "close": "Close",
       "sendCashFlash": "Send within CashFlash",
       "sendOutCashFlash": "Send outside CashFlash",
@@ -77,7 +77,12 @@
       "recipient": "Recipient",
       "sendBtn": "Send",
       "successTitle": "Success",
-      "successText": "Lorem ipsum dolor sit amet"
+      "successText": "Текст модалки успешной транзакцииLorem ipsum dolor sit amet",
+      "errorWalletNotFound": "Wallet not found",
+      "insufficientFounds": "Нету денег",
+      "enterAmount": "Введите сумму",
+      "max": "Max",
+      "enterRecipient": "Введите получателя"
     }
   },
   "profile": {
