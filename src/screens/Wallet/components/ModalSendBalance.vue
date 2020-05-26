@@ -122,6 +122,9 @@
             <div v-if="getEr(4)">
               {{ $t('wallet.modalSend.insufficientFounds') }}
             </div>
+            <div v-if="getEr(5)">
+              {{ $t('wallet.modalSend.errorIdenticalAddress') }}
+            </div>
           </div>
         </div>
       </div>
@@ -191,6 +194,11 @@ export default {
       this.amount = this.getBalance();
     },
     setMode(value) {
+      this.amount = '';
+      this.recipient = '';
+      this.memo = '';
+      this.er = [];
+
       this.mode = value;
     },
     getEr(i) {
@@ -271,11 +279,14 @@ export default {
         this.loading = false;
         console.log(res);
         if (!res.ok) {
-          if (res.data.reason === 'Wallet not found') {
+          if (res.data.reason === 'not found') {
             this.er.push(3);
           }
           if (res.data.reason === 'insufficient founds') {
             this.er.push(4);
+          }
+          if (res.data.reason === 'identical') {
+            this.er.push(5);
           }
         }
         if (res.ok) {

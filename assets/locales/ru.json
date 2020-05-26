@@ -47,10 +47,6 @@
     }
   },
   "wallet": {
-    "epmtyHistory": "Нет транзакций",
-    "statusPending": "Pending",
-    "statusFailed": "Failed",
-    "statusSuccess": "Success",
     "balance": "Balance",
     "eos": "EOS",
     "openExplorer": "open in block explorer",
@@ -68,22 +64,29 @@
     },
     "modalSend": {
       "title": "Send",
+      "subtext": "The sender should send funds to EOS account name above. Memo field must be filled out with your personal CashFlash account name. Otherwise the funds won't be deposited to your account.",
       "close": "Close",
       "sendCashFlash": "Send within CashFlash",
       "sendOutCashFlash": "Send outside CashFlash",
-      "amount": "Amount",
+      "code": "Code",
       "fee": "Fee",
-      "memo": "Memo",
       "recipient": "Recipient",
       "sendBtn": "Send",
       "successTitle": "Success",
-      "successText": "Текст модалки успешной транзакцииLorem ipsum dolor sit amet",
+      "successText": "Funds have been sent to recipient",
+      "amount": "Amount",
+      "memo": "Memo",
       "errorWalletNotFound": "Wallet not found",
-      "insufficientFounds": "Нету денег",
-      "enterAmount": "Введите сумму",
+      "insufficientFounds": "Insufficient funds",
+      "errorIdenticalAddress": "The address is identical to the sender address",
+      "enterAmount": "Enter amount",
       "max": "Max",
-      "enterRecipient": "Введите получателя"
-    }
+      "enterRecipient": "Enter recipient's account name"
+    },
+    "epmtyHistory": "There is no transactions related to your account",
+    "statusPending": "Pending",
+    "statusFailed": "Failed",
+    "statusSuccess": "Success"
   },
   "profile": {
     "edit": "Edit",
