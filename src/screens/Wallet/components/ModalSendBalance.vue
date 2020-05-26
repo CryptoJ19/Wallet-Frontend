@@ -11,7 +11,6 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Send
           {{ $t('wallet.modalSend.title') }}
         </div>
         <button

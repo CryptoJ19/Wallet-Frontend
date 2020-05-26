@@ -20,11 +20,7 @@
           $ {{ mathCut(convertToUSD('EOS')) }}
         </div>
         <div class="bottom">
-          <div class="balance__link">
-            <a href="/">
-              {{ $t('wallet.openExplorer') }}
-            </a>
-          </div>
+          <div class="balance__link" />
           <div class="btns">
             <button class="btn">
               <img
@@ -120,7 +116,7 @@
     <div class="wallet__item history">
       <div class="head">
         <div class="head__title">
-          History
+          {{ $t('wallet.history') }}
         </div>
         <!--        <div class="head__right">-->
         <!--          <div class="dd">-->
@@ -160,45 +156,75 @@
       >
         <div class="table__head">
           <div class="table__item">
+            {{ $t('wallet.date') }}
+          </div>
+          <div class="table__item">
             {{ $t('wallet.amount') }}
           </div>
           <div class="table__item">
-            {{ $t('wallet.date') }}
+            {{ $t('wallet.cfid') }}
+          </div>
+          <div class="table__item">
+            {{ $t('wallet.EOShash') }}
           </div>
           <div class="table__item">
             {{ $t('wallet.status') }}
           </div>
+          <div class="table__item" />
         </div>
         <div class="table__body">
           <div
-            v-for="item in getTransactionList"
-            :key="`row_${item}`"
+            v-for="(item, i) in getTransactionList"
+            :key="`row_${i}`"
             class="table__row"
           >
+            <div class="table__item">
+              <div>{{ formatDate(item.createdAt)[0] }}</div>
+              <div class="vtext__grey">
+                {{ $t('wallet.at') }} {{ formatDate(item.createdAt)[1] }}
+              </div>
+            </div>
             <div class="table__item">
               {{ item.amount }}
               {{ item.currencyId.toUpperCase() }}
             </div>
             <div class="table__item">
-              {{ formatDate(item.createdAt) }}
+              {{ item.id }}
             </div>
-            <div
-              v-if="item.status === 0"
-              class="table__item"
-            >
-              {{ $t('wallet.statusFailed') }}
+            <div class="table__item">
+              {{ item.meta.tx_id || '-' }}
             </div>
-            <div
-              v-if="item.status === 1"
-              class="table__item"
-            >
-              {{ $t('wallet.statusPending') }}
+            <div class="table__item">
+              <div
+                v-if="item.status === 0"
+                class="vtext__red"
+              >
+                {{ $t('wallet.statusFailed') }}
+              </div>
+              <div
+                v-if="item.status === 1"
+              >
+                {{ $t('wallet.statusPending') }}
+              </div>
+              <div
+                v-if="item.status === 2"
+                class="vtext__green"
+              >
+                {{ $t('wallet.statusSuccess') }}
+              </div>
             </div>
-            <div
-              v-if="item.status === 2"
-              class="table__item"
-            >
-              {{ $t('wallet.statusSuccess') }}
+            <div class="table__item">
+              <a
+                v-if="item.meta.tx_id"
+                target="_blank"
+                :href="`https://testnet.eos.io/transaction/${item.meta.tx_id}`"
+                class="table__btn"
+              >
+                <img
+                  src="~assets/imgs/icons/arrow__transaction.svg"
+                  alt="arrow"
+                >
+              </a>
             </div>
           </div>
         </div>

@@ -194,7 +194,6 @@ export default {
       sessionStorage.removeItem('refreshToken');
     },
     updateTransactions(state, value) {
-      console.log('value', value);
       state.transactions = value;
     },
     updateIsAuthorized(state, value) {

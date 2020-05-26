@@ -2,6 +2,10 @@
   "default": {
     "serverEr": "Server error"
   },
+  "main": {
+    "connectedTo": "connected to ",
+    "mainnetEOS": "EOS MAINNET"
+  },
   "auth": {
     "welcome": "Welcome to\n CashFlash",
     "signin": "Sign in",
@@ -47,6 +51,10 @@
     }
   },
   "wallet": {
+    "history": "History",
+    "cfid": "CFid",
+    "EOShash": "EOShash",
+    "at": "at",
     "balance": "Balance",
     "eos": "EOS",
     "openExplorer": "open in block explorer",

@@ -98,8 +98,6 @@ export default {
         const resProfile = await this.fetchGetProfile();
         console.log('fetchGetProfile', resProfile);
 
-        const resTrans = await this.fetchGetTransactions();
-        console.log('fetchGetTransactions', resTrans);
 
         this.globalLoader = false;
       } else {

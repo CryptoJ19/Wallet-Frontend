@@ -37,14 +37,13 @@
     </div>
     <div class="main-menu__bottom">
       <div>
-        connected to
+        {{ $t('main.connectedTo') }}
       </div>
-      <a
-        href="/"
+      <div
         class="main-menu__link"
       >
-        EOS MAINNET
-      </a>
+        {{ $t('main.mainnetEOS') }}
+      </div>
     </div>
   </div>
 </template>
@@ -126,7 +125,7 @@ export default {
       color: $grey;
       font-weight: 500;
       font-size: 14px;
-      a {
+      .main-menu__link {
         margin: 0 0 0 5px;
         color: #000;
       }

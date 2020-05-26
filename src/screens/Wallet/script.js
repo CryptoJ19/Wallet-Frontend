@@ -1,6 +1,6 @@
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import moment from 'moment';
 import ModalSendBalance from './components/ModalSendBalance';
 import ModalRecieve from './components/ModalRecieve';
@@ -18,6 +18,7 @@ export default {
     time1: null,
     time2: null,
     time3: null,
+    transactionsInterval: null,
   }),
   computed: {
     ...mapGetters([
@@ -25,7 +26,25 @@ export default {
       'getTransactionList',
     ]),
   },
+  created() {
+    this.transactionsInterval = setInterval(
+      () => {
+        this.getTransactions();
+      }, 30000,
+    );
+    return this.getTransactions();
+  },
+  beforeDestroy() {
+    clearInterval(this.transactionsInterval);
+  },
   methods: {
+    ...mapActions([
+      'fetchGetTransactions',
+    ]),
+    async getTransactions() {
+      const resTrans = await this.fetchGetTransactions();
+      console.log('fetchGetTransactions', resTrans);
+    },
     getWalletItem(symbol) {
       if (this.getWallets.length !== 0) {
         const res = this.getWallets.filter((item) => item.currency.symbol === symbol)[0];
@@ -51,7 +70,7 @@ export default {
     },
     formatDate(value) {
       const date = new Date(value);
-      return `${moment(String(date)).format('DD/MM/YYYY')} at ${moment(String(date)).format('HH:mm')}`;
+      return [moment(String(date)).format('DD/MM/YYYY'), moment(String(date)).format('HH:mm')];
     },
     sendSuccess() {
       this.$bvModal.hide('modal-send-balance');

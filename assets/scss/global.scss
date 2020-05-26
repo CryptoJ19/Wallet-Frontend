@@ -81,6 +81,18 @@ body {
   color: #db2c2c;
 }
 
+.vtext {
+  &__red {
+    color: #dc3c3c;
+  }
+  &__green {
+    color: #27AE60;
+  }
+  &__grey {
+    color: rgba(#000000, 0.4);
+  }
+}
+
 .vinput {
   &__disable {
     border: 1px solid transparent;
