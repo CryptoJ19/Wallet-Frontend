@@ -189,10 +189,20 @@
               {{ item.currencyId.toUpperCase() }}
             </div>
             <div class="table__item">
-              {{ item.id }}
+              <div class="vtext__grey">
+                {{ $t('wallet.cfid') }}
+              </div>
+              <div>
+                {{ item.id }}
+              </div>
             </div>
             <div class="table__item">
-              {{ item.meta.tx_id || '-' }}
+              <div class="vtext__grey">
+                {{ $t('wallet.EOShash') }}
+              </div>
+              <div>
+                {{ item.meta.tx_id || '-' }}
+              </div>
             </div>
             <div class="table__item">
               <div
