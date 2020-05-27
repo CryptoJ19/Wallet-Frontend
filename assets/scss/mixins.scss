@@ -101,6 +101,9 @@
   background: $yellow;
   height: 56px;
   padding: 0 55px;
+  &:active {
+    background: $yellow-second;
+  }
 }
 
 @mixin btn-yellow-out {

@@ -131,6 +131,13 @@
     .table {
       &__copy {
         margin: 0 0 0 10px;
+        padding: 5px;
+        border-radius: 5px;
+        transition: .3s;
+        &:active {
+          transition: 0s;
+          background: $yellow;
+        }
       }
       &__address {
         display: flex;
