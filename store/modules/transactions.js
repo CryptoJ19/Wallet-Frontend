@@ -3,8 +3,6 @@ import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers
 const apiUrl = 'https://test.cashflash.io/api';
 
 export default {
-  state: {
-  },
   actions: {
 
     async fetchGetDeposit(ctx, currency) {
