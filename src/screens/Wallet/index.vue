@@ -267,7 +267,7 @@
             </div>
             <div class="table__item">
               <a
-                v-if="1"
+                v-if="item.meta.tx_id"
                 target="_blank"
                 :href="`https://testnet.eos.io/transaction/${item.meta.tx_id}`"
                 class="table__btn"
