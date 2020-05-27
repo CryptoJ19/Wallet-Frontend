@@ -192,16 +192,58 @@
               <div class="vtext__grey">
                 {{ $t('wallet.cfid') }}
               </div>
-              <div>
-                {{ item.id }}
+              <div
+                v-if="item.id"
+                class="table__address"
+              >
+                <div>
+                  {{ cutString(item.id) }}
+                </div>
+                <button
+
+                  class="table__copy"
+                  @click="copy(item.id)"
+                >
+                  <img
+                    src="~assets/imgs/icons/copy.svg"
+                    alt="close"
+                  >
+                </button>
+              </div>
+              <div
+                v-else
+                class="table__address"
+              >
+                -
               </div>
             </div>
             <div class="table__item">
               <div class="vtext__grey">
                 {{ $t('wallet.EOShash') }}
               </div>
-              <div>
-                {{ item.meta.tx_id || '-' }}
+              <div
+                v-if="item.meta.tx_id"
+                class="table__address"
+              >
+                <div>
+                  {{ cutString(item.meta.tx_id) }}
+                </div>
+                <button
+
+                  class="table__copy"
+                  @click="copy(item.meta.tx_id)"
+                >
+                  <img
+                    src="~assets/imgs/icons/copy.svg"
+                    alt="close"
+                  >
+                </button>
+              </div>
+              <div
+                v-else
+                class="table__address"
+              >
+                -
               </div>
             </div>
             <div class="table__item">

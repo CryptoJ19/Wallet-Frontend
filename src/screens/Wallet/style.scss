@@ -129,6 +129,13 @@
       }
     }
     .table {
+      &__copy {
+        margin: 0 0 0 10px;
+      }
+      &__address {
+        display: flex;
+        align-items: center;
+      }
       &__btn {
         @include btn;
         @include btn-yellow;

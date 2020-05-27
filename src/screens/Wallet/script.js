@@ -41,6 +41,19 @@ export default {
     ...mapActions([
       'fetchGetTransactions',
     ]),
+    copy(str) {
+      const el = document.createElement('textarea');
+      el.value = str;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    },
+    cutString(value) {
+      const centerIndex = Math.ceil(value.length / 2);
+      const lengthPoints = value.length - 20;
+      return `${value.substr(0, centerIndex - (lengthPoints / 2))}${'.'.repeat(10)}${value.substr(centerIndex + (lengthPoints / 2), value.length)}`;
+    },
     async getTransactions() {
       const resTrans = await this.fetchGetTransactions();
       console.log('fetchGetTransactions', resTrans);
