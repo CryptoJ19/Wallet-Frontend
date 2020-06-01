@@ -57,6 +57,7 @@ export default {
     menuItems: [
       { title: 'Wallet', router: 'wallet' },
       { title: 'Profile', router: 'profile' },
+      { title: 'Referal', router: 'referal' },
     ],
   }),
   computed: {

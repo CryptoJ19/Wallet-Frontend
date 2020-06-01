@@ -54,7 +54,7 @@
     padding-right: 49px;
   }
 
-  input {
+  input, textarea {
     background: #FFF;
     width: 100%;
     border-radius: 15px;
@@ -72,6 +72,12 @@
         color: #000;
       }
     }
+  }
+
+  textarea {
+    resize: none;
+    padding: 14px 20px;
+    height: initial;
   }
 }
 
@@ -101,8 +107,13 @@
   background: $yellow;
   height: 56px;
   padding: 0 55px;
-  &:active {
+  transition: .3s;
+  &:hover {
     background: $yellow-second;
+  }
+  &:active {
+    transition: .5s;
+    background: $yellow-third;
   }
 }
 
