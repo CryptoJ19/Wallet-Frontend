@@ -185,8 +185,22 @@
               </div>
             </div>
             <div class="table__item">
-              {{ item.amount }}
-              {{ item.currencyId.toUpperCase() }}
+              <div
+                v-if="item.type === 1"
+                class="vtext__red"
+              >
+                -
+                {{ item.amount }}
+                {{ item.currencyId.toUpperCase() }}
+              </div>
+              <div
+                v-else-if="item.type === 0"
+                class="vtext__green"
+              >
+                +
+                {{ item.amount }}
+                {{ item.currencyId.toUpperCase() }}
+              </div>
             </div>
             <div class="table__item">
               <div class="vtext__grey">
