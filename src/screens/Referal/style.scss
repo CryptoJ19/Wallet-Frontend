@@ -16,17 +16,20 @@
     grid-column-start: 1;
     grid-column-end: 3;
     &__title {
+      position: relative;
       font-weight: bold;
       font-size: 35px;
       color: #000000;
       margin: 0 0 10px;
     }
     &__sub {
+      position: relative;
       font-size: 16px;
       color: $grey;
       margin: 0 0 25px;
     }
     &__stand {
+      position: relative;
       display: flex;
     }
     .stand {
@@ -53,7 +56,8 @@
       }
     }
     &__link {
-     display: flex;
+      position: relative;
+      display: flex;
     }
     .link {
       display: flex;
@@ -91,6 +95,7 @@
     }
   }
   .share {
+    position: relative;
     padding: 30px;
     textarea {
       height: 115px;
@@ -137,6 +142,9 @@
       height: 71px;
       border: 1px solid $stroke;
       border-radius: 20px;
+      &:not(:last-child) {
+        margin: 0 0 10px;
+      }
     }
     &__key {
       font-weight: 500;
@@ -147,6 +155,59 @@
       font-weight: 800;
       font-size: 30px;
       color: #000000;
+    }
+  }
+  @media (max-width: 1199px) {
+    .cover {
+      &__bg {
+        display: none;
+      }
+    }
+  }
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+    .cover {
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+  }
+  @media (max-width: 576px) {
+    .stat {
+      padding: 20px;
+      &__title {
+        margin: 0 0 16px;
+      }
+      &__item {
+        padding: 0 20px;
+      }
+      &__value {
+        font-size: 18px;
+      }
+    }
+    .share {
+      padding: 20px;
+      &__title {
+        margin: 0 0 16px;
+      }
+    }
+    .cover {
+      padding: 20px;
+      &__stand {
+        //width: 100%;
+        //justify-content: center;
+      }
+      &__title {
+        font-size: 22px;
+      }
+      &__sub {
+        font-size: 14px;
+      }
+      .link {
+        padding: 8px 10px;
+        &__value {
+          font-size: 12px;
+        }
+      }
     }
   }
 }

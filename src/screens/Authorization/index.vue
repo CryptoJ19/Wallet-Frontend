@@ -198,6 +198,9 @@
               <div v-if="getEr(10)">
                 {{ $t('auth.er.enterValidNickname') }}
               </div>
+              <div v-if="getEr(12)">
+                {{ $t('auth.er.nicknameExists') }}
+              </div>
             </div>
           </div>
           <div class="form__item">
@@ -213,6 +216,9 @@
               </div>
               <div v-if="getEr(4)">
                 {{ $t('auth.er.enterValidEmail') }}
+              </div>
+              <div v-if="getEr(11)">
+                {{ $t('auth.er.emailExists') }}
               </div>
             </div>
           </div>
@@ -256,7 +262,6 @@
               <div v-if="getEr(8)">
                 {{ $t('auth.er.enterPassSpace') }}
               </div>
-              {{ erMes }}
             </div>
           </div>
 

@@ -19,6 +19,8 @@ export default {
     erCheckEmail: '',
     loaderModal: false,
 
+    refLink: '',
+
     signin: {
       email: '',
       password: '',
@@ -68,8 +70,13 @@ export default {
     ]),
   },
   mounted() {
+    if (typeof this.$route.query.ref !== 'undefined') {
+      const { ref } = this.$route.query;
+      this.refLink = ref;
+      this.setMode(1);
+    }
+
     if (getAccessToken() !== false) {
-      // this.$router.replace({ path: 'wallet' });
       document.location.replace(`${baseUrl}/wallet`);
     }
   },
@@ -282,20 +289,26 @@ export default {
         } = this.signup;
 
         this.loader = true;
-        const res = await this.fetchSignup({
+        const data = {
           firstName,
           lastName,
           email,
           password,
           nickname: memo,
-        });
+        };
+        if (this.refLink !== '') {
+          data.ref = this.refLink;
+        }
+
+        const res = await this.fetchSignup(data);
         this.loader = false;
         console.log('res', res);
         if (res.ok) {
           this.showCheckEmail();
-        } else {
-          // if (!res.ok && res.data.field === 'nickname')
-          this.erMes = this.$t('auth.er.emailExists'); // todo
+        } else if (!res.ok && res.data.field === 'email') {
+          this.er.push(11);
+        } else if (!res.ok && res.data.field === 'nickname') {
+          this.er.push(12);
         }
       }
     },
@@ -330,13 +343,11 @@ export default {
             remember,
           };
         }
-
         const resSignin = await this.fetchSignin(data);
         this.loader = false;
         console.log('fetchSignin', resSignin);
         if (resSignin.ok) {
-          // this.$router.replace({ path: 'wallet' });
-          document.location.replace(`${baseUrl}/`);
+          document.location.replace(`${baseUrl}/wallet`);
         } else if (resSignin.code === 401000) {
           this.erMes = this.$t('auth.er.incorrectLog');
         } else if (resSignin.code === 400000 && GAEnabled === false) {

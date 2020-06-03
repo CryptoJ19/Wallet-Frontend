@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import auth from './modules/auth';
 import totp from './modules/totp';
 import transactions from './modules/transactions';
+import referal from './modules/referal';
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ const store = () => new Vuex.Store({
     auth,
     totp,
     transactions,
+    referal,
   },
 });
 

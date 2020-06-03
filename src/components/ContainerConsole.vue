@@ -85,6 +85,7 @@ export default {
       'logout',
       'fetchCheckGA',
       'fetchGetTransactions',
+      'getReferalData',
     ]),
     async init() {
       if (getAccessToken() === false) {
@@ -95,10 +96,9 @@ export default {
         if (resCheckGA.ok && !resCheckGA.result.enabled) {
           await this.fetchTempGAToken();
         }
-        const resProfile = await this.fetchGetProfile();
-        console.log('fetchGetProfile', resProfile);
-
-
+        const resGetReferalData = this.getReferalData();
+        const resProfile = this.fetchGetProfile();
+        await Promise.all([resGetReferalData, resProfile]);
         this.globalLoader = false;
       } else {
         this.globalLoader = false;

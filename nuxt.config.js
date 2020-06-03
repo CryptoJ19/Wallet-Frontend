@@ -1,5 +1,5 @@
 
-import localeRU from './assets/locales/ru.json';
+// import localeRU from './assets/locales/ru.json';
 import localeEN from './assets/locales/en.json';
 
 module.exports = {
@@ -61,7 +61,7 @@ module.exports = {
     strategy: 'no_prefix',
     vueI18n: {
       messages: {
-        ru: localeRU,
+        ru: localeEN,
         en: localeEN,
       },
     },

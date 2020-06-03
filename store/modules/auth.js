@@ -188,6 +188,7 @@ export default {
       };
       state.transactions = {};
       state.isAuthorized = false;
+      state.referal = {};
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');

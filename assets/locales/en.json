@@ -41,6 +41,8 @@
       "enterFirstName": "Enter first name",
       "enterSecondName": "Enter last name",
       "enterNickname": "Enter CashFlash Name",
+      "nicknameExists": "Такой никнейм занят.",
+      "enterMsg": "Введите сообщение.",
       "enterValidNickname": "CashFlash name must consist of 12 characters, only lowercase latin letters and digits 1-5",
       "enterCode": "Enter a code delivered to your mailbox",
       "incorrectEmailToReset": "The email doesn't exist",
@@ -143,5 +145,19 @@
       "textSuccess": "Google Authenticator disabled",
       "closeSuccess": "Ok"
     }
+  },
+  "ref": {
+    "title": "Share what is worth sharing",
+    "sub": "This bonus is for you and  your friends",
+    "reward": "Your reward\nfor 1 user",
+    "rewardNum": "12 CFT",
+    "invFriends": "Invite Your Friends",
+    "inviteSuccesSent": "Приглашение отправленно",
+    "invBtn": "Send",
+    "statistic": "Statistic",
+    "statSent": "Personal invites sent",
+    "statBonuses": "My bonuses",
+    "statRef":" My referrals",
+    "someMsg": "Some message"
   }
 }

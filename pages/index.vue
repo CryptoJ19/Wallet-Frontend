@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 import ContainerConsole from '~/src/components/ContainerConsole';
 import { getAccessToken } from '~/helpers/customFetch';
 import baseUrl from '../config';
@@ -35,14 +36,19 @@ export default {
   data: () => ({
     title: 'CashFlash',
   }),
+  methods: {
+    ...mapActions([
+      'logout',
+    ]),
+  },
   mounted() {
-    if (getAccessToken() === false) {
-      // console.log(getAccessToken());
+    if (typeof this.$route.query.ref !== 'undefined') {
+      const { ref } = this.$route.query;
+      document.location.replace(`${baseUrl}/authorization?ref=${ref}`);
+    } else if (getAccessToken() === false) {
       document.location.replace(`${baseUrl}/authorization`);
-      // this.$router.replace({ path: 'authorization' });
     } else {
       document.location.replace(`${baseUrl}/wallet`);
-      // this.$router.replace({ path: 'wallet' });
     }
   },
   head() {
