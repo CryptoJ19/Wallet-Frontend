@@ -1,14 +1,16 @@
 <template>
   <div>
-    landing
+    <Landing />
   </div>
 </template>
 <script>
 
 import baseUrl from '../config';
+import Landing from '~/src/screens/Landing';
 
 export default {
   components: {
+    Landing,
   },
   data: () => ({
     title: 'CashFlash',
