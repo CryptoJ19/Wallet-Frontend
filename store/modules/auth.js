@@ -83,7 +83,7 @@ export default {
 
     logout(ctx) {
       ctx.commit('logout');
-      document.location.replace(`${baseUrl}/authorization`);
+      document.location.replace(`${baseUrl}/app/authorization`);
     },
     async fetchGetProfile(ctx) {
       const res = await customFetchToken(ctx, async () => {

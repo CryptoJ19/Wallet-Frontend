@@ -2,9 +2,10 @@
   <div class="auth">
     <div class="auth__main container">
       <div class="auth__box">
-        <div class="auth__title">
-          Change Password
-        </div>
+        <div
+          class="auth__title"
+          v-html="$t('profile.changePass')"
+        />
         <div
           class="form form_active"
         >

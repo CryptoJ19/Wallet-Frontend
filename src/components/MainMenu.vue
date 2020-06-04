@@ -14,7 +14,7 @@
         <nuxt-link
           v-for="item in menuItems"
           :key="`nav-${item.router}`"
-          :to="`/${item.router}`"
+          :to="`/app/${item.router}`"
           class="main-menu__item "
           :class="navItemClass(item, title)"
         >
