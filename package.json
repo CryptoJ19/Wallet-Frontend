@@ -13,8 +13,12 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@chenfengyuan/vue-qrcode": "^1.0.2",
+    "bootstrap-vue": "^2.15.0",
+    "moment": "^2.26.0",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.6.0",
+    "vue-click-outside": "^1.1.0",
     "vue-tippy": "^4.4.0",
     "vue2-datepicker": "^3.4.1"
   },

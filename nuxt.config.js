@@ -6,6 +6,7 @@ module.exports = {
   plugins: [
     '~plugins/tippy',
     '~plugins/vue-js-modal',
+    '~plugins/bootstrap-vue',
   ],
   head: {
     title: 'CashFlash',
