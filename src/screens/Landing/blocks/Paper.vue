@@ -86,7 +86,7 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 150px;
+    margin-bottom: 350px;
     &__img {
       &:last-child {
         display: none;
@@ -155,7 +155,6 @@ export default {
         width: 60%;
       }
     }
-
     @media (max-width: 1199px) {
       margin-bottom: 100px;
       &__preface, &__title, &__text, &__sub {

@@ -5,6 +5,7 @@
     <Advantages />
     <What />
     <Paper />
+    <Footer />
   </div>
 </template>
 <script src="./script.js" />
