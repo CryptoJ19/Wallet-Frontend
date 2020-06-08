@@ -5,6 +5,7 @@
     <Advantages />
     <What />
     <Paper />
+    <Team />
     <Footer />
   </div>
 </template>

@@ -5,6 +5,7 @@ import Menu from './blocks/Menu';
 import Advantages from './blocks/Advantages';
 import What from './blocks/What';
 import Paper from './blocks/Paper';
+import Team from './blocks/Team';
 import Footer from './blocks/Footer';
 
 
@@ -16,6 +17,7 @@ export default {
     Advantages,
     What,
     Paper,
+    Team,
     Footer,
   },
   data: () => ({

@@ -374,7 +374,7 @@
           color: #000000;
         }
         &__sub {
-          color: rgba(#54595F, 0.7);
+          color: rgba($grey, 0.7);
           font-size: 16px;
         }
         &__extra {

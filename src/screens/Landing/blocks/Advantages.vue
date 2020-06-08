@@ -134,7 +134,7 @@ export default {
       justify-content: center;
       width: 70px;
       height: 70px;
-      border: 3px solid #54595F;
+      border: 3px solid $grey;;
       border-radius: 100%;
       &:nth-child(4) img {
         margin: 0 5px 0 0;
