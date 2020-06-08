@@ -14,7 +14,7 @@
     </div>
     <div class="land__container">
       <div class="what__l">
-        <div class="what__preface">
+        <div class="what__preface land__preface">
           The first blockchain with e-commerce
         </div>
         <div
@@ -22,10 +22,10 @@
           v-html="'What\'s\nCash Flash'"
         />
         <div class="what__item">
-          <div class="what__sub">
+          <div class="what__sub land__sub">
             We are creating the first project with its real Certified and Guaranteed Marketplace.
           </div>
-          <div class="what__text">
+          <div class="what__text land__text">
             The Cash Flash project was born with the intent
             to create a series of systems for both the customer
             and companies, incorporated in the first marketplace
@@ -58,8 +58,6 @@
       top: 110px;
     }
     &__preface {
-      font-weight: bold;
-      color: rgba($grey, .5);
       margin: 0 0 36px;
     }
     &__item {
@@ -70,11 +68,7 @@
       max-width: 700px;
     }
     &__sub {
-      font-weight: 600;
-      font-size: 25px;
-      color: $grey;
       margin: 0 0 35px;
-      line-height: 159.4%;
     }
     &__img {
       &:last-child {
@@ -82,10 +76,6 @@
       }
     }
     &__text {
-      font-size: 18px;
-      color: $grey;
-      font-weight: normal;
-      line-height: 185.9%;
     }
     @media (max-width: 1700px) {
       &__r {
@@ -135,20 +125,12 @@
     @media (max-width: 767px) {
       margin-bottom: 80px;
       &__preface {
-        font-size: 15px;
         margin: 0 auto 8px;
       }
       &__item {
         margin: 0 auto;
         text-align: center;
       }
-      &__sub {
-        font-size: 17px;
-      }
-      &__text {
-        font-size: 15px;
-      }
-
       &__title {
         margin: 0 auto 20px;
       }

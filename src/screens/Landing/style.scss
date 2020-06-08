@@ -11,6 +11,23 @@
     line-height: 108.4%;
     white-space: pre-line;
   }
+  &__preface {
+    font-weight: bold;
+    color: rgba($grey, .5);
+    font-size: 18px;
+  }
+  &__sub {
+    font-weight: 600;
+    font-size: 25px;
+    color: $grey;
+    line-height: 159.4%;
+  }
+  &__text {
+    font-size: 18px;
+    color: $grey;
+    font-weight: normal;
+    line-height: 185.9%;
+  }
   &__container {
     position: relative;
     width: 100%;
@@ -43,6 +60,15 @@
     }
   }
   @media (max-width: 767px) {
+    &__preface {
+      font-size: 15px;
+    }
+    &__sub {
+      font-size: 17px;
+    }
+    &__text {
+      font-size: 15px;
+    }
     &__container {
       max-width: 540px;
       padding: 0 10px;

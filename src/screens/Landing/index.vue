@@ -4,6 +4,7 @@
     <Header />
     <Advantages />
     <What />
+    <Paper />
   </div>
 </template>
 <script src="./script.js" />
