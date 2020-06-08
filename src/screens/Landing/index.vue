@@ -2,6 +2,8 @@
   <div class="land">
     <Menu />
     <Header />
+    <Advantages />
+    <What />
   </div>
 </template>
 <script src="./script.js" />

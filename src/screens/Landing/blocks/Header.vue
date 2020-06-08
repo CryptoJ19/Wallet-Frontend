@@ -205,7 +205,7 @@
     .header {
       display: flex;
       justify-content: space-between;
-      margin: 160px 0 0;
+      margin: 160px 0 220px;
       &__left {
         width: 50%;
       }
@@ -410,7 +410,7 @@
     }
     @media (max-width: 1700px) {
       .header {
-        margin: 100px 0 0;
+        margin: 100px 0 150px;
         .cards {
           &__item {
             padding: 16px 30px;
@@ -494,7 +494,7 @@
     }
     @media (max-width: 1199px) {
       .header {
-        margin: 140px 0 0;
+        margin: 140px 0 100px;
         flex-direction: column;
         align-items: start;
         &__left, &__right {
@@ -536,6 +536,7 @@
     }
     @media (max-width: 767px) {
       .header {
+        margin-bottom: 80px;
         .prog {
           position: relative;
           display: flex;
