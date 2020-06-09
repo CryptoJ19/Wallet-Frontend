@@ -17,49 +17,77 @@
         are created both for the customer and for the company,
         creating a shorter and more performing supply chain.
       </div>
-      <div class="team__items">
+      <div class="team__body">
         <div
-          v-for="(item, i) in persons"
-          :key="`person_${i}`"
-          class="person"
+          class="team__items"
+          :class="[
+            {'team__items_two': page === 1},
+            {'team__items_three': page === 2}
+          ]"
         >
-          <div class="person__ava">
-            <img
-              :src="imagePath(i)"
-              alt="img"
-            >
-          </div>
-          <div class="person__info">
-            <div class="person__title">
-              {{ item.title }}
-            </div>
-            <div class="person__sub">
-              {{ item.sub }}
-            </div>
-            <div class="person__links">
-              <a
-                :href="item.in"
-                class="person__link"
-                target="_blank"
+          <div
+            v-for="(item, i) in persons"
+            :key="`person_${i}`"
+            class="person"
+          >
+            <div class="person__ava">
+              <img
+                :src="imagePath(i)"
+                alt="img"
               >
-                <img
-                  src="~assets/imgs/Landing/advan__links_in.svg"
-                  alt="img"
+            </div>
+            <div class="person__info">
+              <div class="person__title">
+                {{ item.title }}
+              </div>
+              <div class="person__sub">
+                {{ item.sub }}
+              </div>
+              <div class="person__links">
+                <a
+                  :href="item.in"
+                  class="person__link"
+                  target="_blank"
                 >
-              </a>
-              <a
-                :href="item.mail"
-                class="person__link"
-                target="_blank"
-              >
-                <img
-                  src="~assets/imgs/Landing/mail.svg"
-                  alt="img"
+                  <img
+                    src="~assets/imgs/Landing/advan__links_in.svg"
+                    alt="img"
+                  >
+                </a>
+                <a
+                  :href="item.mail"
+                  class="person__link"
+                  target="_blank"
                 >
-              </a>
+                  <img
+                    src="~assets/imgs/Landing/mail.svg"
+                    alt="img"
+                  >
+                </a>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="team__arrows">
+        <button
+          class="team__arrow"
+          @click="setPrevPage"
+        >
+          <img
+            src="~assets/imgs/Landing/arrow.svg"
+            alt="img"
+          >
+        </button>
+        <button
+          class="team__arrow"
+          @click="setNextPage"
+        >
+          <img
+            src="~assets/imgs/Landing/arrow.svg"
+            alt="img"
+          >
+        </button>
       </div>
     </div>
   </div>
@@ -123,8 +151,19 @@ export default {
         mail: 'https://www.google.com/',
       },
     ],
+    page: 0,
   }),
   methods: {
+    setPrevPage() {
+      if (this.page !== 0) {
+        this.page -= 1;
+      }
+    },
+    setNextPage() {
+      if (this.page !== 2) {
+        this.page += 1;
+      }
+    },
     imagePath(i) {
       return require(`assets/imgs/Landing/ava_${i + 1}.png`);
     },
@@ -154,7 +193,9 @@ export default {
       grid-row-gap: 60px;
       grid-column-gap: 80px;
     }
-
+    &__arrows {
+      display: none;
+    }
     .person {
       background: $grey-bg;
       border-radius: 30px;
@@ -175,7 +216,8 @@ export default {
       }
       &__ava {
         border: 3px solid $grey;
-        border-radius: 33px;
+        border-radius: 30px;
+        overflow: hidden;
       }
       &__info {
         margin: 0 0 0 36px;
@@ -197,6 +239,88 @@ export default {
         img {
           height: 16px;
         }
+      }
+    }
+    @media (max-width: 1700px) {
+      .person {
+        padding: 12px;
+        &__title {
+          font-size: 20px;
+          margin: 0 0 1px;
+        }
+        &__sub {
+          font-size: 15px;
+          margin: 0 0 10px;
+        }
+        &__ava {
+          width: 110px;
+        }
+        &__info {
+          margin: 0 0 0 22px;
+        }
+        &__links {
+        }
+        &__link {
+          width: 33px;
+          height: 33px;
+          &:not(:last-child) {
+          }
+          img {
+          }
+        }
+      }
+    }
+    @media (max-width: 1199px) {
+      overflow: hidden;
+      &__arrows {
+        display: flex;
+        justify-content: center;
+        margin: 35px 0 0;
+        position: relative;
+      }
+      &__arrow {
+        width: 59px;
+        height: 59px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        border: 3px solid $grey;
+        position: relative;
+        transition: .3s;
+        top: 0;
+        &:first-child {
+          margin: 0 28px 0 0;
+        }
+        &:last-child {
+          img {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      .land__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1px;
+      }
+      &__items {
+        left: 735px;
+        transition: .3s;
+        &_two {
+          left: 0;
+        }
+        &_three {
+          left: -735px;
+        }
+        grid-row-gap: 22px;
+        grid-column-gap: 420px;
+        min-width: 1780px;
       }
     }
 
