@@ -15,7 +15,7 @@
           <div class="counter">
             <div class="counter__item">
               <div class="counter__num">
-                38
+                {{ d }}
               </div>
               <div class="counter__label">
                 Days
@@ -26,7 +26,7 @@
             </div>
             <div class="counter__item">
               <div class="counter__num">
-                17
+                {{ h }}
               </div>
               <div class="counter__label">
                 Hours
@@ -37,7 +37,7 @@
             </div>
             <div class="counter__item">
               <div class="counter__num">
-                38
+                {{ m }}
               </div>
               <div class="counter__label">
                 Minutes
@@ -48,7 +48,7 @@
             </div>
             <div class="counter__item">
               <div class="counter__num">
-                38
+                {{ s }}
               </div>
               <div class="counter__label">
                 Seconds
@@ -200,6 +200,43 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data: () => ({
+    d: '00',
+    h: '00',
+    m: '00',
+    s: '00',
+  }),
+  mounted() {
+    function diffSubtract(date1, date2) {
+      return date2 - date1;
+    }
+    const timer = setInterval(() => {
+      const now = new Date();
+      const date = new Date('Tue Jun 29 2020 15:49:60 GMT+0700 (GMT+07:00)');
+      const msLeft = diffSubtract(now, date);
+      if (msLeft <= 0) {
+        clearInterval(timer);
+      } else {
+        const res = new Date(msLeft);
+        this.d = this.formTime(Math.floor(res / 1000 / 60 / 60 / 24));
+        this.h = this.formTime(res.getUTCHours());
+        this.m = this.formTime(res.getUTCMinutes());
+        this.s = this.formTime(res.getUTCSeconds());
+      }
+    }, 1000);
+  },
+  methods: {
+    formTime(value) {
+      if (+value < 10) {
+        return `0${value}`;
+      }
+      return value;
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
   .land {
     .header {
@@ -252,6 +289,7 @@
             color: $grey;
             font-family: Gilroy;
             font-weight: 300;
+            width: 120px;
           }
           &__label {
             font-weight: 300;
@@ -446,6 +484,7 @@
           .counter {
             &__num {
               font-size: 80px;
+              width: 80px;
             }
             &__label {
               font-size: 18px;
@@ -475,6 +514,7 @@
           .counter {
             &__num {
               font-size: 70px;
+              width: 70px;
             }
             &__label {
               font-size: 16px;
@@ -621,6 +661,7 @@
             margin: 0 0 30px;
             &__num {
               font-size: 55px;
+              width: 55px;
             }
             &__label {
               font-size: 16px;
@@ -649,6 +690,7 @@
           .counter {
             &__num {
               font-size: 40px;
+              width: 40px;
             }
             &__label {
               font-size: 12px;
