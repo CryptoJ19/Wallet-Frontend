@@ -216,7 +216,7 @@ export default {
       }
       &__ava {
         border: 3px solid $grey;
-        border-radius: 30px;
+        border-radius: 34px;
         overflow: hidden;
       }
       &__info {

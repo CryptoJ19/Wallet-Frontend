@@ -56,7 +56,7 @@
             </button>
           </div>
           <div class="form__msg">
-            Success
+            <!--            Success-->
           </div>
         </div>
       </div>

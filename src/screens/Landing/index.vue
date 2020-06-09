@@ -3,6 +3,7 @@
     <Menu />
     <Header />
     <Advantages />
+    <Map />
     <What />
     <Paper />
     <Team />

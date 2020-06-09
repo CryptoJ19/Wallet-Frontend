@@ -3,6 +3,7 @@ import Loader from '../../ui/Loader';
 import Header from './blocks/Header';
 import Menu from './blocks/Menu';
 import Advantages from './blocks/Advantages';
+import Map from './blocks/Map';
 import What from './blocks/What';
 import Paper from './blocks/Paper';
 import Team from './blocks/Team';
@@ -15,6 +16,7 @@ export default {
     Header,
     Menu,
     Advantages,
+    Map,
     What,
     Paper,
     Team,
