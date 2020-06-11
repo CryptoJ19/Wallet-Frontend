@@ -91,11 +91,11 @@ export default {
       if (getAccessToken() === false) {
         this.logout();
       } else if (this.getIsAuthorized === false) {
-        const resCheckGA = await this.fetchCheckGA();
-        console.log('fetchCheckGA', resCheckGA);
-        if (resCheckGA.ok && !resCheckGA.result.enabled) {
-          await this.fetchTempGAToken();
-        }
+        // const resCheckGA = await this.fetchCheckGA();
+        // console.log('fetchCheckGA', resCheckGA);
+        // if (resCheckGA.ok && !resCheckGA.result.enabled) {
+        //   await this.fetchTempGAToken();
+        // }
         const resGetReferalData = this.getReferalData();
         const resProfile = this.fetchGetProfile();
         await Promise.all([resGetReferalData, resProfile]);

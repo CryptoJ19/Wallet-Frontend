@@ -4,6 +4,7 @@ import ModalEnableGA from './components/ModalEnableGA';
 import ModalSuccessEnableGA from './components/ModalSuccessEnableGA';
 import ModalSuccessDisableGA from './components/ModalSuccessDisableGA';
 import ModalSuccessChangePass from './components/ModalSuccessChangePass';
+import ModalChangeAva from './components/ModalChangeAva';
 import Loader from '~/src/ui/Loader';
 import ModalDisableGA from './components/ModalDisableGA';
 
@@ -27,12 +28,20 @@ export default {
     ModalDisableGA,
     ModalSuccessDisableGA,
     ModalSuccessChangePass,
+    ModalChangeAva,
   },
   computed: {
     ...mapGetters([
       'getProfile',
       'getGAEnabled',
     ]),
+    avatarBg() {
+      if (this.getProfile.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+        return `background-image: url(${this.imagePath()})`;
+      }
+      return `background-image: url(${this.getProfile.avatar})`;
+    },
+    // `background-image: url(${imagePath()})`
     // profile: ({ getProfile }) => ({ ...getProfile }),
     userBoxClass: ({ userEditMode }) => ({ user_disable: userEditMode === 0 }),
   },
@@ -62,7 +71,6 @@ export default {
     async saveUser() {
       if (this.checkUserValidation()) {
         this.userLoader = true;
-
         const res = await this.fetchEditProfile({
           firstName: this.localProfile.firstName,
           lastName: this.localProfile.lastName,
@@ -88,7 +96,7 @@ export default {
       this.userEditMode = i;
     },
     imagePath() {
-      return require('assets/imgs/ava.png');
+      return require('assets/imgs/icons/ava.svg');
     },
     showChangePass() {
       this.$bvModal.show('modal-change-pass');
@@ -98,6 +106,9 @@ export default {
     },
     showDisableGA() {
       this.$bvModal.show('modal-disable-ga');
+    },
+    showChangeAva() {
+      this.$bvModal.show('modal-change-ava');
     },
     checkUserValidation() {
       this.erUser = [];

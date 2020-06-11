@@ -6,6 +6,7 @@
     <ModalSuccessEnableGA />
     <ModalSuccessDisableGA />
     <ModalSuccessChangePass />
+    <ModalChangeAva />
     <div
       class="pro__item user"
       :class="userBoxClass"
@@ -13,12 +14,21 @@
       <div class="header">
         <div class="header__shape" />
         <div class="header__body">
-          <div class="header__ava">
+          <button
+            class="header__ava"
+            @click="showChangeAva()"
+          >
             <div
               class="ava"
-              :style="`background-image: url(${imagePath()})`"
+              :style="avatarBg"
             />
-          </div>
+            <div class="header__change">
+              <img
+                src="~assets/imgs/icons/up.svg"
+                alt="icon"
+              >
+            </div>
+          </button>
           <div class="header__name">
             <div class="header__main">
               {{ getProfile.firstName }} {{ getProfile.lastName }}

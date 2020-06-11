@@ -91,6 +91,34 @@
       border-bottom: 1px solid $stroke;
       padding: 0 0 30px;
       margin: 0 0 30px;
+      &__ava {
+        position: relative;
+        &:hover {
+          .header__change {
+            opacity: 1;
+          }
+        }
+      }
+      &__change {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        display: flex;
+        opacity: 0;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        background: $stroke;
+        width: 30px;
+        height: 30px;
+        transition: .3s;
+        &:hover {
+          background: rgba(#000, .8);
+        }
+        img {
+          width: 12px;
+        }
+      }
       &__body {
         display: flex;
         align-items: flex-end;
@@ -138,7 +166,6 @@
     }
     &__title {
       color: #000000;
-      font-weight: normal;
       font-size: 16px;
       margin: 0 0 10px;
     }

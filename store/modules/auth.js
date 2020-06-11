@@ -201,12 +201,7 @@ export default {
       state.isAuthorized = value;
     },
     updateProfile(state, value) {
-      state.profile.id = value.id;
-      state.profile.email = value.email;
-      state.profile.firstName = value.firstName;
-      state.profile.lastName = value.lastName;
-      state.profile.nickname = value.nickname;
-      state.profile.wallets = value.wallets;
+      state.profile = value;
     },
     updateAccess(state, value) {
       localStorage.setItem('accessToken', value);

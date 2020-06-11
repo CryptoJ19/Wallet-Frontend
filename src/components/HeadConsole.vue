@@ -25,7 +25,7 @@
           </div>
           <div
             class="dd-user__ava"
-            :style="`background-image: url(${imagePath()})`"
+            :style="avatarBg"
           />
         </template>
         <b-dropdown-item-button class="dd-user__active">
@@ -61,12 +61,12 @@
         </b-dropdown-item-button>
       </b-dropdown>
 
-      <div class="head-console__item head-console__settings">
-        <img
-          src="~assets/imgs/icons/gear.svg"
-          alt="settings"
-        >
-      </div>
+      <!--      <div class="head-console__item head-console__settings">-->
+      <!--        <img-->
+      <!--          src="~assets/imgs/icons/gear.svg"-->
+      <!--          alt="settings"-->
+      <!--        >-->
+      <!--      </div>-->
       <button
         class="head-console__item head-console__info"
         @click="logout()"
@@ -88,13 +88,19 @@ export default {
   },
   computed: {
     ...mapGetters(['getProfile']),
+    avatarBg() {
+      if (this.getProfile.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+        return `background-image: url(${this.imagePath()})`;
+      }
+      return `background-image: url(${this.getProfile.avatar})`;
+    },
   },
   methods: {
     ...mapActions([
       'logout',
     ]),
     imagePath() {
-      return require('assets/imgs/ava.png');
+      return require('assets/imgs/icons/ava.svg');
     },
     toggleMenu() {
       this.$emit('toggleMenu');
