@@ -191,6 +191,7 @@ export default {
       font-size: 18px;
       color: #000000;
       @include btn-yellow;
+      text-decoration: none;
       &:hover, &:active {
         text-decoration: none;
       }
