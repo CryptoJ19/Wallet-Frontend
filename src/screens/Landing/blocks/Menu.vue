@@ -170,6 +170,7 @@ export default {
       font-size: 16px;
       color: $grey;
       margin: 0 60px 0 0;
+      text-decoration: none;
       &:hover, &:active {
         text-decoration: none;
       }
