@@ -10,7 +10,7 @@
             >
           </div>
           <div class="start__title">
-            Start pre ICO
+            {{ $t('land.header.title') }}
           </div>
           <div class="counter">
             <div class="counter__item">
@@ -18,7 +18,7 @@
                 {{ d }}
               </div>
               <div class="counter__label">
-                Days
+                {{ $t('land.header.days') }}
               </div>
             </div>
             <div class="counter__colon">
@@ -29,7 +29,7 @@
                 {{ h }}
               </div>
               <div class="counter__label">
-                Hours
+                {{ $t('land.header.hours') }}
               </div>
             </div>
             <div class="counter__colon">
@@ -40,7 +40,7 @@
                 {{ m }}
               </div>
               <div class="counter__label">
-                Minutes
+                {{ $t('land.header.minutes') }}
               </div>
             </div>
             <div class="counter__colon">
@@ -51,14 +51,14 @@
                 {{ s }}
               </div>
               <div class="counter__label">
-                Seconds
+                {{ $t('land.header.seconds') }}
               </div>
             </div>
           </div>
           <div class="pdf">
             <div class="pdf__item">
               <div class="pdf__title">
-                Whitepaper
+                {{ $t('land.header.whitepaper') }}
               </div>
               <div class="pdf__icon">
                 <img
@@ -69,7 +69,7 @@
             </div>
             <div class="pdf__item">
               <div class="pdf__title">
-                Contract
+                {{ $t('land.header.contract') }}
               </div>
               <div class="pdf__icon">
                 <img
@@ -80,7 +80,7 @@
             </div>
             <div class="pdf__item">
               <div class="pdf__title">
-                K.Y.C
+                {{ $t('land.header.kyc') }}
               </div>
               <div class="pdf__icon">
                 <img
@@ -99,19 +99,19 @@
             <div class="prog__point">
               <div class="prog__notch" />
               <div class="prog__text">
-                Soft Cap (350 Millions €)
+                {{ $t('land.header.softcap') }}
               </div>
             </div>
             <div class="prog__point">
               <div class="prog__notch" />
               <div class="prog__text">
-                (1 Billion €)
+                {{ $t('land.header.centercap') }}
               </div>
             </div>
             <div class="prog__point">
               <div class="prog__notch" />
               <div class="prog__text">
-                Hard Cap (4 Billions €)
+                {{ $t('land.header.hardcap') }}
               </div>
             </div>
           </div>
@@ -123,24 +123,24 @@
             <div class="cards__item cards__item_a">
               <div class="cards__left">
                 <div class="cards__title">
-                  1st round
+                  {{ $t('land.header.items[0].title') }}
                 </div>
                 <div class="cards__sub">
-                  January 13 - February 13
+                  {{ $t('land.header.items[0].sub') }}
                 </div>
                 <div class="cards__extra">
-                  50% extra token
+                  {{ $t('land.header.items[0].extra') }}
                 </div>
                 <div class="cards__epitaph">
-                  issued 3 months after the end of the ICO
+                  {{ $t('land.header.items[0].desc') }}
                 </div>
               </div>
               <div class="cards__right">
                 <div class="cards__sub">
-                  For token
+                  {{ $t('land.header.items[0].token') }}
                 </div>
                 <div class="cards__cost">
-                  € 3,00
+                  {{ $t('land.header.items[0].price') }}
                 </div>
               </div>
             </div>
@@ -148,24 +148,24 @@
             <div class="cards__item cards__item_b">
               <div class="cards__left">
                 <div class="cards__title">
-                  1st round
+                  {{ $t('land.header.items[1].title') }}
                 </div>
                 <div class="cards__sub">
-                  January 13 - February 13
+                  {{ $t('land.header.items[1].sub') }}
                 </div>
                 <div class="cards__extra">
-                  50% extra token
+                  {{ $t('land.header.items[1].extra') }}
                 </div>
                 <div class="cards__epitaph">
-                  issued 3 months after the end of the ICO
+                  {{ $t('land.header.items[1].desc') }}
                 </div>
               </div>
               <div class="cards__right">
                 <div class="cards__sub">
-                  For token
+                  {{ $t('land.header.items[1].token') }}
                 </div>
                 <div class="cards__cost">
-                  € 3,00
+                  {{ $t('land.header.items[1].price') }}
                 </div>
               </div>
             </div>
@@ -173,24 +173,24 @@
             <div class="cards__item cards__item_c">
               <div class="cards__left">
                 <div class="cards__title">
-                  1st round
+                  {{ $t('land.header.items[2].title') }}
                 </div>
                 <div class="cards__sub">
-                  January 13 - February 13
+                  {{ $t('land.header.items[2].sub') }}
                 </div>
                 <div class="cards__extra">
-                  50% extra token
+                  {{ $t('land.header.items[2].extra') }}
                 </div>
                 <div class="cards__epitaph">
-                  issued 3 months after the end of the ICO
+                  {{ $t('land.header.items[2].desc') }}
                 </div>
               </div>
               <div class="cards__right">
                 <div class="cards__sub">
-                  For token
+                  {{ $t('land.header.items[2].token') }}
                 </div>
                 <div class="cards__cost">
-                  € 3,00
+                  {{ $t('land.header.items[2].price') }}
                 </div>
               </div>
             </div>

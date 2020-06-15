@@ -1,5 +1,44 @@
 {
   "land": {
+    "header": {
+      "title": "Start pre ICO",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "whitepaper": "Whitepaper",
+      "contract": "Contract",
+      "kyc": "K.Y.C",
+      "softcap":"Soft Cap (350 Millions €)",
+      "centercap": "(1 Billion €)",
+      "hardcap":"Hard Cap (4 Billions €)",
+      "items": [
+        {
+          "title": "1st round",
+          "sub": "January 13 - February 13",
+          "extra": "50% extra token",
+          "desc": "issued 3 months after the end of the ICO",
+          "token": "For token",
+          "price": "€ 3,00"
+        },
+        {
+          "title": "1st round",
+          "sub": "January 13 - February 13",
+          "extra": "50% extra token",
+          "desc": "issued 3 months after the end of the ICO",
+          "token": "For token",
+          "price": "€ 3,00"
+        },
+        {
+          "title": "1st round",
+          "sub": "January 13 - February 13",
+          "extra": "50% extra token",
+          "desc": "issued 3 months after the end of the ICO",
+          "token": "For token",
+          "price": "€ 3,00"
+        }
+      ]
+    },
     "adv": {
       "links": {
         "facebook": "https://www.google.com/",
