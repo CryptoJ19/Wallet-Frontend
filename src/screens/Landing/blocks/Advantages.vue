@@ -51,7 +51,7 @@
       </div>
       <div class="advan__links">
         <a
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.facebook')"
           target="_blank"
           class="advan__link"
         >
@@ -61,7 +61,7 @@
           >
         </a>
         <a
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.twitter')"
           target="_blank"
           class="advan__link"
         >
@@ -71,7 +71,7 @@
           >
         </a>
         <a
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.in')"
           target="_blank"
           class="advan__link"
         >
@@ -81,7 +81,7 @@
           >
         </a>
         <a
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.telegram')"
           target="_blank"
           class="advan__link"
         >
@@ -98,14 +98,11 @@
 export default {
   data: () => ({
     items: [
-      { title: 'WALLET', sub: 'SCOPRI' },
-      { title: 'TECHNOLOGY', sub: 'SCOPRI' },
-      { title: 'SHOP', sub: 'SCOPRI' },
-      { title: 'PAY AND POS', sub: 'SCOPRI' },
-      { title: 'MARKETPLACE', sub: 'SCOPRI' },
-      { title: 'DELIVERY', sub: 'SCOPRI' },
     ],
   }),
+  mounted() {
+    this.items = this.$t('land.adv.items');
+  },
   methods: {
     imagePath(i) {
       return require(`assets/imgs/Landing/advan_${i + 1}.svg`);

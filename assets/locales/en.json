@@ -1,4 +1,40 @@
 {
+  "land": {
+    "adv": {
+      "links": {
+        "facebook": "https://www.google.com/",
+        "twitter": "https://www.google.com/",
+        "in": "https://www.google.com/",
+        "telegram": "https://www.google.com/"
+      },
+      "items": [
+        {
+          "title": "WALLET",
+          "sub": "SCOPRI"
+        },
+        {
+          "title": "TECHNOLOGY",
+          "sub": "SCOPRI"
+        },
+        {
+          "title": "SHOP",
+          "sub": "SCOPRI"
+        },
+        {
+          "title": "PAY AND POS",
+          "sub": "SCOPRI"
+        },
+        {
+          "title": "MARKETPLACE",
+          "sub": "SCOPRI"
+        },
+        {
+          "title": "DELIVERY",
+          "sub": "SCOPRI"
+        }
+      ]
+    }
+  },
   "default": {
     "serverEr": "Server error"
   },
