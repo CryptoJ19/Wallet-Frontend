@@ -15,21 +15,17 @@
     <div class="land__container">
       <div class="paper__r">
         <div class="paper__preface land__preface">
-          Documents, Terms and Conditions
+          {{ $t('land.paper.sub') }}
         </div>
         <div
           class="paper__title land__title"
-          v-html="'Whitepaper'"
+          v-html="$t('land.paper.title')"
         />
         <div class="paper__text land__text">
-          Terms of service are rules by which you must
-          agree to abide by to use a service. The terms
-          of service may also simply be a disclaimer,
-          particularly regarding the use of the websites.
+          {{ $t('land.paper.text') }}
         </div>
         <div class="paper__sub land__sub">
-          Official company program viewable and downloadable
-          in pdf, choose the language most convenient to you:
+          {{ $t('land.paper.sub') }}
         </div>
         <div class="flag">
           <div
@@ -66,12 +62,11 @@
 <script>
 export default {
   data: () => ({
-    flags: [
-      { title: 'Italiano' },
-      { title: 'English' },
-      { title: 'Français' },
-    ],
+    flags: [],
   }),
+  mounted() {
+    this.flags = this.$t('land.paper.items');
+  },
   methods: {
     imagePath(i) {
       return require(`assets/imgs/Landing/flag_${i + 1}.svg`);

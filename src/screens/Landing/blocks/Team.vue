@@ -3,19 +3,10 @@
     <div class="land__container">
       <div
         class="team__title land__title"
-        v-html="'Team'"
+        v-html="$t('land.team.title')"
       />
       <div class="team__text land__text">
-        Cash Flash, unlike other projects in the sector,
-        wants to give the opportunity to all the most competent
-        people to be part of our team, with the aim of welcoming
-        the project, excellences of all nations, to become a global
-        project . Cash Flash was born from the entrepreneurial idea
-        of Andrea Cerato, who shares the vision of a project focused
-        on the opportunity to create a real ecosystem in the world
-        of cryptocurrencies. Through the blockchain, new services
-        are created both for the customer and for the company,
-        creating a shorter and more performing supply chain.
+        {{ $t('land.team.text') }}
       </div>
       <div class="team__body">
         <div
@@ -95,64 +86,12 @@
 <script>
 export default {
   data: () => ({
-    persons: [
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-      {
-        title: 'Andrea Cerato',
-        sub: 'FOUNDER',
-        in: 'https://www.google.com/',
-        mail: 'https://www.google.com/',
-      },
-    ],
+    persons: [],
     page: 0,
   }),
+  mounted() {
+    this.persons = this.$t('land.team.items');
+  },
   methods: {
     setPrevPage() {
       if (this.page !== 0) {

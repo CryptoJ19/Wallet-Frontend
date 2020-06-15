@@ -16,44 +16,44 @@
               href="#test"
               class="menu__item"
             >
-              Home
+              {{ $t('land.menu.items[0].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Roadmap
+              {{ $t('land.menu.items[1].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Transactions
+              {{ $t('land.menu.items[2].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Wallet
+              {{ $t('land.menu.items[3].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Team
+              {{ $t('land.menu.items[4].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Advisor
+              {{ $t('land.menu.items[5].title') }}
             </a>
           </div>
           <a
             :href="`/app`"
             class="menu__ac"
           >
-            Account
+            {{ $t('land.menu.ac') }}
           </a>
         </div>
       </div>
@@ -86,7 +86,7 @@
               :href="`/app`"
               class="menu__ac"
             >
-              Account
+              {{ $t('land.menu.ac') }}
             </a>
           </div>
         </div>
@@ -99,37 +99,37 @@
               href="#test"
               class="menu__item"
             >
-              Home
+              {{ $t('land.menu.items[0].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Roadmap
+              {{ $t('land.menu.items[1].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Transactions
+              {{ $t('land.menu.items[2].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Wallet
+              {{ $t('land.menu.items[3].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Team
+              {{ $t('land.menu.items[4].title') }}
             </a>
             <a
               href="#test"
               class="menu__item"
             >
-              Advisor
+              {{ $t('land.menu.items[5].title') }}
             </a>
           </div>
         </div>

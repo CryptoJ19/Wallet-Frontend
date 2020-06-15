@@ -1,5 +1,28 @@
 {
   "land": {
+    "menu": {
+      "ac": "Account",
+      "items": [
+        {
+          "title": "Home"
+        },
+        {
+          "title": "Roadmap"
+        },
+        {
+          "title": "Transactions"
+        },
+        {
+          "title": "Wallet"
+        },
+        {
+          "title": "Team"
+        },
+        {
+          "title": "Advisor"
+        }
+      ]
+    },
     "header": {
       "title": "Start pre ICO",
       "days": "Days",
@@ -44,7 +67,9 @@
         "facebook": "https://www.google.com/",
         "twitter": "https://www.google.com/",
         "in": "https://www.google.com/",
-        "telegram": "https://www.google.com/"
+        "telegram": "https://www.google.com/",
+        "instagram": "https://www.google.com/",
+        "youtube": "https://www.google.com/"
       },
       "items": [
         {
@@ -72,6 +97,168 @@
           "sub": "SCOPRI"
         }
       ]
+    },
+    "map": {
+      "pre": "Implementation Calendar Wallet",
+      "title": "Road Map",
+      "items": [
+        {
+          "date": "7 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "8 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "9 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "10 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "17 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "27 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "37 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "47 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "57 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "7 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "8 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "9 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "10 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "17 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "27 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "37 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "47 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        },
+        {
+          "date": "57 Guino\n2019",
+          "desc": "Il team operativo e stato definito"
+        }
+      ]
+    },
+    "what": {
+      "pre": "The first blockchain with e-commerce",
+      "title": "What's\nCash Flash",
+      "sub": "We are creating the first project with its real Certified and Guaranteed Marketplace.",
+      "text": "The Cash Flash project was born with the intent to create a series of systems for both the customer and companies, incorporated in the first marketplace where it will be possible to buy everything in cryptocurrency. All stores will be able to use it as a means of payment with a dedicated POS. Furthermore, through Cash Flash Technology it will be possible to trace the products and counteract their counterfeiting."
+    },
+    "paper": {
+      "pre": "Documents, Terms and Conditions",
+      "title": "Whitepaper",
+      "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
+      "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
+      "items": [
+        { "title": "Italiano" },
+        { "title": "English" },
+        { "title": "Français" }
+      ]
+    },
+    "team": {
+      "title": "Team",
+      "text": "Cash Flash, unlike other projects in the sector, wants to give the opportunity to all the most competent people to be part of our team, with the aim of welcoming the project, excellences of all nations, to become a global project . Cash Flash was born from the entrepreneurial idea of Andrea Cerato, who shares the vision of a project focused on the opportunity to create a real ecosystem in the world of cryptocurrencies. Through the blockchain, new services are created both for the customer and for the company, creating a shorter and more performing supply chain.",
+      "items": [
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        },
+        {
+          "title": "Andrea Cerato",
+          "sub": "FOUNDER",
+          "in": "https://www.google.com/",
+          "mail": "https://www.google.com/"
+        }
+      ]
+    },
+    "footer": {
+      "address": "Immeuble SKYLINE\n22 Mail Pablo Picasso\n44000 Nantes (France)",
+      "mail": "info@cashflash.io",
+      "title": "Newsletter",
+      "sub": "Stay updated on the news of Cash Flash",
+      "subBtn": "Subscribe",
     }
   },
   "default": {

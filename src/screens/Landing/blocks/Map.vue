@@ -3,10 +3,10 @@
     <div class="land__container">
       <div class="map__top">
         <div class="map__preface land__preface">
-          Implementation Calendar
+          {{ $t('land.map.pre') }}
         </div>
         <div class="map__title land__title">
-          Road Map
+          {{ $t('land.map.title') }}
         </div>
       </div>
     </div>
@@ -37,16 +37,12 @@
                 <div class="card__line" />
               </div>
               <div class="card__main">
-                <div class="card__title">
-                  <div>
-                    7 Guino
-                  </div>
-                  <div>
-                    2019
-                  </div>
-                </div>
+                <div
+                  class="card__title"
+                  v-html="$t(`land.map.items[${i}].date`)"
+                />
                 <div class="card__text">
-                  Il team operativo e stato definito
+                  {{ $t(`land.map.items[${i}].desc`) }}
                 </div>
               </div>
             </div>
@@ -244,6 +240,7 @@ export default {
         flex-direction: column;
       }
       &__title {
+        white-space: pre-line;
         font-weight: bold;
         font-size: 25px;
         line-height: 143.4%;

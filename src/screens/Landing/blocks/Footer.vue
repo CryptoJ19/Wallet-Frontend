@@ -16,11 +16,10 @@
                 alt="img"
               >
             </div>
-            <div class="address__text">
-              Immeuble SKYLINE
-              22 Mail Pablo Picasso
-              44000 Nantes (France)
-            </div>
+            <div
+              class="address__text"
+              v-html="$t('land.footer.address')"
+            />
           </div>
           <div class="address__item">
             <div class="address__icon">
@@ -29,19 +28,20 @@
                 alt="img"
               >
             </div>
-            <div class="address__text">
-              info@cashflash.io
-            </div>
+            <div
+              class="address__text"
+              v-html="$t('land.footer.mail')"
+            />
           </div>
         </div>
       </div>
       <div class="footer__r">
         <div class="footer__header">
           <div class="footer__title">
-            Newsletter
+            {{ $t('land.footer.title') }}
           </div>
           <div class="footer__sub">
-            Stay updated on the news of Cash Flash
+            {{ $t('land.footer.sub') }}
           </div>
         </div>
         <div class="form">
@@ -65,7 +65,7 @@
       <div class="under__links">
         <a
           target="_blank"
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.facebook')"
           class="under__link"
         >
           <img
@@ -75,7 +75,7 @@
         </a>
         <a
           target="_blank"
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.instagram')"
           class="under__link"
         >
           <img
@@ -85,7 +85,7 @@
         </a>
         <a
           target="_blank"
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.youtube')"
           class="under__link"
         >
           <img
@@ -95,7 +95,7 @@
         </a>
         <a
           target="_blank"
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.twitter')"
           class="under__link"
         >
           <img
@@ -105,7 +105,7 @@
         </a>
         <a
           target="_blank"
-          href="https://www.google.com/"
+          :href="$t('land.adv.links.telegram')"
           class="under__link"
         >
           <img
@@ -219,6 +219,7 @@
           }
         }
         &__text {
+          white-space: pre-line;
           max-width: 180px;
           font-size: 16px;
           line-height: 143.4%;
