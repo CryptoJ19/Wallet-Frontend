@@ -18,17 +18,100 @@ export default {
     erUserMsg: '',
 
     userFieldsPoints: [
-      'qwe',
-      'qwe',
+      'cfname',
+      'firstname',
+      'lastname',
+      'birth',
+      'placeBirth',
+      'docIdent',
+
+      'docNum',
+      'releaseDate',
+      'expireDate',
+      'docIdentCopy',
+      'docIdentCopyFile',
+
+      'state',
+      'street',
+      'city',
+      'cap',
+      'phone',
     ],
-    userFields: [
-      {
-        title: 'asd',
+    userFields: {
+      cfname: {
+        value: 'nickname',
+        er: '',
+        const: true,
       },
-    ],
+      firstname: {
+        value: 'firstName',
+        er: '',
+        required: true,
+      },
+      lastname: {
+        value: 'lastName',
+        er: '',
+        required: true,
+      },
+      birth: {
+        value: 'empty',
+        er: '',
+      },
+      placeBirth: {
+        value: 'empty',
+        er: '',
+      },
+      docIdent: {
+        value: 'empty',
+        er: '',
+      },
+
+      docNum: {
+        value: 'empty',
+        er: '',
+      },
+      releaseDate: {
+        value: 'empty',
+        er: '',
+      },
+      expireDate: {
+        value: 'empty',
+        er: '',
+      },
+      docIdentCopy: {
+        value: 'empty',
+        er: '',
+      },
+      docIdentCopyFile: {
+        value: 'empty',
+        er: '',
+      },
+
+      state: {
+        value: 'empty',
+        er: '',
+      },
+      street: {
+        value: 'empty',
+        er: '',
+      },
+      city: {
+        value: 'empty',
+        er: '',
+      },
+      cap: {
+        value: 'empty',
+        er: '',
+      },
+      phone: {
+        value: 'phone',
+        er: '',
+      },
+    },
   }),
   mounted() {
-    this.localProfile = { ...this.getProfile };
+    // this.localProfile = { ...this.getProfile };
+    this.setDefaultProfile();
   },
   components: {
     Loader,
@@ -61,9 +144,56 @@ export default {
       'fetchEditProfile',
       'fetchGetProfile',
     ]),
+    setDefaultProfile() {
+      this.localProfile = {
+        cfname: this.getProfile.nickname,
+        firstname: this.getProfile.firstName,
+        lastname: this.getProfile.lastName,
+        birth: 'birthValue',
+        placeBirth: 'placeBirthValue',
+        docIdent: 'docIdentValue',
 
-    disableGABtn() {
+        docNum: 'docNumValue',
+        releaseDate: 'releaseDateValue',
+        expireDate: 'expireDateValue',
+        docIdentCopy: 'docIdentCopyValue',
+        docIdentCopyFile: 'docIdentCopyFileValue',
 
+        state: 'stateValue',
+        street: 'streetValue',
+        city: 'cityValue',
+        cap: 'capValue',
+        phone: this.getProfile.phone,
+      };
+    },
+    checkEr() {
+      this.userFieldsPoints.forEach((item) => {
+        if (this.userFields[item].required && this.localProfile[item] === '') {
+          this.userFields[item].er = 'Обязательное поле';
+        }
+      });
+      return this.userFieldsPoints
+        .map((item) => this.userFields[item].er !== '')
+        .indexOf(true) !== -1;
+    },
+    async saveUser() {
+      console.log(!this.checkEr());
+      if (!this.checkEr()) {
+        this.userLoader = true;
+        const data = {
+          firstName: this.localProfile.firstname,
+          lastName: this.localProfile.lastname,
+        };
+        if (this.localProfile.phone !== '' && this.localProfile.phone !== null) {
+          data.phone = this.localProfile.phone;
+        }
+        const res = await this.fetchEditProfile(data);
+        console.log(res);
+        await this.fetchGetProfile();
+        this.userLoader = false;
+        this.setDefaultProfile();
+        this.setUserEditMode(0);
+      }
     },
     changePassSuccess() {
       this.$bvModal.hide('modal-change-pass');
@@ -78,19 +208,19 @@ export default {
       this.$bvModal.hide('modal-disable-ga');
       this.$bvModal.show('modal-success-disable-ga');
     },
-    async saveUser() {
-      if (this.checkUserValidation()) {
-        this.userLoader = true;
-        const res = await this.fetchEditProfile({
-          firstName: this.localProfile.firstName,
-          lastName: this.localProfile.lastName,
-        });
-        console.log(res);
-        await this.fetchGetProfile();
-        this.userLoader = false;
-        this.setUserEditMode(0);
-      }
-    },
+    // async saveUser() {
+    //   if (this.checkUserValidation()) {
+    //     this.userLoader = true;
+    //     const res = await this.fetchEditProfile({
+    //       firstName: this.localProfile.firstName,
+    //       lastName: this.localProfile.lastName,
+    //     });
+    //     console.log(res);
+    //     await this.fetchGetProfile();
+    //     this.userLoader = false;
+    //     this.setUserEditMode(0);
+    //   }
+    // },
     getUserEr(i) {
       return this.erUser.indexOf(i) !== -1;
     },
@@ -99,8 +229,12 @@ export default {
     },
     cancelEditUser() {
       this.erUser = [];
-      this.localProfile = { ...this.getProfile };
       this.setUserEditMode(0);
+
+      this.setDefaultProfile();
+      this.userFieldsPoints.forEach((item) => {
+        this.userFields[item].er = '';
+      });
     },
     setUserEditMode(i) {
       this.userEditMode = i;
