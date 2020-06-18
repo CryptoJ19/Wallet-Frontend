@@ -1,5 +1,6 @@
 .pro {
-  display: flex;
+  display: grid;
+  grid-gap: 20px;
   //padding: 0 50px 50px;
   &__items {
     width: 100%;
@@ -25,7 +26,7 @@
   }
   .tfa {
     width: 100%;
-    margin: 0 0 20px;
+    //margin: 0 0 20px;
     &__title {
       color: #000000;
       font-weight: bold;
@@ -72,7 +73,7 @@
     }
   }
   .user {
-    min-width: 612px;
+    //min-width: 612px;
     margin: 0 20px 0 0;
     position: relative;
     .ava {
@@ -149,6 +150,10 @@
     }
     &__items {
       margin: 0 0 35px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 15px;
+      grid-row-gap: 8px;
     }
     &__item {
       display: flex;
@@ -160,9 +165,9 @@
           color: #000;
         }
       }
-      &:not(:last-child) {
-        margin: 0 0 10px;
-      }
+      //&:not(:last-child) {
+      //  margin: 0 0 10px;
+      //}
     }
     &__title {
       color: #000000;
@@ -180,6 +185,7 @@
     }
     .btn {
       width: 45%;
+      max-width: 243px;
       &:first-child {
         @include btn;
         @include btn_out;
@@ -226,20 +232,6 @@
   //  padding: 50px;
   //}
   @media (max-width: 1199px) {
-    .tfa {
-      &__items {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      &__item {
-        &:not(:last-child) {
-          margin: 0 0 17px;
-        }
-        &:last-child {
-          margin: 0 0 0 40px;
-        }
-      }
-    }
     .change-pass {
       flex-direction: column;
       align-items: flex-start;
@@ -260,10 +252,34 @@
     flex-direction: column;
     .user {
       margin: 0 0 20px;
+      &__items {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     .tfa {
       &__text {
         margin: 0 0 0 12px;
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    .user {
+      &__items {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tfa {
+      &__items {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      &__item {
+        &:not(:last-child) {
+          margin: 0 0 17px;
+        }
+        &:last-child {
+          margin: 0 0 0 40px;
+        }
       }
     }
   }

@@ -16,6 +16,16 @@ export default {
 
     erUser: [],
     erUserMsg: '',
+
+    userFieldsPoints: [
+      'qwe',
+      'qwe',
+    ],
+    userFields: [
+      {
+        title: 'asd',
+      },
+    ],
   }),
   mounted() {
     this.localProfile = { ...this.getProfile };
