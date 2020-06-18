@@ -49,10 +49,10 @@
             <input
               class="form__input"
               type="text"
-              placeholder="Email"
+              :placeholder="$t('land.footer.mailInput')"
             >
             <button class="form__btn">
-              Subscribe
+              {{ $t('land.footer.subBtn') }}
             </button>
           </div>
           <div class="form__msg">
