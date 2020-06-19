@@ -19,8 +19,8 @@ export default {
 
     userFieldsPoints: [
       'cfname',
-      'firstname',
-      'lastname',
+      'firstName',
+      'lastName',
       'birth',
       'placeBirth',
       'docIdent',
@@ -43,12 +43,12 @@ export default {
         er: '',
         const: true,
       },
-      firstname: {
+      firstName: {
         value: 'firstName',
         er: '',
         required: true,
       },
-      lastname: {
+      lastName: {
         value: 'lastName',
         er: '',
         required: true,
@@ -112,6 +112,25 @@ export default {
   mounted() {
     // this.localProfile = { ...this.getProfile };
     this.setDefaultProfile();
+
+    this.userFields.cfname.title = 'Сash Flash name';
+    this.userFields.firstName.title = 'Name *';
+    this.userFields.lastName.title = 'Surname *';
+    this.userFields.birth.title = 'Date of birth *';
+    this.userFields.placeBirth.title = 'Place of birth *';
+    this.userFields.docIdent.title = 'Identity document *';
+
+    this.userFields.docNum.title = 'Document # *';
+    this.userFields.releaseDate.title = 'Release date *';
+    this.userFields.expireDate.title = 'Expiry date *';
+    this.userFields.docIdentCopy.title = 'Copy of identity document *';
+    this.userFields.docIdentCopyFile.title = 'Choose file  *';
+
+    this.userFields.state.title = 'State *';
+    this.userFields.street.title = 'Street and number  *';
+    this.userFields.city.title = 'City *';
+    this.userFields.cap.title = 'C.A.P. *';
+    this.userFields.phone.title = 'Telephone *';
   },
   components: {
     Loader,
@@ -146,24 +165,7 @@ export default {
     ]),
     setDefaultProfile() {
       this.localProfile = {
-        cfname: this.getProfile.nickname,
-        firstname: this.getProfile.firstName,
-        lastname: this.getProfile.lastName,
-        birth: 'birthValue',
-        placeBirth: 'placeBirthValue',
-        docIdent: 'docIdentValue',
-
-        docNum: 'docNumValue',
-        releaseDate: 'releaseDateValue',
-        expireDate: 'expireDateValue',
-        docIdentCopy: 'docIdentCopyValue',
-        docIdentCopyFile: 'docIdentCopyFileValue',
-
-        state: 'stateValue',
-        street: 'streetValue',
-        city: 'cityValue',
-        cap: 'capValue',
-        phone: this.getProfile.phone,
+        ...this.getProfile,
       };
     },
     checkEr() {
@@ -181,12 +183,17 @@ export default {
       if (!this.checkEr()) {
         this.userLoader = true;
         const data = {
-          firstName: this.localProfile.firstname,
-          lastName: this.localProfile.lastname,
+          firstName: this.localProfile.firstName,
+          lastName: this.localProfile.lastName,
         };
-        if (this.localProfile.phone !== '' && this.localProfile.phone !== null) {
-          data.phone = this.localProfile.phone;
-        }
+        // if (this.localProfile.phone !== '' && this.localProfile.phone !== null) {
+        //   data.phone = this.localProfile.phone;
+        // }
+        this.userFieldsPoints.forEach((item) => {
+          if (this.localProfile[item] !== '' && this.localProfile[item] !== null) {
+            data[item] = this.localProfile[item];
+          }
+        });
         const res = await this.fetchEditProfile(data);
         console.log(res);
         await this.fetchGetProfile();

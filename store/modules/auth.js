@@ -201,7 +201,21 @@ export default {
       state.isAuthorized = value;
     },
     updateProfile(state, value) {
-      state.profile = value;
+      state.profile = {
+        ...value,
+        birth: '',
+        placeBirth: '',
+        docIdent: '',
+        docNum: '',
+        releaseDate: '',
+        expireDate: '',
+        docIdentCopy: '',
+        docIdentCopyFile: '',
+        state: '',
+        street: '',
+        city: '',
+        cap: '',
+      };
     },
     updateAccess(state, value) {
       localStorage.setItem('accessToken', value);

@@ -38,11 +38,11 @@
           </div>
         </div>
       </div>
-      <div>
-        <button @click="checkEr">
-          checkIsEmpty
-        </button>
-      </div>
+      <!--      <div>-->
+      <!--        <button @click="checkEr">-->
+      <!--          checkIsEmpty-->
+      <!--        </button>-->
+      <!--      </div>-->
       <div class="user__items">
         <div
           v-for="(item, i) in userFieldsPoints"
@@ -51,7 +51,7 @@
           :class="{'user__item_disable': (userFields[item].const || userEditMode === 0) }"
         >
           <div class="user__title">
-            {{ item }}
+            {{ userFields[item].title }}
           </div>
           <input
             v-model.trim="localProfile[item]"
