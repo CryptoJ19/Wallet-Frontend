@@ -58,6 +58,7 @@ export default {
       { title: 'Wallet', router: 'wallet' },
       { title: 'Profile', router: 'profile' },
       { title: 'Referal', router: 'referal' },
+      { title: 'Purchase', router: 'purchase' },
     ],
   }),
   computed: {
@@ -99,6 +100,8 @@ export default {
       height: 48px;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+      position: absolute;
+      right: 0;
     }
     &__icon {
       img:last-child {
@@ -107,11 +110,12 @@ export default {
     }
     &__item {
       height: 78px;
-      padding: 0 0 0 50px;
+      padding: 0 60px 0 50px;
       text-decoration: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
     }
     &__title {
       font-weight: bold;
