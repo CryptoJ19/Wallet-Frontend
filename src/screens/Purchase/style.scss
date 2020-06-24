@@ -76,7 +76,7 @@
       height: 37px;
       background: $yellow;
       border-radius: 8px;
-      width: 50%;
+      width: calc(50% + 2px);
       position: absolute;
       left: 0;
       margin: -1px;

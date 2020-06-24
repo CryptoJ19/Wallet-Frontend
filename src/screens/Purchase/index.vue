@@ -1,5 +1,21 @@
 <template>
   <div class="content__item pur">
+    <ModalResponse
+      :id="'pay-success-modal'"
+      :text="'success text'"
+      :title="'Success'"
+      :success="true"
+    />
+    <ModalResponse
+      :id="'pay-fail-modal'"
+      :text="'Failure text'"
+      :title="'Failure'"
+      :success="false"
+    />
+    <ModalPayConfirm
+      @showPaySuccessModal="showPaySuccessModal()"
+      @showPayFailModal="showPayFailModal()"
+    />
     <div class="timer">
       <img
         src="~assets/imgs/timer-bg.svg"
@@ -159,7 +175,10 @@
         1.000 €
       </div>
       <div class="pay__btns">
-        <button class="pay__btn">
+        <button
+          class="pay__btn"
+          @click="showModal('modal-pay-confirm')"
+        >
           Confirm
         </button>
       </div>

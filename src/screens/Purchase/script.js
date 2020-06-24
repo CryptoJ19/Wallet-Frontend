@@ -1,10 +1,14 @@
 import { mapActions, mapGetters } from 'vuex';
 import baseUrl from '../../../config';
 import Loader from '../../ui/Loader';
+import ModalResponse from '../../components/ModalResponse';
+import ModalPayConfirm from './ModalPayConfirm';
 
 export default {
   components: {
     Loader,
+    ModalResponse,
+    ModalPayConfirm,
   },
   computed: {
     ...mapGetters([
@@ -28,16 +32,21 @@ export default {
       'fetchSendInvite',
       'getReferalData',
     ]),
-    copy(str) {
-      const el = document.createElement('textarea');
-      el.value = str;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-    },
     setPayTab(i) {
       this.payTab = i;
     },
+    showPaySuccessModal() {
+      this.showModal('pay-success-modal');
+    },
+    showPayFailModal() {
+      this.showModal('pay-fail-modal');
+    },
+    showModal(value) {
+      this.$bvModal.show(value);
+    },
+    hideModal(value) {
+      this.$bvModal.hide(value);
+    },
+
   },
 };

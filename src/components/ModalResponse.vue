@@ -1,25 +1,31 @@
 <template>
   <b-modal
-    id="modal-success-change-pass"
+    :id="id"
     centered
     hide-header
     hide-footer
   >
-    <div class="mod">
+    <div class="mod mod_response">
       <div class="mod__head">
         <div class="mod__title">
-          {{ $t('profile.modalChangePass.titleSuccess') }}
+          {{ title }}
         </div>
         <div class="mod__closs">
           <img
+            v-if="success"
             src="~assets/imgs/icons/v_green.svg"
-            alt="close"
+            alt="icon"
+          >
+          <img
+            v-else
+            src="~assets/imgs/icons/cross-red.svg"
+            alt="icon"
           >
         </div>
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          {{ $t('profile.modalChangePass.textSuccess') }}
+          {{ text }}
         </div>
       </div>
       <div class="mod__btns">
@@ -36,10 +42,24 @@
 <script>
 
 export default {
+  props: {
+    id: String,
+    title: String,
+    text: String,
+    success: Boolean,
+  },
   methods: {
     close() {
-      this.$bvModal.hide('modal-success-change-pass');
+      this.$bvModal.hide(this.id);
     },
   },
 };
 </script>
+
+<style lang="scss">
+  .mod_response {
+    .mod__text {
+      margin: 0 0 20px;
+    }
+  }
+</style>
