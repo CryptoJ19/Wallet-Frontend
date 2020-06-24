@@ -10,7 +10,7 @@
       <div class="ega__top">
         <div class="mod__head">
           <div class="mod__title">
-            {{ $t('profile.modalEnableGA.modalEnableGA') }}
+            {{ $t('profile.modalEnableGA.title') }}
           </div>
           <button
             class="mod__closs"

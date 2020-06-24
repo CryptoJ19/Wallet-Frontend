@@ -17,6 +17,8 @@ export default {
     erUser: [],
     erUserMsg: '',
 
+    docIdentCopyFileData: ['file.pdf'],
+
     userFieldsPoints: [
       'cfname',
       'firstName',
@@ -39,68 +41,53 @@ export default {
     ],
     userFields: {
       cfname: {
-        value: 'nickname',
         er: '',
         const: true,
       },
       firstName: {
-        value: 'firstName',
         er: '',
         required: true,
       },
       lastName: {
-        value: 'lastName',
         er: '',
         required: true,
       },
       birth: {
-        value: 'empty',
         er: '',
       },
       placeBirth: {
-        value: 'empty',
         er: '',
       },
       docIdent: {
-        value: 'empty',
         er: '',
       },
 
       docNum: {
-        value: 'empty',
         er: '',
       },
       releaseDate: {
-        value: 'empty',
         er: '',
       },
       expireDate: {
-        value: 'empty',
         er: '',
       },
       docIdentCopy: {
-        value: 'empty',
         er: '',
       },
       docIdentCopyFile: {
-        value: 'empty',
         er: '',
+        type: 'filePicker',
       },
-
       state: {
-        value: 'empty',
         er: '',
       },
       street: {
-        value: 'empty',
         er: '',
       },
       city: {
-        value: 'empty',
         er: '',
       },
       cap: {
-        value: 'empty',
         er: '',
       },
       phone: {
@@ -163,6 +150,35 @@ export default {
       'fetchEditProfile',
       'fetchGetProfile',
     ]),
+    removeDocFile(i) {
+      this.userLoader = true;
+      setTimeout(() => {
+        this.docIdentCopyFileData.splice(i, 1);
+        this.userLoader = false;
+      }, 1500);
+    },
+    handleImageDoc(e) {
+      console.log(e.target.files[0]);
+      this.docIdentCopyFileData.push(e.target.files[0].name);
+      this.userLoader = true;
+      setTimeout(() => {
+        this.userLoader = false;
+      }, 1500);
+      // this.er = [];
+      // const fileObj = e.target.files[0];
+      // console.log('fileObj', fileObj.size / 1024 / 1024);
+      //
+      //
+      // if (e.currentTarget !== null) {
+      //   if ((fileObj.size / 1024 / 1024) > 5) {
+      //     this.er.push(1);
+      //   }
+      //   if (this.er.length === 0) {
+      //     this.loading = true;
+      //     this.createBase64Image(fileObj);
+      //   }
+      // }
+    },
     setDefaultProfile() {
       this.localProfile = {
         ...this.getProfile,

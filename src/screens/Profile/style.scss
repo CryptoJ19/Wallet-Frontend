@@ -76,6 +76,77 @@
     //min-width: 612px;
     margin: 0 20px 0 0;
     position: relative;
+    .file {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-radius: 15px;
+      padding: 0 0 0 20px;
+      height: 44px;
+      border: 1px solid $stroke;
+      transition: .2s;
+      #doc-file-input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 1;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+      &__add {
+        @include btn;
+        @include btn-yellow;
+        padding: 0;
+        border-radius: initial;
+        height: calc(100% + 2px);
+        background: $yellow;
+        width: 40px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        margin: -1px;
+        img {
+          width: 8px;
+          transform: rotate(45deg);
+        }
+      }
+      &__items {
+        display: flex;
+        align-items: center;
+      }
+      &__cross {
+        @include btn;
+        display: flex;
+        position: absolute;
+        right: -10px;
+        top: -5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        background: #FFF;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 2px 2px rgba(103, 90, 23, 0.28);
+        img {
+          width: 8px;
+        }
+      }
+      &__item {
+        position: relative;
+        align-items: center;
+        display: flex;
+        background: $yellow-gradient;
+        border-radius: 13px;
+        padding: 1px 10px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #000000;
+        &:not(:last-child) {
+          margin: 0 14px 0 0;
+        }
+      }
+    }
     .ava {
       width: 127px;
       height: 127px;
@@ -173,6 +244,16 @@
           cursor: default;
           &:focus, &:hover {
             color: rgba($grey, .5);
+          }
+        }
+        .file {
+          border-color: transparent;
+          cursor: default;
+          &__cross {
+            display: none;
+          }
+          &__add {
+            display: none;
           }
         }
       }

@@ -53,237 +53,61 @@
           <div class="user__title">
             {{ userFields[item].title }}
           </div>
-          <input
-            v-model.trim="localProfile[item]"
-            :disabled="userFields[item].const || userEditMode === 0"
-            type="text"
+          <div
+            v-if="userFields[item].type === 'filePicker'"
+            class="file"
           >
+            <input
+              id="doc-file-input"
+              name="myFile"
+              type="file"
+              accept="image/*"
+              @change="handleImageDoc"
+            >
+            <div class="file__items">
+              <div
+                v-for="(file, i) in docIdentCopyFileData"
+                :key="`file__item_${i}`"
+                class="file__item"
+              >
+                <div class="file__name">
+                  {{ file }}
+                </div>
+                <button
+                  class="file__cross"
+                  @click="removeDocFile(i)"
+                >
+                  <img
+                    src="~assets/imgs/icons/cross.svg"
+                    alt="close"
+                  >
+                </button>
+              </div>
+            </div>
+            <label
+              class="file__add"
+              for="doc-file-input"
+            >
+              <img
+                src="~assets/imgs/icons/cross.svg"
+                alt="close"
+              >
+            </label>
+          </div>
+          <div
+            v-else
+            class="user__input"
+          >
+            <input
+              v-model.trim="localProfile[item]"
+              :disabled="userFields[item].const || userEditMode === 0"
+              type="text"
+            >
+          </div>
           <div class="form__er">
             {{ userFields[item].er }}
-            <!--            <div v-if="getUserEr(0)">-->
-            <!--              {{ $t('auth.er.enterFirstName') }}-->
-            <!--            </div>-->
           </div>
         </div>
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.firstName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.firstName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(0)">-->
-        <!--              {{ $t('auth.er.enterFirstName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.lastName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.lastName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(1)">-->
-        <!--              {{ $t('auth.er.enterSecondName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.nickname') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.nickname"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.email') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.email"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.firstName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.firstName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(0)">-->
-        <!--              {{ $t('auth.er.enterFirstName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.lastName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.lastName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(1)">-->
-        <!--              {{ $t('auth.er.enterSecondName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.nickname') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.nickname"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.email') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.email"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.firstName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.firstName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(0)">-->
-        <!--              {{ $t('auth.er.enterFirstName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.lastName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.lastName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(1)">-->
-        <!--              {{ $t('auth.er.enterSecondName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.nickname') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.nickname"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.email') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.email"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.firstName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.firstName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(0)">-->
-        <!--              {{ $t('auth.er.enterFirstName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.lastName') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model.trim="localProfile.lastName"-->
-        <!--            :disabled="userEditMode === 0"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er">-->
-        <!--            <div v-if="getUserEr(1)">-->
-        <!--              {{ $t('auth.er.enterSecondName') }}-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.nickname') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.nickname"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
-        <!--        <div class="user__item">-->
-        <!--          <div class="user__title">-->
-        <!--            {{ $t('auth.email') }}-->
-        <!--          </div>-->
-        <!--          <input-->
-        <!--            v-model="localProfile.email"-->
-        <!--            class="vinput__disable"-->
-        <!--            :disabled="true"-->
-        <!--            type="text"-->
-        <!--          >-->
-        <!--          <div class="form__er" />-->
-        <!--        </div>-->
       </div>
       <div
         v-if="userEditMode === 0"
