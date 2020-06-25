@@ -13,6 +13,8 @@
       :success="false"
     />
     <ModalPayConfirm
+      :mode="payTab"
+      :total="formatSum(amount)"
       @showPaySuccessModal="showPaySuccessModal()"
       @showPayFailModal="showPayFailModal()"
     />

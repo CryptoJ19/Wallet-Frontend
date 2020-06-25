@@ -16,7 +16,7 @@
           {{ $t('purchase.check.total') }}
         </div>
         <div class="pay__sum">
-          1.000 €
+          {{ total }} {{ $t('purchase.cur') }}
         </div>
         <div class="pay__items">
           <div class="pay__item">
@@ -44,31 +44,33 @@
             </div>
           </div>
         </div>
-        <div class="war">
-          <div class="war__icon">
-            <img
-              src="~assets/imgs/icons/warning.svg"
-              alt="icon"
-            >
+        <div v-if="mode === 0">
+          <div class="war">
+            <div class="war__icon">
+              <img
+                src="~assets/imgs/icons/warning.svg"
+                alt="icon"
+              >
+            </div>
+            <div
+              class="war__text"
+              v-html="$t('purchase.check.warText')"
+            />
           </div>
-          <div
-            class="war__text"
-            v-html="$t('purchase.check.warText')"
-          />
-        </div>
-        <div class="address">
-          <div class="address__value">
-            {{ CFAddress }}
-          </div>
-          <button
-            class="address__copy"
-            @click="copy(CFAddress)"
-          >
-            <img
-              src="~assets/imgs/icons/copy.svg"
-              alt="close"
+          <div class="address">
+            <div class="address__value">
+              {{ CFAddress }}
+            </div>
+            <button
+              class="address__copy"
+              @click="copy(CFAddress)"
             >
-          </button>
+              <img
+                src="~assets/imgs/icons/copy.svg"
+                alt="close"
+              >
+            </button>
+          </div>
         </div>
       </div>
       <div class="mod__btns">
@@ -87,6 +89,10 @@
 import { CFAddress } from '../../../config';
 
 export default {
+  props: {
+    mode: Number,
+    total: Number,
+  },
   data: () => ({
     CFAddress,
   }),
@@ -115,6 +121,9 @@ export default {
   #modal-pay-confirm {
     .pay {
       font-family: Roboto;
+      /*&__filds {*/
+      /*  d*/
+      /*}*/
       &__subtitle {
         font-size: 16px;
         line-height: 143.4%;
