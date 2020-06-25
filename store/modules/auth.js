@@ -1,5 +1,5 @@
 import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers/customFetch';
-import baseUrl from '../../config';
+import { baseUrl } from '../../config';
 
 const apiUrl = 'https://test.cashflash.io/api';
 

@@ -26,7 +26,7 @@
 <script>
 import ContainerConsole from '~/src/components/ContainerConsole';
 import { getAccessToken } from '~/helpers/customFetch';
-import baseUrl from '../../config';
+import { baseUrl } from '../../config';
 
 export default {
   components: {

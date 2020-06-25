@@ -2,7 +2,7 @@ import { mapActions } from 'vuex';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
 import { getAccessToken } from '~/helpers/customFetch';
-import baseUrl from '../../../config';
+import { baseUrl } from '../../../config';
 
 export default {
   components: {

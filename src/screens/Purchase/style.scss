@@ -249,10 +249,13 @@
       position: absolute;
     }
     &__point {
-
       display: flex;
       align-items: center;
       position: relative;
+    }
+    &__tippy {
+      position: absolute;
+      right: -15px;
     }
     &__border {
       width: 30px;
@@ -262,8 +265,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: absolute;
-      right: -15px;
+      //position: absolute;
+      //right: -15px;
     }
     &__nucleus {
       display: flex;

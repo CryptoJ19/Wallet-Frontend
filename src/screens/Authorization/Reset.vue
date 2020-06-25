@@ -82,7 +82,7 @@
 import { mapActions } from 'vuex';
 import modalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
-// import baseUrl from '../../../config';
+// import { baseUrl } from '../../../config';
 
 export default {
   components: {

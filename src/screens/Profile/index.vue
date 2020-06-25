@@ -38,11 +38,6 @@
           </div>
         </div>
       </div>
-      <!--      <div>-->
-      <!--        <button @click="checkEr">-->
-      <!--          checkIsEmpty-->
-      <!--        </button>-->
-      <!--      </div>-->
       <div class="user__items">
         <div
           v-for="(item, i) in userFieldsPoints"

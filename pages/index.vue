@@ -5,7 +5,7 @@
 </template>
 <script>
 
-import baseUrl from '../config';
+import { baseUrl } from '../config';
 import Landing from '~/src/screens/Landing';
 
 export default {

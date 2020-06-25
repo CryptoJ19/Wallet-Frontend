@@ -8,12 +8,12 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Check and confirm
+          {{ $t('purchase.check.title') }}
         </div>
       </div>
       <div class="pay">
         <div class="pay__subtitle">
-          Total amount
+          {{ $t('purchase.check.total') }}
         </div>
         <div class="pay__sum">
           1.000 €
@@ -21,7 +21,7 @@
         <div class="pay__items">
           <div class="pay__item">
             <div class="pay__text">
-              Some data
+              {{ $t('purchase.check.items[0]') }}
             </div>
             <div class="pay__value">
               1.000 €
@@ -29,7 +29,7 @@
           </div>
           <div class="pay__item">
             <div class="pay__text">
-              Some data
+              {{ $t('purchase.check.items[1]') }}
             </div>
             <div class="pay__value">
               1.000 €
@@ -37,7 +37,7 @@
           </div>
           <div class="pay__item">
             <div class="pay__text">
-              Some data
+              {{ $t('purchase.check.items[2]') }}
             </div>
             <div class="pay__value">
               1.000 €
@@ -53,18 +53,16 @@
           </div>
           <div
             class="war__text"
-            v-html="'Send your EOS coins to the CashFlash EOS account name below.\nCaution! ' +
-              'Type your personal CashFlash account name into' +
-              ' the Memo field when sending EOS coins in order to allow us to track your payment.'"
+            v-html="$t('purchase.check.warText')"
           />
         </div>
         <div class="address">
           <div class="address__value">
-            cashflasheos
+            {{ CFAddress }}
           </div>
           <button
             class="address__copy"
-            @click="copy('cashflasheos')"
+            @click="copy(CFAddress)"
           >
             <img
               src="~assets/imgs/icons/copy.svg"
@@ -78,7 +76,7 @@
           class="mod__btn"
           @click="showPaySuccessModal()"
         >
-          {{ $t('profile.modalChangePass.closeSuccess') }}
+          {{ $t('purchase.check.ok') }}
         </button>
       </div>
     </div>
@@ -86,7 +84,12 @@
 </template>
 <script>
 
+import { CFAddress } from '../../../config';
+
 export default {
+  data: () => ({
+    CFAddress,
+  }),
   methods: {
     showPaySuccessModal() {
       this.close();

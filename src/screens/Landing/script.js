@@ -1,5 +1,5 @@
 import Loader from '../../ui/Loader';
-// import baseUrl from '../../../config';
+// import { baseUrl } from '../../../config';
 import Header from './blocks/Header';
 import Menu from './blocks/Menu';
 import Advantages from './blocks/Advantages';

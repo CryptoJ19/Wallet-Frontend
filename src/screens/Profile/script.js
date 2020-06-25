@@ -20,7 +20,7 @@ export default {
     docIdentCopyFileData: ['file.pdf'],
 
     userFieldsPoints: [
-      'cfname',
+      'nickname',
       'firstName',
       'lastName',
       'birth',
@@ -40,7 +40,7 @@ export default {
       'phone',
     ],
     userFields: {
-      cfname: {
+      nickname: {
         er: '',
         const: true,
       },
@@ -91,8 +91,8 @@ export default {
         er: '',
       },
       phone: {
-        value: 'phone',
         er: '',
+        type: 'phone',
       },
     },
   }),
@@ -100,7 +100,7 @@ export default {
     // this.localProfile = { ...this.getProfile };
     this.setDefaultProfile();
 
-    this.userFields.cfname.title = 'Сash Flash name';
+    this.userFields.nickname.title = 'Сash Flash name';
     this.userFields.firstName.title = 'Name *';
     this.userFields.lastName.title = 'Surname *';
     this.userFields.birth.title = 'Date of birth *';

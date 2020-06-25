@@ -422,5 +422,76 @@
     "statBonuses": "My bonuses",
     "statRef":" My referrals",
     "someMsg": "Some message"
+  },
+  "purchase": {
+    "modal": {
+      "successText": "Success text",
+      "successTitle": "Success",
+      "failureText": "Failure text",
+      "failureTitle": "Failure"
+    },
+    "check": {
+      "title": "Check and confirm",
+      "total": "Total amount",
+      "items": [
+        "Some data 1",
+        "Some data 2",
+        "Some data 3"
+      ],
+      "warText": "Send your EOS coins to the CashFlash EOS account name below.\nCaution! Type your personal CashFlash account name into the Memo field when sending EOS coins in order to allow us to track your payment.",
+      "ok": "Ok"
+    },
+    "days": "Days",
+    "d": "D",
+    "hours": "Hours",
+    "h": "H",
+    "minutes": "Minutes",
+    "m": "M",
+    "seconds": "Seconds",
+    "s": "S",
+    "ico": "ICO Progress",
+    "progressItems": [
+      "text 111",
+      "text 22",
+      "text 333"
+    ],
+    "specify": "Specify a number",
+    "choose": "Choose a payment method",
+    "EOS": "EOS",
+    "stripe": "Stripe",
+    "amount": "Amount",
+    "amountPlaceholder": "Amount placeholder",
+    "total": "Total sum",
+    "cur": "€",
+    "confirm": "Confirm",
+    "steps": {
+      "title": "Steps",
+      "items": [
+        {
+          "round": "1 Round",
+          "date": "January 13 - February 13",
+          "extra": "50% extra token",
+          "released": "released 3 months later the end of the ICO",
+          "sum": "$ 2.07",
+          "token": "For token"
+        },
+        {
+          "round": "1 Round",
+          "date": "January 13 - February 13",
+          "extra": "50% extra token",
+          "released": "released 3 months later the end of the ICO",
+          "sum": "$ 2.07",
+          "token": "For token"
+        },
+        {
+          "round": "1 Round",
+          "date": "January 13 - February 13",
+          "extra": "50% extra token",
+          "released": "released 3 months later the end of the ICO",
+          "sum": "$ 2.07",
+          "token": "For token"
+        }
+      ]
+    }
   }
 }

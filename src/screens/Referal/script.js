@@ -1,5 +1,5 @@
 import { mapActions, mapGetters } from 'vuex';
-import baseUrl from '../../../config';
+import { baseUrl } from '../../../config';
 import Loader from '../../ui/Loader';
 
 export default {

@@ -1,5 +1,5 @@
 import { mapActions, mapGetters } from 'vuex';
-import baseUrl from '../../../config';
+import { baseUrl } from '../../../config';
 import Loader from '../../ui/Loader';
 import ModalResponse from '../../components/ModalResponse';
 import ModalPayConfirm from './ModalPayConfirm';
@@ -19,6 +19,8 @@ export default {
     },
   },
   data: () => ({
+    amount: '',
+    totalSum: '',
     sendEmail: '',
     sendMsg: '',
     sendLoading: false,
@@ -32,6 +34,15 @@ export default {
       'fetchSendInvite',
       'getReferalData',
     ]),
+    formatSum(value) {
+      let res;
+      if (value === '') {
+        res = 0;
+      } else {
+        res = +value;
+      }
+      return (Math.ceil(res * 100) / 100);
+    },
     setPayTab(i) {
       this.payTab = i;
     },

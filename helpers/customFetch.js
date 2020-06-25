@@ -1,4 +1,4 @@
-import baseUrl from '../config';
+import { baseUrl } from '../config';
 
 const getAccessToken = () => {
   if (localStorage.getItem('accessToken') !== null) {

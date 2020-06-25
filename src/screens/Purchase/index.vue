@@ -2,14 +2,14 @@
   <div class="content__item pur">
     <ModalResponse
       :id="'pay-success-modal'"
-      :text="'success text'"
-      :title="'Success'"
+      :text="$t('purchase.modal.successText')"
+      :title="$t('purchase.modal.successTitle')"
       :success="true"
     />
     <ModalResponse
       :id="'pay-fail-modal'"
-      :text="'Failure text'"
-      :title="'Failure'"
+      :text="$t('purchase.modal.failureText')"
+      :title="$t('purchase.modal.failureTitle')"
       :success="false"
     />
     <ModalPayConfirm
@@ -28,10 +28,10 @@
             38
           </div>
           <div class="timer__title">
-            Days
+            {{ $t('purchase.days') }}
           </div>
           <div class="timer__title timer__title_mob">
-            D
+            {{ $t('purchase.d') }}
           </div>
         </div>
         <div class="timer__points">
@@ -42,10 +42,10 @@
             12
           </div>
           <div class="timer__title">
-            Hours
+            {{ $t('purchase.hours') }}
           </div>
           <div class="timer__title timer__title_mob">
-            H
+            {{ $t('purchase.h') }}
           </div>
         </div>
         <div class="timer__points">
@@ -56,10 +56,10 @@
             12
           </div>
           <div class="timer__title">
-            Minutes
+            {{ $t('purchase.minutes') }}
           </div>
           <div class="timer__title timer__title_mob">
-            M
+            {{ $t('purchase.m') }}
           </div>
         </div>
         <div class="timer__points">
@@ -70,10 +70,10 @@
             12
           </div>
           <div class="timer__title">
-            Seconds
+            {{ $t('purchase.seconds') }}
           </div>
           <div class="timer__title timer__title_mob">
-            S
+            {{ $t('purchase.s') }}
           </div>
         </div>
       </div>
@@ -87,39 +87,39 @@
           >
         </div>
         <div class="progress__title">
-          ICO Progress
+          {{ $t('purchase.ico') }}
         </div>
       </div>
       <div class="line">
         <div class="line__container">
           <div class="line__filler" />
           <div class="line__points">
-            <div class="line__point line__point_active">
-              <div class="line__border">
-                <div class="line__nucleus">
-                  <div class="line__num">
-                    1
+            <div
+              v-for="(item, i) in 3"
+              :key="`line__point_${i}`"
+              :class="{'line__point_active': (i === 0)}"
+              class="line__point"
+            >
+              <tippy
+                animation="shift-toward"
+                placement="top"
+                theme="dark"
+                arrow
+                class="line__tippy"
+              >
+                <template
+                  v-slot:trigger
+                >
+                  <div class="line__border">
+                    <div class="line__nucleus">
+                      {{ item }}
+                    </div>
                   </div>
+                </template>
+                <div>
+                  {{ $t(`purchase.progressItems[${i}]`) }}
                 </div>
-              </div>
-            </div>
-            <div class="line__point">
-              <div class="line__border">
-                <div class="line__nucleus">
-                  <div class="line__num">
-                    2
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="line__point">
-              <div class="line__border">
-                <div class="line__nucleus">
-                  <div class="line__num">
-                    3
-                  </div>
-                </div>
-              </div>
+              </tippy>
             </div>
             <div class="line__point" />
           </div>
@@ -131,10 +131,10 @@
     </div>
     <div class="pay">
       <div class="pay__title">
-        Specify a number
+        {{ $t('purchase.specify') }}
       </div>
       <div class="pay__subtitle">
-        Choose a payment method
+        {{ $t('purchase.choose') }}
       </div>
       <div class="tab">
         <div class="tab__box">
@@ -147,116 +147,74 @@
               class="tab__item"
               @click="setPayTab(0)"
             >
-              EOS
+              {{ $t('purchase.EOS') }}
             </button>
             <button
               class="tab__item"
               @click="setPayTab(1)"
             >
-              Stripe
+              {{ $t('purchase.stripe') }}
             </button>
           </div>
         </div>
       </div>
       <div class="pay__subtitle">
-        Amount
+        {{ $t('purchase.amount') }}
       </div>
       <div class="pay__amount">
         <input
+          v-model="amount"
           maxlength="40"
-          :placeholder="'Amount'"
-          type="text"
+          :placeholder="$t('purchase.amountPlaceholder')"
+          type="number"
         >
       </div>
       <div class="pay__subtitle">
-        Total sum
+        {{ $t('purchase.total') }}
       </div>
       <div class="pay__sum">
-        1.000 €
+        {{ formatSum(amount) }} {{ $t('purchase.cur') }}
       </div>
       <div class="pay__btns">
         <button
           class="pay__btn"
           @click="showModal('modal-pay-confirm')"
         >
-          Confirm
+          {{ $t('purchase.confirm') }}
         </button>
       </div>
     </div>
     <div class="steps">
       <div class="steps__title">
-        Steps
+        {{ $t('purchase.steps.title') }}
       </div>
       <div class="steps__items">
-        <div class="step">
+        <div
+          v-for="(item, i) in 3"
+          :key="`steps__item${i}`"
+          class="step"
+          :class="{'step_active': (i === 2)}"
+        >
           <div class="step__item">
             <div class="step__title">
-              1 Round
+              {{ $t(`purchase.steps.items[${i}].round`) }}
             </div>
             <div class="step__sub">
-              January 13 - February 13
+              {{ $t(`purchase.steps.items[${i}].date`) }}
             </div>
           </div>
           <div class="step__item">
-            50% extra token
+            {{ $t(`purchase.steps.items[${i}].extra`) }}
           </div>
           <div class="step__item">
-            released 3 months later the end of the ICO
-          </div>
-          <div class="step__item">
-            <div class="step__title">
-              $ 2.07
-            </div>
-            <div class="step__sub">
-              For token
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step__item">
-            <div class="step__title">
-              1 Round
-            </div>
-            <div class="step__sub">
-              January 13 - February 13
-            </div>
-          </div>
-          <div class="step__item">
-            50% extra token
-          </div>
-          <div class="step__item">
-            released 3 months later the end of the ICO
+            {{ $t(`purchase.steps.items[${i}].released`) }}
           </div>
           <div class="step__item">
             <div class="step__title">
-              $ 2.07
+              {{ $t(`purchase.steps.items[${i}].sum`) }}
             </div>
             <div class="step__sub">
-              For token
-            </div>
-          </div>
-        </div>
-        <div class="step step_active">
-          <div class="step__item">
-            <div class="step__title">
-              1 Round
-            </div>
-            <div class="step__sub">
-              January 13 - February 13
-            </div>
-          </div>
-          <div class="step__item">
-            50% extra token
-          </div>
-          <div class="step__item">
-            released 3 months later the end of the ICO
-          </div>
-          <div class="step__item">
-            <div class="step__title">
-              $ 2.07
-            </div>
-            <div class="step__sub">
-              For token
+              {{ $t(`purchase.steps.items[${i}].token`) }}
             </div>
           </div>
         </div>
