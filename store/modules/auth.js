@@ -1,4 +1,6 @@
-import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers/customFetch';
+import {
+  customFetch, customFetchToken, getHeaderWithToken, customFetchFormdata,
+} from '../../helpers/customFetch';
 import { baseUrl, apiUrl } from '../../config';
 
 export default {
@@ -48,7 +50,7 @@ export default {
         const header = getHeaderWithToken();
         // console.log(header);
         header['content-type'] = 'multipart/form-data';
-        const rawResponse = await customFetch(
+        const rawResponse = await customFetchFormdata(
           `${apiUrl}/profile/me/documents`,
           'POST',
           header,

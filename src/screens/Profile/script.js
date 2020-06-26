@@ -185,11 +185,11 @@ export default {
           //   file: fileObj,
           // };
 
-          const data = new FormData();
-          data.append('file', fileObj);
-          console.log(data, fileObj);
+          const formData = new FormData();
+          formData.append('file', fileObj);
+          console.log(formData, fileObj);
           this.userLoader = true;
-          const res = await this.fetchPostDocFiles(data);
+          const res = await this.fetchPostDocFiles(formData);
           this.userLoader = false;
           this.docIdentCopyFileData.push(fileObj.name);
 

@@ -16,6 +16,29 @@ const getHeaderWithToken = () => {
   };
 };
 
+const customFetchFormdata = (url, method, header = null, data = null) => {
+  console.log(data);
+  if (data !== null) {
+    return fetch(url, {
+      method,
+      headers: {
+        ...header,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: data,
+    });
+  }
+  return fetch(url, {
+    method,
+    headers: {
+      ...header,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 const customFetch = (url, method, header = null, data = null) => {
   console.log(data);
   if (data !== null) {
@@ -84,4 +107,5 @@ export {
   customFetchToken,
   getAccessToken,
   getHeaderWithToken,
+  customFetchFormdata,
 };
