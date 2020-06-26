@@ -1,7 +1,5 @@
 import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers/customFetch';
-import { baseUrl } from '../../config';
-
-const apiUrl = 'https://test.cashflash.io/api';
+import { baseUrl, apiUrl } from '../../config';
 
 export default {
   state: {
@@ -17,10 +15,54 @@ export default {
     isAuthorized: false,
   },
   actions: {
+    async fetchDelDocFiles(ctx, i) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me/documents?id=${i} `,
+          'DELETE',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      return res;
+    },
+
+    async fetchGetDocFiles(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me/documents`,
+          'GET',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      return res;
+    },
+
+    async fetchPostDocFiles(ctx, data) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        // console.log(header);
+        header['content-type'] = 'multipart/form-data';
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/me/documents`,
+          'POST',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      return res;
+    },
+
     async fetchGetTransactions(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        console.log(header);
         const rawResponse = await customFetch(
           `${apiUrl}/profile/me/txs`,
           'GET',

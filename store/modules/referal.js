@@ -1,6 +1,5 @@
 import { customFetch, customFetchToken, getHeaderWithToken } from '../../helpers/customFetch';
-
-const apiUrl = 'https://test.cashflash.io/api';
+import { apiUrl } from '../../config';
 
 export default {
   state: {

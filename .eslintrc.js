@@ -25,6 +25,7 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-param-reassign': 'off',
-    'no-useless-escape': 'off'
+    'no-useless-escape': 'off',
+    'no-console': 'off'
   }
 }

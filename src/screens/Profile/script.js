@@ -149,7 +149,18 @@ export default {
       'logout',
       'fetchEditProfile',
       'fetchGetProfile',
+      'fetchGetDocFiles',
+      'fetchPostDocFiles',
+      'fetchDelDocFiles',
     ]),
+    cutString(value) {
+      const centerIndex = Math.ceil(value.length / 2);
+      if (value.length > 12) {
+        const lengthPoints = value.length - 10;
+        return `${value.substr(0, centerIndex - (lengthPoints / 2))}${'.'.repeat(3)}${value.substr(centerIndex + (lengthPoints / 2), value.length)}`;
+      }
+      return value;
+    },
     removeDocFile(i) {
       this.userLoader = true;
       setTimeout(() => {
@@ -157,13 +168,25 @@ export default {
         this.userLoader = false;
       }, 1500);
     },
-    handleImageDoc(e) {
+    async handleImageDoc(e) {
       console.log(e.target.files[0]);
       this.docIdentCopyFileData.push(e.target.files[0].name);
       this.userLoader = true;
-      setTimeout(() => {
-        this.userLoader = false;
-      }, 1500);
+
+      const data = {
+        file: e.target.files[0],
+      };
+
+      // const formData = new FormData();
+      // formData.append('file', e.target.files[0]);
+
+      const res = await this.fetchPostDocFiles(data);
+
+      console.log(res);
+      this.userLoader = false;
+
+      // setTimeout(() => {
+      // }, 1500);
       // this.er = [];
       // const fileObj = e.target.files[0];
       // console.log('fileObj', fileObj.size / 1024 / 1024);

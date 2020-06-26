@@ -56,7 +56,7 @@
               id="doc-file-input"
               name="myFile"
               type="file"
-              accept="image/*"
+              accept=".pdf"
               @change="handleImageDoc"
             >
             <div class="file__items">
@@ -66,7 +66,7 @@
                 class="file__item"
               >
                 <div class="file__name">
-                  {{ file }}
+                  {{ cutString(file) }}
                 </div>
                 <button
                   class="file__cross"

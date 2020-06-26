@@ -59,11 +59,6 @@ export default {
     contentLoader: false,
     globalLoader: true,
   }),
-  mounted() {
-    document.body.addEventListener('click', (e) => this.closeOnDocClick(e));
-
-    this.init();
-  },
   computed: {
     ...mapGetters([
       'getIsAuthorized',
@@ -77,6 +72,11 @@ export default {
         this.fetchTempGAToken();
       }
     },
+  },
+  mounted() {
+    document.body.addEventListener('click', (e) => this.closeOnDocClick(e));
+
+    this.init();
   },
   methods: {
     ...mapActions([
