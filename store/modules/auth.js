@@ -48,7 +48,6 @@ export default {
     async fetchPostDocFiles(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        // console.log(header);
         header['content-type'] = 'multipart/form-data';
         const rawResponse = await customFetchFormdata(
           `${apiUrl}/profile/me/documents`,
