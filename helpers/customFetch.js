@@ -23,8 +23,6 @@ const customFetchFormdata = (url, method, header = null, data = null) => {
       method,
       headers: {
         ...header,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
       },
       body: data,
     });
@@ -33,8 +31,6 @@ const customFetchFormdata = (url, method, header = null, data = null) => {
     method,
     headers: {
       ...header,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
     },
   });
 };
@@ -56,8 +52,6 @@ const customFetch = (url, method, header = null, data = null) => {
     method,
     headers: {
       ...header,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
     },
   });
 };
