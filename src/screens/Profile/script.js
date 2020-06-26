@@ -162,6 +162,7 @@ export default {
       return value;
     },
     removeDocFile(i) {
+      this.userFields.docIdentCopyFile.er = '';
       this.userLoader = true;
       setTimeout(() => {
         this.docIdentCopyFileData.splice(i, 1);
@@ -169,22 +170,32 @@ export default {
       }, 1500);
     },
     async handleImageDoc(e) {
+      this.userFields.docIdentCopyFile.er = '';
       console.log(e.target.files[0]);
-      this.docIdentCopyFileData.push(e.target.files[0].name);
-      this.userLoader = true;
+      const fileObj = e.target.files[0];
+      if (e.currentTarget !== null) {
+        if ((fileObj.size / 1024 / 1024) > 2) {
+          this.userFields.docIdentCopyFile.er = 'Слишком большой файл';
+        }
+        if (this.docIdentCopyFileData.length === 2) {
+          this.userFields.docIdentCopyFile.er = 'Можно загрузить только 2 файла';
+        }
+        if (this.userFields.docIdentCopyFile.er === '') {
+          // const data = {
+          //   file: fileObj,
+          // };
 
-      const data = {
-        file: e.target.files[0],
-      };
+          const data = new FormData();
+          data.append('file', fileObj);
+          console.log(data, fileObj);
+          this.userLoader = true;
+          const res = await this.fetchPostDocFiles(data);
+          this.userLoader = false;
+          this.docIdentCopyFileData.push(fileObj.name);
 
-      // const formData = new FormData();
-      // formData.append('file', e.target.files[0]);
-
-      const res = await this.fetchPostDocFiles(data);
-
-      console.log(res);
-      this.userLoader = false;
-
+          console.log(res);
+        }
+      }
       // setTimeout(() => {
       // }, 1500);
       // this.er = [];
@@ -278,6 +289,9 @@ export default {
       this.setUserEditMode(0);
 
       this.setDefaultProfile();
+      this.clearEr();
+    },
+    clearEr() {
       this.userFieldsPoints.forEach((item) => {
         this.userFields[item].er = '';
       });
