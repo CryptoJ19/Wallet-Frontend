@@ -52,25 +52,26 @@
             v-if="userFields[item].type === 'filePicker'"
             class="file"
           >
+            <!--            {{ getDocFile }}-->
             <input
               id="doc-file-input"
               name="myFile"
               type="file"
-              accept=".pdf"
+              accept=".jpg, .png, .pdf"
               @change="handleImageDoc"
             >
             <div class="file__items">
               <div
-                v-for="(file, i) in docIdentCopyFileData"
+                v-for="(file, i) in getDocFile"
                 :key="`file__item_${i}`"
                 class="file__item"
               >
                 <div class="file__name">
-                  {{ cutString(file) }}
+                  {{ cutString(file.originalName) }}
                 </div>
                 <button
                   class="file__cross"
-                  @click="removeDocFile(i)"
+                  @click="removeDocFile(file.docId)"
                 >
                   <img
                     src="~assets/imgs/icons/cross.svg"

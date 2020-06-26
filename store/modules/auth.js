@@ -5,16 +5,10 @@ import { baseUrl, apiUrl } from '../../config';
 
 export default {
   state: {
-    profile: {
-      id: '',
-      email: '',
-      firstName: '',
-      lastName: '',
-      nickname: '',
-      wallets: [],
-    },
+    profile: {},
     transactions: {},
     isAuthorized: false,
+    docFiles: [],
   },
   actions: {
     async fetchDelDocFiles(ctx, i) {
@@ -42,13 +36,16 @@ export default {
         const content = await rawResponse.json();
         return content;
       });
+      console.log('fetchPostDocFiles', res);
+      if (res.ok) {
+        ctx.commit('updateDocFile', res.result);
+      }
       return res;
     },
 
     async fetchPostDocFiles(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        header['content-type'] = 'multipart/form-data';
         const rawResponse = await customFetchFormdata(
           `${apiUrl}/profile/me/documents`,
           'POST',
@@ -221,17 +218,11 @@ export default {
   },
   mutations: {
     logout(state) {
-      state.profile = {
-        id: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        nickname: '',
-        wallets: [],
-      };
+      state.profile = {};
       state.transactions = {};
       state.isAuthorized = false;
       state.referal = {};
+      state.docFiles = [];
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');
@@ -272,6 +263,9 @@ export default {
     temporaryRefresh(state, value) {
       sessionStorage.setItem('refreshToken', value);
     },
+    updateDocFile(state, value) {
+      state.docFiles = value;
+    },
   },
   getters: {
     getTransactionList(state) {
@@ -291,6 +285,9 @@ export default {
     },
     getEmail(state) {
       return state.email;
+    },
+    getDocFile(state) {
+      return state.docFiles;
     },
   },
 };

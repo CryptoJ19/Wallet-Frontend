@@ -133,6 +133,7 @@ export default {
     ...mapGetters([
       'getProfile',
       'getGAEnabled',
+      'getDocFile',
     ]),
     avatarBg() {
       if (this.getProfile.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
@@ -161,57 +162,52 @@ export default {
       }
       return value;
     },
-    removeDocFile(i) {
+    async removeDocFile(i) {
       this.userFields.docIdentCopyFile.er = '';
       this.userLoader = true;
-      setTimeout(() => {
-        this.docIdentCopyFileData.splice(i, 1);
-        this.userLoader = false;
-      }, 1500);
+
+      const res = await this.fetchDelDocFiles(i);
+      if (res.ok) {
+        await this.fetchGetDocFiles();
+      }
+      this.userLoader = false;
+      console.log(res);
+      // setTimeout(() => {
+      //   this.docIdentCopyFileData.splice(i, 1);
+      //
+      // }, 1500);
     },
     async handleImageDoc(e) {
       this.userFields.docIdentCopyFile.er = '';
       console.log(e.target.files[0]);
       const fileObj = e.target.files[0];
       if (e.currentTarget !== null) {
+        if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
+          this.userFields.docIdentCopyFile.er = 'Можно загружать только .jpg, .png, .pdf файлы';
+          return null;
+        }
         if ((fileObj.size / 1024 / 1024) > 2) {
           this.userFields.docIdentCopyFile.er = 'Слишком большой файл';
+          return null;
         }
-        if (this.docIdentCopyFileData.length === 2) {
+        if (this.getDocFile.length === 2) {
           this.userFields.docIdentCopyFile.er = 'Можно загрузить только 2 файла';
+          return null;
         }
         if (this.userFields.docIdentCopyFile.er === '') {
-          // const data = {
-          //   file: fileObj,
-          // };
-
           const formData = new FormData();
           formData.append('file', fileObj);
           console.log(formData, fileObj);
           this.userLoader = true;
           const res = await this.fetchPostDocFiles(formData);
+          if (res.ok) {
+            await this.fetchGetDocFiles();
+          }
           this.userLoader = false;
-          this.docIdentCopyFileData.push(fileObj.name);
-
           console.log(res);
         }
       }
-      // setTimeout(() => {
-      // }, 1500);
-      // this.er = [];
-      // const fileObj = e.target.files[0];
-      // console.log('fileObj', fileObj.size / 1024 / 1024);
-      //
-      //
-      // if (e.currentTarget !== null) {
-      //   if ((fileObj.size / 1024 / 1024) > 5) {
-      //     this.er.push(1);
-      //   }
-      //   if (this.er.length === 0) {
-      //     this.loading = true;
-      //     this.createBase64Image(fileObj);
-      //   }
-      // }
+      return null;
     },
     setDefaultProfile() {
       this.localProfile = {
@@ -229,6 +225,7 @@ export default {
         .indexOf(true) !== -1;
     },
     async saveUser() {
+      this.clearEr();
       console.log(!this.checkEr());
       if (!this.checkEr()) {
         this.userLoader = true;
