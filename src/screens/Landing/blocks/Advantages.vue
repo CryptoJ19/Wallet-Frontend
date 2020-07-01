@@ -60,13 +60,23 @@
             alt="img"
           >
         </a>
+        <!--        <a-->
+        <!--          :href="$t('land.adv.links.twitter')"-->
+        <!--          target="_blank"-->
+        <!--          class="advan__link"-->
+        <!--        >-->
+        <!--          <img-->
+        <!--            src="~assets/imgs/Landing/advan__links_tw.svg"-->
+        <!--            alt="img"-->
+        <!--          >-->
+        <!--        </a>-->
         <a
-          :href="$t('land.adv.links.twitter')"
+          :href="$t('land.adv.links.instagram')"
           target="_blank"
           class="advan__link"
         >
           <img
-            src="~assets/imgs/Landing/advan__links_tw.svg"
+            src="~assets/imgs/Landing/link_instagram.svg"
             alt="img"
           >
         </a>
@@ -80,16 +90,16 @@
             alt="img"
           >
         </a>
-        <a
-          :href="$t('land.adv.links.telegram')"
-          target="_blank"
-          class="advan__link"
-        >
-          <img
-            src="~assets/imgs/Landing/advan__links_tg.svg"
-            alt="img"
-          >
-        </a>
+        <!--        <a-->
+        <!--          :href="$t('land.adv.links.telegram')"-->
+        <!--          target="_blank"-->
+        <!--          class="advan__link"-->
+        <!--        >-->
+        <!--          <img-->
+        <!--            src="~assets/imgs/Landing/advan__links_tg.svg"-->
+        <!--            alt="img"-->
+        <!--          >-->
+        <!--        </a>-->
       </div>
     </div>
   </div>
@@ -133,6 +143,9 @@ export default {
       height: 70px;
       border: 3px solid $grey;;
       border-radius: 100%;
+      img {
+        height: 34px;
+      }
       &:nth-child(4) img {
         margin: 0 5px 0 0;
       }

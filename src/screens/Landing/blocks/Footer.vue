@@ -84,35 +84,45 @@
           >
         </a>
         <a
+          :href="$t('land.adv.links.in')"
           target="_blank"
-          :href="$t('land.adv.links.youtube')"
           class="under__link"
         >
           <img
-            src="~assets/imgs/Landing/under_3.svg"
+            src="~assets/imgs/Landing/advan__links_in_2.svg"
             alt="img"
           >
         </a>
-        <a
-          target="_blank"
-          :href="$t('land.adv.links.twitter')"
-          class="under__link"
-        >
-          <img
-            src="~assets/imgs/Landing/under_4.svg"
-            alt="img"
-          >
-        </a>
-        <a
-          target="_blank"
-          :href="$t('land.adv.links.telegram')"
-          class="under__link"
-        >
-          <img
-            src="~assets/imgs/Landing/under_5.svg"
-            alt="img"
-          >
-        </a>
+        <!--        <a-->
+        <!--          target="_blank"-->
+        <!--          :href="$t('land.adv.links.youtube')"-->
+        <!--          class="under__link"-->
+        <!--        >-->
+        <!--          <img-->
+        <!--            src="~assets/imgs/Landing/under_3.svg"-->
+        <!--            alt="img"-->
+        <!--          >-->
+        <!--        </a>-->
+        <!--        <a-->
+        <!--          target="_blank"-->
+        <!--          :href="$t('land.adv.links.twitter')"-->
+        <!--          class="under__link"-->
+        <!--        >-->
+        <!--          <img-->
+        <!--            src="~assets/imgs/Landing/under_4.svg"-->
+        <!--            alt="img"-->
+        <!--          >-->
+        <!--        </a>-->
+        <!--        <a-->
+        <!--          target="_blank"-->
+        <!--          :href="$t('land.adv.links.telegram')"-->
+        <!--          class="under__link"-->
+        <!--        >-->
+        <!--          <img-->
+        <!--            src="~assets/imgs/Landing/under_5.svg"-->
+        <!--            alt="img"-->
+        <!--          >-->
+        <!--        </a>-->
       </div>
     </div>
   </div>
@@ -130,8 +140,8 @@
         display: flex;
       }
       &__link {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
         &:not(:last-child) {
           margin: 0 24px 0 0;
         }
