@@ -87,12 +87,12 @@ export default {
     title: String,
   },
   computed: {
-    ...mapGetters(['getProfile']),
+    ...mapGetters(['getProfile', 'getAvatar']),
     avatarBg() {
-      if (this.getProfile.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+      if (this.getAvatar === 'https://test.cashflash.io/api/profile/avatar/null') {
         return `background-image: url(${this.imagePath()})`;
       }
-      return `background-image: url(${this.getProfile.avatar})`;
+      return `background-image: url(${this.getAvatar})`;
     },
   },
   methods: {

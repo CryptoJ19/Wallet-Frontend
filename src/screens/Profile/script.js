@@ -23,20 +23,43 @@ export default {
       'nickname',
       'firstName',
       'lastName',
-      'birth',
-      'placeBirth',
-      'docIdent',
+      'birthDate',
+      'birthPlace',
+      'identityDocument',
 
-      'docNum',
-      'releaseDate',
-      'expireDate',
-      'docIdentCopy',
+      'identityDocumentNumber',
+      'identityDocumentRelDate',
+      'identityDocumentExpDate',
       'docIdentCopyFile',
 
       'state',
-      'street',
+      'streetType',
+      'streetName',
+      'buildingNum',
+      'unitNumber',
       'city',
-      'cap',
+      'zip',
+      'phone',
+    ],
+    userFieldsPointsInput: [
+      'nickname',
+      'firstName',
+      'lastName',
+      'birthDate',
+      'birthPlace',
+      'identityDocument',
+
+      'identityDocumentNumber',
+      'identityDocumentRelDate',
+      'identityDocumentExpDate',
+
+      'state',
+      'streetType',
+      'streetName',
+      'buildingNum',
+      'unitNumber',
+      'city',
+      'zip',
       'phone',
     ],
     userFields: {
@@ -52,42 +75,52 @@ export default {
         er: '',
         required: true,
       },
-      birth: {
+      birthDate: {
         er: '',
       },
-      placeBirth: {
+      birthPlace: {
         er: '',
       },
-      docIdent: {
+      identityDocument: {
         er: '',
       },
 
-      docNum: {
+      identityDocumentNumber: {
         er: '',
       },
-      releaseDate: {
+      identityDocumentRelDate: {
         er: '',
       },
-      expireDate: {
-        er: '',
-      },
-      docIdentCopy: {
+      identityDocumentExpDate: {
         er: '',
       },
       docIdentCopyFile: {
         er: '',
         type: 'filePicker',
+        dontSend: true,
       },
       state: {
         er: '',
       },
-      street: {
+      address: {
+        er: '',
+      },
+      streetType: {
+        er: '',
+      },
+      streetName: {
+        er: '',
+      },
+      buildingNum: {
+        er: '',
+      },
+      unitNumber: {
         er: '',
       },
       city: {
         er: '',
       },
-      cap: {
+      zip: {
         er: '',
       },
       phone: {
@@ -103,20 +136,22 @@ export default {
     this.userFields.nickname.title = 'Сash Flash name';
     this.userFields.firstName.title = 'Name *';
     this.userFields.lastName.title = 'Surname *';
-    this.userFields.birth.title = 'Date of birth *';
-    this.userFields.placeBirth.title = 'Place of birth *';
-    this.userFields.docIdent.title = 'Identity document *';
+    this.userFields.birthDate.title = 'Date of birth *';
+    this.userFields.birthPlace.title = 'Place of birth *';
+    this.userFields.identityDocument.title = 'Identity document *';
 
-    this.userFields.docNum.title = 'Document # *';
-    this.userFields.releaseDate.title = 'Release date *';
-    this.userFields.expireDate.title = 'Expiry date *';
-    this.userFields.docIdentCopy.title = 'Copy of identity document *';
+    this.userFields.identityDocumentNumber.title = 'Document # *';
+    this.userFields.identityDocumentRelDate.title = 'Release date *';
+    this.userFields.identityDocumentExpDate.title = 'Expiry date *';
     this.userFields.docIdentCopyFile.title = 'Choose file  *';
 
     this.userFields.state.title = 'State *';
-    this.userFields.street.title = 'Street and number  *';
+    this.userFields.streetType.title = 'Street type';
+    this.userFields.streetName.title = 'Street name';
+    this.userFields.buildingNum.title = 'Street num';
+    this.userFields.unitNumber.title = 'Unit number';
     this.userFields.city.title = 'City *';
-    this.userFields.cap.title = 'C.A.P. *';
+    this.userFields.zip.title = 'C.A.P. *';
     this.userFields.phone.title = 'Telephone *';
   },
   components: {
@@ -132,14 +167,24 @@ export default {
   computed: {
     ...mapGetters([
       'getProfile',
+      'getAvatar',
       'getGAEnabled',
       'getDocFile',
     ]),
+    getProfileChanges() {
+      const changesFields = [];
+      this.userFieldsPointsInput.forEach((item) => {
+        if (this.localProfile[item] !== this.getProfile[item]) {
+          changesFields.push(item);
+        }
+      });
+      return changesFields;
+    },
     avatarBg() {
-      if (this.getProfile.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+      if (this.getAvatar.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
         return `background-image: url(${this.imagePath()})`;
       }
-      return `background-image: url(${this.getProfile.avatar})`;
+      return `background-image: url(${this.getAvatar})`;
     },
     // `background-image: url(${imagePath()})`
     // profile: ({ getProfile }) => ({ ...getProfile }),
@@ -154,6 +199,7 @@ export default {
       'fetchPostDocFiles',
       'fetchDelDocFiles',
     ]),
+
     cutString(value) {
       const centerIndex = Math.ceil(value.length / 2);
       if (value.length > 12) {
@@ -228,23 +274,45 @@ export default {
       this.clearEr();
       console.log(!this.checkEr());
       if (!this.checkEr()) {
-        this.userLoader = true;
-        const data = {
-          firstName: this.localProfile.firstName,
-          lastName: this.localProfile.lastName,
-        };
+        // const data = {
+        //   firstName: this.localProfile.firstName,
+        //   lastName: this.localProfile.lastName,
+        //   birthDate: '',
+        //   birthPlace: '',
+        //   city: '',
+        //   email: 'asd451451451@lexu4g.com',
+        //   id: '300d7042-b0a3-4e88-9a0c-b43c1e715392',
+        //   identityDocument: '',
+        //   identityDocumentExpDate: '',
+        //   identityDocumentNumber: '',
+        //   identityDocumentRelDate: '',
+        //   nickname: 'asd451451452',
+        //   phone: null,
+        //   refLink: '6b8f832a47c6d466',
+        //   state: '',
+        //   telephone: '',
+        // };
+
+
         // if (this.localProfile.phone !== '' && this.localProfile.phone !== null) {
         //   data.phone = this.localProfile.phone;
         // }
-        this.userFieldsPoints.forEach((item) => {
-          if (this.localProfile[item] !== '' && this.localProfile[item] !== null) {
+        // this.userFieldsPoints.forEach((item) => {
+        //   if (this.localProfile[item] !== '' && this.localProfile[item] !== null) {
+        //     data[item] = this.localProfile[item];
+        //   }
+        // });
+        if (this.getProfileChanges.length !== 0) {
+          const data = {};
+          this.getProfileChanges.forEach((item) => {
             data[item] = this.localProfile[item];
-          }
-        });
-        const res = await this.fetchEditProfile(data);
-        console.log(res);
-        await this.fetchGetProfile();
-        this.userLoader = false;
+          });
+          this.userLoader = true;
+          const res = await this.fetchEditProfile(data);
+          this.userLoader = false;
+          console.log(res);
+          await this.fetchGetProfile();
+        }
         this.setDefaultProfile();
         this.setUserEditMode(0);
       }

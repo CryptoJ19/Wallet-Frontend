@@ -237,18 +237,6 @@ export default {
     updateProfile(state, value) {
       state.profile = {
         ...value,
-        birth: '',
-        placeBirth: '',
-        docIdent: '',
-        docNum: '',
-        releaseDate: '',
-        expireDate: '',
-        docIdentCopy: '',
-        docIdentCopyFile: '',
-        state: '',
-        street: '',
-        city: '',
-        cap: '',
       };
     },
     updateAccess(state, value) {
@@ -277,8 +265,14 @@ export default {
     getWallets(state) {
       return state.profile.wallets;
     },
+    getAvatar(state) {
+      return state.profile.avatar;
+    },
     getProfile(state) {
-      return state.profile;
+      const profile = { ...state.profile };
+      delete profile.wallets;
+      delete profile.avatar;
+      return profile;
     },
     getIsAuthorized(state) {
       return state.isAuthorized;
