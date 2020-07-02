@@ -36,6 +36,7 @@
               </div>
               <div class="person__links">
                 <a
+                  v-if="item.in"
                   :href="item.in"
                   class="person__link"
                   target="_blank"
@@ -46,9 +47,9 @@
                   >
                 </a>
                 <a
-                  :href="item.mail"
+                  v-if="item.mail"
+                  :href="`mailto:${item.mail}`"
                   class="person__link"
-                  target="_blank"
                 >
                   <img
                     src="~assets/imgs/Landing/mail.svg"
