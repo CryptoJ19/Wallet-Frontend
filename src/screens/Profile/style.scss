@@ -76,6 +76,52 @@
     //min-width: 612px;
     margin: 0 20px 0 0;
     position: relative;
+    &__input {
+      position: relative;
+      display: flex;
+      align-items: center;
+      &_dd {
+        input {
+          padding: 0 20px 0 110px;
+        }
+      }
+    }
+    .dd {
+      position: absolute;
+      left: 0;
+      height: 100%;
+      font-size: 14px;
+      &__icon {
+        margin: 0 0 0 8px;
+      }
+      &__btn {
+        @include btn-yellow;
+        font-weight: 500;
+        padding: 0;
+        border-radius: 13px 0 0 13px;
+        background: $yellow;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        font-size: 14px;
+      }
+      &__items {
+        z-index: 50;
+        border-radius: 13px;
+        position: absolute;
+        top: calc(100% + 4px);
+        background: #FFF;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 2px 15px -5px rgba(#000, .15);
+        padding: 5px 0;
+      }
+      &__item {
+        padding: 5px 15px;
+      }
+    }
     .file {
       display: flex;
       align-items: center;
@@ -239,6 +285,15 @@
         }
       }
       &_disable {
+        .dd__title {
+          color: rgba(84, 89, 95, 0.5);
+        }
+        .dd__btn {
+          background: #FFF;
+          &:focus, &:hover {
+            background: #FFF;
+          }
+        }
         input {
           border-color: transparent;
           cursor: default;

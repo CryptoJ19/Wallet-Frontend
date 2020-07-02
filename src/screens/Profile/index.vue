@@ -49,7 +49,50 @@
             {{ userFields[item].title }}
           </div>
           <div
-            v-if="userFields[item].type === 'filePicker'"
+            v-if="userFields[item].type === 'streetName'"
+            class="user__input user__input_dd"
+          >
+            <div class="dd">
+              <button
+                v-click-outside="hideDDStreetType"
+                class="dd__btn"
+                @click="toggleDDStreetType()"
+              >
+                <div class="dd__title">
+                  {{ localProfile['streetType'] || streetTypes[0] }}
+                </div>
+                <div
+                  v-if="userEditMode === 1"
+                  class="dd__icon"
+                >
+                  <img
+                    src="~assets/imgs/icons/arrow_dd.svg"
+                    alt="arrow"
+                  >
+                </div>
+              </button>
+              <div
+                v-if="DDStreetType"
+                class="dd__items"
+              >
+                <button
+                  v-for="(item, i) in streetTypes"
+                  :key="`dd__item_streetType_${i}`"
+                  class="dd__item"
+                  @click="selectDDStreetType(item)"
+                >
+                  {{ item }}
+                </button>
+              </div>
+            </div>
+            <input
+              v-model.trim="localProfile[item]"
+              :disabled="userFields[item].const || userEditMode === 0"
+              type="text"
+            >
+          </div>
+          <div
+            v-else-if="userFields[item].type === 'filePicker'"
             class="file"
           >
             <!--            {{ getDocFile }}-->

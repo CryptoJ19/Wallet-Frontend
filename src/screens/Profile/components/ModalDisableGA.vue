@@ -96,7 +96,7 @@
           class="mod__btn"
           @click="preludeSend"
         >
-          {{ $t('auth.er.disableBtn') }}
+          {{ $t('modalDisableGA.disableBtn') }}
         </button>
       </div>
     </div>

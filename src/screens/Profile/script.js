@@ -1,4 +1,5 @@
 import { mapActions, mapGetters } from 'vuex';
+import ClickOutside from 'vue-click-outside';
 import ModalChangePass from './components/ModalChangePass';
 import ModalEnableGA from './components/ModalEnableGA';
 import ModalSuccessEnableGA from './components/ModalSuccessEnableGA';
@@ -9,6 +10,9 @@ import Loader from '~/src/ui/Loader';
 import ModalDisableGA from './components/ModalDisableGA';
 
 export default {
+  directives: {
+    ClickOutside,
+  },
   data: () => ({
     userEditMode: 0,
     localProfile: {},
@@ -17,7 +21,12 @@ export default {
     erUser: [],
     erUserMsg: '',
 
-    docIdentCopyFileData: ['file.pdf'],
+    DDStreetType: false,
+
+    streetTypes: [
+      'Str',
+      'Avenue',
+    ],
 
     userFieldsPoints: [
       'nickname',
@@ -25,6 +34,15 @@ export default {
       'lastName',
       'birthDate',
       'birthPlace',
+      'phone',
+
+      'state',
+      'streetName',
+      'buildingNum',
+      'unitNumber',
+      'city',
+      'zip',
+
       'identityDocument',
 
       'identityDocumentNumber',
@@ -32,14 +50,7 @@ export default {
       'identityDocumentExpDate',
       'docIdentCopyFile',
 
-      'state',
-      'streetType',
-      'streetName',
-      'buildingNum',
-      'unitNumber',
-      'city',
-      'zip',
-      'phone',
+
     ],
     userFieldsPointsInput: [
       'nickname',
@@ -105,11 +116,12 @@ export default {
       address: {
         er: '',
       },
-      streetType: {
-        er: '',
-      },
+      // streetType: {
+      //   er: '',
+      // },
       streetName: {
         er: '',
+        type: 'streetName',
       },
       buildingNum: {
         er: '',
@@ -146,7 +158,7 @@ export default {
     this.userFields.docIdentCopyFile.title = 'Choose file  *';
 
     this.userFields.state.title = 'State *';
-    this.userFields.streetType.title = 'Street type';
+    // this.userFields.streetType.title = 'Street type';
     this.userFields.streetName.title = 'Street name';
     this.userFields.buildingNum.title = 'Street num';
     this.userFields.unitNumber.title = 'Unit number';
@@ -199,7 +211,17 @@ export default {
       'fetchPostDocFiles',
       'fetchDelDocFiles',
     ]),
-
+    selectDDStreetType(value) {
+      this.localProfile.streetType = value;
+    },
+    toggleDDStreetType() {
+      if (this.userEditMode === 1) {
+        this.DDStreetType = !this.DDStreetType;
+      }
+    },
+    hideDDStreetType() {
+      this.DDStreetType = false;
+    },
     cutString(value) {
       const centerIndex = Math.ceil(value.length / 2);
       if (value.length > 12) {
