@@ -4,22 +4,24 @@
       "ac": "Account",
       "items": [
         {
-          "title": "Home"
+          "title": "Ecosystem",
+          "anchor": "ecosystem"
         },
         {
-          "title": "Roadmap"
+          "title": "Roadmap",
+          "anchor": "roadmap"
         },
         {
-          "title": "Transactions"
+          "title": "We are",
+          "anchor": "weare"
         },
         {
-          "title": "Wallet"
+          "title": "White Paper",
+          "anchor": "whitepaper"
         },
         {
-          "title": "Team"
-        },
-        {
-          "title": "Advisor"
+          "title": "Team",
+          "anchor": "team"
         }
       ]
     },
@@ -29,7 +31,7 @@
       "hours": "Hours",
       "minutes": "Minutes",
       "seconds": "Seconds",
-      "whitepaper": "Whitepaper",
+      "whitepaper": "White Paper",
       "contract": "Contract",
       "kyc": "K.Y.C",
       "softcap":"Soft Cap (350 Millions €)",
@@ -45,17 +47,17 @@
           "price": "€ 1.00"
         },
         {
-          "title": "1st round",
-          "sub": "January 13 - February 13",
-          "extra": "50% extra token",
+          "title": "2nd round",
+          "sub": "February 14 - May 14",
+          "extra": "25% extra token",
           "desc": "issued 3 months after the end of the ICO",
           "token": "For token",
           "price": "€ 1.00"
         },
         {
-          "title": "1st round",
-          "sub": "January 13 - February 13",
-          "extra": "50% extra token",
+          "title": "3rd round",
+          "sub": "May 15 - July 15",
+          "extra": "10% extra token",
           "desc": "issued 3 months after the end of the ICO",
           "token": "For token",
           "price": "€ 1.00"
@@ -184,13 +186,13 @@
     },
     "paper": {
       "pre": "Documents, Terms and Conditions",
-      "title": "Whitepaper",
+      "title": "White Paper",
       "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
       "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
       "items": [
-        { "title": "Italiano" },
-        { "title": "English" },
-        { "title": "Français" }
+        { "title": "Italiano", "link": "https://cashflash.io/wp-content/uploads/2020/02/Whitepaper-Cash-Flash-English-3.pdf" },
+        { "title": "English", "link": "https://cashflash.io/wp-content/uploads/2020/02/Whitepaper-Cash-Flash-English-3.pdf" },
+        { "title": "Français", "link": "https://cashflash.io/wp-content/uploads/2020/02/Whitepaper-Cash-Flash-English-3.pdf" }
       ]
     },
     "team": {

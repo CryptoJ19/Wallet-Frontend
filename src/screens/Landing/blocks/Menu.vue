@@ -13,40 +13,35 @@
         <div class="desk__r">
           <div class="menu__items">
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[0].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[0].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[1].anchor')}`"
+
               class="menu__item"
             >
               {{ $t('land.menu.items[1].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[2].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[2].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[3].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[3].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[4].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[4].title') }}
-            </a>
-            <a
-              href="#test"
-              class="menu__item"
-            >
-              {{ $t('land.menu.items[5].title') }}
             </a>
           </div>
           <a
@@ -96,40 +91,35 @@
         >
           <div class="menu__items">
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[0].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[0].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[1].anchor')}`"
+
               class="menu__item"
             >
               {{ $t('land.menu.items[1].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[2].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[2].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[3].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[3].title') }}
             </a>
             <a
-              href="#test"
+              :href="`#${$t('land.menu.items[4].anchor')}`"
               class="menu__item"
             >
               {{ $t('land.menu.items[4].title') }}
-            </a>
-            <a
-              href="#test"
-              class="menu__item"
-            >
-              {{ $t('land.menu.items[5].title') }}
             </a>
           </div>
         </div>

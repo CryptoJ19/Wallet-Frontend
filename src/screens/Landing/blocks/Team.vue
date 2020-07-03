@@ -1,5 +1,8 @@
 <template>
-  <div class="team">
+  <div
+    :id="$t('land.menu.items[4].anchor')"
+    class="team"
+  >
     <div class="land__container">
       <div
         class="team__title land__title"

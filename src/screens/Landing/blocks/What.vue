@@ -1,5 +1,8 @@
 <template>
-  <div class="what">
+  <div
+    :id="$t('land.menu.items[2].anchor')"
+    class="what"
+  >
     <div class="what__r">
       <img
         class="what__img"

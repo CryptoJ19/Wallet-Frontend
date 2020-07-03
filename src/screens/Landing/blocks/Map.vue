@@ -1,5 +1,8 @@
 <template>
-  <div class="map">
+  <div
+    :id="$t('land.menu.items[1].anchor')"
+    class="map"
+  >
     <div class="land__container">
       <div class="map__top">
         <div class="map__preface land__preface">

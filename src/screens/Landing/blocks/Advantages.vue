@@ -1,5 +1,8 @@
 <template>
-  <div class="advan">
+  <div
+    :id="$t('land.menu.items[0].anchor')"
+    class="advan"
+  >
     <div class="advan__logo_mob">
       <img
         src="~assets/imgs/Landing/advan_logo_mob.svg"

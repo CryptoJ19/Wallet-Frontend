@@ -1,5 +1,8 @@
 <template>
-  <div class="paper">
+  <div
+    :id="$t('land.menu.items[3].anchor')"
+    class="paper"
+  >
     <div class="paper__l">
       <img
         class="paper__img"
@@ -44,7 +47,7 @@
                 {{ item.title }}
               </div>
               <a
-                href="https://www.google.com/"
+                :href="item.link"
                 class="flag__load"
               >
                 <img
