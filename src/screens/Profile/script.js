@@ -1,5 +1,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import ClickOutside from 'vue-click-outside';
+import DatePicker from 'vue2-datepicker';
+import moment from 'moment';
 import ModalChangePass from './components/ModalChangePass';
 import ModalEnableGA from './components/ModalEnableGA';
 import ModalSuccessEnableGA from './components/ModalSuccessEnableGA';
@@ -14,6 +16,10 @@ export default {
     ClickOutside,
   },
   data: () => ({
+
+
+    now: moment(String(new Date())).format('DD/MM/YYYY'),
+
     userEditMode: 0,
     localProfile: {},
     userLoader: false,
@@ -43,6 +49,7 @@ export default {
       'buildingNum',
       'unitNumber',
       'zip',
+      'identityDocumentCountry',
 
       'identityDocument',
 
@@ -50,7 +57,6 @@ export default {
       'identityDocumentRelDate',
       'identityDocumentExpDate',
       'docIdentCopyFile',
-      'identityDocumentCountry',
     ],
     userFieldsPointsInput: [
       'nickname',
@@ -89,6 +95,7 @@ export default {
       },
       birthDate: {
         er: '',
+        type: 'date',
       },
       birthPlace: {
         er: '',
@@ -105,6 +112,7 @@ export default {
       },
       identityDocumentExpDate: {
         er: '',
+        type: 'date',
       },
       docIdentCopyFile: {
         er: '',
@@ -182,6 +190,7 @@ export default {
     ModalSuccessDisableGA,
     ModalSuccessChangePass,
     ModalChangeAva,
+    DatePicker,
   },
   computed: {
     ...mapGetters([
@@ -306,6 +315,15 @@ export default {
       this.userFieldsPoints.forEach((item) => {
         if (this.userFields[item].required && this.localProfile[item] === '') {
           this.userFields[item].er = 'Обязательное поле';
+        }
+        if (item === 'identityDocumentExpDate') {
+          const now = this.now.split('/');
+          const expDate = this.localProfile[item].split('/');
+          if ((+expDate[2] < +now[2]
+            || (+expDate[2] === +now[2] && +expDate[1] < +now[1])
+            || (+expDate[2] === +now[2] && +expDate[1] === +now[1] && +expDate[0] < +now[0]))) {
+            this.userFields[item].er = 'Expiry date истек';
+          }
         }
       });
       return this.userFieldsPoints

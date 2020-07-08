@@ -41,7 +41,6 @@
                 />
                 <div class="card__text">
                   {{ item.text }}
-                  {{ getDataInPast(item.dateValue) }}
                 </div>
               </div>
             </div>

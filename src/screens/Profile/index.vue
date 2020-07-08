@@ -177,6 +177,26 @@
             </div>
           </div>
           <div
+            v-else-if="userFields[item].type === 'date'"
+            class="user__input"
+          >
+            <date-picker
+              v-model="localProfile[item]"
+              class="custom-date-picker"
+              :popup-class="'custom-date-picker'"
+              :format="'DD/MM/YYYY'"
+              value-type="format"
+              :disabled="userEditMode === 0"
+            >
+              <template v-slot:icon-calendar>
+                <img
+                  src="~assets/imgs/icons/calendar.svg"
+                  alt="info"
+                >
+              </template>
+            </date-picker>
+          </div>
+          <div
             v-else-if="userFields[item].type === 'num'"
             class="user__input"
           >

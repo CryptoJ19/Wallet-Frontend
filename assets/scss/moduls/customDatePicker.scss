@@ -1,5 +1,5 @@
 .custom-date-picker {
-  width: initial !important;
+  //width: 100% !important;
   color: initial !important;
   font-family: Raleway !important;
 
@@ -7,9 +7,38 @@
     border-color: $yellow;
   }
 
+  &.mx-datepicker {
+    width: 100%;
+  }
+  &.disabled.mx-datepicker {
+    .mx-icon-calendar {
+      display: none;
+    }
+  }
+  .mx-input:disabled {
+    cursor: initial;
+    background: #FFF;
+  }
+
+  .mx-icon-calendar, .mx-icon-clear {
+    right: 20px;
+  }
   .mx-input {
+    padding: 0 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    height: 44px;
     color: initial !important;
     cursor: pointer;
+    box-shadow: initial;
+    -webkit-box-shadow: initial;
+    border: 1px solid $stroke;
+    &:focus, &:hover {
+      border-color: #000;
+      &::placeholder {
+        color: #000;
+      }
+    }
   }
   .mx-btn {
     color: initial;
@@ -40,4 +69,13 @@
       color: initial;
     }
   }
+}
+
+.user__item_disable {
+  .custom-date-picker {
+    .mx-input {
+      border-color: transparent !important;
+    }
+  }
+
 }
