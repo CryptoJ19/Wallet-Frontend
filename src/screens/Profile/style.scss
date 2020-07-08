@@ -350,19 +350,8 @@
       }
     }
   }
-  @media (max-width: 1799px) {
-    .tfa {
-      &__items{
-        width: 100%;
-        margin: 0 0 30px;
-      }
-      .btn {
-        margin: 0 0 0 auto;
-      }
-      &__body {
-        flex-direction: column;
-      }
-    }
+  @media (max-width: 1499px) {
+
   }
   //@media (max-width: 1499px) {
   //  padding: 50px;
@@ -393,6 +382,16 @@
       }
     }
     .tfa {
+      &__items {
+        width: 100%;
+        margin: 0 0 30px;
+      }
+      .btn {
+        margin: 0 0 0 auto;
+      }
+      &__body {
+        flex-direction: column;
+      }
       &__text {
         margin: 0 0 0 12px;
       }

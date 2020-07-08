@@ -457,7 +457,7 @@
     "EOS": "EOS",
     "stripe": "Stripe",
     "amount": "Amount",
-    "amountPlaceholder": "Amount placeholder",
+    "amountPlaceholder": "1000 Euro",
     "total": "Total sum",
     "cur": "€",
     "confirm": "Confirm",
@@ -469,7 +469,7 @@
           "date": "January 13 - February 13",
           "extra": "50% extra token",
           "released": "released 3 months later the end of the ICO",
-          "sum": "$ 2.07",
+          "sum": "$ 1",
           "token": "For token"
         },
         {
@@ -477,7 +477,7 @@
           "date": "January 13 - February 13",
           "extra": "50% extra token",
           "released": "released 3 months later the end of the ICO",
-          "sum": "$ 2.07",
+          "sum": "$ 1",
           "token": "For token"
         },
         {
@@ -485,7 +485,7 @@
           "date": "January 13 - February 13",
           "extra": "50% extra token",
           "released": "released 3 months later the end of the ICO",
-          "sum": "$ 2.07",
+          "sum": "$ 1",
           "token": "For token"
         }
       ]

@@ -296,7 +296,19 @@
     grid-gap: 20px;
     display: grid;
   }
+  @media (max-width: 1699px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: initial;
+    .progress, .timer {
+      padding: 30px;
+    }
+  }
   @media (max-width: 1499px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 173px auto;
+    .progress, .timer {
+      padding: 0px;
+    }
     .step__item:nth-child(1) .step__sub {
       max-width: 110px;
     }

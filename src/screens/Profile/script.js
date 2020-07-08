@@ -38,10 +38,10 @@ export default {
       'telephone',
 
       'state',
+      'city',
       'streetName',
       'buildingNum',
       'unitNumber',
-      'city',
       'zip',
 
       'identityDocument',
