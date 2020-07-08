@@ -56,7 +56,11 @@
             </div>
           </div>
           <div class="pdf">
-            <div class="pdf__item">
+            <a
+              href="https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf"
+              target="_blank"
+              class="pdf__item"
+            >
               <div class="pdf__title">
                 {{ $t('land.header.whitepaper') }}
               </div>
@@ -66,8 +70,12 @@
                   alt="pdf"
                 >
               </div>
-            </div>
-            <div class="pdf__item">
+            </a>
+            <a
+              href="https://test.cashflash.io/Cash-Flash-Contract-ENG.pdf"
+              target="_blank"
+              class="pdf__item"
+            >
               <div class="pdf__title">
                 {{ $t('land.header.contract') }}
               </div>
@@ -77,8 +85,12 @@
                   alt="pdf"
                 >
               </div>
-            </div>
-            <div class="pdf__item">
+            </a>
+            <a
+              href="https://test.cashflash.io/Cash-Flash-KYC-ENG.pdf"
+              target="_blank"
+              class="pdf__item"
+            >
               <div class="pdf__title">
                 {{ $t('land.header.kyc') }}
               </div>
@@ -88,7 +100,7 @@
                   alt="pdf"
                 >
               </div>
-            </div>
+            </a>
           </div>
         </div>
         <div class="prog">
@@ -214,7 +226,7 @@ export default {
     }
     const timer = setInterval(() => {
       const now = new Date();
-      const date = new Date('Tue Jun 29 2020 15:49:60 GMT+0700 (GMT+07:00)');
+      const date = new Date('Tue Jul 29 2020 15:49:60 GMT+0700 (GMT+07:00)');
       const msLeft = diffSubtract(now, date);
       if (msLeft <= 0) {
         clearInterval(timer);
@@ -320,6 +332,7 @@ export default {
             border-radius: 20px;
             padding: 20px 35px;
             align-items: center;
+            text-decoration: none;
           }
           &__title {
             font-weight: bold;

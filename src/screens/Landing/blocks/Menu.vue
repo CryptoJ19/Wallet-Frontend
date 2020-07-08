@@ -53,10 +53,10 @@
         </div>
       </div>
       <div
+        v-click-outside="hideMenu"
         class="mobile"
       >
         <div
-          v-click-outside="hideMenu"
           class="mobile__top"
         >
           <div class="mobile__l">
@@ -93,31 +93,36 @@
             <a
               :href="`#${$t('land.menu.items[0].anchor')}`"
               class="menu__item"
+              @click="hideMenu"
             >
               {{ $t('land.menu.items[0].title') }}
             </a>
             <a
               :href="`#${$t('land.menu.items[1].anchor')}`"
-
               class="menu__item"
+
+              @click="hideMenu"
             >
               {{ $t('land.menu.items[1].title') }}
             </a>
             <a
               :href="`#${$t('land.menu.items[2].anchor')}`"
               class="menu__item"
+              @click="hideMenu"
             >
               {{ $t('land.menu.items[2].title') }}
             </a>
             <a
               :href="`#${$t('land.menu.items[3].anchor')}`"
               class="menu__item"
+              @click="hideMenu"
             >
               {{ $t('land.menu.items[3].title') }}
             </a>
             <a
               :href="`#${$t('land.menu.items[4].anchor')}`"
               class="menu__item"
+              @click="hideMenu"
             >
               {{ $t('land.menu.items[4].title') }}
             </a>
@@ -226,6 +231,7 @@ export default {
         .menu__item {
           padding: 25px 35px;
           font-weight: bold;
+          width: 100%;
           margin: 0;
         }
         .menu__ac {

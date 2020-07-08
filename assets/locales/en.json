@@ -65,6 +65,7 @@
       ]
     },
     "adv": {
+      "title": "Ecosystem",
       "links": {
         "facebook": "https://www.facebook.com/Cash-Flash-SaS-105444377690054/",
         "twitter": "https://www.google.com/",
@@ -105,76 +106,69 @@
       "title": "Road Map",
       "items": [
         {
-          "date": "7 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "24th November 2018",
+          "text": "The idea to develop CASH FLASH is born",
+          "dateValue": [24, 11, 2018]
         },
         {
-          "date": "8 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "5th March 2019",
+          "text": "The project CASH FLASH is created",
+          "dateValue": [5, 3, 2019]
         },
         {
-          "date": "9 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "7th June 2019",
+          "text": "The operating team is defined",
+          "dateValue": [7, 6, 2019]
         },
         {
-          "date": "10 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "5th September 2019",
+          "text": "The business plan is developed",
+          "dateValue": [5, 9, 2019]
         },
         {
-          "date": "17 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "23rd December 2019",
+          "text": "Launch of the website",
+          "dateValue": [23, 12, 2019]
         },
         {
-          "date": "27 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "13th January 2020",
+          "text": "Launch of the Pre ICO",
+          "dateValue": [13, 1, 2020]
         },
         {
-          "date": "37 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "March 2020",
+          "text": "Start of the Road Show",
+          "dateValue": [1, 4, 2020]
         },
         {
-          "date": "47 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "15th July 2020",
+          "text": "Launch of ICO",
+          "dateValue": [15, 7, 2020]
         },
         {
-          "date": "57 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "18th January 2021",
+          "text": "Start of the possibility of exchanging the coin on the main Exchange",
+          "dateValue": [18, 1, 2021]
         },
         {
-          "date": "7 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "20th January 2021",
+          "text": "Start of CASH FLASH Blockchain",
+          "dateValue": [20, 1, 2021]
         },
         {
-          "date": "8 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "25th January 2021",
+          "text": "Start of CASH FLASH Marketplace",
+          "dateValue": [25, 1, 2021]
         },
         {
-          "date": "9 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "February 2021",
+          "text": "Is possible to buy in shops with CASH FLASH coin",
+          "dateValue": [1, 3, 2021]
         },
         {
-          "date": "10 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
-        },
-        {
-          "date": "17 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
-        },
-        {
-          "date": "27 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
-        },
-        {
-          "date": "37 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
-        },
-        {
-          "date": "47 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
-        },
-        {
-          "date": "57 Guino\n2019",
-          "desc": "Il team operativo e stato definito"
+          "date": "March 2021",
+          "text": "CASH FLASH Anti Counterfeit system is up and running",
+          "dateValue": [1, 4, 2021]
         }
       ]
     },
@@ -190,9 +184,9 @@
       "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
       "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
       "items": [
-        { "title": "Italiano", "link": "https://cashflash.io/wp-content/uploads/2020/02/Whitepaper-Cash-Flash-English-3.pdf" },
-        { "title": "English", "link": "https://cashflash.io/wp-content/uploads/2020/02/Whitepaper-Cash-Flash-English-3.pdf" },
-        { "title": "Français", "link": "https://cashflash.io/wp-content/uploads/2020/02/Whitepaper-Cash-Flash-English-3.pdf" }
+        { "title": "Italiano", "link": "https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf" },
+        { "title": "English", "link": "https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf" },
+        { "title": "Français", "link": "https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf" }
       ]
     },
     "team": {

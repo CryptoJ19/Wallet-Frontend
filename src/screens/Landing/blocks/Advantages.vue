@@ -1,8 +1,13 @@
 <template>
   <div
     :id="$t('land.menu.items[0].anchor')"
-    class="advan"
+    class="advan land__anchor"
   >
+    <div class="land__container">
+      <div class="advan__maintitle land__title">
+        {{ $t('land.adv.title') }}
+      </div>
+    </div>
     <div class="advan__logo_mob">
       <img
         src="~assets/imgs/Landing/advan_logo_mob.svg"
@@ -131,6 +136,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__maintitle {
+      line-height: 58.4%;
+      margin: 0 0 90px;
+    }
     &__header {
       display: none;
     }
@@ -397,6 +406,10 @@ export default {
     }
     @media (max-width: 767px) {
       margin-bottom: 60px;
+      &__maintitle {
+        margin: 0 0 40px;
+        text-align: center;
+      }
     }
     @media (max-width: 480px) {
       &__logo_mob {

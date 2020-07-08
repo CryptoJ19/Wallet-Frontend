@@ -1,7 +1,7 @@
 <template>
   <div
     :id="$t('land.menu.items[1].anchor')"
-    class="map"
+    class="map land__anchor"
   >
     <div class="land__container">
       <div class="map__top">
@@ -16,7 +16,7 @@
     <div class="map__body">
       <div
         class="map__center"
-        :class="{'map__center_correct': isOddCardsLength()}"
+        :class="{'map__center_correct': isOddCardsLength}"
       >
         <div
           class="map__coordinate"
@@ -27,12 +27,7 @@
               v-for="(item, i) in cards"
               :key="`map-card_${i}`"
               class="card"
-              :class="[
-                {'card_current': item.date && !cards[i+1].date },
-                {'card_enable': !item.date },
-                {'card_first': i === 0 },
-                {'card_last': i === cards.length - 1 },
-              ]"
+              :class="mapItemClass(item, i)"
             >
               <div class="card__top">
                 <div class="card__line" />
@@ -42,10 +37,11 @@
               <div class="card__main">
                 <div
                   class="card__title"
-                  v-html="$t(`land.map.items[${i}].date`)"
+                  v-html="item.date"
                 />
                 <div class="card__text">
-                  {{ $t(`land.map.items[${i}].desc`) }}
+                  {{ item.text }}
+                  {{ getDataInPast(item.dateValue) }}
                 </div>
               </div>
             </div>
@@ -80,57 +76,48 @@
 export default {
   data: () => ({
     page: 0,
-    // если будет четное кол во айтемов то центр нужно сместить
-    cards: [
-      {
-        date: true,
-      },
-      {
-        date: true,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-      {
-        date: false,
-      },
-    ],
+    cards: [],
   }),
-  mounted() {
-    this.page -= this.getCurrentCard() - Math.floor(this.cards.length / 2);
-  },
-  methods: {
+  computed: {
     isOddCardsLength() {
       return this.cards.length % 2 === 0;
     },
     getCurrentCard() {
-      return this.cards.findIndex((item, i) => item.date && !this.cards[i + 1].date);
+      return this.cards.findIndex((item, i) => this.getDataInPast(item.dateValue)
+        && !this.getDataInPast(this.cards[i + 1].dateValue));
+    },
+  },
+  mounted() {
+    this.cards = this.$t('land.map.items');
+    this.page -= this.getCurrentCard - Math.floor(this.cards.length / 2);
+  },
+  methods: {
+    mapItemClass(item, i) {
+      return [
+        {
+          card_current: this.getDataInPast(item.dateValue)
+            && !this.getDataInPast(this.cards[i + 1].dateValue),
+        },
+        { card_enable: !this.getDataInPast(item.dateValue) },
+        { card_first: i === 0 },
+        { card_last: i === this.cards.length - 1 },
+      ];
+    },
+    getDataInPast(arr) {
+      const now = new Date();
+      if (arr[2] !== now.getFullYear()) {
+        return arr[2] <= now.getFullYear();
+      } if (arr[1] !== now.getMonth() + 1) {
+        return arr[1] <= now.getMonth();
+      } if (arr[0] !== now.getDate()) {
+        return arr[0] <= now.getDate();
+      }
+      return true;
     },
     setPrevPage() {
-      if ((this.isOddCardsLength()
+      if ((this.isOddCardsLength
         && (-Math.floor(this.cards.length / 2) !== this.page - 1))
-        || (!this.isOddCardsLength()
+        || (!this.isOddCardsLength
           && (-Math.floor(this.cards.length / 2) !== this.page))) this.page -= 1;
     },
     setNextPage() {

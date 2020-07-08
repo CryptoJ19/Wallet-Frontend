@@ -1,7 +1,7 @@
 <template>
   <div
     :id="$t('land.menu.items[4].anchor')"
-    class="team"
+    class="team land__anchor"
   >
     <div class="land__container">
       <div
@@ -115,7 +115,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .land .team {
-    margin: 0 0 130px;
+    margin-bottom: 130px;
     width: 100%;
     align-items: center;
     display: flex;

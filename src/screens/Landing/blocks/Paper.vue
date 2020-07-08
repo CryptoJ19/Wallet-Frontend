@@ -1,7 +1,7 @@
 <template>
   <div
     :id="$t('land.menu.items[3].anchor')"
-    class="paper"
+    class="paper land__anchor"
   >
     <div class="paper__l">
       <img
@@ -166,7 +166,7 @@ export default {
         left: initial;
         display: flex;
         justify-content: center;
-        margin: 0 0 130px;
+        margin-bottom: 130px;
         position: relative;
         top: initial;
         width: 100%;

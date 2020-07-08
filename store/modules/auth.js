@@ -15,7 +15,7 @@ export default {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(
-          `${apiUrl}/profile/me/documents?id=${i} `,
+          `${apiUrl}/profile/me/documents?id=${i}`,
           'DELETE',
           header,
         );
