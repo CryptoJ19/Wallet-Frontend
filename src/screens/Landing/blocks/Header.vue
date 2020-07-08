@@ -57,7 +57,7 @@
           </div>
           <div class="pdf">
             <a
-              href="https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf"
+              href="https://test.cashflash.io/Whitepaper-Cash-Flash-English.pdf"
               target="_blank"
               class="pdf__item"
             >
