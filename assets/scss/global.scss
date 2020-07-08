@@ -113,6 +113,46 @@ body {
   color: #db2c2c;
 }
 
+.vdd {
+  width: 100%;
+  &__icon {
+    margin: 0 0 0 8px;
+  }
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFF;
+    width: 100%;
+    border-radius: 15px;
+    font-weight: 500;
+    padding: 0 20px;
+    height: 44px;
+    border: 1px solid $stroke;
+    font-size: 14px;
+  }
+  &__items {
+    z-index: 50;
+    border-radius: 13px;
+    position: absolute;
+    top: calc(100% + 4px);
+    background: #FFF;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 2px 15px -5px rgba(#000, .15);
+    padding: 7px 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow: auto;
+  }
+  &__item {
+    display: flex;
+    align-content: flex-start;
+    padding: 7px 20px;
+  }
+}
+
 .vtext {
   &__red {
     color: #dc3c3c;

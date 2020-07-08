@@ -269,10 +269,7 @@ export default {
       return state.profile.avatar;
     },
     getProfile(state) {
-      const profile = { ...state.profile };
-      delete profile.wallets;
-      delete profile.avatar;
-      return profile;
+      return state.profile;
     },
     getIsAuthorized(state) {
       return state.isAuthorized;
@@ -282,6 +279,14 @@ export default {
     },
     getDocFile(state) {
       return state.docFiles;
+    },
+    getCountris(state) {
+      const obj = { ...state.profile.countryCodes };
+      const newArr = [];
+      Object.keys(obj).forEach((item) => {
+        newArr.push({ short: item, full: obj[item] });
+      });
+      return newArr;
     },
   },
 };

@@ -23,6 +23,7 @@ export default {
 
     DDStreetType: false,
 
+
     streetTypes: [
       'Str',
       'Avenue',
@@ -34,7 +35,7 @@ export default {
       'lastName',
       'birthDate',
       'birthPlace',
-      'phone',
+      'telephone',
 
       'state',
       'streetName',
@@ -49,8 +50,7 @@ export default {
       'identityDocumentRelDate',
       'identityDocumentExpDate',
       'docIdentCopyFile',
-
-
+      'identityDocumentCountry',
     ],
     userFieldsPointsInput: [
       'nickname',
@@ -71,7 +71,8 @@ export default {
       'unitNumber',
       'city',
       'zip',
-      'phone',
+      'telephone',
+      'identityDocumentCountry',
     ],
     userFields: {
       nickname: {
@@ -135,9 +136,14 @@ export default {
       zip: {
         er: '',
       },
-      phone: {
+      telephone: {
         er: '',
-        type: 'phone',
+        type: 'num',
+      },
+      identityDocumentCountry: {
+        er: '',
+        type: 'country',
+        show: false,
       },
     },
   }),
@@ -164,7 +170,8 @@ export default {
     this.userFields.unitNumber.title = 'Unit number';
     this.userFields.city.title = 'City *';
     this.userFields.zip.title = 'C.A.P. *';
-    this.userFields.phone.title = 'Telephone *';
+    this.userFields.telephone.title = 'Telephone *';
+    this.userFields.identityDocumentCountry.title = 'Country *';
   },
   components: {
     Loader,
@@ -182,6 +189,7 @@ export default {
       'getAvatar',
       'getGAEnabled',
       'getDocFile',
+      'getCountris',
     ]),
     getProfileChanges() {
       const changesFields = [];
@@ -213,6 +221,18 @@ export default {
     ]),
     selectDDStreetType(value) {
       this.localProfile.streetType = value;
+    },
+    selectCountry(value) {
+      this.localProfile.identityDocumentCountry = value;
+    },
+    toggleCountry() {
+      if (this.userEditMode === 1) {
+        this.userFields.identityDocumentCountry.show = !this.userFields
+          .identityDocumentCountry.show;
+      }
+    },
+    hideCountry() {
+      this.userFields.identityDocumentCountry.show = false;
     },
     toggleDDStreetType() {
       if (this.userEditMode === 1) {
@@ -309,15 +329,15 @@ export default {
         //   identityDocumentNumber: '',
         //   identityDocumentRelDate: '',
         //   nickname: 'asd451451452',
-        //   phone: null,
+        //   telephone: null,
         //   refLink: '6b8f832a47c6d466',
         //   state: '',
-        //   telephone: '',
+        //   teletelephone: '',
         // };
 
 
-        // if (this.localProfile.phone !== '' && this.localProfile.phone !== null) {
-        //   data.phone = this.localProfile.phone;
+        // if (this.localProfile.telephone !== '' && this.localProfile.telephone !== null) {
+        //   data.telephone = this.localProfile.telephone;
         // }
         // this.userFieldsPoints.forEach((item) => {
         //   if (this.localProfile[item] !== '' && this.localProfile[item] !== null) {
