@@ -59,7 +59,7 @@
                 @click="toggleDDStreetType()"
               >
                 <div class="dd__title">
-                  {{ localProfile['streetType'] || streetTypes[0] }}
+                  {{ localProfile['streetType'] || '-' }}
                 </div>
                 <div
                   v-if="userEditMode === 1"
@@ -145,10 +145,9 @@
               >
                 <div class="vdd__title">
                   {{ localProfile['identityDocumentCountry'] ?
-
                     getProfile.countryCodes[localProfile['identityDocumentCountry']] + ' ' +
                     localProfile['identityDocumentCountry']
-                    : (getCountris[0].full + ' ' + getCountris[0].short) }}
+                    : '' }}
                 </div>
                 <div
                   v-if="userEditMode === 1"
@@ -172,6 +171,44 @@
                 >
                   {{ item.full }}
                   {{ item.short }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            v-else-if="userFields[item].type === 'idDoc'"
+            class="user__input"
+          >
+            <div class="vdd">
+              <button
+                v-click-outside="hideIdDoc"
+                class="vdd__btn"
+                @click="toggleIdDoc()"
+              >
+                <div class="vdd__title">
+                  {{ localProfile['identityDocument'] || '' }}
+                </div>
+                <div
+                  v-if="userEditMode === 1"
+                  class="vdd__icon"
+                >
+                  <img
+                    src="~assets/imgs/icons/arrow_dd.svg"
+                    alt="arrow"
+                  >
+                </div>
+              </button>
+              <div
+                v-if="userFields.identityDocument.show"
+                class="vdd__items"
+              >
+                <button
+                  v-for="(item, i) in identityDocumentItems"
+                  :key="`dd__item_id-doc_${i}`"
+                  class="vdd__item"
+                  @click="selectIdDoc(item)"
+                >
+                  {{ item }}
                 </button>
               </div>
             </div>

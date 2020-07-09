@@ -20,6 +20,12 @@ export default {
 
     now: moment(String(new Date())).format('DD/MM/YYYY'),
 
+    identityDocumentItems: [
+      'Driver license',
+      'National ID card',
+      'Passport',
+    ],
+
     userEditMode: 0,
     localProfile: {},
     userLoader: false,
@@ -102,8 +108,9 @@ export default {
       },
       identityDocument: {
         er: '',
+        type: 'idDoc',
+        show: false,
       },
-
       identityDocumentNumber: {
         er: '',
       },
@@ -117,7 +124,6 @@ export default {
       docIdentCopyFile: {
         er: '',
         type: 'filePicker',
-        dontSend: true,
       },
       state: {
         er: '',
@@ -231,6 +237,18 @@ export default {
     selectDDStreetType(value) {
       this.localProfile.streetType = value;
     },
+    selectIdDoc(value) {
+      this.localProfile.identityDocument = value;
+    },
+    toggleIdDoc() {
+      if (this.userEditMode === 1) {
+        this.userFields.identityDocument.show = !this.userFields
+          .identityDocument.show;
+      }
+    },
+    hideIdDoc() {
+      this.userFields.identityDocument.show = false;
+    },
     selectCountry(value) {
       this.localProfile.identityDocumentCountry = value;
     },
@@ -316,7 +334,7 @@ export default {
         if (this.userFields[item].required && this.localProfile[item] === '') {
           this.userFields[item].er = 'Обязательное поле';
         }
-        if (item === 'identityDocumentExpDate') {
+        if (item === 'identityDocumentExpDate' && this.localProfile[item]) {
           const now = this.now.split('/');
           const expDate = this.localProfile[item].split('/');
           if ((+expDate[2] < +now[2]
