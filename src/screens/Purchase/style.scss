@@ -1,8 +1,52 @@
 .pur {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 173px auto;
-  grid-gap: 20px;
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 173px auto;
+    grid-gap: 20px;
+  }
+  .promo {
+    padding: 30px;
+    background: #FFFFFF;
+    border-radius: 13px;
+    margin: 0 0 20px;
+    &__items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+    &__item {
+      border-radius: 20px;
+      background: $yellow-gradient;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    &__num {
+      margin: 0 20px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      min-width: 30px;
+      min-height: 30px;
+      border-radius: 100%;
+    }
+    &__head {
+      border-bottom: 1px solid $stroke;
+      margin: 0 0 20px;
+    }
+    &__title {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 174.9%;
+      color: #000000;
+      max-width: 536px;
+      margin: 0 0 31px;
+    }
+  }
   .timer {
     background: $yellow-gradient;
     //height: 173px;
@@ -297,15 +341,19 @@
     display: grid;
   }
   @media (max-width: 1699px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: initial;
+    &__items {
+      grid-template-columns: 1fr;
+      grid-template-rows: initial;
+    }
     .progress, .timer {
       padding: 30px;
     }
   }
   @media (max-width: 1499px) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 173px auto;
+    &__items {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 173px auto;
+    }
     .progress, .timer {
       padding: 0px;
     }
@@ -314,8 +362,10 @@
     }
   }
   @media (max-width: 1199px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: initial;
+    &__items {
+      grid-template-columns: 1fr;
+      grid-template-rows: initial;
+    }
     .progress, .timer {
       padding: 30px;
     }
@@ -324,6 +374,18 @@
     }
   }
   @media (max-width: 767px) {
+    .promo {
+      padding: 20px;
+      &__title {
+        font-size: 16px;
+      }
+      &__item {
+        padding: 15px;
+      }
+      &__items {
+        grid-template-columns: 1fr;
+      }
+    }
     .timer {
       &__title {
         display: none;

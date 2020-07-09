@@ -19,6 +19,7 @@ export default {
     },
   },
   data: () => ({
+    promoItems: [],
     amount: '',
     totalSum: '',
     sendEmail: '',
@@ -28,6 +29,9 @@ export default {
     er: [],
     payTab: 0,
   }),
+  mounted() {
+    this.promoItems = this.$t('purchase.promo.items');
+  },
   methods: {
     // fetchSendInvite
     ...mapActions([
