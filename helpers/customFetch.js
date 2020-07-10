@@ -1,4 +1,4 @@
-import { baseUrl } from '../config';
+import { baseUrl, apiUrl } from '../config';
 
 const getAccessToken = () => {
   if (localStorage.getItem('accessToken') !== null) {
@@ -72,7 +72,7 @@ const customFetchToken = async (ctx, callback) => {
       Authorization: `Bearer ${token}`,
     };
     const rawResponseRefresh = await customFetch(
-      'https://cashflash.hedpay.com/api/auth/refresh-token',
+      `${apiUrl}/auth/refresh-token`,
       'POST',
       header,
     );
