@@ -55,13 +55,17 @@ export default {
   },
   data: () => ({
     menuItems: [
-      { title: 'Wallet', router: 'wallet' },
-      { title: 'Profile', router: 'profile' },
-      { title: 'Referal', router: 'referal' },
-      { title: 'Purchase', router: 'purchase' },
     ],
   }),
   computed: {
+  },
+  mounted() {
+    this.menuItems = [
+      { title: this.$t('main.menu.wallet'), router: 'wallet' },
+      { title: this.$t('main.menu.profile'), router: 'profile' },
+      { title: this.$t('main.menu.referal'), router: 'referal' },
+      { title: this.$t('main.menu.purchase'), router: 'purchase' },
+    ];
   },
   methods: {
     navItemClass: (item, title) => ({ 'main-menu__item_active': item.title === title }),

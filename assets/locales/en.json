@@ -103,7 +103,7 @@
     },
     "map": {
       "pre": "Implementation Calendar Wallet",
-      "title": "Road Map",
+      "title": "Roadmap",
       "items": [
         {
           "date": "24th November 2018",
@@ -264,7 +264,13 @@
   },
   "main": {
     "connectedTo": "connected to ",
-    "mainnetEOS": "EOS MAINNET"
+    "mainnetEOS": "EOS MAINNET",
+    "menu": {
+      "wallet": "Wallet",
+      "profile": "Profile",
+      "referal":"Referral",
+      "purchase": "Purchase"
+    }
   },
   "auth": {
     "welcome": "Welcome to\n CashFlash",
@@ -301,8 +307,8 @@
       "enterFirstName": "Enter first name",
       "enterSecondName": "Enter last name",
       "enterNickname": "Enter CashFlash Name",
-      "nicknameExists": "Такой никнейм занят.",
-      "enterMsg": "Введите сообщение.",
+      "nicknameExists": "Nickname already exists",
+      "enterMsg": "Enter a message",
       "enterValidNickname": "CashFlash name must consist of 12 characters, only lowercase latin letters and digits 1-5",
       "enterCode": "Enter a code delivered to your mailbox",
       "incorrectEmailToReset": "The email doesn't exist",
@@ -368,20 +374,20 @@
       "telephone": "Telephone *",
       "state": "State *",
       "city": "City *",
-      "streetName": "Street name",
-      "buildingNum": "Street num",
-      "unitNumber": "Unit number",
-      "zip": "C.A.P. *",
+      "streetName": "Street name *",
+      "buildingNum": "Street number *",
+      "unitNumber": "Unit number *",
+      "zip": "ZIP code *",
       "identityDocumentCountry": "Country *",
       "identityDocument": "Identity document *",
-      "identityDocumentNumber": "Document # *",
-      "identityDocumentRelDate": "Release date *",
-      "identityDocumentExpDate": "Expiry date *",
+      "identityDocumentNumber": "Document № *",
+      "identityDocumentRelDate": "Issue date *",
+      "identityDocumentExpDate": "Expiration date *",
       "docIdentCopyFile": "Choose file  *",
-      "tooLarge": "Слишком большой файл",
-      "onlyTwo": "Можно загрузить только 2 файла",
-      "req": "Обязательное поле",
-      "expiryExpired": "Expiry date истек"
+      "tooLarge": "The file is too heavy",
+      "onlyTwo": "Only 2 file upload is available",
+      "req": "Required field",
+      "expiryExpired": "The document is overdue"
     },
     "edit": "Edit",
     "cancel": "Cancel",
@@ -414,7 +420,7 @@
       "title": "Enable 2FA",
       "step1Title": "Install mobile app",
       "step2Title": "Scan QR code",
-      "step3Title": "Backup a key",
+      "step3Title": "Back up the key",
       "step4Title": "Enable Google Authenticator",
       "step": "Step",
       "installApp": "Install the Google Authenticator mobile app",
@@ -436,24 +442,24 @@
     "reward": "Your reward\nfor 1 user",
     "rewardNum": "12 CFT",
     "invFriends": "Invite Your Friends",
-    "inviteSuccesSent": "Приглашение отправленно",
+    "inviteSuccesSent": "Invitation sent",
     "invBtn": "Send",
     "statistic": "Statistic",
-    "statSent": "Personal invites sent",
+    "statSent": "Personal invititation sent",
     "statBonuses": "My bonuses",
     "statRef":" My referrals",
     "someMsg": "Some message"
   },
   "purchase": {
     "promo": {
-      "title": "Купите CFT токен и через 3 месяца мы начислим вам бонус согласно следующей схеме:",
+      "title": "Buy CFT tokens and get extra CFT tokens in 3 months according to the following scheme:",
       "items": [
         "<strong>1.000€</strong> to <strong>10.000€</strong> extra token 20%.",
-        "<strong>10.001€</strong> to <strong>50.000€</strong> extra token 25%",
-        "<strong>50.001€</strong> to <strong>200.000€</strong> extra token 30%",
-        "<strong>200.001€</strong> to <strong>500.000€</strong> extra token 40%",
-        "<strong>500.001€</strong> to <strong>5.000.000€</strong> extra token 50%",
-        "<strong>5.000.001€</strong> to <strong>150.000.000€</strong> extra token negotiable"
+        "<strong>11.000€</strong> to <strong>50.000€</strong> extra token 25%",
+        "<strong>51.000€</strong> to <strong>200.000€</strong> extra token 30%",
+        "<strong>210.000€</strong> to <strong>500.000€</strong> extra token 40%",
+        "<strong>510.000€</strong> to <strong>5.000.000€</strong> extra token 50%",
+        "<strong>5.100.000€</strong> to <strong>150.000.000€</strong> extra token negotiable"
       ]
     },
     "modal": {
@@ -492,7 +498,7 @@
     "EOS": "EOS",
     "stripe": "Stripe",
     "amount": "Amount",
-    "amountPlaceholder": "1000 Euro",
+    "amountPlaceholder": "€1000",
     "total": "Total sum",
     "cur": "€",
     "confirm": "Confirm",
