@@ -359,6 +359,30 @@
     "statusSuccess": "Success"
   },
   "profile": {
+    "filed": {
+      "nickname": "Сash Flash name",
+      "firstName": "Name *",
+      "lastName": "Surname *",
+      "birthDate": "Date of birth *",
+      "birthPlace": "Place of birth *",
+      "telephone": "Telephone *",
+      "state": "State *",
+      "city": "City *",
+      "streetName": "Street name",
+      "buildingNum": "Street num",
+      "unitNumber": "Unit number",
+      "zip": "C.A.P. *",
+      "identityDocumentCountry": "Country *",
+      "identityDocument": "Identity document *",
+      "identityDocumentNumber": "Document # *",
+      "identityDocumentRelDate": "Release date *",
+      "identityDocumentExpDate": "Expiry date *",
+      "docIdentCopyFile": "Choose file  *",
+      "tooLarge": "Слишком большой файл",
+      "onlyTwo": "Можно загрузить только 2 файла",
+      "req": "Обязательное поле",
+      "expiryExpired": "Expiry date истек"
+    },
     "edit": "Edit",
     "cancel": "Cancel",
     "save": "Save",
@@ -422,6 +446,7 @@
   },
   "purchase": {
     "promo": {
+      "title": "Купите CFT токен и через 3 месяца мы начислим вам бонус согласно следующей схеме:",
       "items": [
         "<strong>1.000€</strong> to <strong>10.000€</strong> extra token 20%.",
         "<strong>10.001€</strong> to <strong>50.000€</strong> extra token 25%",

@@ -165,27 +165,27 @@ export default {
     // this.localProfile = { ...this.getProfile };
     this.setDefaultProfile();
 
-    this.userFields.nickname.title = 'Сash Flash name';
-    this.userFields.firstName.title = 'Name *';
-    this.userFields.lastName.title = 'Surname *';
-    this.userFields.birthDate.title = 'Date of birth *';
-    this.userFields.birthPlace.title = 'Place of birth *';
-    this.userFields.identityDocument.title = 'Identity document *';
+    this.userFields.nickname.title = this.$t('profile.filed.nickname');
+    this.userFields.firstName.title = this.$t('profile.filed.firstName');
+    this.userFields.lastName.title = this.$t('profile.filed.lastName');
+    this.userFields.birthDate.title = this.$t('profile.filed.birthDate');
+    this.userFields.birthPlace.title = this.$t('profile.filed.birthPlace');
+    this.userFields.identityDocument.title = this.$t('profile.filed.identityDocument');
 
-    this.userFields.identityDocumentNumber.title = 'Document # *';
-    this.userFields.identityDocumentRelDate.title = 'Release date *';
-    this.userFields.identityDocumentExpDate.title = 'Expiry date *';
-    this.userFields.docIdentCopyFile.title = 'Choose file  *';
+    this.userFields.identityDocumentNumber.title = this.$t('profile.filed.identityDocumentNumber');
+    this.userFields.identityDocumentRelDate.title = this.$t('profile.filed.identityDocumentRelDate');
+    this.userFields.identityDocumentExpDate.title = this.$t('profile.filed.identityDocumentExpDate');
+    this.userFields.docIdentCopyFile.title = this.$t('profile.filed.docIdentCopyFile');
 
-    this.userFields.state.title = 'State *';
+    this.userFields.state.title = this.$t('profile.filed.');
     // this.userFields.streetType.title = 'Street type';
-    this.userFields.streetName.title = 'Street name';
-    this.userFields.buildingNum.title = 'Street num';
-    this.userFields.unitNumber.title = 'Unit number';
-    this.userFields.city.title = 'City *';
-    this.userFields.zip.title = 'C.A.P. *';
-    this.userFields.telephone.title = 'Telephone *';
-    this.userFields.identityDocumentCountry.title = 'Country *';
+    this.userFields.streetName.title = this.$t('profile.filed.streetName');
+    this.userFields.buildingNum.title = this.$t('profile.filed.buildingNum');
+    this.userFields.unitNumber.title = this.$t('profile.filed.unitNumber');
+    this.userFields.city.title = this.$t('profile.filed.city');
+    this.userFields.zip.title = this.$t('profile.filed.zip');
+    this.userFields.telephone.title = this.$t('profile.filed.telephone');
+    this.userFields.identityDocumentCountry.title = this.$t('profile.filed.identityDocumentCountry');
   },
   components: {
     Loader,
@@ -302,11 +302,11 @@ export default {
           return null;
         }
         if ((fileObj.size / 1024 / 1024) > 2) {
-          this.userFields.docIdentCopyFile.er = 'Слишком большой файл';
+          this.userFields.docIdentCopyFile.er = this.$t('profile.filed.tooLarge');
           return null;
         }
         if (this.getDocFile.length === 2) {
-          this.userFields.docIdentCopyFile.er = 'Можно загрузить только 2 файла';
+          this.userFields.docIdentCopyFile.er = this.$t('profile.filed.onlyTwo');
           return null;
         }
         if (this.userFields.docIdentCopyFile.er === '') {
@@ -332,7 +332,7 @@ export default {
     checkEr() {
       this.userFieldsPoints.forEach((item) => {
         if (this.userFields[item].required && this.localProfile[item] === '') {
-          this.userFields[item].er = 'Обязательное поле';
+          this.userFields[item].er = this.$t('profile.filed.req');
         }
         if (item === 'identityDocumentExpDate' && this.localProfile[item]) {
           const now = this.now.split('/');
@@ -340,7 +340,7 @@ export default {
           if ((+expDate[2] < +now[2]
             || (+expDate[2] === +now[2] && +expDate[1] < +now[1])
             || (+expDate[2] === +now[2] && +expDate[1] === +now[1] && +expDate[0] < +now[0]))) {
-            this.userFields[item].er = 'Expiry date истек';
+            this.userFields[item].er = this.$t('profile.filed.expiryExpired');
           }
         }
       });

@@ -21,7 +21,7 @@
     <div class="promo">
       <div class="promo__head">
         <div class="promo__title">
-          Купите CFT токен и через 3 месяца мы начислим вам бонус согласно следующей схеме:
+          {{ $t('purchase.promo.title') }}
         </div>
       </div>
       <div class="promo__items">
