@@ -28,12 +28,25 @@
               >
             </div>
           </button>
-          <div class="header__name">
-            <div class="header__main">
-              {{ getProfile.firstName }} {{ getProfile.lastName }}
+          <div class="header__left">
+            <div class="header__name">
+              <div class="header__main">
+                {{ getProfile.firstName }} {{ getProfile.lastName }}
+              </div>
+              <div class="header__sub">
+                {{ getProfile.email }}
+              </div>
             </div>
-            <div class="header__sub">
-              {{ getProfile.email }}
+            <div class="ver">
+              <div class="ver__text">
+                Verified
+              </div>
+              <div class="ver__icon">
+                <img
+                  src="~/assets/imgs/icons/ok.svg"
+                  alt="ok"
+                >
+              </div>
             </div>
           </div>
         </div>

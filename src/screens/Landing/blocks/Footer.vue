@@ -36,93 +36,68 @@
         </div>
       </div>
       <div class="footer__r">
-        <div class="footer__header">
-          <div class="footer__title">
-            {{ $t('land.footer.title') }}
-          </div>
-          <div class="footer__sub">
-            {{ $t('land.footer.sub') }}
-          </div>
-        </div>
-        <div class="form">
-          <div class="form__body">
-            <input
-              class="form__input"
-              type="text"
-              :placeholder="$t('land.footer.mailInput')"
+        <div class="under__links">
+          <a
+            target="_blank"
+            :href="$t('land.adv.links.facebook')"
+            class="under__link"
+          >
+            <img
+              src="~assets/imgs/Landing/under_1.svg"
+              alt="img"
             >
-            <button class="form__btn">
-              {{ $t('land.footer.subBtn') }}
-            </button>
-          </div>
-          <div class="form__msg">
-            <!--            Success-->
-          </div>
+          </a>
+          <a
+            target="_blank"
+            :href="$t('land.adv.links.instagram')"
+            class="under__link"
+          >
+            <img
+              src="~assets/imgs/Landing/under_2.svg"
+              alt="img"
+            >
+          </a>
+          <a
+            :href="$t('land.adv.links.in')"
+            target="_blank"
+            class="under__link"
+          >
+            <img
+              src="~assets/imgs/Landing/advan__links_in_2.svg"
+              alt="img"
+            >
+          </a>
+          <!--        <a-->
+          <!--          target="_blank"-->
+          <!--          :href="$t('land.adv.links.youtube')"-->
+          <!--          class="under__link"-->
+          <!--        >-->
+          <!--          <img-->
+          <!--            src="~assets/imgs/Landing/under_3.svg"-->
+          <!--            alt="img"-->
+          <!--          >-->
+          <!--        </a>-->
+          <!--        <a-->
+          <!--          target="_blank"-->
+          <!--          :href="$t('land.adv.links.twitter')"-->
+          <!--          class="under__link"-->
+          <!--        >-->
+          <!--          <img-->
+          <!--            src="~assets/imgs/Landing/under_4.svg"-->
+          <!--            alt="img"-->
+          <!--          >-->
+          <!--        </a>-->
+          <!--        <a-->
+          <!--          target="_blank"-->
+          <!--          :href="$t('land.adv.links.telegram')"-->
+          <!--          class="under__link"-->
+          <!--        >-->
+          <!--          <img-->
+          <!--            src="~assets/imgs/Landing/under_5.svg"-->
+          <!--            alt="img"-->
+          <!--          >-->
+          <!--        </a>-->
         </div>
-      </div>
-    </div>
-    <div class="under">
-      <div class="under__links">
-        <a
-          target="_blank"
-          :href="$t('land.adv.links.facebook')"
-          class="under__link"
-        >
-          <img
-            src="~assets/imgs/Landing/under_1.svg"
-            alt="img"
-          >
-        </a>
-        <a
-          target="_blank"
-          :href="$t('land.adv.links.instagram')"
-          class="under__link"
-        >
-          <img
-            src="~assets/imgs/Landing/under_2.svg"
-            alt="img"
-          >
-        </a>
-        <a
-          :href="$t('land.adv.links.in')"
-          target="_blank"
-          class="under__link"
-        >
-          <img
-            src="~assets/imgs/Landing/advan__links_in_2.svg"
-            alt="img"
-          >
-        </a>
-        <!--        <a-->
-        <!--          target="_blank"-->
-        <!--          :href="$t('land.adv.links.youtube')"-->
-        <!--          class="under__link"-->
-        <!--        >-->
-        <!--          <img-->
-        <!--            src="~assets/imgs/Landing/under_3.svg"-->
-        <!--            alt="img"-->
-        <!--          >-->
-        <!--        </a>-->
-        <!--        <a-->
-        <!--          target="_blank"-->
-        <!--          :href="$t('land.adv.links.twitter')"-->
-        <!--          class="under__link"-->
-        <!--        >-->
-        <!--          <img-->
-        <!--            src="~assets/imgs/Landing/under_4.svg"-->
-        <!--            alt="img"-->
-        <!--          >-->
-        <!--        </a>-->
-        <!--        <a-->
-        <!--          target="_blank"-->
-        <!--          :href="$t('land.adv.links.telegram')"-->
-        <!--          class="under__link"-->
-        <!--        >-->
-        <!--          <img-->
-        <!--            src="~assets/imgs/Landing/under_5.svg"-->
-        <!--            alt="img"-->
-        <!--          >-->
-        <!--        </a>-->
       </div>
     </div>
   </div>
@@ -168,7 +143,7 @@
       &__r {
         width: 50%;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
       }
       &__header {
@@ -255,13 +230,13 @@
         /*  flex-direction: column;*/
         /*}*/
         &__l {
-          width: 30%;
+          /*width: 30%;*/
           padding: 0 30px 0 0;
         }
         &__r {
-          width: 70%;
-          align-items: flex-start;
-          flex-direction: column;
+          /*width: 70%;*/
+          /*align-items: flex-start;*/
+          /*flex-direction: column;*/
         }
         &__header {
           margin: 0 0 28px;
@@ -283,7 +258,8 @@
           padding: 0;
         }
         &__r {
-          align-items: center;
+          /*align-items: center;*/
+          justify-content: center;
         }
         &__header {
           text-align: center;
