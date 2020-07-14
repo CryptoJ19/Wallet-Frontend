@@ -118,6 +118,44 @@
         <div class="head__title">
           {{ $t('wallet.history') }}
         </div>
+        <div
+          v-if="getTransactionList.length !== 0"
+          class="pag"
+        >
+          <button
+            class="pag__btn pag__btn_l"
+            @click="prevPage"
+          >
+            <img
+              src="~assets/imgs/icons/arrow_dd.svg"
+              alt="arrow"
+            >
+          </button>
+          <div class="pag__items">
+            <input
+              v-model="page"
+              class="pag__input"
+              type="number"
+              :max="totalPages"
+              @blur="validatePage"
+            >
+            <div class="pag__of">
+              of
+            </div>
+            <div class="pag__total">
+              {{ totalPages }}
+            </div>
+          </div>
+          <button
+            class="pag__btn pag__btn_r"
+            @click="nextPage"
+          >
+            <img
+              src="~assets/imgs/icons/arrow_dd.svg"
+              alt="arrow"
+            >
+          </button>
+        </div>
         <!--        <div class="head__right">-->
         <!--          <div class="dd">-->
         <!--            <div class="dd__toggler">-->
@@ -294,6 +332,12 @@
             </div>
           </div>
         </div>
+      </div>
+      <div
+        v-else-if="loadingTransactions"
+        class="loader__body loader__body_show"
+      >
+        <Loader />
       </div>
       <div
         v-else

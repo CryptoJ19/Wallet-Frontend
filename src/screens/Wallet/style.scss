@@ -97,8 +97,52 @@
       }
     }
   }
-
+  .pag {
+    display: flex;
+    align-items: center;
+    &__of {
+      margin: 0 25px 0 14px;
+    }
+    &__input {
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    &__items {
+      margin: 0 17px 0 7px;
+      display: flex;
+      align-items: center;
+      color: rgba($grey, .4);
+    }
+    &__btn {
+      @include btn;
+      @include btn-yellow;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      padding: 0;
+      &_l {
+        img {
+          transform: rotate(90deg);
+        }
+      }
+      &_r {
+        img {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
   .history {
+    position: relative;
+    .sk-cube-grid {
+      margin: 30px auto;
+    }
+    .loader__body {
+      position: relative;
+    }
     &__empty {
       color: rgba(#000, 0.4);
       margin: 0 30px 30px;

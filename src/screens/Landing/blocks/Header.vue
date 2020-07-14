@@ -130,81 +130,25 @@
         </div>
       </div>
       <div class="header__right">
-        <div class="cards">
-          <div class="cards__items">
-            <div class="cards__item cards__item_a">
-              <div class="cards__left">
-                <div class="cards__title">
-                  {{ $t('land.header.items[0].title') }}
-                </div>
-                <div class="cards__sub">
-                  {{ $t('land.header.items[0].sub') }}
-                </div>
-                <div class="cards__extra">
-                  {{ $t('land.header.items[0].extra') }}
-                </div>
-                <div class="cards__epitaph">
-                  {{ $t('land.header.items[0].desc') }}
-                </div>
-              </div>
-              <div class="cards__right">
-                <div class="cards__sub">
-                  {{ $t('land.header.items[0].token') }}
-                </div>
-                <div class="cards__cost">
-                  {{ $t('land.header.items[0].price') }}
-                </div>
-              </div>
+        <div class="promo">
+          <div class="promo__head">
+            <div class="promo__title">
+              {{ $t('purchase.promo.title') }}
             </div>
-            <div class="cards__line cards__line_a" />
-            <div class="cards__item cards__item_b">
-              <div class="cards__left">
-                <div class="cards__title">
-                  {{ $t('land.header.items[1].title') }}
-                </div>
-                <div class="cards__sub">
-                  {{ $t('land.header.items[1].sub') }}
-                </div>
-                <div class="cards__extra">
-                  {{ $t('land.header.items[1].extra') }}
-                </div>
-                <div class="cards__epitaph">
-                  {{ $t('land.header.items[1].desc') }}
-                </div>
+          </div>
+          <div class="promo__items">
+            <div
+              v-for="(item, i) in promoItems"
+              :key="`promoitem_${i}`"
+              class="promo__item"
+            >
+              <div class="promo__num">
+                {{ i+1 }}
               </div>
-              <div class="cards__right">
-                <div class="cards__sub">
-                  {{ $t('land.header.items[1].token') }}
-                </div>
-                <div class="cards__cost">
-                  {{ $t('land.header.items[1].price') }}
-                </div>
-              </div>
-            </div>
-            <div class="cards__line cards__line_b" />
-            <div class="cards__item cards__item_c">
-              <div class="cards__left">
-                <div class="cards__title">
-                  {{ $t('land.header.items[2].title') }}
-                </div>
-                <div class="cards__sub">
-                  {{ $t('land.header.items[2].sub') }}
-                </div>
-                <div class="cards__extra">
-                  {{ $t('land.header.items[2].extra') }}
-                </div>
-                <div class="cards__epitaph">
-                  {{ $t('land.header.items[2].desc') }}
-                </div>
-              </div>
-              <div class="cards__right">
-                <div class="cards__sub">
-                  {{ $t('land.header.items[2].token') }}
-                </div>
-                <div class="cards__cost">
-                  {{ $t('land.header.items[2].price') }}
-                </div>
-              </div>
+              <div
+                class="promo__text"
+                v-html="item"
+              />
             </div>
           </div>
         </div>
@@ -219,8 +163,11 @@ export default {
     h: '00',
     m: '00',
     s: '00',
+    promoItems: [],
   }),
   mounted() {
+    this.promoItems = this.$t('purchase.promo.items');
+
     function diffSubtract(date1, date2) {
       return date2 - date1;
     }
@@ -254,13 +201,56 @@ export default {
     .header {
       display: flex;
       justify-content: space-between;
-      margin: 160px 0 220px;
+      margin-bottom: 220px;
+      margin-top: 50px;
       &__left {
         width: 50%;
+        margin-top: 160px;
       }
       &__right {
         width: 50%;
         padding: 0 0 0 150px;
+      }
+      .promo {
+        /*padding: 30px;*/
+        /*background: #FFFFFF;*/
+        /*border-radius: 13px;*/
+        /*margin: 0 0 20px;*/
+        &__items {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: 20px;
+        }
+        &__item {
+          border-radius: 20px;
+          background: $yellow-gradient;
+          padding: 0 20px;
+          height: 103px;
+          display: flex;
+          align-items: center;
+        }
+        &__num {
+          margin: 0 20px 0 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #FFFFFF;
+          min-width: 30px;
+          min-height: 30px;
+          border-radius: 100%;
+        }
+        &__head {
+          margin: 0 0 20px;
+        }
+        &__title {
+          font-family: Raleway;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 174.9%;
+          color: #000000;
+          margin: 0 0 31px;
+        }
       }
       .start {
         position: relative;
@@ -461,7 +451,7 @@ export default {
     }
     @media (max-width: 1700px) {
       .header {
-        margin: 100px 0 150px;
+        margin-bottom: 150px;
         .cards {
           &__item {
             padding: 16px 30px;

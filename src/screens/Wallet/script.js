@@ -5,26 +5,44 @@ import moment from 'moment';
 import ModalSendBalance from './components/ModalSendBalance';
 import ModalRecieve from './components/ModalRecieve';
 import ModalSuccessSend from './components/ModalSuccessSend';
+import Loader from '../../ui/Loader';
 
 export default {
   components: {
+    Loader,
     DatePicker,
     ModalSendBalance,
     ModalRecieve,
     ModalSuccessSend,
   },
   data: () => ({
+    page: 1,
+    totalPages: 40,
     modalSendCurrency: '',
     time1: null,
     time2: null,
     time3: null,
     transactionsInterval: null,
+    loadingTransactions: false,
   }),
   computed: {
     ...mapGetters([
       'getWallets',
       'getTransactionList',
     ]),
+  },
+  watch: {
+    page(i, iOld) {
+      if (i !== iOld) {
+        if (i > this.totalPages) {
+          this.setMaxPage();
+        }
+        this.loadingTransactions = true;
+        setTimeout(() => {
+          this.loadingTransactions = false;
+        }, 1000);
+      }
+    },
   },
   created() {
     this.transactionsInterval = setInterval(
@@ -41,6 +59,24 @@ export default {
     ...mapActions([
       'fetchGetTransactions',
     ]),
+    prevPage() {
+      if (this.page > 1) {
+        this.page = this.page - 1;
+      }
+    },
+    nextPage() {
+      if (this.page < this.totalPages) {
+        this.page = this.page + 1;
+      }
+    },
+    setMaxPage() {
+      this.page = this.totalPages;
+    },
+    validatePage() {
+      if (this.page < 1) {
+        this.page = 1;
+      }
+    },
     copy(str) {
       const el = document.createElement('textarea');
       el.value = str;
