@@ -3,6 +3,7 @@
     <ModalSendBalance
       :currency="modalSendCurrency"
       @sendSuccess="sendSuccess"
+      @refrashTransactions="refrashTransactions"
     />
     <ModalRecieve />
     <ModalSuccessSend />
@@ -133,7 +134,7 @@
           </button>
           <div class="pag__items">
             <input
-              v-model="page"
+              v-model.number="page"
               class="pag__input"
               type="number"
               :max="totalPages"
@@ -334,16 +335,16 @@
         </div>
       </div>
       <div
-        v-else-if="loadingTransactions"
-        class="loader__body loader__body_show"
-      >
-        <Loader />
-      </div>
-      <div
         v-else
         class="history__empty"
       >
         {{ $t('wallet.epmtyHistory') }}
+      </div>
+      <div
+        class="loader__body"
+        :class="{'loader__body_show': loadingTransactions}"
+      >
+        <Loader />
       </div>
     </div>
   </div>

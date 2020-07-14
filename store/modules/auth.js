@@ -58,11 +58,11 @@ export default {
       return res;
     },
 
-    async fetchGetTransactions(ctx) {
+    async fetchGetTransactions(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(
-          `${apiUrl}/profile/me/txs`,
+          `${apiUrl}/profile/me/txs?limit=${data.limit}&offset=${data.limit * (data.page - 1)}`,
           'GET',
           header,
         );
@@ -256,6 +256,12 @@ export default {
     },
   },
   getters: {
+    getTransactionCount(state) {
+      if (state.transactions.count) {
+        return state.transactions.count;
+      }
+      return 1;
+    },
     getTransactionList(state) {
       if (state.transactions.txs) {
         return state.transactions.txs;

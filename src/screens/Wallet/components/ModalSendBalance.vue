@@ -174,7 +174,6 @@ export default {
     ...mapActions([
       'fetchGetWithdraw',
       'fetchSendWithdraw',
-      'fetchGetProfile',
     ]),
     getBalance() {
       return this.getWalletItem(this.currency).balance;
@@ -291,6 +290,7 @@ export default {
         if (res.ok) {
           this.fetchGetProfile();
           this.$emit('sendSuccess');
+          this.$emit('refrashTransactions');
         }
       }
     },

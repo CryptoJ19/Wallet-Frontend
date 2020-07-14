@@ -6,6 +6,7 @@ import ModalSendBalance from './components/ModalSendBalance';
 import ModalRecieve from './components/ModalRecieve';
 import ModalSuccessSend from './components/ModalSuccessSend';
 import Loader from '../../ui/Loader';
+import { transactionsItemsLength } from '../../../config';
 
 export default {
   components: {
@@ -17,32 +18,44 @@ export default {
   },
   data: () => ({
     page: 1,
-    totalPages: 40,
     modalSendCurrency: '',
     time1: null,
     time2: null,
     time3: null,
     transactionsInterval: null,
     loadingTransactions: false,
+    limit: transactionsItemsLength,
   }),
   computed: {
     ...mapGetters([
       'getWallets',
       'getTransactionList',
+      'getTransactionCount',
     ]),
+    totalPages() {
+      return Math.ceil(this.getTransactionCount / transactionsItemsLength);
+    },
   },
   watch: {
     page(i, iOld) {
-      if (i !== iOld) {
+      if (i !== iOld && i !== '') {
         if (i > this.totalPages) {
           this.setMaxPage();
         }
-        this.loadingTransactions = true;
-        setTimeout(() => {
-          this.loadingTransactions = false;
-        }, 1000);
+        if (i <= this.totalPages && iOld <= this.totalPages && (i !== 0 && iOld !== '')) {
+          console.log(i, iOld);
+          this.loadingTransactions = true;
+          this.getTransactions();
+        }
+
+
+        // setTimeout(() => {
+        //   this.loadingTransactions = false;
+        // }, 1000);
       }
     },
+  },
+  mounted() {
   },
   created() {
     this.transactionsInterval = setInterval(
@@ -58,6 +71,7 @@ export default {
   methods: {
     ...mapActions([
       'fetchGetTransactions',
+      'fetchGetProfile',
     ]),
     prevPage() {
       if (this.page > 1) {
@@ -91,7 +105,12 @@ export default {
       return `${value.substr(0, centerIndex - (lengthPoints / 2))}${'.'.repeat(10)}${value.substr(centerIndex + (lengthPoints / 2), value.length)}`;
     },
     async getTransactions() {
-      const resTrans = await this.fetchGetTransactions();
+      const data = { limit: this.limit, page: this.page };
+      if (data.page <= 0) {
+        data.page = 1;
+      }
+      const resTrans = await this.fetchGetTransactions(data);
+      this.loadingTransactions = false;
       console.log('fetchGetTransactions', resTrans);
     },
     getWalletItem(symbol) {
@@ -120,6 +139,10 @@ export default {
     formatDate(value) {
       const date = new Date(value);
       return [moment(String(date)).format('DD/MM/YYYY'), moment(String(date)).format('HH:mm')];
+    },
+    refrashTransactions() {
+      this.getTransactions();
+      this.fetchGetProfile();
     },
     sendSuccess() {
       this.$bvModal.hide('modal-send-balance');
