@@ -47,11 +47,6 @@ export default {
           this.loadingTransactions = true;
           this.getTransactions();
         }
-
-
-        // setTimeout(() => {
-        //   this.loadingTransactions = false;
-        // }, 1000);
       }
     },
   },
