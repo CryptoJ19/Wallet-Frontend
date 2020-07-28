@@ -275,7 +275,9 @@
         v-if="userEditMode === 0"
         class="btns"
       >
-        <div />
+        <div class="btn">
+          Verified
+        </div>
         <div
           class="btn"
           @click="editUser()"
