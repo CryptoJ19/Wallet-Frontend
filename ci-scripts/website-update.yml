@@ -1,0 +1,7 @@
+---
+- name: Update CashFlash Website
+  hosts: all
+  gather_facts: True
+
+  roles:
+    - role: cashflash-update
