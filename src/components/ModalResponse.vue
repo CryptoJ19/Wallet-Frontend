@@ -25,7 +25,7 @@
       </div>
       <div class="mod__body">
         <div class="mod__text">
-          {{ text }}
+          <span>{{ text }}</span>
         </div>
       </div>
       <div class="mod__btns">
@@ -60,6 +60,7 @@ export default {
   .mod_response {
     .mod__text {
       margin: 0 0 20px;
+      white-space: pre-line;
     }
   }
 </style>

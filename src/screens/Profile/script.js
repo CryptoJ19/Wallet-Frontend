@@ -10,6 +10,7 @@ import ModalSuccessChangePass from './components/ModalSuccessChangePass';
 import ModalChangeAva from './components/ModalChangeAva';
 import Loader from '~/src/ui/Loader';
 import ModalDisableGA from './components/ModalDisableGA';
+import ModalResponse from '../../components/ModalResponse';
 
 export default {
   directives: {
@@ -197,6 +198,7 @@ export default {
     ModalSuccessChangePass,
     ModalChangeAva,
     DatePicker,
+    ModalResponse,
   },
   computed: {
     ...mapGetters([
@@ -234,6 +236,9 @@ export default {
       'fetchPostDocFiles',
       'fetchDelDocFiles',
     ]),
+    sendVerified() {
+      this.$bvModal.show('profile-verification-send-modal');
+    },
     selectDDStreetType(value) {
       this.localProfile.streetType = value;
     },

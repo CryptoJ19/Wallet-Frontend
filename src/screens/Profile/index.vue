@@ -7,6 +7,15 @@
     <ModalSuccessDisableGA />
     <ModalSuccessChangePass />
     <ModalChangeAva />
+    <ModalResponse
+      :id="'profile-verification-send-modal'"
+      :text="'Your personal data have been successfully sent to KYC provider.\n'+
+        'We\'ll notify you when the verification procedure is completed.\n'+
+        'Check your account status on Cash Flash Profile tab and your mailbox.\n'+
+        'Thank you!\n'"
+      :title="$t('Success')"
+      :success="true"
+    />
     <div
       class="pro__item user"
     >
@@ -48,7 +57,32 @@
                 >
               </div>
             </div>
+            <div class="ver ver_red">
+              <div class="ver__text">
+                Not verified
+              </div>
+              <div class="ver__icon">
+                <img
+                  src="~/assets/imgs/icons/cross_w.svg"
+                  alt="ok"
+                >
+              </div>
+            </div>
+            <div class="ver ver_yellow">
+              <div class="ver__text">
+                Pending
+              </div>
+              <div class="ver__icon">
+                <img
+                  src="~/assets/imgs/icons/cloce.svg"
+                  alt="ok"
+                >
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="red-mes">
+          Your verification request was declined. Your address is incorrect
         </div>
       </div>
       <div class="user__items">
@@ -275,7 +309,10 @@
         v-if="userEditMode === 0"
         class="btns"
       >
-        <div class="btn">
+        <div
+          class="btn btn"
+          @click="sendVerified"
+        >
           Verified
         </div>
         <div
@@ -290,7 +327,7 @@
         class="btns"
       >
         <div
-          class="btn"
+          class="btn btn_cancel"
           @click="cancelEditUser()"
         >
           {{ $t('profile.cancel') }}

@@ -76,6 +76,14 @@
     //min-width: 612px;
     margin: 0 20px 0 0;
     position: relative;
+    .red-mes {
+      padding: 14px 20px;
+      font-size: 16px;
+      background: $red;
+      border-radius: 11px;
+      color: #FFFFFF;
+      margin-top: 20px;
+    }
     &__input {
       position: relative;
       display: flex;
@@ -211,6 +219,7 @@
       align-items: center;
       height: 30px;
       padding: 0 17px 0 10px;
+      margin-left: 20px;
       &__text {
         font-family: Raleway;
         font-style: normal;
@@ -219,6 +228,12 @@
         line-height: 143.4%;
         color: #FFFFFF;
         margin: 0 12px 0 0;
+      }
+      &_red {
+        background: $red;
+      }
+      &_yellow {
+        background: #F2C94C;
       }
     }
     .header {
@@ -359,9 +374,12 @@
         @include btn_out;
         //margin: 0 60px 0 0;
       }
-      &:last-child {
+      &:not(.btn_cancel) {
         @include btn;
         @include btn-yellow;
+      }
+      &_cancel {
+        @include btn_out;
       }
     }
     &__loader {

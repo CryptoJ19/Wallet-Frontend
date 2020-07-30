@@ -181,7 +181,7 @@ export default {
         font-weight: normal;
         font-size: 14px;
         line-height: 143.4%;
-        color: #EB5757;
+        color: $red;
       }
     }
     .address {
