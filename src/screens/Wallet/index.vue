@@ -8,109 +8,143 @@
     <ModalRecieve />
     <ModalSuccessSend />
 
-    <div class="wallet__item balance">
-      <div class="title">
-        {{ $t('wallet.balance') }}
-      </div>
-      <div>
-        <div class="mainnum">
-          EOS
-          {{ mathCut(getBalance('EOS')) }}
+    <div class="wallet__top">
+      <div class="wallet__item balance">
+        <div class="title">
+          {{ $t('wallet.balance') }}
         </div>
-        <div class="subnum">
-          $ {{ mathCut(convertToUSD('EOS')) }}
-        </div>
-        <div class="bottom">
-          <div class="balance__link" />
-          <div class="btns">
-            <button class="btn">
-              <img
-                src="~assets/imgs/icons/refrash.svg"
-                alt="arrow"
+        <div>
+          <div class="mainnum">
+            EOS
+            {{ mathCut(getBalance('EOS')) }}
+          </div>
+          <div class="subnum">
+            $ {{ mathCut(convertToUSD('EOS')) }}
+          </div>
+          <div class="bottom">
+            <div class="balance__link" />
+            <div class="btns">
+              <button class="btn">
+                <img
+                  src="~assets/imgs/icons/refrash.svg"
+                  alt="arrow"
+                >
+              </button>
+              <button
+                class="btn"
+                @click="showSendBalance('EOS')"
               >
-            </button>
-            <button
-              class="btn"
-              @click="showSendBalance('EOS')"
-            >
-              <div>
-                {{ $t('wallet.send') }}
-              </div>
-              <div class="icon">
-                <img
-                  src="~assets/imgs/icons/arrow_a.svg"
-                  alt="arrow"
-                >
-              </div>
-            </button>
-            <button
-              class="btn"
-              @click="showRecieve()"
-            >
-              <div>
-                {{ $t('wallet.recieve') }}
-              </div>
-              <div class="icon">
-                <img
-                  src="~assets/imgs/icons/arrow_a.svg"
-                  alt="arrow"
-                >
-              </div>
-            </button>
+                <div>
+                  {{ $t('wallet.send') }}
+                </div>
+                <div class="icon">
+                  <img
+                    src="~assets/imgs/icons/arrow_a.svg"
+                    alt="arrow"
+                  >
+                </div>
+              </button>
+              <button
+                class="btn"
+                @click="showRecieve()"
+              >
+                <div>
+                  {{ $t('wallet.recieve') }}
+                </div>
+                <div class="icon">
+                  <img
+                    src="~assets/imgs/icons/arrow_a.svg"
+                    alt="arrow"
+                  >
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="wallet__item token">
-      <div class="title">
-        {{ $t('wallet.balance') }}
-      </div>
-      <div>
-        <div class="mainnum">
-          CFT
-          {{ mathCut(getBalance('CFT')) }}
+      <div class="wallet__item token">
+        <div class="title">
+          {{ $t('wallet.balance') }}
         </div>
-        <div class="subnum">
-          $ {{ mathCut(convertToUSD('CFT')) }}
-        </div>
-        <div class="bottom">
-          <div />
-          <div class="btns">
-            <button class="btn">
-              <img
-                src="~assets/imgs/icons/refrash.svg"
-                alt="arrow"
-              >
-            </button>
-            <button
-              class="btn"
-              @click="showSendBalance('CFT')"
-            >
-              <div>
-                {{ $t('wallet.send') }}
-              </div>
-              <div class="icon">
-                <img
-                  src="~assets/imgs/icons/arrow_a.svg"
-                  alt="arrow"
-                >
-              </div>
-            </button>
-            <button
-              class="btn"
-              @click="showRecieve()"
-            >
-              <div>
-                {{ $t('wallet.recieve') }}
-              </div>
-              <div class="icon">
-                <img
-                  src="~assets/imgs/icons/arrow_a.svg"
-                  alt="arrow"
-                >
-              </div>
-            </button>
+        <div>
+          <div class="mainnum">
+            CFT
+            {{ mathCut(getBalance('CFT')) }}
           </div>
+          <div class="subnum">
+            $ {{ mathCut(convertToUSD('CFT')) }}
+          </div>
+          <div class="bottom">
+            <div />
+            <div class="btns">
+              <button class="btn">
+                <img
+                  src="~assets/imgs/icons/refrash.svg"
+                  alt="arrow"
+                >
+              </button>
+              <button
+                class="btn"
+                @click="showSendBalance('CFT')"
+              >
+                <div>
+                  {{ $t('wallet.send') }}
+                </div>
+                <div class="icon">
+                  <img
+                    src="~assets/imgs/icons/arrow_a.svg"
+                    alt="arrow"
+                  >
+                </div>
+              </button>
+              <button
+                class="btn"
+                @click="showRecieve()"
+              >
+                <div>
+                  {{ $t('wallet.recieve') }}
+                </div>
+                <div class="icon">
+                  <img
+                    src="~assets/imgs/icons/arrow_a.svg"
+                    alt="arrow"
+                  >
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reward">
+        <div class="taber">
+          <div class="taber__top">
+            <div class="taber__title">
+              First reward <span class="taber__title_inv">(of 4)</span>
+            </div>
+            <div class="taber__btns">
+              <div class="taber__btn" />
+            </div>
+          </div>
+          <div class="taber__text">
+            <span>October 12 <span class="taber__text_thin">2020</span></span>
+          </div>
+          <div class="taber__pager">
+            <div class="taber__circle taber__circle_active" />
+            <div class="taber__circle" />
+            <div class="taber__circle" />
+            <div class="taber__circle" />
+            <div class="taber__circle" />
+          </div>
+        </div>
+        <div class="reward__text">
+          <span>on July 12, 2020. <strong>1500 CFT</strong>
+            will be deposited to your wallet as purchase bonus</span>
+        </div>
+        <div class="reward__cover">
+          <img
+            src="~assets/imgs/icons/rewart__cover.svg"
+            alt="arrow"
+          >
         </div>
       </div>
     </div>

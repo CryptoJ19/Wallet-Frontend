@@ -1,6 +1,6 @@
 .wallet {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 20px;
 
   &__item {
@@ -9,12 +9,97 @@
 
   }
 
-  &__item:nth-child(3) {
-    grid-column-start: 1;
-    grid-column-end: 3;
+  &__top {
+    //grid-column-start: 1;
+    //grid-column-end: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
   }
 
-  &__item:nth-child(1), &__item:nth-child(2) {
+  .reward {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 13px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__cover {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 40px;
+    }
+    &__text {
+      max-width: 253px;
+      font-size: 14px;
+      color: rgba(#000000, 0.7);
+    }
+    &__cover {
+
+    }
+    .taber {
+      display: grid;
+      grid-template-rows: min-content auto min-content;
+      height: 123px;
+      background: #F2F2F2;
+      border-radius: 6px;
+      padding: 20px;
+      &__top {
+        display: flex;
+        align-items: center;
+      }
+      &__btns {
+        margin-right: 10px;
+      }
+      &__title {
+        font-size: 12px;
+        color: rgba(#54595F, 0.5);
+        &_inv {
+          color: rgba(#54595F, 0.3);
+        }
+      }
+      &__btn {
+        &_right {}
+      }
+      &__text {
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 143.4%;
+        /* identical to box height, or 43px */
+
+        display: flex;
+        align-items: center;
+
+        /* Black */
+
+        color: #000000;
+        &_thin {
+          font-weight: normal;
+          color: #54595F;
+        }
+      }
+      &__pager {
+        display: grid;
+        grid-template-columns: repeat(5, min-content);
+        grid-gap: 7px;
+      }
+      &__circle {
+        width: 5px;
+        height: 5px;
+        background: #54595F;
+        opacity: 0.2;
+        border-radius: 100%;
+        &_active {
+          background: #000000;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .token, .balance {
     height: 264px;
     padding: 30px;
 
@@ -243,6 +328,9 @@
         }
       }
     }
+  }
+  .qwe {
+
   }
   @media (max-width: 1499px) {
     //padding: 50px;
