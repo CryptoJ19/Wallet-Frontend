@@ -26,7 +26,6 @@
 <script>
 import ContainerConsole from '~/src/components/ContainerConsole';
 import { getAccessToken } from '~/helpers/customFetch';
-import { baseUrl } from '../../config';
 
 export default {
   components: {
@@ -37,9 +36,9 @@ export default {
   }),
   mounted() {
     if (getAccessToken() === false) {
-      document.location.replace(`${baseUrl}/app/authorization`);
+      document.location.replace(`${window.location.host}/app/authorization`);
     } else {
-      document.location.replace(`${baseUrl}/app/wallet`);
+      document.location.replace(`${window.location.host}/app/wallet`);
     }
   },
   head() {

@@ -1,7 +1,7 @@
 import {
   customFetch, customFetchToken, getHeaderWithToken, customFetchFormdata,
 } from '../../helpers/customFetch';
-import { baseUrl, apiUrl } from '../../config';
+import { apiUrl } from '../../config';
 
 export default {
   state: {
@@ -123,7 +123,7 @@ export default {
 
     logout(ctx) {
       ctx.commit('logout');
-      document.location.replace(`${baseUrl}/app/authorization`);
+      document.location.replace(`${window.location.host}/app/authorization`);
     },
     async fetchGetProfile(ctx) {
       const res = await customFetchToken(ctx, async () => {

@@ -1,5 +1,4 @@
 import { mapActions, mapGetters } from 'vuex';
-import { baseUrl } from '../../../config';
 import Loader from '../../ui/Loader';
 
 export default {
@@ -11,7 +10,7 @@ export default {
       'getReferal',
     ]),
     getReferalLink() {
-      return `${baseUrl}/?ref=${this.getReferal.refLink}`;
+      return `${window.location.host}/?ref=${this.getReferal.refLink}`;
     },
   },
   data: () => ({

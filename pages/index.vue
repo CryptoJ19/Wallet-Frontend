@@ -4,8 +4,6 @@
   </div>
 </template>
 <script>
-
-import { baseUrl } from '../config';
 import Landing from '~/src/screens/Landing';
 
 export default {
@@ -18,7 +16,7 @@ export default {
   mounted() {
     if (typeof this.$route.query.ref !== 'undefined') {
       const { ref } = this.$route.query;
-      document.location.replace(`${baseUrl}/app/authorization?ref=${ref}`);
+      document.location.replace(`${window.location.host}/app/authorization?ref=${ref}`);
     }
   },
   head() {
