@@ -1,27 +1,5 @@
 <template>
-  <div>
-    <!--    <div>-->
-    <!--      <nuxt-link-->
-    <!--        :to="`/wallet`"-->
-    <!--      >-->
-    <!--        wallet-->
-    <!--      </nuxt-link>-->
-    <!--    </div>-->
-    <!--    <div>-->
-    <!--      <nuxt-link-->
-    <!--        :to="`/profile`"-->
-    <!--      >-->
-    <!--        profile-->
-    <!--      </nuxt-link>-->
-    <!--    </div>-->
-    <!--    <div>-->
-    <!--      <nuxt-link-->
-    <!--        :to="`/authorization`"-->
-    <!--      >-->
-    <!--        authorization-->
-    <!--      </nuxt-link>-->
-    <!--    </div>-->
-  </div>
+  <div />
 </template>
 <script>
 import ContainerConsole from '~/src/components/ContainerConsole';
@@ -35,10 +13,11 @@ export default {
     title: 'CashFlash',
   }),
   mounted() {
+    console.log(window.location.host);
     if (getAccessToken() === false) {
-      document.location.replace(`${window.location.host}/app/authorization`);
+      document.location.replace(`http://${window.location.host}/app/authorization`);
     } else {
-      document.location.replace(`${window.location.host}/app/wallet`);
+      document.location.replace(`http://${window.location.host}/app/wallet`);
     }
   },
   head() {

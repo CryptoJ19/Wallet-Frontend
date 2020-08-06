@@ -76,7 +76,7 @@ export default {
     }
 
     if (getAccessToken() !== false) {
-      document.location.replace(`${window.location.host}/app/wallet`);
+      document.location.replace(`http://${window.location.host}/app/wallet`);
     }
   },
   watch: {
@@ -346,7 +346,7 @@ export default {
         this.loader = false;
         console.log('fetchSignin', resSignin);
         if (resSignin.ok) {
-          document.location.replace(`${window.location.host}/app/wallet`);
+          document.location.replace(`http://${window.location.host}/app/wallet`);
         } else if (resSignin.code === 401000) {
           this.erMes = this.$t('auth.er.incorrectLog');
         } else if (resSignin.code === 400000 && GAEnabled === false) {
@@ -388,7 +388,7 @@ export default {
 
         if (res.ok) {
           // this.$router.replace({ path: 'wallet' });
-          document.location.replace(`${window.location.host}/app/wallet`);
+          document.location.replace(`http://${window.location.host}/app/wallet`);
         } else {
           this.erCheckEmail = this.$t('auth.er.incorrectCode');
         }

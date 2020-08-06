@@ -16,7 +16,7 @@ export default {
   mounted() {
     if (typeof this.$route.query.ref !== 'undefined') {
       const { ref } = this.$route.query;
-      document.location.replace(`${window.location.host}/app/authorization?ref=${ref}`);
+      document.location.replace(`http://${window.location.host}/app/authorization?ref=${ref}`);
     }
   },
   head() {
