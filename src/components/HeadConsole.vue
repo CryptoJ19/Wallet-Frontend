@@ -84,7 +84,10 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     ...mapGetters(['getProfile', 'getAvatar']),

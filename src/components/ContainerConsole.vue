@@ -52,7 +52,10 @@ export default {
     Loader,
   },
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: '',
+    },
   },
   data: () => ({
     showMenu: false,

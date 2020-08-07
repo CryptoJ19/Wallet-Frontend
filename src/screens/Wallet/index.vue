@@ -169,7 +169,7 @@
               v-for="rewardCircle in 5"
               :key="`taber__circle-${rewardCircle - 1}`"
               class="taber__circle"
-              :class="{'taber__circle_active': rewardPage == rewardCircle - 1}"
+              :class="{'taber__circle_active': rewardPage === rewardCircle - 1}"
             />
           </div>
         </div>
