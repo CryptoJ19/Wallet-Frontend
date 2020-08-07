@@ -377,6 +377,7 @@
       &:not(.btn_cancel) {
         @include btn;
         @include btn-yellow;
+        border: none;
       }
       &_cancel {
         @include btn_out;

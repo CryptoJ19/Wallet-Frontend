@@ -153,7 +153,10 @@ export default {
     Loader,
   },
   props: {
-    currency: String,
+    currency: {
+      type: String,
+      default: '',
+    },
   },
   data: () => ({
     loading: true,

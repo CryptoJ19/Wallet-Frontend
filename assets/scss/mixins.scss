@@ -142,3 +142,15 @@
   display: none;
   border-radius: 13px;
 }
+
+@mixin btn__hover {
+  transition: .3s;
+  &:hover {
+    -webkit-filter: brightness(.92) saturate(.92) hue-rotate(-2deg);
+    filter: brightness(.92) saturate(.92) hue-rotate(-2deg);
+  }
+  &:active {
+    -webkit-filter: brightness(.84) saturate(.84) hue-rotate(-5deg);
+    filter: brightness(.84) saturate(.84) hue-rotate(-5deg);
+  }
+}

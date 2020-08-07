@@ -90,8 +90,14 @@ import { CFAddress } from '../../../config';
 
 export default {
   props: {
-    mode: Number,
-    total: Number,
+    mode: {
+      type: Number,
+      default: 0,
+    },
+    total: {
+      type: Number,
+      default: 0,
+    },
   },
   data: () => ({
     CFAddress,

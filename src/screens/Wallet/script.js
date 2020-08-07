@@ -17,6 +17,7 @@ export default {
     ModalSuccessSend,
   },
   data: () => ({
+    rewardPage: 0,
     page: 1,
     modalSendCurrency: '',
     time1: null,
@@ -76,6 +77,16 @@ export default {
     nextPage() {
       if (this.page < this.totalPages) {
         this.page = this.page + 1;
+      }
+    },
+    prevRewardPage() {
+      if (this.rewardPage > 0) {
+        this.rewardPage = this.rewardPage - 1;
+      }
+    },
+    nextRewardPage() {
+      if (this.rewardPage < 4) {
+        this.rewardPage = this.rewardPage + 1;
       }
     },
     setMaxPage() {

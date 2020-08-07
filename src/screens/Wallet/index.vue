@@ -122,18 +122,55 @@
               First reward <span class="taber__title_inv">(of 4)</span>
             </div>
             <div class="taber__btns">
-              <div class="taber__btn" />
+              <button
+                class="taber__btn taber__btn_left"
+                @click="prevRewardPage()"
+              >
+                <img
+                  src="~assets/imgs/icons/arrow_default_white.svg"
+                  alt="arrow"
+                >
+              </button>
+              <button
+                class="taber__btn taber__btn_right"
+                @click="nextRewardPage()"
+              >
+                <img
+                  src="~assets/imgs/icons/arrow_default_white.svg"
+                  alt="arrow"
+                >
+              </button>
             </div>
           </div>
-          <div class="taber__text">
-            <span>October 12 <span class="taber__text_thin">2020</span></span>
+          <div class="taber__body">
+            <div
+              class="taber__items"
+              :class="`taber__items_${rewardPage}`"
+            >
+              <div class="taber__item taber__text">
+                <span>October 12 <span class="taber__text_thin">2020</span></span>
+              </div>
+              <div class="taber__item taber__text">
+                <span>October 12 <span class="taber__text_thin">2021</span></span>
+              </div>
+              <div class="taber__item taber__text">
+                <span>October 12 <span class="taber__text_thin">2022</span></span>
+              </div>
+              <div class="taber__item taber__text">
+                <span>October 12 <span class="taber__text_thin">2023</span></span>
+              </div>
+              <div class="taber__item taber__text">
+                <span>October 12 <span class="taber__text_thin">2024</span></span>
+              </div>
+            </div>
           </div>
           <div class="taber__pager">
-            <div class="taber__circle taber__circle_active" />
-            <div class="taber__circle" />
-            <div class="taber__circle" />
-            <div class="taber__circle" />
-            <div class="taber__circle" />
+            <div
+              v-for="rewardCircle in 5"
+              :key="`taber__circle-${rewardCircle - 1}`"
+              class="taber__circle"
+              :class="{'taber__circle_active': rewardPage == rewardCircle - 1}"
+            />
           </div>
         </div>
         <div class="reward__text">

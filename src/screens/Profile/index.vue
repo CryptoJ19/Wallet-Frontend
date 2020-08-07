@@ -123,12 +123,12 @@
                 class="dd__items"
               >
                 <button
-                  v-for="(item, i) in streetTypes"
-                  :key="`dd__item_streetType_${i}`"
+                  v-for="(itemStreet, s) in streetTypes"
+                  :key="`dd__item_streetType_${s}`"
                   class="dd__item"
-                  @click="selectDDStreetType(item)"
+                  @click="selectDDStreetType(itemStreet)"
                 >
-                  {{ item }}
+                  {{ itemStreet }}
                 </button>
               </div>
             </div>
@@ -152,8 +152,8 @@
             >
             <div class="file__items">
               <div
-                v-for="(file, i) in getDocFile"
-                :key="`file__item_${i}`"
+                v-for="(file, iDoc) in getDocFile"
+                :key="`file__item_${iDoc}`"
                 class="file__item"
               >
                 <div class="file__name">
@@ -211,13 +211,13 @@
                 class="vdd__items"
               >
                 <button
-                  v-for="(item, i) in getCountris"
-                  :key="`dd__item_country_${i}`"
+                  v-for="(country, iCountris) in getCountris"
+                  :key="`dd__item_country_${iCountris}`"
                   class="vdd__item"
-                  @click="selectCountry(item.short)"
+                  @click="selectCountry(country.short)"
                 >
-                  {{ item.full }}
-                  {{ item.short }}
+                  {{ country.full }}
+                  {{ country.short }}
                 </button>
               </div>
             </div>
@@ -250,12 +250,12 @@
                 class="vdd__items"
               >
                 <button
-                  v-for="(item, i) in identityDocumentItems"
-                  :key="`dd__item_id-doc_${i}`"
+                  v-for="(doc, iIdDoc) in identityDocumentItems"
+                  :key="`dd__item_id-doc_${iIdDoc}`"
                   class="vdd__item"
-                  @click="selectIdDoc(item)"
+                  @click="selectIdDoc(doc)"
                 >
-                  {{ item }}
+                  {{ doc }}
                 </button>
               </div>
             </div>

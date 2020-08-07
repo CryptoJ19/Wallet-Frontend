@@ -50,8 +50,14 @@
 <script>
 export default {
   props: {
-    title: String,
-    showMenu: Boolean,
+    title: {
+      type: String,
+      default: '',
+    },
+    showMenu: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     menuItems: [

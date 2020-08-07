@@ -43,10 +43,22 @@
 
 export default {
   props: {
-    id: String,
-    title: String,
-    text: String,
-    success: Boolean,
+    id: {
+      type: String,
+      default: '',
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+    text: {
+      type: String,
+      default: '',
+    },
+    success: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     close() {

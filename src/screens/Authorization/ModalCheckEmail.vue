@@ -62,8 +62,14 @@ export default {
     Loader,
   },
   props: {
-    erCheckEmail: String,
-    loaderModal: Boolean,
+    erCheckEmail: {
+      type: String,
+      default: '',
+    },
+    loaderModal: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     code: '',

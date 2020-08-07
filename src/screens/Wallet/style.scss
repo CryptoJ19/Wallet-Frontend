@@ -35,9 +35,7 @@
       max-width: 253px;
       font-size: 14px;
       color: rgba(#000000, 0.7);
-    }
-    &__cover {
-
+      margin-top: 16px;
     }
     .taber {
       display: grid;
@@ -50,9 +48,7 @@
         display: flex;
         align-items: center;
       }
-      &__btns {
-        margin-right: 10px;
-      }
+
       &__title {
         font-size: 12px;
         color: rgba(#54595F, 0.5);
@@ -60,8 +56,57 @@
           color: rgba(#54595F, 0.3);
         }
       }
+      &__btns {
+        margin-left: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 8px;
+      }
       &__btn {
-        &_right {}
+        @include btn__hover;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #C1C3C6;
+        border-radius: 3px;
+        &_right {
+          img {
+            transform: rotate(-90deg);
+          }
+        }
+        &_left {
+          img {
+            transform: rotate(90deg);
+          }
+        }
+      }
+      &__body {
+        display: flex;
+        width: 100%;
+        position: relative;
+        align-items: center;
+        overflow: hidden;
+      }
+      &__items {
+        position: absolute;
+        left: 0;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        transition: .4s;
+        @for $i from -10 through 10 {
+          &_#{$i} {
+            left: -100%*$i;
+          }
+        }
+      }
+      &__item {
+        width: 100%;
+        min-width: 100%;
       }
       &__text {
         font-weight: 800;
@@ -91,6 +136,7 @@
         background: #54595F;
         opacity: 0.2;
         border-radius: 100%;
+        transition: .3s;
         &_active {
           background: #000000;
           opacity: 1;
@@ -339,9 +385,12 @@
   @media (max-width: 1199px) {
     grid-template-columns: 1fr;
 
+    &__top {
+      grid-template-columns: 1fr;
+    }
     &__item {
-      grid-column-start: 1 !important;
-      grid-column-end: 2 !important;
+      //grid-column-start: 1 !important;
+      //grid-column-end: 2 !important;
     }
 
     .history {
@@ -446,6 +495,14 @@
     }
   }
   @media (max-width: 575px) {
+    .reward {
+      &__cover {
+        display: none;
+      }
+      .taber__text {
+        font-size: 22px;
+      }
+    }
     &__item:nth-child(1), &__item:nth-child(2) {
       padding: 15px;
     }

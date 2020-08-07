@@ -90,7 +90,10 @@ export default {
     Loader,
   },
   props: {
-    resetData: Object,
+    resetData: {
+      type: Object,
+      default: () => {},
+    },
   },
   data: () => ({
     loader: false,
