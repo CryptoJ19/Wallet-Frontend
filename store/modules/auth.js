@@ -10,8 +10,24 @@ export default {
     transactions: {},
     isAuthorized: false,
     docFiles: [],
+    countries: {},
   },
   actions: {
+    async fetchGetCountries(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const rawResponse = await customFetch(
+          `${apiUrl}/auth/get-countries`,
+          'GET',
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      if (res.ok) {
+        ctx.commit('updateCountries', res.result);
+      }
+      return res;
+    },
+
     async fetchDelDocFiles(ctx, i) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -224,6 +240,7 @@ export default {
       state.isAuthorized = false;
       state.referal = {};
       state.docFiles = [];
+      state.countries = {};
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');
@@ -254,6 +271,9 @@ export default {
     },
     updateDocFile(state, value) {
       state.docFiles = value;
+    },
+    updateCountries(state, value) {
+      state.countries = value;
     },
   },
   getters: {
@@ -289,6 +309,17 @@ export default {
     },
     getCountris(state) {
       const obj = { ...state.profile.countryCodes };
+      const newArr = [];
+      Object.keys(obj).forEach((item) => {
+        newArr.push({ short: item, full: obj[item] });
+      });
+      return newArr;
+    },
+    getCountriesReg(state) {
+      return state.countries;
+    },
+    getCountriesRegSort(state) {
+      const obj = { ...state.countries };
       const newArr = [];
       Object.keys(obj).forEach((item) => {
         newArr.push({ short: item, full: obj[item] });

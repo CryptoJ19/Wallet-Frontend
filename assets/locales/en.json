@@ -295,6 +295,7 @@
     "lastName": "Last name",
     "nickname": "CashFlash Name",
     "changePass": "Change",
+    "country": "Country",
     "er": {
       "enterEmail": "Enter an email",
       "enterValidEmail": "Enter a valid email",
@@ -315,7 +316,8 @@
       "emailExists": "The email address is used by another user",
       "incorrectLog": "Invalid password or login",
       "incorrectTotp": "2FA code is invalid",
-      "incorrectCode": "Email confirmation code is invalid"
+      "incorrectCode": "Email confirmation code is invalid",
+      "enterCountry": "Enter country"
     }
   },
   "wallet": {

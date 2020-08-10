@@ -1,9 +1,13 @@
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import ClickOutside from 'vue-click-outside';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
 import { getAccessToken } from '~/helpers/customFetch';
 
 export default {
+  directives: {
+    ClickOutside,
+  },
   components: {
     ModalCheckEmail,
     Loader,
@@ -11,7 +15,7 @@ export default {
   data: () => ({
     mode: 0,
     test: false,
-    loader: false,
+    loader: true,
 
     er: [],
     erMes: '',
@@ -47,6 +51,7 @@ export default {
       memo: '',
       password: '',
       passwordType: 'password',
+      country: '',
     },
 
 
@@ -54,8 +59,13 @@ export default {
       email: '',
       code: '',
     },
+
+    ddShow: {
+      countries: false,
+    },
   }),
   computed: {
+    ...mapGetters(['getCountriesReg', 'getCountriesRegSort']),
     authBtnClass: ({ mode }) => ([
       { menu__item_active: (mode === 0) },
       { menu__item_active: (mode === 1) },
@@ -69,15 +79,20 @@ export default {
     ]),
   },
   mounted() {
+    if (getAccessToken() !== false) {
+      document.location.replace(`http://${window.location.host}/app/wallet`);
+    }
+
+    // get countrys
+    this.fetchGetCountries();
+
     if (typeof this.$route.query.ref !== 'undefined') {
       const { ref } = this.$route.query;
       this.refLink = ref;
       this.setMode(1);
     }
 
-    if (getAccessToken() !== false) {
-      document.location.replace(`http://${window.location.host}/app/wallet`);
-    }
+    this.loader = false;
   },
   watch: {
     'signin.email': function () {
@@ -96,7 +111,17 @@ export default {
       'fetchValidateEmail',
       'fetchSignin',
       'fetchForgotSend',
+      'fetchGetCountries',
     ]),
+    toggleDD(key) {
+      this.ddShow[key] = !this.ddShow[key];
+    },
+    hideDDCountries() {
+      this.ddShow.countries = false;
+    },
+    selectDD(key, value) {
+      this.signup[key] = value;
+    },
     toggleGACodeType() {
       if (this.signin.GACodeType === 'password') {
         this.signin.GACodeType = 'text';
@@ -127,6 +152,7 @@ export default {
         password: '',
         passwordType: 'password',
         memo: '',
+        country: '',
       };
       this.signin = {
         email: '',
@@ -232,6 +258,7 @@ export default {
         email,
         password,
         memo,
+        country,
       } = this.signup;
       if (firstName === '') {
         this.er.push(0);
@@ -272,6 +299,9 @@ export default {
       ) {
         this.er.push(10);
       }
+      if (country === '') {
+        this.er.push(13);
+      }
       return this.er.length === 0;
     },
 
@@ -285,6 +315,7 @@ export default {
           email,
           password,
           memo,
+          country,
         } = this.signup;
 
         this.loader = true;
@@ -294,6 +325,7 @@ export default {
           email,
           password,
           nickname: memo,
+          country,
         };
         if (this.refLink !== '') {
           data.ref = this.refLink;
