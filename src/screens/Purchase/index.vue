@@ -41,6 +41,75 @@
       </div>
     </div>
     <div class="pur__items">
+      <div class="pay">
+        <div class="pay__title">
+          {{ $t('purchase.specify') }}
+        </div>
+        <div class="pay__subtitle">
+          {{ $t('purchase.choose') }}
+        </div>
+        <div class="tab">
+          <div class="tab__box">
+            <div
+              class="tab__shape"
+              :class="{'tab__shape_swap': payTab === 1}"
+            />
+            <div class="tab__items">
+              <button
+                class="tab__item"
+                @click="setPayTab(0)"
+              >
+                {{ $t('purchase.EOS') }}
+              </button>
+              <button
+                class="tab__item"
+                @click="setPayTab(1)"
+              >
+                {{ $t('purchase.stripe') }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="pay__sum pay__sum_sm">
+          1 CFT = x EOS = y EURO
+        </div>
+        <div class="pay__subtitle">
+          {{ $t('purchase.amount') }}
+        </div>
+        <div class="pay__amount">
+          <input
+            v-model="amount"
+            maxlength="40"
+            :placeholder="$t('purchase.amountPlaceholder')"
+            type="number"
+          >
+        </div>
+        <div class="pay__subtitle">
+          {{ $t('purchase.amount') }}
+        </div>
+        <div class="pay__amount">
+          <input
+            v-model="amount"
+            maxlength="40"
+            :placeholder="$t('purchase.amountPlaceholder')"
+            type="number"
+          >
+        </div>
+        <div class="pay__subtitle">
+          {{ $t('purchase.total') }}
+        </div>
+        <div class="pay__sum">
+          {{ formatSum(amount) }} {{ $t('purchase.cur') }}
+        </div>
+        <div class="pay__btns">
+          <button
+            class="pay__btn"
+            @click="showModal('modal-pay-confirm')"
+          >
+            {{ $t('purchase.confirm') }}
+          </button>
+        </div>
+      </div>
       <div class="timer">
         <img
           src="~assets/imgs/timer-bg.svg"
@@ -154,61 +223,7 @@
           </div>
         </div>
       </div>
-      <div class="pay">
-        <div class="pay__title">
-          {{ $t('purchase.specify') }}
-        </div>
-        <div class="pay__subtitle">
-          {{ $t('purchase.choose') }}
-        </div>
-        <div class="tab">
-          <div class="tab__box">
-            <div
-              class="tab__shape"
-              :class="{'tab__shape_swap': payTab === 1}"
-            />
-            <div class="tab__items">
-              <button
-                class="tab__item"
-                @click="setPayTab(0)"
-              >
-                {{ $t('purchase.EOS') }}
-              </button>
-              <button
-                class="tab__item"
-                @click="setPayTab(1)"
-              >
-                {{ $t('purchase.stripe') }}
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="pay__subtitle">
-          {{ $t('purchase.amount') }}
-        </div>
-        <div class="pay__amount">
-          <input
-            v-model="amount"
-            maxlength="40"
-            :placeholder="$t('purchase.amountPlaceholder')"
-            type="number"
-          >
-        </div>
-        <div class="pay__subtitle">
-          {{ $t('purchase.total') }}
-        </div>
-        <div class="pay__sum">
-          {{ formatSum(amount) }} {{ $t('purchase.cur') }}
-        </div>
-        <div class="pay__btns">
-          <button
-            class="pay__btn"
-            @click="showModal('modal-pay-confirm')"
-          >
-            {{ $t('purchase.confirm') }}
-          </button>
-        </div>
-      </div>
+
       <div class="steps">
         <div class="steps__title">
           {{ $t('purchase.steps.title') }}

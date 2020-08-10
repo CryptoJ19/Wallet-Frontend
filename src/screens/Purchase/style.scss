@@ -2,7 +2,7 @@
   &__items {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 173px auto;
+    //grid-template-rows: 173px auto;
     grid-gap: 20px;
   }
   .promo {
@@ -48,6 +48,7 @@
     }
   }
   .timer {
+    height: 172px;
     background: $yellow-gradient;
     //height: 173px;
     display: flex;
@@ -136,6 +137,8 @@
     display: flex;
     flex-direction: column;
     padding: 30px;
+    grid-row-start: 1;
+    grid-row-end: 4;
     &__amount {
       margin: 0 0 30px;
     }
@@ -148,7 +151,6 @@
       @include btn-yellow;
     }
     &__sum {
-      font-weight: 500;
       font-size: 50px;
       color: #000000;
       height: 112px;
@@ -158,7 +160,12 @@
       background: $grey-bg;
       border-radius: 13px;
       font-family: Roboto;
-      margin: 0 0 57px;
+      margin-bottom: 30px;
+      font-weight: bold;
+      &_sm {
+        font-size: 30px;
+        height: 85px;
+      }
     }
     &__subtitle {
       font-weight: bold;
@@ -241,6 +248,7 @@
     }
   }
   .progress {
+    height: 172px;
     background: #fff;
     border-radius: 13px;
     display: flex;
