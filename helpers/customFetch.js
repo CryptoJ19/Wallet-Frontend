@@ -1,4 +1,4 @@
-import { baseUrl, apiUrl } from '../config';
+const apiUrl = process.env.BASE_URL;
 
 const getAccessToken = () => {
   if (localStorage.getItem('accessToken') !== null) {
@@ -78,7 +78,7 @@ const customFetchToken = async (ctx, callback) => {
     );
     const contentResresh = await rawResponseRefresh.json();
     if (contentResresh.code === 401001) {
-      document.location.replace(`${baseUrl}/app/authorization`);
+      document.location.replace(`http://${window.location.host}/app/authorization`);
       ctx.commit('logout');
       return false;
     }

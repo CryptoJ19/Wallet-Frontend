@@ -1,7 +1,8 @@
 import {
   customFetch, customFetchToken, getHeaderWithToken, customFetchFormdata,
 } from '../../helpers/customFetch';
-import { apiUrl } from '../../config';
+
+const apiUrl = process.env.BASE_URL;
 
 export default {
   state: {

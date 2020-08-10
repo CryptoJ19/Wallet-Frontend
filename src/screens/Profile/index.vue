@@ -46,7 +46,10 @@
                 {{ getProfile.email }}
               </div>
             </div>
-            <div class="ver">
+            <div
+              v-if="getProfile.status === 0"
+              class="ver"
+            >
               <div class="ver__text">
                 Verified
               </div>
@@ -57,7 +60,10 @@
                 >
               </div>
             </div>
-            <div class="ver ver_red">
+            <div
+              v-if="getProfile.status === 0"
+              class="ver ver_red"
+            >
               <div class="ver__text">
                 Not verified
               </div>
@@ -68,7 +74,10 @@
                 >
               </div>
             </div>
-            <div class="ver ver_yellow">
+            <div
+              v-if="getProfile.status === 1"
+              class="ver ver_yellow"
+            >
               <div class="ver__text">
                 Pending
               </div>
@@ -81,7 +90,10 @@
             </div>
           </div>
         </div>
-        <div class="red-mes">
+        <div
+          v-if="false"
+          class="red-mes"
+        >
           Your verification request was declined. Your address is incorrect
         </div>
       </div>

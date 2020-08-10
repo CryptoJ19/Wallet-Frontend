@@ -1,12 +1,14 @@
-
 // import localeRU from './assets/locales/ru.json';
 import localeEN from './assets/locales/en.json';
+
+require('dotenv').config();
 
 module.exports = {
   plugins: [
     '~plugins/tippy',
     '~plugins/vue-js-modal',
     '~plugins/bootstrap-vue',
+    '~plugins/globalMixin.js',
   ],
   head: {
     title: 'CashFlash',
@@ -74,4 +76,10 @@ module.exports = {
       fallbackLocale: 'ru',
     },
   },
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
+  buildModules: [
+    ['@nuxtjs/dotenv'],
+  ],
 };

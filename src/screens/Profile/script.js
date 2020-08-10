@@ -178,7 +178,7 @@ export default {
     this.userFields.identityDocumentExpDate.title = this.$t('profile.filed.identityDocumentExpDate');
     this.userFields.docIdentCopyFile.title = this.$t('profile.filed.docIdentCopyFile');
 
-    this.userFields.state.title = this.$t('profile.filed.');
+    this.userFields.state.title = this.$t('profile.filed.state');
     // this.userFields.streetType.title = 'Street type';
     this.userFields.streetName.title = this.$t('profile.filed.streetName');
     this.userFields.buildingNum.title = this.$t('profile.filed.buildingNum');
@@ -223,9 +223,6 @@ export default {
       }
       return `background-image: url(${this.getAvatar})`;
     },
-    // `background-image: url(${imagePath()})`
-    // profile: ({ getProfile }) => ({ ...getProfile }),
-    userBoxClass: ({ userEditMode }) => ({ user_disable: userEditMode === 0 }),
   },
   methods: {
     ...mapActions([
