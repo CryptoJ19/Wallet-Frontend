@@ -17,7 +17,7 @@ export default {
     async fetchGetCountries(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const rawResponse = await customFetch(
-          `${apiUrl}/auth/get-countries`,
+          `${apiUrl}/auth/get-coquntries`,
           'GET',
         );
         const content = await rawResponse.json();
