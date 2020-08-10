@@ -14,7 +14,9 @@
     />
     <ModalPayConfirm
       :mode="payTab"
-      :total="formatSum(amount)"
+      :total-sum="totalSum"
+      :amount-e-o-s="amountEOS"
+      :amount-c-f-t="amountCFT"
       @showPaySuccessModal="showPaySuccessModal()"
       @showPayFailModal="showPayFailModal()"
     />
@@ -71,25 +73,25 @@
           </div>
         </div>
         <div class="pay__sum pay__sum_sm">
-          1 CFT = x EOS = y EURO
+          1 CFT = x EOS = y EURO {{ EtC }}
         </div>
         <div class="pay__subtitle">
-          {{ $t('purchase.amount') }}
+          {{ $t('purchase.amount') }} CFT
         </div>
         <div class="pay__amount">
           <input
-            v-model="amount"
+            v-model="amountCFT"
             maxlength="40"
             :placeholder="$t('purchase.amountPlaceholder')"
             type="number"
           >
         </div>
         <div class="pay__subtitle">
-          {{ $t('purchase.amount') }}
+          {{ $t('purchase.amount') }} EOS
         </div>
         <div class="pay__amount">
           <input
-            v-model="amount"
+            v-model="amountEOS"
             maxlength="40"
             :placeholder="$t('purchase.amountPlaceholder')"
             type="number"
@@ -99,7 +101,25 @@
           {{ $t('purchase.total') }}
         </div>
         <div class="pay__sum">
-          {{ formatSum(amount) }} {{ $t('purchase.cur') }}
+          {{ totalSum }} {{ $t('purchase.cur') }}
+        </div>
+        <div class="reward">
+          <div class="reward__item">
+            <div class="reward__title">
+              Bonus amount
+            </div>
+            <div class="reward__value">
+              {{ bonus }} CFT
+            </div>
+          </div>
+          <div class="reward__item">
+            <div class="reward__title">
+              Delivery date
+            </div>
+            <div class="reward__value">
+              22 July 2020
+            </div>
+          </div>
         </div>
         <div class="pay__btns">
           <button

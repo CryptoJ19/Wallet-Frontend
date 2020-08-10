@@ -16,12 +16,12 @@
           {{ $t('purchase.check.total') }}
         </div>
         <div class="pay__sum">
-          {{ total }} {{ $t('purchase.cur') }}
+          {{ totalSum }} {{ $t('purchase.cur') }}
         </div>
         <div class="pay__items">
           <div class="pay__item">
             <div class="pay__text">
-              {{ $t('purchase.check.items[0]') }}
+              EOS amount
             </div>
             <div class="pay__value">
               1.000 €
@@ -29,7 +29,7 @@
           </div>
           <div class="pay__item">
             <div class="pay__text">
-              {{ $t('purchase.check.items[1]') }}
+              Euro amount
             </div>
             <div class="pay__value">
               1.000 €
@@ -37,10 +37,10 @@
           </div>
           <div class="pay__item">
             <div class="pay__text">
-              {{ $t('purchase.check.items[2]') }}
+              My Cash Flash account name
             </div>
             <div class="pay__value">
-              1.000 €
+              MyNickname
             </div>
           </div>
         </div>
@@ -94,7 +94,15 @@ export default {
       type: Number,
       default: 0,
     },
-    total: {
+    totalSum: {
+      type: Number,
+      default: 0,
+    },
+    amountCFT: {
+      type: Number,
+      default: 0,
+    },
+    amountEOS: {
       type: Number,
       default: 0,
     },
