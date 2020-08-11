@@ -23,6 +23,10 @@ export default {
     rateEOS: 3,
     rateCFT: 2,
 
+    monthPool: [
+      'January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'October', 'November', 'December',
+    ],
 
     schema: [
       {
@@ -64,6 +68,9 @@ export default {
     ...mapGetters([
       'getReferal',
     ]),
+    checkValidPay() {
+      return (this.amountCFT !== '' && this.amountCFT !== 0);
+    },
     getReferalLink() {
       return `${window.location.host}/?ref=${this.getReferal.refLink}`;
     },
@@ -71,17 +78,17 @@ export default {
       return this.rateEOS / this.rateCFT;
     },
     totalSum() {
-      return this.formatSum(this.amountCFT / this.rateCFT);
+      return this.formatSum(this.amountCFT * this.rateCFT);
     },
     bonus() {
-      let bonus;
+      let bonus = '';
       const { schema } = this;
       schema.forEach((item, i) => {
         if (this.totalSum > schema[i].from && this.totalSum <= schema[i].to) {
           bonus = this.amountCFT * schema[0].bonus;
         }
       });
-      return bonus;
+      return this.formatSum(bonus);
     },
   },
   watch: {
@@ -108,6 +115,10 @@ export default {
       'fetchSendInvite',
       'getReferalData',
     ]),
+    getDeliveryDate() {
+      const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
+      return `${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]} ${datePlus.getFullYear()}`;
+    },
     formatSum(value) {
       let res;
       if (value === '') {
@@ -120,11 +131,20 @@ export default {
     setPayTab(i) {
       this.payTab = i;
     },
+    resrashPayForm() {
+      this.payTab = 0;
+      this.amountCFT = '';
+    },
     showPaySuccessModal() {
+      this.resrashPayForm();
       this.showModal('pay-success-modal');
     },
     showPayFailModal() {
+      this.resrashPayForm();
       this.showModal('pay-fail-modal');
+    },
+    showPayConfirmModal() {
+      this.showModal('modal-pay-confirm');
     },
     showModal(value) {
       this.$bvModal.show(value);

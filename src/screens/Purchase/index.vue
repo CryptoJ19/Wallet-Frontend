@@ -14,9 +14,9 @@
     />
     <ModalPayConfirm
       :mode="payTab"
-      :total-sum="totalSum"
-      :amount-e-o-s="amountEOS"
-      :amount-c-f-t="amountCFT"
+      :total-sum="+totalSum"
+      :amount-e-o-s="+amountEOS"
+      :amount-c-f-t="+amountCFT"
       @showPaySuccessModal="showPaySuccessModal()"
       @showPayFailModal="showPayFailModal()"
     />
@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="pay__sum pay__sum_sm">
-          1 CFT = x EOS = y EURO {{ EtC }}
+          1 CFT = {{ EtC }} EOS = {{ rateCFT }} EURO
         </div>
         <div class="pay__subtitle">
           {{ $t('purchase.amount') }} CFT
@@ -82,7 +82,7 @@
           <input
             v-model="amountCFT"
             maxlength="40"
-            :placeholder="$t('purchase.amountPlaceholder')"
+            :placeholder="$t('wallet.modalSend.amount')"
             type="number"
           >
         </div>
@@ -93,7 +93,7 @@
           <input
             v-model="amountEOS"
             maxlength="40"
-            :placeholder="$t('purchase.amountPlaceholder')"
+            :placeholder="$t('wallet.modalSend.amount')"
             type="number"
           >
         </div>
@@ -117,14 +117,16 @@
               Delivery date
             </div>
             <div class="reward__value">
-              22 July 2020
+              {{ getDeliveryDate() }}
             </div>
           </div>
         </div>
         <div class="pay__btns">
           <button
             class="pay__btn"
-            @click="showModal('modal-pay-confirm')"
+            :class="{'pay__btn_dis': !checkValidPay}"
+            :disabled="!checkValidPay"
+            @click="showPayConfirmModal()"
           >
             {{ $t('purchase.confirm') }}
           </button>

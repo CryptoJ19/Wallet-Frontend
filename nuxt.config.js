@@ -8,7 +8,7 @@ module.exports = {
     '~plugins/tippy',
     '~plugins/vue-js-modal',
     '~plugins/bootstrap-vue',
-    '~plugins/globalMixin.js',
+    '~plugins/global.js',
   ],
   head: {
     title: 'CashFlash',

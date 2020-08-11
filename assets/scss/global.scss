@@ -61,7 +61,6 @@
 body {
   color: #000;
   font-family: Raleway;
-  font-weight: 500;
   background: $grey-bg;
   scroll-behavior: smooth;
 }
@@ -230,3 +229,33 @@ body {
 @media (max-width: 575px) {}
 @media (max-width: 479px) {}
 @media (max-width: 399px) {}
+
+
+.Switch {
+  width: 32px;
+  height: 18px;
+  border-radius: 29px;
+  background: #54595F;
+  opacity: 0.2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &__circle {
+    transition: .1s;
+    position: absolute;
+    left: 2px;
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    background: #C4C4C4;
+  }
+  &_toggled {
+    opacity: 1;
+    background: $yellow-gradient;
+    .Switch__circle {
+      left: 16px;
+      background: #FFFFFF;
+
+    }
+  }
+}

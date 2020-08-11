@@ -4,6 +4,8 @@
     centered
     hide-header
     hide-footer
+    :no-close-on-backdrop="loading"
+    @show="refrashrModal"
   >
     <div class="mod">
       <div class="mod__head">
@@ -16,7 +18,7 @@
           {{ $t('purchase.check.total') }}
         </div>
         <div class="pay__sum">
-          {{ totalSum }} {{ $t('purchase.cur') }}
+          {{ amountCFT }} CFT
         </div>
         <div class="pay__items">
           <div class="pay__item">
@@ -24,7 +26,7 @@
               EOS amount
             </div>
             <div class="pay__value">
-              1.000 €
+              {{ amountEOS }} EOS
             </div>
           </div>
           <div class="pay__item">
@@ -32,7 +34,7 @@
               Euro amount
             </div>
             <div class="pay__value">
-              1.000 €
+              {{ totalSum }} {{ $t('purchase.cur') }}
             </div>
           </div>
           <div class="pay__item">
@@ -44,42 +46,65 @@
             </div>
           </div>
         </div>
-        <div v-if="mode === 0">
-          <div class="war">
-            <div class="war__icon">
-              <img
-                src="~assets/imgs/icons/warning.svg"
-                alt="icon"
-              >
-            </div>
-            <div
-              class="war__text"
-              v-html="$t('purchase.check.warText')"
-            />
-          </div>
-          <div class="address">
-            <div class="address__value">
-              {{ CFAddress }}
-            </div>
-            <button
-              class="address__copy"
-              @click="copy(CFAddress)"
+        <div class="war">
+          <div class="war__icon">
+            <img
+              src="~assets/imgs/icons/warning.svg"
+              alt="icon"
             >
-              <img
-                src="~assets/imgs/icons/copy.svg"
-                alt="close"
-              >
-            </button>
           </div>
+          <div
+            class="war__text"
+            v-html="$t('purchase.check.warText')"
+          />
+        </div>
+        <button
+          class="switch"
+          @click="toggleSwitch"
+        >
+          <div
+            class="Switch"
+            :class="{'Switch_toggled': this.switch}"
+          >
+            <div class="Switch__circle" />
+          </div>
+          <div class="switch__label">
+            Ok, i got it and agree
+          </div>
+        </button>
+        <div
+          v-if="this.switch"
+          class="address"
+        >
+          <div class="address__value">
+            {{ CFAddress }}
+          </div>
+          <button
+            class="address__copy"
+            @click="copy(CFAddress)"
+          >
+            <img
+              src="~assets/imgs/icons/copy.svg"
+              alt="close"
+            >
+          </button>
         </div>
       </div>
       <div class="mod__btns">
         <button
-          class="mod__btn"
+          class="mod__btn pay__btn"
+          :class="{'pay__btn_dis': !this.switch}"
+          :disabled="!this.switch"
           @click="showPaySuccessModal()"
         >
-          {{ $t('purchase.check.ok') }}
+          I paid
         </button>
+      </div>
+      <div
+        class="loader__body"
+        :class="{'loader__body_show': loading}"
+      >
+        <Loader />
       </div>
     </div>
   </b-modal>
@@ -88,7 +113,13 @@
 
 import { CFAddress } from '../../../config';
 
+import Loader from '../../ui/Loader';
+
+
 export default {
+  components: {
+    Loader,
+  },
   props: {
     mode: {
       type: Number,
@@ -109,11 +140,22 @@ export default {
   },
   data: () => ({
     CFAddress,
+    switch: false,
+    loading: false,
   }),
   methods: {
+    refrashrModal() {
+      this.loading = false;
+    },
+    toggleSwitch() {
+      this.switch = !this.switch;
+    },
     showPaySuccessModal() {
-      this.close();
-      this.$emit('showPaySuccessModal');
+      this.loading = true;
+      setTimeout(() => {
+        this.close();
+        this.$emit('showPaySuccessModal');
+      }, 2000);
     },
     close() {
       this.$bvModal.hide('modal-pay-confirm');
@@ -134,19 +176,25 @@ export default {
 <style lang="scss">
   #modal-pay-confirm {
     .pay {
-      font-family: Roboto;
+      /*font-family: Roboto;*/
       /*&__filds {*/
       /*  d*/
       /*}*/
+      &__btn {
+        &_dis {
+          @include btn__dis;
+        }
+      }
       &__subtitle {
         font-size: 16px;
         line-height: 143.4%;
         color: rgba(#54595F, 0.4);
         margin: 0 0 11px;
+        font-family: Roboto;
       }
       &__sum {
         font-style: normal;
-        font-weight: 500;
+        font-weight: bold;
         font-size: 50px;
         line-height: 143.4%;
         color: #2F80ED;
@@ -163,23 +211,26 @@ export default {
       &__item {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         &:not(:last-child) {
           margin: 0 0 15px;
         }
       }
       &__value {
         font-style: normal;
-        font-weight: normal;
+        font-weight: bold;
         font-size: 16px;
         color: #000000;
       }
       &__items {
-        margin: 0 0 35px;
+        margin: 0 0 20px;
       }
     }
     .war {
       display: flex;
-      margin: 0 0 20px;
+      margin-bottom: 20px;
+      padding-top: 20px;
+      border-top: 1px solid $stroke;
       &__icon {
         min-width: 20px;
         margin: 5px 0 0;
@@ -232,6 +283,18 @@ export default {
     }
     .mod__btn {
       width: 100%;
+    }
+    .switch {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      &__label {
+        font-weight: 600;
+        font-size: 14px;
+        color: #000000;
+        margin-left: 8px;
+        font-family: Raleway;
+      }
     }
   }
 </style>

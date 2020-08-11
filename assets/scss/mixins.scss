@@ -154,3 +154,8 @@
     filter: brightness(.84) saturate(.84) hue-rotate(-5deg);
   }
 }
+
+@mixin btn__dis {
+  background: #dcddde;
+  cursor: default;
+}
