@@ -109,6 +109,22 @@ export default {
       return res;
     },
 
+    async fetchEditFormPerson(ctx, data) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/form/person`,
+          'POST',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      // console.log('fetchEditProfile', res);
+      return res;
+    },
+
     async fetchEditProfile(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
