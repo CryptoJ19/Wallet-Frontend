@@ -526,15 +526,19 @@
       display: flex;
       flex-direction: column;
       input {
-        color: rgba($grey, .5);
+        //color: rgba($grey, .5);
         font-weight: normal;
         &:focus, &:hover {
           color: #000;
         }
       }
       &_disable {
+        pointer-events: none;
         .dd__title {
           color: rgba(84, 89, 95, 0.5);
+        }
+        .vdd__title {
+          color: rgba($grey, .5);
         }
         .vdd__btn {
           border-color: transparent;
@@ -548,6 +552,7 @@
         input {
           border-color: transparent;
           cursor: default;
+          color: rgba($grey, .5);
           &:focus, &:hover {
             color: rgba($grey, .5);
           }

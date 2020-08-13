@@ -74,6 +74,8 @@
 .user__item_disable {
   .custom-date-picker {
     .mx-input {
+      pointer-events: none;
+      color: rgba($grey, .5) !important;
       border-color: transparent !important;
     }
   }

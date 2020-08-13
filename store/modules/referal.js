@@ -18,7 +18,6 @@ export default {
         const content = await rawResponse.json();
         return content;
       });
-      console.log('getReferalData', res);
       ctx.commit('updateReferal', res.result);
       return res;
     },

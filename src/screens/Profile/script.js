@@ -29,6 +29,18 @@ export default {
       'Passport',
     ],
 
+    docTypes: [
+      'Driver license',
+      'National ID card',
+      'Passport',
+    ],
+
+    genders: ['M', 'F'],
+    streetTypes: [
+      'Str',
+      'Avenue',
+    ],
+
     userEditMode: 0,
     localProfile: {},
     userLoader: false,
@@ -38,11 +50,6 @@ export default {
 
     DDStreetType: false,
 
-
-    streetTypes: [
-      'Str',
-      'Avenue',
-    ],
 
     userFieldsPoints: [
       'nickname',
@@ -166,18 +173,53 @@ export default {
     fieldsDropDown: {
       gender: '',
       genderShow: '',
+      type: '',
+      typeShow: '',
+      streetType: '',
+      streetTypeShow: '',
     },
     fieldsDatePickerValue: {
       birthDate: '',
+      expireDate: '',
+      issueDate: '',
     },
-    localFieldsValue: {},
+    localFieldsValue: {
+      person: {
+        birthDate: '',
+        birthPlace: '',
+        firstName: '',
+        gender: '',
+        lastName: '',
+        middleName: '',
+      },
+      document: {
+        expireDate: '',
+        issueDate: '',
+        number: '',
+        serie: '',
+        type: '',
+        filePicker: '',
+      },
+      communication: {
+        cellphone: '',
+        email: '',
+        telephone: '',
+      },
+      location: {
+        buildingNum: '',
+        city: '',
+        state: '',
+        streetName: '',
+        streetType: '',
+        unitNumber: '',
+        zipCode: '',
+      },
+    },
     localPersonValue: {},
     fieldsEr: {},
     fieldsRendered: false,
   }),
   mounted() {
-    // this.localProfile = { ...this.getProfile };
-
     this.refrashFieldEr();
 
     this.setDefaultProfile();
@@ -209,13 +251,18 @@ export default {
       deep: true,
       handler(value) {
         this.localFieldsValue.person.gender = value.gender;
+        this.localFieldsValue.document.type = value.type;
+        this.localFieldsValue.document.streetType = value.streetType;
       },
     },
     fieldsDatePickerValue: {
       deep: true,
-      handler(value) {
-        console.log(value);
+      handler() {
         this.localFieldsValue.person.birthDate = new Date(this.fieldsDatePickerValue.birthDate)
+          .toISOString();
+        this.localFieldsValue.document.expireDate = new Date(this.fieldsDatePickerValue.expireDate)
+          .toISOString();
+        this.localFieldsValue.document.issueDate = new Date(this.fieldsDatePickerValue.issueDate)
           .toISOString();
       },
     },
@@ -228,27 +275,27 @@ export default {
       'getDocFile',
       'getCountris',
     ]),
-
+    fieldsRules() {
+      const { countryFields } = this.getProfile;
+      const rules = {};
+      Object.keys(countryFields.person.fields).forEach((item) => {
+        rules[item] = {
+          type: countryFields.person.fields[item],
+          required: countryFields.person.required.indexOf(item) !== -1,
+        };
+      });
+      return rules;
+    },
     fieldsKeys() {
       const values = {};
-      const { profileForm } = this.getProfile;
-      Object.keys(profileForm).forEach((itemForm) => {
-        values[itemForm] = Object.keys(profileForm[itemForm]);
+      Object.keys(this.localFieldsValue).forEach((itemTab) => {
+        values[itemTab] = Object.keys(this.localFieldsValue[itemTab]);
       });
       return values;
     },
     fieldsTabsKey() {
       const { profileForm } = this.getProfile;
       return Object.keys(profileForm);
-    },
-    getProfileChanges() {
-      const changesFields = [];
-      this.userFieldsPointsSend.forEach((item) => {
-        if (this.localProfile[item] !== this.getProfile[item]) {
-          changesFields.push(item);
-        }
-      });
-      return changesFields;
     },
     avatarBg() {
       if (this.getAvatar.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
@@ -266,6 +313,7 @@ export default {
       'fetchPostDocFiles',
       'fetchDelDocFiles',
       'fetchEditFormPerson',
+      'fetchVerifyProfile',
     ]),
     getFieldsChanges(i) {
       const { profileForm } = this.getProfile;
@@ -306,10 +354,14 @@ export default {
     },
     sendVerified() {
       this.userLoader = true;
-      setTimeout(() => {
-        this.userLoader = false;
+
+      const res = this.fetchVerifyProfile();
+      this.userLoader = false;
+      console.log(res);
+
+      if (res.ok) {
         this.$bvModal.show('profile-verification-send-modal');
-      }, 1500);
+      }
     },
     selectDDStreetType(value) {
       this.localProfile.streetType = value;
@@ -367,6 +419,7 @@ export default {
       this.userFieldsRules.docIdentCopyFile.er = '';
       console.log(e.target.files[0]);
       const fileObj = e.target.files[0];
+      document.getElementById('doc-file-input').value = null;
       if (e.currentTarget !== null) {
         if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
           this.userFieldsRules.docIdentCopyFile.er = 'Можно загружать только .jpg, .png, .pdf файлы';
@@ -399,57 +452,103 @@ export default {
       this.localProfile = {
         ...this.getProfile,
       };
-      Object.keys(this.getProfile.profileForm).forEach((item) => {
-        this.localFieldsValue[item] = { ...this.getProfile.profileForm[item] };
+      const countryFields = {};
+      Object.keys(this.getProfile.countryFields).forEach((itemTab) => {
+        Object.keys(this.getProfile.countryFields[itemTab].fields).forEach((item) => {
+          countryFields[itemTab] = { ...countryFields[itemTab], [item]: '' };
+        });
       });
-      this.fieldsDatePickerValue.birthDate = new Date(Date
-        .parse(this.localFieldsValue.person.birthDate));
-      this.fieldsDropDown.gender = this.localFieldsValue.person.gender;
-    },
-    checkEr() {
-      this.userFieldsPoints.forEach((item) => {
-        if (this.userFieldsRules[item].required && this.localProfile[item] === '') {
-          this.userFieldsRules[item].er = this.$t('profile.filed.req');
-        }
-        if (item === 'identityDocumentExpDate' && this.localProfile[item]) {
-          const now = this.now.split('/');
-          const expDate = this.localProfile[item].split('/');
-          if ((+expDate[2] < +now[2]
-            || (+expDate[2] === +now[2] && +expDate[1] < +now[1])
-            || (+expDate[2] === +now[2] && +expDate[1] === +now[1] && +expDate[0] < +now[0]))) {
-            this.userFieldsRules[item].er = this.$t('profile.filed.expiryExpired');
+      const { profileForm } = this.getProfile;
+      Object.keys(profileForm).forEach((itemTab) => {
+        Object.keys(profileForm[itemTab]).forEach((item) => {
+          if (profileForm[itemTab][item] !== '') {
+            this.localFieldsValue[itemTab] = {
+              ...countryFields[itemTab],
+              ...this.localFieldsValue[itemTab],
+              [item]: profileForm[itemTab][item],
+            };
           }
+        });
+      });
+      this.setDatePickers();
+      this.setDropDowns();
+    },
+    setDropDowns() {
+      this.fieldsDropDown.gender = this.localFieldsValue.person.gender;
+      this.fieldsDropDown.type = this.localFieldsValue.document.type;
+    },
+    setDatePickers() {
+      this.fieldsDatePickerValue.birthDate = this.localFieldsValue.person.birthDate !== ''
+        && new Date(Date
+          .parse(this.localFieldsValue.person.birthDate));
+      this.fieldsDatePickerValue.expireDate = this.localFieldsValue.document.expireDate !== ''
+        && new Date(Date
+          .parse(this.localFieldsValue.document.expireDate));
+      this.fieldsDatePickerValue.issueDate = this.localFieldsValue.document.issueDate !== ''
+        && new Date(Date
+          .parse(this.localFieldsValue.document.issueDate));
+    },
+    checkEr(tab) {
+      const tabKey = this.fieldsTabsKey[tab];
+      Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
+        if (this.fieldsRules[item]) {
+          if (this.fieldsRules[item].required && this.localFieldsValue[tabKey][item] === '') {
+            this.fieldsEr[tabKey][item] = this.$t('profile.filed.req');
+            const erCopy = {};
+            Object.keys(this.fieldsEr).forEach((itemCopy) => {
+              erCopy[itemCopy] = { ...this.fieldsEr[itemCopy] };
+            });
+            this.fieldsEr = { ...erCopy };
+          }
+          // if (item === 'identityDocumentExpDate' && this.localProfile[item]) {
+          //   const now = this.now.split('/');
+          //   const expDate = this.localProfile[item].split('/');
+          //   if ((+expDate[2] < +now[2]
+          //     || (+expDate[2] === +now[2] && +expDate[1] < +now[1])
+          // || (+expDate[2] === +now[2] && +expDate[1] === +now[1] && +expDate[0] < +now[0]))) {
+          // this.userFieldsRules[item].er = this.$t('profile.filed.expiryExpired');
+          //   }
+          // }
         }
       });
-      return this.userFieldsPoints
-        .map((item) => this.userFieldsRules[item].er !== '')
-        .indexOf(true) !== -1;
+      const isEr = (Object.keys(this.fieldsEr[tabKey])
+        .map((item) => {
+          console.log(this.fieldsEr[tabKey], this.fieldsEr[tabKey][item] !== '', item);
+          return this.fieldsEr[tabKey][item] !== '';
+        }).indexOf(true) === -1
+      );
+      console.log(this.fieldsEr, isEr);
+      return isEr;
     },
     async saveUser() {
       this.refrashFieldEr();
-      if (true) {
+      if (this.checkEr(this.tab)) {
         const changes = this.getFieldsChanges(this.tab);
         console.log('changes', changes);
         if (changes.length !== 0) {
           const tabKey = this.fieldsTabsKey[this.tab];
           const data = {};
-          // changes.forEach((item) => {
-          //   data[item] = this.localFieldsValue[tabKey][item];
-          // });
           Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-            data[item] = this.localFieldsValue[tabKey][item];
+            if (this.localFieldsValue[tabKey][item] !== '') {
+              data[item] = this.localFieldsValue[tabKey][item];
+            }
           });
           console.log('data', data);
           this.userLoader = true;
-          const res = await this.fetchEditFormPerson(data);
+          const res = await this.fetchEditFormPerson({ data, tab: tabKey });
           this.userLoader = false;
           console.log(res);
 
-          // if (!res.ok) {
-          //   res.data.forEach((item) => {
-          //     this.userFieldsRules[item.field].er = 'Validation error';
-          //   });
-          // }
+          if (!res.ok) {
+            res.data.forEach((itemRes) => {
+              this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
+              const erCopy = {};
+              Object.keys(this.fieldsEr).forEach((itemCopy) => {
+                erCopy[itemCopy] = { ...this.fieldsEr[itemCopy] };
+              });
+              this.fieldsEr = { ...erCopy };
+            });
+          }
           if (res.ok) {
             this.setUserEditMode(0);
             await this.fetchGetProfile();
@@ -470,6 +569,24 @@ export default {
     selectGender(value) {
       this.fieldsDropDown.gender = value;
     },
+    toggleType() {
+      this.fieldsDropDown.typeShow = !this.fieldsDropDown.typeShow;
+    },
+    hideType() {
+      this.fieldsDropDown.typeShow = false;
+    },
+    selectType(value) {
+      this.fieldsDropDown.type = value;
+    },
+    toggleStreetType() {
+      this.fieldsDropDown.streetTypeShow = !this.fieldsDropDown.streetTypeShow;
+    },
+    hideStreetType() {
+      this.fieldsDropDown.streetTypeShow = false;
+    },
+    selectStreetType(value) {
+      this.fieldsDropDown.streetType = value;
+    },
     changePassSuccess() {
       this.$bvModal.hide('modal-change-pass');
       this.$bvModal.show('modal-success-change-pass');
@@ -483,19 +600,6 @@ export default {
       this.$bvModal.hide('modal-disable-ga');
       this.$bvModal.show('modal-success-disable-ga');
     },
-    // async saveUser() {
-    //   if (this.checkUserValidation()) {
-    //     this.userLoader = true;
-    //     const res = await this.fetchEditProfile({
-    //       firstName: this.localProfile.firstName,
-    //       lastName: this.localProfile.lastName,
-    //     });
-    //     console.log(res);
-    //     await this.fetchGetProfile();
-    //     this.userLoader = false;
-    //     this.setUserEditMode(0);
-    //   }
-    // },
     getUserEr(i) {
       return this.erUser.indexOf(i) !== -1;
     },

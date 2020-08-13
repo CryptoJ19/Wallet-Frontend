@@ -317,10 +317,10 @@
           </div>
         </button>
         <div class="ava__name">
-          Name Surnmae
+          {{ getProfile.nickname }}
         </div>
         <div class="ava__email">
-          aiubadubsidub@gmail.com
+          {{ getProfile.email }}
         </div>
         <div
           v-if="getProfile.status === 0"
@@ -366,42 +366,20 @@
         </div>
       </div>
       <!--      <div v-if="fieldsRendered">-->
-      <!-- -->
       <!--        <div>-->
-      <!--          {{ getProfile.profileForm['person']['firstName'] }}-->
+      <!--          {{ fieldsRules }}-->
       <!--        </div>-->
       <!--      </div>-->
       <div class="pro__item fields">
         <div class="fields__tabs">
           <button
+            v-for="(item, i) in fieldsTabsKey"
+            :key="`fields__tab_${item}`"
             class="fields__tab"
-            :class="{'fields__tab_active': tab === 0}"
-            @click="changeTab(0)"
+            :class="{'fields__tab_active': tab === i}"
+            @click="changeTab(i)"
           >
-            Personal info
-          </button>
-          <button
-            class="fields__tab"
-            :class="{'fields__tab_active': tab === 1}"
-
-            @click="changeTab(1)"
-          >
-            Location
-          </button>
-          <button
-            class="fields__tab"
-            :class="{'fields__tab_active': tab === 2}"
-
-            @click="changeTab(2)"
-          >
-            Communication
-          </button>
-          <button
-            class="fields__tab"
-            :class="{'fields__tab_active': tab === 3}"
-            @click="changeTab(3)"
-          >
-            Documents
+            {{ item }}
           </button>
         </div>
         <div class="fields__content user">
@@ -409,8 +387,6 @@
             v-if="fieldsRendered"
             class="fields__items"
           >
-            <!--        {{ fieldsValue[0] }}-->
-            <!--            {{ fieldsKeys }}-->
             <div
               v-for="(item) in fieldsKeys[fieldsTabsKey[tab]]"
               :key="`user__item-${item}`"
@@ -419,132 +395,95 @@
             >
               <div class="user__title">
                 <!--                {{ userFieldsRules[item].title }}-->
-                {{ item }}
+                {{ fieldsTabsKey[tab] + ' ' + item }}
               </div>
-              <!--              <div-->
-              <!--                v-if="userFieldsRules[item].type === 'streetName'"-->
-              <!--                class="user__input user__input_dd"-->
-              <!--              >-->
-              <!--                <div class="dd">-->
-              <!--                  <button-->
-              <!--                    v-click-outside="hideDDStreetType"-->
-              <!--                    class="dd__btn"-->
-              <!--                    @click="toggleDDStreetType()"-->
-              <!--                  >-->
-              <!--                    <div class="dd__title">-->
-              <!--                      {{ localProfile['streetType'] || '-' }}-->
-              <!--                    </div>-->
-              <!--                    <div-->
-              <!--                      v-if="userEditMode === 1"-->
-              <!--                      class="dd__icon"-->
-              <!--                    >-->
-              <!--                      <img-->
-              <!--                        src="~assets/imgs/icons/arrow_dd.svg"-->
-              <!--                        alt="arrow"-->
-              <!--                      >-->
-              <!--                    </div>-->
-              <!--                  </button>-->
-              <!--                  <div-->
-              <!--                    v-if="DDStreetType"-->
-              <!--                    class="dd__items"-->
-              <!--                  >-->
-              <!--                    <button-->
-              <!--                      v-for="(itemStreet, s) in streetTypes"-->
-              <!--                      :key="`dd__item_streetType_${s}`"-->
-              <!--                      class="dd__item"-->
-              <!--                      @click="selectDDStreetType(itemStreet)"-->
-              <!--                    >-->
-              <!--                      {{ itemStreet }}-->
-              <!--                    </button>-->
-              <!--                  </div>-->
-              <!--                </div>-->
-              <!--                <input-->
-              <!--                  v-model.trim="localProfile[item]"-->
-              <!--                  :disabled="userFieldsRules[item].const || userEditMode === 0"-->
-              <!--                  type="text"-->
-              <!--                >-->
-              <!--              </div>-->
-              <!--              <div-->
-              <!--                v-else-if="userFieldsRules[item].type === 'filePicker'"-->
-              <!--                class="file"-->
-              <!--              >-->
-              <!--                <input-->
-              <!--                  id="doc-file-input"-->
-              <!--                  name="myFile"-->
-              <!--                  type="file"-->
-              <!--                  accept=".jpg, .png, .pdf"-->
-              <!--                  @change="handleImageDoc"-->
-              <!--                >-->
-              <!--                <div class="file__items">-->
-              <!--                  <div-->
-              <!--                    v-for="(file, iDoc) in getDocFile"-->
-              <!--                    :key="`file__item_${iDoc}`"-->
-              <!--                    class="file__item"-->
-              <!--                  >-->
-              <!--                    <div class="file__name">-->
-              <!--                      {{ cutString(file.originalName) }}-->
-              <!--                    </div>-->
-              <!--                    <button-->
-              <!--                      class="file__cross"-->
-              <!--                      @click="removeDocFile(file.docId)"-->
-              <!--                    >-->
-              <!--                      <img-->
-              <!--                        src="~assets/imgs/icons/cross.svg"-->
-              <!--                        alt="close"-->
-              <!--                      >-->
-              <!--                    </button>-->
-              <!--                  </div>-->
-              <!--                </div>-->
-              <!--                <label-->
-              <!--                  class="file__add"-->
-              <!--                  for="doc-file-input"-->
-              <!--                >-->
-              <!--                  <img-->
-              <!--                    src="~assets/imgs/icons/cross.svg"-->
-              <!--                    alt="close"-->
-              <!--                  >-->
-              <!--                </label>-->
-              <!--              </div>-->
-
-              <!--                v-else-if="userFieldsRules[item].type === 'idDoc'"-->
-              <!--                class="user__input"-->
-              <!--              >-->
-              <!--                <div class="vdd">-->
-              <!--                  <button-->
-              <!--                    v-click-outside="hideIdDoc"-->
-              <!--                    class="vdd__btn"-->
-              <!--                    @click="toggleIdDoc()"-->
-              <!--                  >-->
-              <!--                    <div class="vdd__title">-->
-              <!--                      {{ localProfile['identityDocument'] || '' }}-->
-              <!--                    </div>-->
-              <!--                    <div-->
-              <!--                      v-if="userEditMode === 1"-->
-              <!--                      class="vdd__icon"-->
-              <!--                    >-->
-              <!--                      <img-->
-              <!--                        src="~assets/imgs/icons/arrow_dd.svg"-->
-              <!--                        alt="arrow"-->
-              <!--                      >-->
-              <!--                    </div>-->
-              <!--                  </button>-->
-              <!--                  <div-->
-              <!--                    v-if="userFieldsRules.identityDocument.show"-->
-              <!--                    class="vdd__items"-->
-              <!--                  >-->
-              <!--                    <button-->
-              <!--                      v-for="(doc, iIdDoc) in identityDocumentItems"-->
-              <!--                      :key="`dd__item_id-doc_${iIdDoc}`"-->
-              <!--                      class="vdd__item"-->
-              <!--                      @click="selectIdDoc(doc)"-->
-              <!--                    >-->
-              <!--                      {{ doc }}-->
-              <!--                    </button>-->
-              <!--                  </div>-->
-              <!--                </div>-->
-              <!--              </div>-->
+              <!--                            <div-->
+              <!-- v-if="userFieldsRules[item].type === 'streetName'"-->
+              <!--                              class="user__input user__input_dd"-->
+              <!--                            >-->
+              <!--                              <div class="dd">-->
+              <!--                                <button-->
+              <!--                                  v-click-outside="hideDDStreetType"-->
+              <!--                                  class="dd__btn"-->
+              <!--                                  @click="toggleDDStreetType()"-->
+              <!--                                >-->
+              <!--                                  <div class="dd__title">-->
+              <!--                                    {{ localProfile['streetType'] || '-' }}-->
+              <!--                                  </div>-->
+              <!--                                  <div-->
+              <!--                                    v-if="userEditMode === 1"-->
+              <!--                                    class="dd__icon"-->
+              <!--                                  >-->
+              <!--                                    <img-->
+              <!--                                      src="~assets/imgs/icons/arrow_dd.svg"-->
+              <!--                                      alt="arrow"-->
+              <!--                                    >-->
+              <!--                                  </div>-->
+              <!--                                </button>-->
+              <!--                                <div-->
+              <!--                                  v-if="DDStreetType"-->
+              <!--                                  class="dd__items"-->
+              <!--                                >-->
+              <!--                                  <button-->
+              <!--                                    v-for="(itemStreet, s) in streetTypes"-->
+              <!--                                    :key="`dd__item_streetType_${s}`"-->
+              <!--                                    class="dd__item"-->
+              <!--                                    @click="selectDDStreetType(itemStreet)"-->
+              <!--                                  >-->
+              <!--                                    {{ itemStreet }}-->
+              <!--                                  </button>-->
+              <!--                                </div>-->
+              <!--                              </div>-->
+              <!--                              <input-->
+              <!--                                v-model.trim="localProfile[item]"-->
+              <!--  :disabled="userFieldsRules[item].const || userEditMode === 0"-->
+              <!--                                type="text"-->
+              <!--                              >-->
+              <!--                            </div>-->
               <div
-                v-if="item === 'gender'"
+                v-if="item === 'filePicker'"
+                class="file"
+              >
+                <input
+                  id="doc-file-input"
+                  name="myFile"
+                  type="file"
+                  accept=".jpg, .png, .pdf"
+                  @change="handleImageDoc"
+                >
+                <div class="file__items">
+                  <div
+                    v-for="(file, iDoc) in getDocFile"
+                    :key="`file__item_${iDoc}`"
+                    class="file__item"
+                  >
+                    <div class="file__name">
+                      {{ cutString(file.originalName) }}
+                    </div>
+                    <button
+                      class="file__cross"
+                      @click="removeDocFile(file.docId)"
+                    >
+                      <img
+                        src="~assets/imgs/icons/cross.svg"
+                        alt="close"
+                      >
+                    </button>
+                  </div>
+                </div>
+                <label
+                  class="file__add"
+                  for="doc-file-input"
+                >
+                  <img
+                    src="~assets/imgs/icons/cross.svg"
+                    alt="close"
+                  >
+                </label>
+              </div>
+
+              <div
+                v-else-if="item === 'gender'"
                 class="user__input"
               >
                 <div class="vdd">
@@ -553,9 +492,17 @@
                     class="vdd__btn"
                     @click="toggleGender()"
                   >
-                    <div class="vdd__title">
-                      {{ fieldsDropDown.gender
-                        || 'Choose gender' }}
+                    <div
+                      v-if="fieldsDropDown.gender !== ''"
+                      class="vdd__title"
+                    >
+                      {{ fieldsDropDown.gender }}
+                    </div>
+                    <div
+                      v-else
+                      class="vdd__title vdd__title_placeholder "
+                    >
+                      Choose gender
                     </div>
                     <div
                       v-if="userEditMode === 1"
@@ -572,12 +519,106 @@
                     class="vdd__items"
                   >
                     <button
-                      v-for="(gender, iGender) in ['M', 'F']"
+                      v-for="(gender, iGender) in genders"
                       :key="`dd__item_gender_${iGender}`"
                       class="vdd__item"
                       @click="selectGender(gender)"
                     >
                       {{ gender }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                v-else-if="item === 'streetType'"
+                class="user__input"
+              >
+                <div class="vdd">
+                  <button
+                    v-click-outside="hideStreetType"
+                    class="vdd__btn"
+                    @click="toggleStreetType()"
+                  >
+                    <div
+                      v-if="fieldsDropDown.streetType !== ''"
+                      class="vdd__title"
+                    >
+                      {{ fieldsDropDown.streetType }}
+                    </div>
+                    <div
+                      v-else
+                      class="vdd__title vdd__title_placeholder "
+                    >
+                      Choose streetType
+                    </div>
+                    <div
+                      v-if="userEditMode === 1"
+                      class="vdd__icon"
+                    >
+                      <img
+                        src="~assets/imgs/icons/arrow_dd.svg"
+                        alt="arrow"
+                      >
+                    </div>
+                  </button>
+                  <div
+                    v-if="fieldsDropDown.streetTypeShow"
+                    class="vdd__items"
+                  >
+                    <button
+                      v-for="(streetType, iStreetType) in streetTypes"
+                      :key="`dd__item_street-type_${iStreetType}`"
+                      class="vdd__item"
+                      @click="selectStreetType(streetType)"
+                    >
+                      {{ streetType }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                v-else-if="item === 'type'"
+                class="user__input"
+              >
+                <div class="vdd">
+                  <button
+                    v-click-outside="hideType"
+                    class="vdd__btn"
+                    @click="toggleType()"
+                  >
+                    <div
+                      v-if="fieldsDropDown.type !== ''"
+                      class="vdd__title"
+                    >
+                      {{ fieldsDropDown.type }}
+                    </div>
+                    <div
+                      v-else
+                      class="vdd__title vdd__title_placeholder "
+                    >
+                      Choose doc type
+                    </div>
+                    <div
+                      v-if="userEditMode === 1"
+                      class="vdd__icon"
+                    >
+                      <img
+                        src="~assets/imgs/icons/arrow_dd.svg"
+                        alt="arrow"
+                      >
+                    </div>
+                  </button>
+                  <div
+                    v-if="fieldsDropDown.typeShow"
+                    class="vdd__items"
+                  >
+                    <button
+                      v-for="(type, iType) in docTypes"
+                      :key="`dd__item_type_${iType}`"
+                      class="vdd__item"
+                      @click="selectType(type)"
+                    >
+                      {{ type }}
                     </button>
                   </div>
                 </div>
@@ -625,7 +666,7 @@
                 >
               </div>
               <div class="form__er">
-                {{ fieldsEr[fieldsTabsKey[tab]][item] }}
+                {{ fieldsEr.person[item] }}
               </div>
             </div>
           </div>

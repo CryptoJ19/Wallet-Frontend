@@ -19,7 +19,6 @@ const getHeaderWithToken = () => {
 };
 
 const customFetchFormdata = (url, method, header = null, data = null) => {
-  console.log(data);
   if (data !== null) {
     return fetch(url, {
       method,
@@ -38,7 +37,6 @@ const customFetchFormdata = (url, method, header = null, data = null) => {
 };
 
 const customFetch = (url, method, header = null, data = null) => {
-  console.log(data);
   if (data !== null) {
     return fetch(url, {
       method,

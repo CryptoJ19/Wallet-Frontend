@@ -43,6 +43,22 @@ export default {
       return res;
     },
 
+    async fetchVerifyProfile(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/profile/verify`,
+          'PUT',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      // if (res.ok) {
+      // }
+      return res;
+    },
+
     async fetchGetDocFiles(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
@@ -54,7 +70,6 @@ export default {
         const content = await rawResponse.json();
         return content;
       });
-      console.log('fetchPostDocFiles', res);
       if (res.ok) {
         ctx.commit('updateDocFile', res.result);
       }
@@ -109,14 +124,14 @@ export default {
       return res;
     },
 
-    async fetchEditFormPerson(ctx, data) {
+    async fetchEditFormPerson(ctx, payload) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(
-          `${apiUrl}/profile/form/person`,
+          `${apiUrl}/profile/form/${payload.tab}`,
           'POST',
           header,
-          data,
+          payload.data,
         );
         const content = await rawResponse.json();
         return content;

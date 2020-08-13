@@ -96,7 +96,7 @@
           class="mod__btn"
           @click="preludeSend"
         >
-          {{ $t('modalDisableGA.disableBtn') }}
+          {{ $t('profile.modalDisableGA.disableBtn') }}
         </button>
       </div>
     </div>
