@@ -202,7 +202,6 @@ export default {
       },
       communication: {
         cellphone: '',
-        email: '',
         telephone: '',
       },
       location: {
