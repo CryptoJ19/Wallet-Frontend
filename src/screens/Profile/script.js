@@ -214,6 +214,76 @@ export default {
         zipCode: '',
       },
     },
+    fieldsTitles: {
+      person: {
+        title: '',
+        birthDate: '',
+        birthPlace: '',
+        firstName: '',
+        gender: '',
+        lastName: '',
+        middleName: '',
+      },
+      document: {
+        title: '',
+        expireDate: '',
+        issueDate: '',
+        number: '',
+        serie: '',
+        type: '',
+        filePicker: '',
+      },
+      communication: {
+        title: '',
+        cellphone: '',
+        telephone: '',
+        email: '',
+        ipAddress: '',
+      },
+      location: {
+        title: '',
+        buildingNum: '',
+        city: '',
+        houseExtension: '',
+        province: '',
+        state: '',
+        streetName: '',
+        streetType: '',
+        unitNumber: '',
+        zipCode: '',
+      },
+    },
+    localFieldsValueCopy: {
+      person: {
+        birthDate: '',
+        birthPlace: '',
+        firstName: '',
+        gender: '',
+        lastName: '',
+        middleName: '',
+      },
+      document: {
+        expireDate: '',
+        issueDate: '',
+        number: '',
+        serie: '',
+        type: '',
+        filePicker: '',
+      },
+      communication: {
+        cellphone: '',
+        telephone: '',
+      },
+      location: {
+        buildingNum: '',
+        city: '',
+        state: '',
+        streetName: '',
+        streetType: '',
+        unitNumber: '',
+        zipCode: '',
+      },
+    },
     localPersonValue: {},
     fieldsEr: {},
     fieldsRendered: false,
@@ -225,25 +295,39 @@ export default {
 
     this.fieldsRendered = true;
 
-    this.userFieldsRules.nickname.title = this.$t('profile.filed.nickname');
-    this.userFieldsRules.firstName.title = this.$t('profile.filed.firstName');
-    this.userFieldsRules.lastName.title = this.$t('profile.filed.lastName');
-    this.userFieldsRules.birthDate.title = this.$t('profile.filed.birthDate');
-    this.userFieldsRules.birthPlace.title = this.$t('profile.filed.birthPlace');
-    this.userFieldsRules.identityDocument.title = this.$t('profile.filed.identityDocument');
-    this.userFieldsRules.identityDocumentNumber.title = this.$t('profile.filed.identityDocumentNumber');
-    this.userFieldsRules.identityDocumentRelDate.title = this.$t('profile.filed.identityDocumentRelDate');
-    this.userFieldsRules.identityDocumentExpDate.title = this.$t('profile.filed.identityDocumentExpDate');
-    this.userFieldsRules.docIdentCopyFile.title = this.$t('profile.filed.docIdentCopyFile');
-    this.userFieldsRules.state.title = this.$t('profile.filed.state');
-    // this.userFieldsRules.streetType.title = 'Street type';
-    this.userFieldsRules.streetName.title = this.$t('profile.filed.streetName');
-    this.userFieldsRules.buildingNum.title = this.$t('profile.filed.buildingNum');
-    this.userFieldsRules.unitNumber.title = this.$t('profile.filed.unitNumber');
-    this.userFieldsRules.city.title = this.$t('profile.filed.city');
-    this.userFieldsRules.zip.title = this.$t('profile.filed.zip');
-    this.userFieldsRules.phone.title = this.$t('profile.filed.telephone');
-    this.userFieldsRules.identityDocumentCountry.title = this.$t('profile.filed.identityDocumentCountry');
+    // this.fieldsTitles.person.nickname.title = this.$t('profile.filed.nickname');
+    this.fieldsTitles.person.title = this.$t('profile.person.title');
+    this.fieldsTitles.person.firstName = this.$t('profile.person.firstName');
+    this.fieldsTitles.person.lastName = this.$t('profile.person.lastName');
+    this.fieldsTitles.person.middleName = this.$t('profile.person.middleName');
+    this.fieldsTitles.person.birthDate = this.$t('profile.person.birthDate');
+    this.fieldsTitles.person.gender = this.$t('profile.person.gender');
+    this.fieldsTitles.person.birthPlace = this.$t('profile.person.birthPlace');
+
+    this.fieldsTitles.document.title = this.$t('profile.document.title');
+    this.fieldsTitles.document.expireDate = this.$t('profile.document.expireDate');
+    this.fieldsTitles.document.issueDate = this.$t('profile.document.issueDate');
+    this.fieldsTitles.document.number = this.$t('profile.document.number');
+    this.fieldsTitles.document.serie = this.$t('profile.document.serie');
+    this.fieldsTitles.document.type = this.$t('profile.document.type');
+    this.fieldsTitles.document.filePicker = this.$t('profile.document.filePicker');
+
+    this.fieldsTitles.location.title = this.$t('profile.location.title');
+    this.fieldsTitles.location.state = this.$t('profile.location.state');
+    this.fieldsTitles.location.streetType = this.$t('profile.location.streetType');
+    this.fieldsTitles.location.streetName = this.$t('profile.location.streetName');
+    this.fieldsTitles.location.buildingNum = this.$t('profile.location.buildingNum');
+    this.fieldsTitles.location.unitNumber = this.$t('profile.location.unitNumber');
+    this.fieldsTitles.location.city = this.$t('profile.location.city');
+    this.fieldsTitles.location.zipCode = this.$t('profile.location.zipCode');
+    this.fieldsTitles.location.province = this.$t('profile.location.province');
+    this.fieldsTitles.location.houseExtension = this.$t('profile.location.houseExtension');
+
+    this.fieldsTitles.communication.title = this.$t('profile.location.title');
+    this.fieldsTitles.communication.telephone = this.$t('profile.communication.telephone');
+    this.fieldsTitles.communication.cellphone = this.$t('profile.communication.cellphone');
+    this.fieldsTitles.communication.email = this.$t('profile.communication.email');
+    this.fieldsTitles.communication.ipAddress = this.$t('profile.communication.ipAddress');
   },
   watch: {
     fieldsDropDown: {
@@ -251,7 +335,7 @@ export default {
       handler(value) {
         this.localFieldsValue.person.gender = value.gender;
         this.localFieldsValue.document.type = value.type;
-        this.localFieldsValue.document.streetType = value.streetType;
+        this.localFieldsValue.location.streetType = value.streetType;
       },
     },
     fieldsDatePickerValue: {
@@ -277,12 +361,16 @@ export default {
     fieldsRules() {
       const { countryFields } = this.getProfile;
       const rules = {};
-      Object.keys(countryFields.person.fields).forEach((item) => {
-        rules[item] = {
-          type: countryFields.person.fields[item],
-          required: countryFields.person.required.indexOf(item) !== -1,
-        };
+      Object.keys(countryFields).forEach((itemTab) => {
+        rules[itemTab] = {};
+        Object.keys(countryFields[itemTab].fields).forEach((item) => {
+          rules[itemTab][item] = {
+            type: countryFields[itemTab].fields[item],
+            required: countryFields[itemTab].required.indexOf(item) !== -1,
+          };
+        });
       });
+
       return rules;
     },
     fieldsKeys() {
@@ -297,7 +385,7 @@ export default {
       return Object.keys(profileForm);
     },
     avatarBg() {
-      if (this.getAvatar.avatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+      if (this.getAvatar === 'https://test.cashflash.io/api/profile/avatar/null') {
         return `background-image: url(${this.imagePath()})`;
       }
       return `background-image: url(${this.getAvatar})`;
@@ -324,7 +412,6 @@ export default {
           changesFields.push(item);
         }
       });
-      console.log(changesFields);
       return changesFields;
     },
     refrashFieldEr() {
@@ -336,13 +423,58 @@ export default {
         });
       });
     },
-    nextVerStep() {
-      if (this.verStep < 4) {
-        this.verStep += 1;
+    async nextVerStep() {
+      this.refrashFieldEr();
+      const tab = this.verStep;
+      if (this.checkEr(tab)) {
+        const changes = this.getFieldsChanges(tab);
+        if (changes.length !== 0) {
+          const tabKey = this.fieldsTabsKey[tab];
+          const data = {};
+          Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
+            if (this.localFieldsValue[tabKey][item] !== '') {
+              data[item] = this.localFieldsValue[tabKey][item];
+            }
+          });
+          this.userLoader = true;
+          const res = await this.fetchEditFormPerson({ data, tab: tabKey });
+          this.userLoader = false;
+          if (!res.ok) {
+            res.data.forEach((itemRes) => {
+              this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
+              const erCopy = {};
+              Object.keys(this.fieldsEr).forEach((itemCopy) => {
+                erCopy[itemCopy] = { ...this.fieldsEr[itemCopy] };
+              });
+              this.fieldsEr = { ...erCopy };
+            });
+          }
+          if (res.ok) {
+            await this.fetchGetProfile();
+            this.setDefaultProfile();
+            if (this.verStep < 3) {
+              this.verStep += 1;
+            } else {
+              this.sendVerifRequest();
+            }
+          }
+        } else {
+          this.setDefaultProfile();
+          if (this.verStep < 3) {
+            this.verStep += 1;
+          } else {
+            this.sendVerifRequest();
+          }
+        }
       }
     },
+    async sendVerifRequest() {
+      await this.fetchVerifyProfile();
+      await this.fetchGetProfile();
+    },
     prevVerStep() {
-      if (this.verStep > 1) {
+      if (this.verStep > 0) {
+        this.setDefaultProfile();
         this.verStep -= 1;
       }
     },
@@ -351,13 +483,10 @@ export default {
       this.setUserEditMode(0);
       this.tab = i;
     },
-    sendVerified() {
+    async sendVerified() {
       this.userLoader = true;
-
-      const res = this.fetchVerifyProfile();
+      const res = await this.fetchVerifyProfile();
       this.userLoader = false;
-      console.log(res);
-
       if (res.ok) {
         this.$bvModal.show('profile-verification-send-modal');
       }
@@ -416,9 +545,9 @@ export default {
     },
     async handleImageDoc(e) {
       this.userFieldsRules.docIdentCopyFile.er = '';
-      console.log(e.target.files[0]);
       const fileObj = e.target.files[0];
-      document.getElementById('doc-file-input').value = null;
+      if (document.getElementsByClassName('doc-file-input')[0]) document.getElementsByClassName('doc-file-input')[0].value = null;
+      if (document.getElementsByClassName('doc-file-input')[1]) document.getElementsByClassName('doc-file-input')[1].value = null;
       if (e.currentTarget !== null) {
         if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
           this.userFieldsRules.docIdentCopyFile.er = 'Можно загружать только .jpg, .png, .pdf файлы';
@@ -435,14 +564,12 @@ export default {
         if (this.userFieldsRules.docIdentCopyFile.er === '') {
           const formData = new FormData();
           formData.append('file', fileObj);
-          console.log(formData, fileObj);
           this.userLoader = true;
           const res = await this.fetchPostDocFiles(formData);
           if (res.ok) {
             await this.fetchGetDocFiles();
           }
           this.userLoader = false;
-          console.log(res);
         }
       }
       return null;
@@ -458,6 +585,7 @@ export default {
         });
       });
       const { profileForm } = this.getProfile;
+      this.localFieldsValue = this.resetLocalFieldsValue();
       Object.keys(profileForm).forEach((itemTab) => {
         Object.keys(profileForm[itemTab]).forEach((item) => {
           if (profileForm[itemTab][item] !== '') {
@@ -471,6 +599,39 @@ export default {
       });
       this.setDatePickers();
       this.setDropDowns();
+    },
+    resetLocalFieldsValue() {
+      return {
+        person: {
+          birthDate: '',
+          birthPlace: '',
+          firstName: '',
+          gender: '',
+          lastName: '',
+          middleName: '',
+        },
+        document: {
+          expireDate: '',
+          issueDate: '',
+          number: '',
+          serie: '',
+          type: '',
+          filePicker: '',
+        },
+        communication: {
+          cellphone: '',
+          telephone: '',
+        },
+        location: {
+          buildingNum: '',
+          city: '',
+          state: '',
+          streetName: '',
+          streetType: '',
+          unitNumber: '',
+          zipCode: '',
+        },
+      };
     },
     setDropDowns() {
       this.fieldsDropDown.gender = this.localFieldsValue.person.gender;
@@ -490,8 +651,9 @@ export default {
     checkEr(tab) {
       const tabKey = this.fieldsTabsKey[tab];
       Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-        if (this.fieldsRules[item]) {
-          if (this.fieldsRules[item].required && this.localFieldsValue[tabKey][item] === '') {
+        if (this.fieldsRules[tabKey] && this.fieldsRules[tabKey][item]) {
+          if (this.fieldsRules[tabKey][item].required && this.localFieldsValue[tabKey][item] === '') {
+            console.log(this.localFieldsValue[tabKey][item], tabKey, item, 'req');
             this.fieldsEr[tabKey][item] = this.$t('profile.filed.req');
             const erCopy = {};
             Object.keys(this.fieldsEr).forEach((itemCopy) => {
@@ -511,33 +673,25 @@ export default {
         }
       });
       const isEr = (Object.keys(this.fieldsEr[tabKey])
-        .map((item) => {
-          console.log(this.fieldsEr[tabKey], this.fieldsEr[tabKey][item] !== '', item);
-          return this.fieldsEr[tabKey][item] !== '';
-        }).indexOf(true) === -1
+        .map((item) => this.fieldsEr[tabKey][item] !== '').indexOf(true) === -1
       );
-      console.log(this.fieldsEr, isEr);
       return isEr;
     },
-    async saveUser() {
+    async saveUser(tab) {
       this.refrashFieldEr();
-      if (this.checkEr(this.tab)) {
-        const changes = this.getFieldsChanges(this.tab);
-        console.log('changes', changes);
+      if (this.checkEr(tab)) {
+        const changes = this.getFieldsChanges(tab);
         if (changes.length !== 0) {
-          const tabKey = this.fieldsTabsKey[this.tab];
+          const tabKey = this.fieldsTabsKey[tab];
           const data = {};
           Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
             if (this.localFieldsValue[tabKey][item] !== '') {
               data[item] = this.localFieldsValue[tabKey][item];
             }
           });
-          console.log('data', data);
           this.userLoader = true;
           const res = await this.fetchEditFormPerson({ data, tab: tabKey });
           this.userLoader = false;
-          console.log(res);
-
           if (!res.ok) {
             res.data.forEach((itemRes) => {
               this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
@@ -559,6 +713,9 @@ export default {
         }
       }
     },
+    // async saveUserFirst(tab) {
+    //
+    // },
     toggleGender() {
       this.fieldsDropDown.genderShow = !this.fieldsDropDown.genderShow;
     },
@@ -595,7 +752,6 @@ export default {
       this.$bvModal.show('modal-success-enable-ga');
     },
     GADisableSuccess() {
-      console.log('GADisableSuccess() {');
       this.$bvModal.hide('modal-disable-ga');
       this.$bvModal.show('modal-success-disable-ga');
     },
@@ -606,6 +762,8 @@ export default {
       this.setUserEditMode(1);
     },
     cancelEditUser() {
+      this.refrashFieldEr();
+
       this.erUser = [];
       this.setUserEditMode(0);
 

@@ -367,6 +367,52 @@
     "statusSuccess": "Success"
   },
   "profile": {
+    "progressVer": "Progress of verifiication",
+    "kysSuccess": "Your personal data have been successfully sent to KYC provider.",
+    "kysSuccessTitle": "Success",
+    "nextBtn": "Next",
+    "backBtn": "Back",
+    "verified": "Verified",
+    "notVerified": "Not Verified",
+    "pending":"Pending",
+    "changeProfile": "Change",
+    "document": {
+      "title": "Document",
+      "expireDate": "expireDate",
+      "issueDate": "issueDate",
+      "number":"number",
+      "serie": "serie",
+      "type":"type",
+      "filePicker": "filePicker"
+    },
+    "person": {
+      "title": "Person",
+      "firstName": "firstName",
+      "lastName":"lastName",
+      "middleName": "middleName",
+      "birthDate":"birthDate",
+      "gender": "gender",
+      "birthPlace":"birthPlace"
+    },
+    "communication": {
+      "title": "Communication",
+      "telephone": "telephone",
+      "cellphone":"cellphone",
+      "email": "email",
+      "ipAddress":"ipAddress"
+    },
+    "location": {
+      "title": "Location",
+      "state": "state",
+      "streetType":"streetType",
+      "streetName": "streetName",
+      "buildingNum":"buildingNum",
+      "unitNumber": "unitNumber",
+      "city":"city",
+      "zipCode": "zipCode",
+      "province":"province",
+      "houseExtension": "houseExtension"
+    },
     "filed": {
       "nickname": "Сash Flash name",
       "firstName": "Name *",
@@ -401,6 +447,7 @@
     "disable": "Disable",
     "changePass": "Change password",
     "changePassBtn": "Change",
+    "verifiedMe": "Verified me",
     "modalChangePass": {
       "title": "Change password",
       "newPass": "New password",

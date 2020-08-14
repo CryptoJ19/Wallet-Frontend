@@ -1,5 +1,5 @@
 <template>
-  <div class="content__item">
+  <div class="">
     <ModalChangePass @changePassSuccess="changePassSuccess" />
     <ModalEnableGA @GASubmiteSuccess="GASubmiteSuccess" />
     <ModalDisableGA @GADisableSuccess="GADisableSuccess" />
@@ -9,20 +9,17 @@
     <ModalChangeAva />
     <ModalResponse
       :id="'profile-verification-send-modal'"
-      :text="'Your personal data have been successfully sent to KYC provider.\n'+
-        'We\'ll notify you when the verification procedure is completed.\n'+
-        'Check your account status on Cash Flash Profile tab and your mailbox.\n'+
-        'Thank you!\n'"
-      :title="'Success'"
+      :text="$t('profile.kysSuccess')"
+      :title="$t('profile.progressVer')"
       success
     />
     <div
-      v-if="false"
+      v-if="false && getProfile.verificationStatus === 0"
       class="steps"
     >
       <div class="steps__top">
         <div class="steps__text">
-          Progress of verifiication
+          {{ $t('profile.progressVer') }}
         </div>
         <div class="prog">
           <div class="prog__item prog_active">
@@ -32,7 +29,7 @@
           </div>
           <div
             class="prog__item"
-            :class="{'prog_active': verStep > 1}"
+            :class="{'prog_active': verStep > 0}"
           >
             <div class="prog__circle">
               2
@@ -40,7 +37,7 @@
           </div>
           <div
             class="prog__item"
-            :class="{'prog_active': verStep > 2}"
+            :class="{'prog_active': verStep > 1}"
           >
             <div class="prog__circle">
               3
@@ -48,7 +45,7 @@
           </div>
           <div
             class="prog__item"
-            :class="{'prog_active': verStep > 3}"
+            :class="{'prog_active': verStep > 2}"
           >
             <div class="prog__circle">
               4
@@ -59,67 +56,27 @@
       </div>
       <div class="steps__main steps__main_one">
         <div class="steps__title">
-          PersonaI information
+          {{ fieldsTitles[fieldsTabsKey[verStep]].title }}
         </div>
-        <div class="steps__fields">
+        <div
+          v-if="fieldsRendered"
+          class="fields__items fields_steps steps__fields"
+        >
           <div
-            v-for="(item) in userFieldsPointsTabs[verStep]"
+            v-for="(item) in fieldsKeys[fieldsTabsKey[verStep]]"
             :key="`user__item-${item}`"
             class="user__item"
-            :class="{'user__item_disable': (userFieldsRules[item].const || userEditMode === 0) }"
           >
-            <div class="user__title">
-              {{ userFieldsRules[item].title }}
+            <div class="fields__label">
+              {{ fieldsTitles[fieldsTabsKey[verStep]][item] }}
             </div>
             <div
-              v-if="userFieldsRules[item].type === 'streetName'"
-              class="user__input user__input_dd"
-            >
-              <div class="dd">
-                <button
-                  v-click-outside="hideDDStreetType"
-                  class="dd__btn"
-                  @click="toggleDDStreetType()"
-                >
-                  <div class="dd__title">
-                    {{ localProfile['streetType'] || '-' }}
-                  </div>
-                  <div
-                    v-if="userEditMode === 1"
-                    class="dd__icon"
-                  >
-                    <img
-                      src="~assets/imgs/icons/arrow_dd.svg"
-                      alt="arrow"
-                    >
-                  </div>
-                </button>
-                <div
-                  v-if="DDStreetType"
-                  class="dd__items"
-                >
-                  <button
-                    v-for="(itemStreet, s) in streetTypes"
-                    :key="`dd__item_streetType_${s}`"
-                    class="dd__item"
-                    @click="selectDDStreetType(itemStreet)"
-                  >
-                    {{ itemStreet }}
-                  </button>
-                </div>
-              </div>
-              <input
-                v-model.trim="localProfile[item]"
-                :disabled="userFieldsRules[item].const || userEditMode === 0"
-                type="text"
-              >
-            </div>
-            <div
-              v-else-if="userFieldsRules[item].type === 'filePicker'"
+              v-if="item === 'filePicker'"
               class="file"
             >
               <input
-                id="doc-file-input_ver"
+                id="doc-file-input_2"
+                class="doc-file-input"
                 name="myFile"
                 type="file"
                 accept=".jpg, .png, .pdf"
@@ -147,7 +104,7 @@
               </div>
               <label
                 class="file__add"
-                for="doc-file-input_ver"
+                for="doc-file-input_2"
               >
                 <img
                   src="~assets/imgs/icons/cross.svg"
@@ -156,23 +113,26 @@
               </label>
             </div>
             <div
-              v-else-if="userFieldsRules[item].type === 'country'"
+              v-else-if="item === 'gender'"
               class="user__input"
             >
               <div class="vdd">
                 <button
-                  v-click-outside="hideCountry"
+                  v-click-outside="hideGender"
                   class="vdd__btn"
-                  @click="toggleCountry()"
+                  @click="toggleGender()"
                 >
-                  <div class="vdd__title">
-                    {{ localProfile['identityDocumentCountry'] ?
-                      getProfile.countryCodes[localProfile['identityDocumentCountry']] + ' ' +
-                      localProfile['identityDocumentCountry']
-                      : '' }}
+                  <div
+                    v-if="fieldsDropDown.gender !== ''"
+                    class="vdd__title"
+                  >
+                    {{ fieldsDropDown.gender }}
                   </div>
                   <div
-                    v-if="userEditMode === 1"
+                    v-else
+                    class="vdd__title vdd__title_placeholder "
+                  />
+                  <div
                     class="vdd__icon"
                   >
                     <img
@@ -182,36 +142,41 @@
                   </div>
                 </button>
                 <div
-                  v-if="userFieldsRules.identityDocumentCountry.show"
+                  v-if="fieldsDropDown.genderShow"
                   class="vdd__items"
                 >
                   <button
-                    v-for="(country, iCountris) in getCountris"
-                    :key="`dd__item_country_${iCountris}`"
+                    v-for="(gender, iGender) in genders"
+                    :key="`dd__item_gender_${iGender}`"
                     class="vdd__item"
-                    @click="selectCountry(country.short)"
+                    @click="selectGender(gender)"
                   >
-                    {{ country.full }}
-                    {{ country.short }}
+                    {{ gender }}
                   </button>
                 </div>
               </div>
             </div>
             <div
-              v-else-if="userFieldsRules[item].type === 'idDoc'"
+              v-else-if="item === 'streetType'"
               class="user__input"
             >
               <div class="vdd">
                 <button
-                  v-click-outside="hideIdDoc"
+                  v-click-outside="hideStreetType"
                   class="vdd__btn"
-                  @click="toggleIdDoc()"
+                  @click="toggleStreetType()"
                 >
-                  <div class="vdd__title">
-                    {{ localProfile['identityDocument'] || '' }}
+                  <div
+                    v-if="fieldsDropDown.streetType !== ''"
+                    class="vdd__title"
+                  >
+                    {{ fieldsDropDown.streetType }}
                   </div>
                   <div
-                    v-if="userEditMode === 1"
+                    v-else
+                    class="vdd__title vdd__title_placeholder "
+                  />
+                  <div
                     class="vdd__icon"
                   >
                     <img
@@ -221,31 +186,73 @@
                   </div>
                 </button>
                 <div
-                  v-if="userFieldsRules.identityDocument.show"
+                  v-if="fieldsDropDown.streetTypeShow"
                   class="vdd__items"
                 >
                   <button
-                    v-for="(doc, iIdDoc) in identityDocumentItems"
-                    :key="`dd__item_id-doc_${iIdDoc}`"
+                    v-for="(streetType, iStreetType) in streetTypes"
+                    :key="`dd__item_street-type_${iStreetType}`"
                     class="vdd__item"
-                    @click="selectIdDoc(doc)"
+                    @click="selectStreetType(streetType)"
                   >
-                    {{ doc }}
+                    {{ streetType }}
                   </button>
                 </div>
               </div>
             </div>
             <div
-              v-else-if="userFieldsRules[item].type === 'date'"
+              v-else-if="item === 'type'"
+              class="user__input"
+            >
+              <div class="vdd">
+                <button
+                  v-click-outside="hideType"
+                  class="vdd__btn"
+                  @click="toggleType()"
+                >
+                  <div
+                    v-if="fieldsDropDown.type !== ''"
+                    class="vdd__title"
+                  >
+                    {{ fieldsDropDown.type }}
+                  </div>
+                  <div
+                    v-else
+                    class="vdd__title vdd__title_placeholder "
+                  />
+                  <div
+                    class="vdd__icon"
+                  >
+                    <img
+                      src="~assets/imgs/icons/arrow_dd.svg"
+                      alt="arrow"
+                    >
+                  </div>
+                </button>
+                <div
+                  v-if="fieldsDropDown.typeShow"
+                  class="vdd__items"
+                >
+                  <button
+                    v-for="(type, iType) in docTypes"
+                    :key="`dd__item_type_${iType}`"
+                    class="vdd__item"
+                    @click="selectType(type)"
+                  >
+                    {{ type }}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              v-else-if="Object.keys(fieldsDatePickerValue).indexOf(item) !== -1"
               class="user__input"
             >
               <date-picker
-                v-model="localProfile[item]"
+                v-model="fieldsDatePickerValue[item]"
                 class="custom-date-picker"
                 :popup-class="'custom-date-picker'"
                 :format="'DD/MM/YYYY'"
-                value-type="format"
-                :disabled="userEditMode === 0"
               >
                 <template v-slot:icon-calendar>
                   <img
@@ -256,27 +263,16 @@
               </date-picker>
             </div>
             <div
-              v-else-if="userFieldsRules[item].type === 'num'"
-              class="user__input"
-            >
-              <input
-                v-model.trim.number="localProfile[item]"
-                :disabled="userEditMode === 0"
-                type="number"
-              >
-            </div>
-            <div
               v-else
               class="user__input"
             >
               <input
-                v-model.trim="localProfile[item]"
-                :disabled="userEditMode === 0"
+                v-model.trim="localFieldsValue[fieldsTabsKey[verStep]][item]"
                 type="text"
               >
             </div>
             <div class="form__er">
-              {{ userFieldsRules[item].er }}
+              {{ fieldsEr[fieldsTabsKey[verStep]][item] }}
             </div>
           </div>
         </div>
@@ -285,20 +281,26 @@
             class="steps__btn steps__btn_out"
             @click="prevVerStep"
           >
-            Back
+            {{ $t('profile.backBtn') }}
           </button>
           <button
             class="steps__btn steps__btn_y"
             @click="nextVerStep"
           >
-            Next
+            {{ $t('profile.nextBtn') }}
           </button>
+        </div>
+        <div
+          class="steps__loader"
+          :class="{'steps__loader_show': userLoader}"
+        >
+          <Loader />
         </div>
       </div>
     </div>
     <div
       v-else
-      class="pro"
+      class="content__item pro"
     >
       <div class="pro__item ava">
         <button
@@ -323,11 +325,11 @@
           {{ getProfile.email }}
         </div>
         <div
-          v-if="getProfile.status === 0"
+          v-if="getProfile.verificationStatus === 2"
           class="ver"
         >
           <div class="ver__text">
-            Verified
+            {{ $t('profile.verified') }}
           </div>
           <div class="ver__icon">
             <img
@@ -337,11 +339,11 @@
           </div>
         </div>
         <div
-          v-if="getProfile.status === 0"
+          v-if="getProfile.verificationStatus === -1"
           class="ver ver_red"
         >
           <div class="ver__text">
-            Not verified
+            {{ $t('profile.notVerified') }}
           </div>
           <div class="ver__icon">
             <img
@@ -351,11 +353,11 @@
           </div>
         </div>
         <div
-          v-if="getProfile.status === 1"
+          v-if="getProfile.verificationStatus === 1"
           class="ver ver_yellow"
         >
           <div class="ver__text">
-            Pending
+            {{ $t('profile.pending') }}
           </div>
           <div class="ver__icon">
             <img
@@ -365,11 +367,6 @@
           </div>
         </div>
       </div>
-      <!--      <div v-if="fieldsRendered">-->
-      <!--        <div>-->
-      <!--          {{ fieldsRules }}-->
-      <!--        </div>-->
-      <!--      </div>-->
       <div class="pro__item fields">
         <div class="fields__tabs">
           <button
@@ -379,7 +376,7 @@
             :class="{'fields__tab_active': tab === i}"
             @click="changeTab(i)"
           >
-            {{ item }}
+            {{ fieldsTitles[item].title }}
           </button>
         </div>
         <div class="fields__content user">
@@ -393,59 +390,17 @@
               class="user__item"
               :class="{'user__item_disable': (userEditMode === 0) }"
             >
-              <div class="user__title">
+              <div class="fields__label">
                 <!--                {{ userFieldsRules[item].title }}-->
-                {{ fieldsTabsKey[tab] + ' ' + item }}
+                {{ fieldsTitles[fieldsTabsKey[tab]][item] }}
               </div>
-              <!--                            <div-->
-              <!-- v-if="userFieldsRules[item].type === 'streetName'"-->
-              <!--                              class="user__input user__input_dd"-->
-              <!--                            >-->
-              <!--                              <div class="dd">-->
-              <!--                                <button-->
-              <!--                                  v-click-outside="hideDDStreetType"-->
-              <!--                                  class="dd__btn"-->
-              <!--                                  @click="toggleDDStreetType()"-->
-              <!--                                >-->
-              <!--                                  <div class="dd__title">-->
-              <!--                                    {{ localProfile['streetType'] || '-' }}-->
-              <!--                                  </div>-->
-              <!--                                  <div-->
-              <!--                                    v-if="userEditMode === 1"-->
-              <!--                                    class="dd__icon"-->
-              <!--                                  >-->
-              <!--                                    <img-->
-              <!--                                      src="~assets/imgs/icons/arrow_dd.svg"-->
-              <!--                                      alt="arrow"-->
-              <!--                                    >-->
-              <!--                                  </div>-->
-              <!--                                </button>-->
-              <!--                                <div-->
-              <!--                                  v-if="DDStreetType"-->
-              <!--                                  class="dd__items"-->
-              <!--                                >-->
-              <!--                                  <button-->
-              <!--                                    v-for="(itemStreet, s) in streetTypes"-->
-              <!--                                    :key="`dd__item_streetType_${s}`"-->
-              <!--                                    class="dd__item"-->
-              <!--                                    @click="selectDDStreetType(itemStreet)"-->
-              <!--                                  >-->
-              <!--                                    {{ itemStreet }}-->
-              <!--                                  </button>-->
-              <!--                                </div>-->
-              <!--                              </div>-->
-              <!--                              <input-->
-              <!--                                v-model.trim="localProfile[item]"-->
-              <!--  :disabled="userFieldsRules[item].const || userEditMode === 0"-->
-              <!--                                type="text"-->
-              <!--                              >-->
-              <!--                            </div>-->
               <div
                 v-if="item === 'filePicker'"
                 class="file"
               >
                 <input
                   id="doc-file-input"
+                  class="doc-file-input"
                   name="myFile"
                   type="file"
                   accept=".jpg, .png, .pdf"
@@ -501,9 +456,7 @@
                     <div
                       v-else
                       class="vdd__title vdd__title_placeholder "
-                    >
-                      Choose gender
-                    </div>
+                    />
                     <div
                       v-if="userEditMode === 1"
                       class="vdd__icon"
@@ -548,9 +501,7 @@
                     <div
                       v-else
                       class="vdd__title vdd__title_placeholder "
-                    >
-                      Choose streetType
-                    </div>
+                    />
                     <div
                       v-if="userEditMode === 1"
                       class="vdd__icon"
@@ -595,9 +546,7 @@
                     <div
                       v-else
                       class="vdd__title vdd__title_placeholder "
-                    >
-                      Choose doc type
-                    </div>
+                    />
                     <div
                       v-if="userEditMode === 1"
                       class="vdd__icon"
@@ -641,20 +590,7 @@
                     >
                   </template>
                 </date-picker>
-                <!--                <div>-->
-                <!--                  {{ localFieldsValue[fieldsTabsKey[tab]][item] }}-->
-                <!--                </div>-->
               </div>
-              <!--              <div-->
-              <!--                v-else-if="userFieldsRules[item].type === 'num'"-->
-              <!--                class="user__input"-->
-              <!--              >-->
-              <!--                <input-->
-              <!--                  v-model.trim.number="localProfile[item]"-->
-              <!--                  :disabled="userFieldsRules[item].const || userEditMode === 0"-->
-              <!--                  type="number"-->
-              <!--                >-->
-              <!--              </div>-->
               <div
                 v-else
                 class="user__input"
@@ -666,7 +602,7 @@
                 >
               </div>
               <div class="form__er">
-                {{ fieldsEr.person[item] }}
+                {{ fieldsEr[fieldsTabsKey[tab]][item] }}
               </div>
             </div>
           </div>
@@ -678,13 +614,13 @@
               class="fields__btn fields__btn fields__btn_y"
               @click="sendVerified"
             >
-              Verified me
+              {{ $t('profile.verifiedMe') }}
             </button>
             <button
               class="fields__btn fields__btn fields__btn_y"
               @click="editUser()"
             >
-              Change
+              {{ $t('profile.changeProfile') }}
             </button>
           </div>
           <div
@@ -695,13 +631,13 @@
               class="fields__btn fields__btn fields__btn_out"
               @click="cancelEditUser()"
             >
-              Cancel
+              {{ $t('profile.cancel') }}
             </button>
             <button
               class="fields__btn fields__btn fields__btn_y"
-              @click="saveUser()"
+              @click="saveUser(tab)"
             >
-              Save
+              {{ $t('profile.save') }}
             </button>
           </div>
           <div
