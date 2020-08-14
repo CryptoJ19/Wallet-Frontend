@@ -13,6 +13,12 @@
       :title="$t('profile.progressVer')"
       success
     />
+    <ModalResponse
+      :id="'profile-verification-send-modal_fail'"
+      :text="'Что-то пошло не так...'"
+      :title="$t('profile.progressVer')"
+      success
+    />
     <div
       v-if="false && getProfile.verificationStatus === 0"
       class="steps"
