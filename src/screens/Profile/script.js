@@ -23,19 +23,18 @@ export default {
     tab: 0,
     now: moment(String(new Date())).format('DD/MM/YYYY'),
 
-    identityDocumentItems: [
-      'Driver license',
-      'National ID card',
-      'Passport',
-    ],
 
     docTypes: [
-      'Driver license',
-      'National ID card',
       'Passport',
+      'National ID card',
+      'Driver license',
     ],
 
     genders: ['M', 'F'],
+    gendersName: {
+      M: 'Male',
+      F: 'Female',
+    },
     streetTypes: [
       'Str',
       'Avenue',
@@ -255,12 +254,12 @@ export default {
     },
     localFieldsValueCopy: {
       person: {
-        birthDate: '',
-        birthPlace: '',
         firstName: '',
-        gender: '',
         lastName: '',
         middleName: '',
+        birthDate: '',
+        birthPlace: '',
+        gender: '',
       },
       document: {
         expireDate: '',
@@ -275,12 +274,13 @@ export default {
         telephone: '',
       },
       location: {
-        buildingNum: '',
         city: '',
         state: '',
         streetName: '',
         streetType: '',
         unitNumber: '',
+        buildingNum: '',
+
         zipCode: '',
       },
     },
@@ -323,7 +323,7 @@ export default {
     this.fieldsTitles.location.province = this.$t('profile.location.province');
     this.fieldsTitles.location.houseExtension = this.$t('profile.location.houseExtension');
 
-    this.fieldsTitles.communication.title = this.$t('profile.location.title');
+    this.fieldsTitles.communication.title = this.$t('profile.communication.title');
     this.fieldsTitles.communication.telephone = this.$t('profile.communication.telephone');
     this.fieldsTitles.communication.cellphone = this.$t('profile.communication.cellphone');
     this.fieldsTitles.communication.email = this.$t('profile.communication.email');
@@ -590,8 +590,8 @@ export default {
         Object.keys(profileForm[itemTab]).forEach((item) => {
           if (profileForm[itemTab][item] !== '') {
             this.localFieldsValue[itemTab] = {
-              ...countryFields[itemTab],
               ...this.localFieldsValue[itemTab],
+              ...countryFields[itemTab],
               [item]: profileForm[itemTab][item],
             };
           }
@@ -603,31 +603,32 @@ export default {
     resetLocalFieldsValue() {
       return {
         person: {
+          firstName: '',
+          middleName: '',
+          lastName: '',
           birthDate: '',
           birthPlace: '',
-          firstName: '',
           gender: '',
-          lastName: '',
-          middleName: '',
         },
         document: {
-          expireDate: '',
-          issueDate: '',
-          number: '',
-          serie: '',
           type: '',
+          serie: '',
+          number: '',
+          issueDate: '',
+          expireDate: '',
           filePicker: '',
         },
         communication: {
-          cellphone: '',
           telephone: '',
+          cellphone: '',
         },
         location: {
-          buildingNum: '',
-          city: '',
           state: '',
-          streetName: '',
+          city: '',
           streetType: '',
+          streetName: '',
+
+          buildingNum: '',
           unitNumber: '',
           zipCode: '',
         },
@@ -686,7 +687,7 @@ export default {
           const data = {};
           Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
             if (this.localFieldsValue[tabKey][item] !== '') {
-              data[item] = this.localFieldsValue[tabKey][item];
+              data[item] = `${this.localFieldsValue[tabKey][item]}`;
             }
           });
           this.userLoader = true;

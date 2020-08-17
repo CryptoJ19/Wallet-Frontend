@@ -69,7 +69,7 @@ export default {
     this.menuItems = [
       { title: this.$t('main.menu.wallet'), router: 'wallet' },
       { title: this.$t('main.menu.profile'), router: 'profile' },
-      { title: this.$t('main.menu.referal'), router: 'referal' },
+      { title: this.$t('main.menu.referal'), router: 'referral' },
       { title: this.$t('main.menu.purchase'), router: 'purchase' },
     ];
   },

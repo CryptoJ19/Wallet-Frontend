@@ -115,9 +115,8 @@ export default {
       if (data.page <= 0) {
         data.page = 1;
       }
-      const resTrans = await this.fetchGetTransactions(data);
+      await this.fetchGetTransactions(data);
       this.loadingTransactions = false;
-      console.log('fetchGetTransactions', resTrans);
     },
     getWalletItem(symbol) {
       if (this.getWallets.length !== 0) {

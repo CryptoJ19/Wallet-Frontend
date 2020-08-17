@@ -457,7 +457,7 @@
                       v-if="fieldsDropDown.gender !== ''"
                       class="vdd__title"
                     >
-                      {{ fieldsDropDown.gender }}
+                      {{ fieldsDropDown.gender && gendersName[fieldsDropDown.gender] }}
                     </div>
                     <div
                       v-else
@@ -483,7 +483,7 @@
                       class="vdd__item"
                       @click="selectGender(gender)"
                     >
-                      {{ gender }}
+                      {{ gendersName[gender] }}
                     </button>
                   </div>
                 </div>

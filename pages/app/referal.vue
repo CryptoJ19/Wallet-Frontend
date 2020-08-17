@@ -13,7 +13,7 @@ export default {
     Referal,
   },
   data: () => ({
-    title: 'Referal',
+    title: 'Referral',
   }),
   head() {
     return {
