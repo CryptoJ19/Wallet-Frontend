@@ -398,7 +398,7 @@
             >
               <div class="fields__label">
                 <!--                {{ userFieldsRules[item].title }}-->
-                {{ fieldsTitles[fieldsTabsKey[tab]][item] }}
+                {{ fieldsTitles[fieldsTabsKey[tab]][item] || item }}
               </div>
               <div
                 v-if="item === 'filePicker'"
@@ -599,7 +599,7 @@
                 </date-picker>
               </div>
               <div
-                v-else-if="item === 'country'"
+                v-else-if="item === 'country' && fieldsTabsKey[tab] === 'location'"
                 class="user__input user__input_const"
               >
                 {{ getProfile.countryCodes[getProfile.country] }}

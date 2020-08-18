@@ -375,6 +375,11 @@
       "Str",
       "Avenue"
     ],
+    "docTypes": [
+      "Passport",
+      "National ID card",
+      "Driver license"
+    ],
     "req": "This field is required",
     "chooseGender": "Choose gender",
     "progressVer": "Filling out the fields",
@@ -393,7 +398,8 @@
       "number": "Number",
       "serie": "Series",
       "type": "Document type",
-      "filePicker": "Upload a scan"
+      "filePicker": "Upload a scan",
+      "country": "Passport country"
     },
     "person": {
       "title": "Person",

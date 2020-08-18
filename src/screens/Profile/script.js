@@ -25,15 +25,11 @@ export default {
 
 
     docTypes: [
-      'Passport',
-      'National ID card',
-      'Driver license',
     ],
 
     genders: ['M', 'F'],
     gendersName: {},
-    streetTypes: [
-    ],
+    streetTypes: [],
 
     userEditMode: 0,
     localProfile: {},
@@ -76,6 +72,7 @@ export default {
         serie: '',
         type: '',
         filePicker: '',
+        country: '',
       },
       communication: {
         title: '',
@@ -108,6 +105,7 @@ export default {
 
     this.gendersName = this.$t('profile.gendersName');
     this.streetTypes = this.$t('profile.streetTypes');
+    this.docTypes = this.$t('profile.docTypes');
 
     this.fieldsRendered = true;
 
@@ -145,7 +143,7 @@ export default {
       Object.keys(countryFields).forEach((itemTab) => {
         rules[itemTab] = {};
         Object.keys(countryFields[itemTab].fields).forEach((item) => {
-          console.log(countryFields[itemTab]);
+          // console.log(countryFields[itemTab]);
           rules[itemTab][item] = {
             type: countryFields[itemTab].fields[item],
             required: countryFields[itemTab].required
@@ -157,7 +155,7 @@ export default {
       return rules;
     },
     fieldsKeys() {
-      const values = {};
+      const keys = {};
       const fields = this.resetLocalFieldsValue();
       const countryFields = {};
       Object.keys(this.getProfile.countryFields).forEach((itemTab) => {
@@ -169,11 +167,15 @@ export default {
       Object.keys(fields).forEach((itemTab) => {
         const arr = [...Object.keys(fields[itemTab])];
         const countryArr = countryFields[itemTab] || [];
-        values[itemTab] = [...new Set([...arr, ...countryArr])];
+        keys[itemTab] = [...new Set([...arr, ...countryArr])];
         // console.log(arr, countryArr);
-        // console.log(values[itemTab]);
+        // console.log(keys[itemTab]);
       });
-      return values;
+
+      keys.document.push('filePicker');
+      keys.location.unshift('country');
+
+      return keys;
     },
     // fieldsKeysOld() {
     //   const values = {};
@@ -224,6 +226,7 @@ export default {
           changesFields.push(item);
         }
       });
+      console.log(changesFields);
       return changesFields;
     },
     refrashFieldEr() {
@@ -363,6 +366,7 @@ export default {
           countryFields[itemTab] = { ...countryFields[itemTab], [item]: '' };
         });
       });
+      console.log(countryFields);
       const { profileForm } = this.getProfile;
       this.localFieldsValue = this.resetLocalFieldsValue();
       Object.keys(profileForm).forEach((itemTab) => {
@@ -395,14 +399,12 @@ export default {
           number: '',
           issueDate: '',
           expireDate: '',
-          filePicker: '',
         },
         communication: {
           telephone: '',
           cellphone: '',
         },
         location: {
-          country: '',
           state: '',
           city: '',
           streetType: '',
@@ -460,36 +462,30 @@ export default {
     async saveUser(tab) {
       this.refrashFieldEr();
       if (this.checkEr(tab)) {
-        const changes = this.getFieldsChanges(tab);
-        if (changes.length !== 0) {
-          const tabKey = this.fieldsTabsKey[tab];
-          const data = {};
-          Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-            if (this.localFieldsValue[tabKey][item] !== '') {
-              data[item] = `${this.localFieldsValue[tabKey][item]}`;
-            }
-          });
-          this.userLoader = true;
-          const res = await this.fetchEditFormPerson({ data, tab: tabKey });
-          this.userLoader = false;
-          if (!res.ok) {
-            res.data.forEach((itemRes) => {
-              this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
-              const erCopy = {};
-              Object.keys(this.fieldsEr).forEach((itemCopy) => {
-                erCopy[itemCopy] = { ...this.fieldsEr[itemCopy] };
-              });
-              this.fieldsEr = { ...erCopy };
+        const tabKey = this.fieldsTabsKey[tab];
+        const data = {};
+        Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
+          if (this.localFieldsValue[tabKey][item] !== '') {
+            data[item] = `${this.localFieldsValue[tabKey][item]}`;
+          }
+        });
+        this.userLoader = true;
+        const res = await this.fetchEditFormPerson({ data, tab: tabKey });
+        this.userLoader = false;
+        if (!res.ok) {
+          res.data.forEach((itemRes) => {
+            this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
+            const erCopy = {};
+            Object.keys(this.fieldsEr).forEach((itemCopy) => {
+              erCopy[itemCopy] = { ...this.fieldsEr[itemCopy] };
             });
-          }
-          if (res.ok) {
-            this.setUserEditMode(0);
-            await this.fetchGetProfile();
-            this.setDefaultProfile();
-          }
-        } else {
-          this.setDefaultProfile();
+            this.fieldsEr = { ...erCopy };
+          });
+        }
+        if (res.ok) {
           this.setUserEditMode(0);
+          await this.fetchGetProfile();
+          this.setDefaultProfile();
         }
       }
     },
@@ -544,12 +540,9 @@ export default {
       this.setUserEditMode(0);
 
       this.setDefaultProfile();
-      this.clearEr();
     },
     clearEr() {
-      this.userFieldsPoints.forEach((item) => {
-        this.userFieldsRules[item].er = '';
-      });
+
     },
     setUserEditMode(i) {
       this.userEditMode = i;
@@ -595,6 +588,7 @@ export default {
       this.fieldsTitles.document.serie = this.$t('profile.document.serie');
       this.fieldsTitles.document.type = this.$t('profile.document.type');
       this.fieldsTitles.document.filePicker = this.$t('profile.document.filePicker');
+      this.fieldsTitles.document.country = this.$t('profile.document.country');
 
       this.fieldsTitles.location.title = this.$t('profile.location.title');
       this.fieldsTitles.location.country = this.$t('profile.location.country');
