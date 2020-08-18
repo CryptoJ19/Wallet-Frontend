@@ -145,9 +145,11 @@ export default {
       Object.keys(countryFields).forEach((itemTab) => {
         rules[itemTab] = {};
         Object.keys(countryFields[itemTab].fields).forEach((item) => {
+          console.log(countryFields[itemTab]);
           rules[itemTab][item] = {
             type: countryFields[itemTab].fields[item],
-            required: countryFields[itemTab].required.indexOf(item) !== -1,
+            required: countryFields[itemTab].required
+              && countryFields[itemTab].required.indexOf(item) !== -1,
           };
         });
       });
