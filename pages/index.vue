@@ -11,18 +11,16 @@ export default {
     Landing,
   },
   data: () => ({
-    title: 'CashFlash',
+    title: '',
   }),
   mounted() {
     if (typeof this.$route.query.ref !== 'undefined') {
       const { ref } = this.$route.query;
       document.location.replace(`http://${window.location.host}/app/authorization?ref=${ref}`);
     }
-  },
-  head() {
-    return {
-      title: this.title,
-    };
+
+    this.title = 'CashFlash';
+    document.title = this.title;
   },
 };
 </script>

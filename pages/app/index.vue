@@ -10,7 +10,7 @@ export default {
     ContainerConsole,
   },
   data: () => ({
-    title: 'CashFlash',
+    title: '',
   }),
   mounted() {
     console.log(window.location.host);
@@ -19,11 +19,8 @@ export default {
     } else {
       document.location.replace(`http://${window.location.host}/app/wallet`);
     }
-  },
-  head() {
-    return {
-      title: this.title,
-    };
+    this.title = 'CashFlash';
+    document.title = this.title;
   },
 };
 </script>

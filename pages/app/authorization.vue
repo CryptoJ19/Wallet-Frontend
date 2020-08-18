@@ -9,12 +9,11 @@ export default {
     Authorization,
   },
   data: () => ({
-    title: 'Authorization',
+    title: '',
   }),
-  head() {
-    return {
-      title: this.title,
-    };
+  mounted() {
+    this.title = 'Authorization';
+    document.title = this.title;
   },
 };
 </script>

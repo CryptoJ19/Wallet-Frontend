@@ -13,12 +13,11 @@ export default {
     Referal,
   },
   data: () => ({
-    title: 'Referral',
+    title: '',
   }),
-  head() {
-    return {
-      title: this.title,
-    };
+  mounted() {
+    this.title = this.$t('main.menu.referal');
+    document.title = this.title;
   },
 };
 </script>

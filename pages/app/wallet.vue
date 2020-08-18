@@ -13,12 +13,11 @@ export default {
     Wallet,
   },
   data: () => ({
-    title: 'Wallet',
+    title: '',
   }),
-  head() {
-    return {
-      title: this.title,
-    };
+  mounted() {
+    this.title = this.$t('main.menu.wallet');
+    document.title = this.title;
   },
 };
 </script>

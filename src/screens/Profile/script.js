@@ -31,13 +31,8 @@ export default {
     ],
 
     genders: ['M', 'F'],
-    gendersName: {
-      M: 'Male',
-      F: 'Female',
-    },
+    gendersName: {},
     streetTypes: [
-      'Str',
-      'Avenue',
     ],
 
     userEditMode: 0,
@@ -47,128 +42,6 @@ export default {
     erUser: [],
     erUserMsg: '',
 
-    DDStreetType: false,
-
-
-    userFieldsPoints: [
-      'nickname',
-      'firstName',
-      'lastName',
-      'birthDate',
-      'birthPlace',
-      'phone',
-
-      'state',
-      'city',
-      'streetName',
-      'buildingNum',
-      'unitNumber',
-      'zip',
-      'identityDocumentCountry',
-
-      'identityDocument',
-
-      'identityDocumentNumber',
-      'identityDocumentRelDate',
-      'identityDocumentExpDate',
-      'docIdentCopyFile',
-    ],
-    userFieldsPointsTabs: [
-      [
-        'nickname',
-        'firstName',
-        'lastName',
-        'birthDate',
-        'birthPlace',
-      ],
-      [
-        'phone',
-      ],
-      [
-        'state',
-        'city',
-        'streetName',
-        'buildingNum',
-        'unitNumber',
-        'zip',
-      ],
-      [
-        'identityDocumentCountry',
-        'identityDocument',
-        'identityDocumentNumber',
-        'identityDocumentRelDate',
-        'identityDocumentExpDate',
-        'docIdentCopyFile',
-      ],
-    ],
-    userFieldsPointsSend: [
-      'nickname',
-      'firstName',
-      'lastName',
-      'birthDate',
-      'birthPlace',
-
-      'identityDocument',
-      'identityDocumentNumber',
-      'identityDocumentRelDate',
-      'identityDocumentExpDate',
-
-      'state',
-      'streetType',
-      'streetName',
-      'buildingNum',
-      'unitNumber',
-      'city',
-      'zip',
-      'phone',
-      'identityDocumentCountry',
-    ],
-    userFieldsRules: {
-      nickname: {
-        const: true,
-      },
-      firstName: {
-        required: true,
-      },
-      lastName: {
-        required: true,
-      },
-      birthDate: {
-        type: 'date',
-      },
-      birthPlace: {},
-      identityDocument: {
-        type: 'idDoc',
-        show: false,
-      },
-      identityDocumentNumber: {},
-      identityDocumentRelDate: {},
-      identityDocumentExpDate: {
-        type: 'date',
-      },
-      docIdentCopyFile: {
-        type: 'filePicker',
-      },
-      state: {},
-      address: {},
-      // streetType: {
-      //
-      // },
-      streetName: {
-        type: 'streetName',
-      },
-      buildingNum: {},
-      unitNumber: {},
-      city: {},
-      zip: {},
-      phone: {
-        type: 'num',
-      },
-      identityDocumentCountry: {
-        type: 'country',
-        show: false,
-      },
-    },
     fieldsDropDown: {
       gender: '',
       genderShow: '',
@@ -183,35 +56,7 @@ export default {
       issueDate: '',
     },
     localFieldsValue: {
-      person: {
-        birthDate: '',
-        birthPlace: '',
-        firstName: '',
-        gender: '',
-        lastName: '',
-        middleName: '',
-      },
-      document: {
-        expireDate: '',
-        issueDate: '',
-        number: '',
-        serie: '',
-        type: '',
-        filePicker: '',
-      },
-      communication: {
-        cellphone: '',
-        telephone: '',
-      },
-      location: {
-        buildingNum: '',
-        city: '',
-        state: '',
-        streetName: '',
-        streetType: '',
-        unitNumber: '',
-        zipCode: '',
-      },
+
     },
     fieldsTitles: {
       person: {
@@ -241,6 +86,7 @@ export default {
       },
       location: {
         title: '',
+        country: '',
         buildingNum: '',
         city: '',
         houseExtension: '',
@@ -252,82 +98,20 @@ export default {
         zipCode: '',
       },
     },
-    localFieldsValueCopy: {
-      person: {
-        firstName: '',
-        lastName: '',
-        middleName: '',
-        birthDate: '',
-        birthPlace: '',
-        gender: '',
-      },
-      document: {
-        expireDate: '',
-        issueDate: '',
-        number: '',
-        serie: '',
-        type: '',
-        filePicker: '',
-      },
-      communication: {
-        cellphone: '',
-        telephone: '',
-      },
-      location: {
-        city: '',
-        state: '',
-        streetName: '',
-        streetType: '',
-        unitNumber: '',
-        buildingNum: '',
-
-        zipCode: '',
-      },
-    },
     localPersonValue: {},
     fieldsEr: {},
     fieldsRendered: false,
   }),
   mounted() {
     this.refrashFieldEr();
-
     this.setDefaultProfile();
+
+    this.gendersName = this.$t('profile.gendersName');
+    this.streetTypes = this.$t('profile.streetTypes');
 
     this.fieldsRendered = true;
 
-    // this.fieldsTitles.person.nickname.title = this.$t('profile.filed.nickname');
-    this.fieldsTitles.person.title = this.$t('profile.person.title');
-    this.fieldsTitles.person.firstName = this.$t('profile.person.firstName');
-    this.fieldsTitles.person.lastName = this.$t('profile.person.lastName');
-    this.fieldsTitles.person.middleName = this.$t('profile.person.middleName');
-    this.fieldsTitles.person.birthDate = this.$t('profile.person.birthDate');
-    this.fieldsTitles.person.gender = this.$t('profile.person.gender');
-    this.fieldsTitles.person.birthPlace = this.$t('profile.person.birthPlace');
-
-    this.fieldsTitles.document.title = this.$t('profile.document.title');
-    this.fieldsTitles.document.expireDate = this.$t('profile.document.expireDate');
-    this.fieldsTitles.document.issueDate = this.$t('profile.document.issueDate');
-    this.fieldsTitles.document.number = this.$t('profile.document.number');
-    this.fieldsTitles.document.serie = this.$t('profile.document.serie');
-    this.fieldsTitles.document.type = this.$t('profile.document.type');
-    this.fieldsTitles.document.filePicker = this.$t('profile.document.filePicker');
-
-    this.fieldsTitles.location.title = this.$t('profile.location.title');
-    this.fieldsTitles.location.state = this.$t('profile.location.state');
-    this.fieldsTitles.location.streetType = this.$t('profile.location.streetType');
-    this.fieldsTitles.location.streetName = this.$t('profile.location.streetName');
-    this.fieldsTitles.location.buildingNum = this.$t('profile.location.buildingNum');
-    this.fieldsTitles.location.unitNumber = this.$t('profile.location.unitNumber');
-    this.fieldsTitles.location.city = this.$t('profile.location.city');
-    this.fieldsTitles.location.zipCode = this.$t('profile.location.zipCode');
-    this.fieldsTitles.location.province = this.$t('profile.location.province');
-    this.fieldsTitles.location.houseExtension = this.$t('profile.location.houseExtension');
-
-    this.fieldsTitles.communication.title = this.$t('profile.communication.title');
-    this.fieldsTitles.communication.telephone = this.$t('profile.communication.telephone');
-    this.fieldsTitles.communication.cellphone = this.$t('profile.communication.cellphone');
-    this.fieldsTitles.communication.email = this.$t('profile.communication.email');
-    this.fieldsTitles.communication.ipAddress = this.$t('profile.communication.ipAddress');
+    this.setFieldsTitles();
   },
   watch: {
     fieldsDropDown: {
@@ -341,12 +125,9 @@ export default {
     fieldsDatePickerValue: {
       deep: true,
       handler() {
-        this.localFieldsValue.person.birthDate = new Date(this.fieldsDatePickerValue.birthDate)
-          .toISOString();
-        this.localFieldsValue.document.expireDate = new Date(this.fieldsDatePickerValue.expireDate)
-          .toISOString();
-        this.localFieldsValue.document.issueDate = new Date(this.fieldsDatePickerValue.issueDate)
-          .toISOString();
+        this.localFieldsValue.person.birthDate = this.createDate('birthDate');
+        this.localFieldsValue.document.expireDate = this.createDate('expireDate');
+        this.localFieldsValue.document.issueDate = this.createDate('issueDate');
       },
     },
   },
@@ -375,11 +156,30 @@ export default {
     },
     fieldsKeys() {
       const values = {};
-      Object.keys(this.localFieldsValue).forEach((itemTab) => {
-        values[itemTab] = Object.keys(this.localFieldsValue[itemTab]);
+      const fields = this.resetLocalFieldsValue();
+      const countryFields = {};
+      Object.keys(this.getProfile.countryFields).forEach((itemTab) => {
+        countryFields[itemTab] = [];
+        Object.keys(this.getProfile.countryFields[itemTab].fields).forEach((item) => {
+          countryFields[itemTab].push(item);
+        });
+      });
+      Object.keys(fields).forEach((itemTab) => {
+        const arr = [...Object.keys(fields[itemTab])];
+        const countryArr = countryFields[itemTab] || [];
+        values[itemTab] = [...new Set([...arr, ...countryArr])];
+        // console.log(arr, countryArr);
+        // console.log(values[itemTab]);
       });
       return values;
     },
+    // fieldsKeysOld() {
+    //   const values = {};
+    //   Object.keys(this.localFieldsValue).forEach((itemTab) => {
+    //     values[itemTab] = Object.keys(this.localFieldsValue[itemTab]);
+    //   });
+    //   return values;
+    // },
     fieldsTabsKey() {
       const { profileForm } = this.getProfile;
       return Object.keys(profileForm);
@@ -402,6 +202,16 @@ export default {
       'fetchEditFormPerson',
       'fetchVerifyProfile',
     ]),
+    createDate(item) {
+      let date;
+      if (this.fieldsDatePickerValue[item] === null || this.fieldsDatePickerValue[item] === false) {
+        date = '';
+      } else {
+        date = new Date(this.fieldsDatePickerValue[item])
+          .toISOString();
+      }
+      return date;
+    },
     getFieldsChanges(i) {
       const { profileForm } = this.getProfile;
       const changesFields = [];
@@ -491,41 +301,6 @@ export default {
         this.$bvModal.show('profile-verification-send-modal');
       }
     },
-    selectDDStreetType(value) {
-      this.localProfile.streetType = value;
-    },
-    selectIdDoc(value) {
-      this.localProfile.identityDocument = value;
-    },
-    toggleIdDoc() {
-      if (this.userEditMode === 1) {
-        this.userFieldsRules.identityDocument.show = !this.userFieldsRules
-          .identityDocument.show;
-      }
-    },
-    hideIdDoc() {
-      this.userFieldsRules.identityDocument.show = false;
-    },
-    selectCountry(value) {
-      this.localProfile.identityDocumentCountry = value;
-    },
-    toggleCountry() {
-      if (this.userEditMode === 1) {
-        this.userFieldsRules.identityDocumentCountry.show = !this.userFieldsRules
-          .identityDocumentCountry.show;
-      }
-    },
-    hideCountry() {
-      this.userFieldsRules.identityDocumentCountry.show = false;
-    },
-    toggleDDStreetType() {
-      if (this.userEditMode === 1) {
-        this.DDStreetType = !this.DDStreetType;
-      }
-    },
-    hideDDStreetType() {
-      this.DDStreetType = false;
-    },
     cutString(value) {
       const centerIndex = Math.ceil(value.length / 2);
       if (value.length > 12) {
@@ -535,7 +310,7 @@ export default {
       return value;
     },
     async removeDocFile(i) {
-      this.userFieldsRules.docIdentCopyFile.er = '';
+      // this.userFieldsRules.docIdentCopyFile.er = '';
       this.userLoader = true;
       const res = await this.fetchDelDocFiles(i);
       if (res.ok) {
@@ -544,24 +319,26 @@ export default {
       this.userLoader = false;
     },
     async handleImageDoc(e) {
-      this.userFieldsRules.docIdentCopyFile.er = '';
+      // this.userFieldsRules.docIdentCopyFile.er = '';
       const fileObj = e.target.files[0];
       if (document.getElementsByClassName('doc-file-input')[0]) document.getElementsByClassName('doc-file-input')[0].value = null;
       if (document.getElementsByClassName('doc-file-input')[1]) document.getElementsByClassName('doc-file-input')[1].value = null;
       if (e.currentTarget !== null) {
         if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
-          this.userFieldsRules.docIdentCopyFile.er = 'Можно загружать только .jpg, .png, .pdf файлы';
+          // this.userFieldsRules.docIdentCopyFile.er =
+          // 'Можно загружать только .jpg, .png, .pdf файлы';
           return null;
         }
         if ((fileObj.size / 1024 / 1024) > 2) {
-          this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.tooLarge');
+          // this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.tooLarge');
           return null;
         }
         if (this.getDocFile.length === 2) {
-          this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.onlyTwo');
+          // this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.onlyTwo');
           return null;
         }
-        if (this.userFieldsRules.docIdentCopyFile.er === '') {
+        if (true
+          || this.userFieldsRules.docIdentCopyFile.er === '') {
           const formData = new FormData();
           formData.append('file', fileObj);
           this.userLoader = true;
@@ -587,12 +364,14 @@ export default {
       const { profileForm } = this.getProfile;
       this.localFieldsValue = this.resetLocalFieldsValue();
       Object.keys(profileForm).forEach((itemTab) => {
-        Object.keys(profileForm[itemTab]).forEach((item) => {
+        Object.keys(this.localFieldsValue[itemTab]).forEach((item) => {
           if (profileForm[itemTab][item] !== '') {
             this.localFieldsValue[itemTab] = {
-              ...this.localFieldsValue[itemTab],
               ...countryFields[itemTab],
+              ...this.localFieldsValue[itemTab],
               [item]: profileForm[itemTab][item],
+
+
             };
           }
         });
@@ -623,11 +402,11 @@ export default {
           cellphone: '',
         },
         location: {
+          country: '',
           state: '',
           city: '',
           streetType: '',
           streetName: '',
-
           buildingNum: '',
           unitNumber: '',
           zipCode: '',
@@ -655,7 +434,7 @@ export default {
         if (this.fieldsRules[tabKey] && this.fieldsRules[tabKey][item]) {
           if (this.fieldsRules[tabKey][item].required && this.localFieldsValue[tabKey][item] === '') {
             console.log(this.localFieldsValue[tabKey][item], tabKey, item, 'req');
-            this.fieldsEr[tabKey][item] = this.$t('profile.filed.req');
+            this.fieldsEr[tabKey][item] = this.$t('profile.req');
             const erCopy = {};
             Object.keys(this.fieldsEr).forEach((itemCopy) => {
               erCopy[itemCopy] = { ...this.fieldsEr[itemCopy] };
@@ -714,9 +493,6 @@ export default {
         }
       }
     },
-    // async saveUserFirst(tab) {
-    //
-    // },
     toggleGender() {
       this.fieldsDropDown.genderShow = !this.fieldsDropDown.genderShow;
     },
@@ -764,7 +540,6 @@ export default {
     },
     cancelEditUser() {
       this.refrashFieldEr();
-
       this.erUser = [];
       this.setUserEditMode(0);
 
@@ -803,6 +578,41 @@ export default {
         this.erUser.push(1);
       }
       return this.erUser.length === 0;
+    },
+    setFieldsTitles() {
+      this.fieldsTitles.person.title = this.$t('profile.person.title');
+      this.fieldsTitles.person.firstName = this.$t('profile.person.firstName');
+      this.fieldsTitles.person.lastName = this.$t('profile.person.lastName');
+      this.fieldsTitles.person.middleName = this.$t('profile.person.middleName');
+      this.fieldsTitles.person.birthDate = this.$t('profile.person.birthDate');
+      this.fieldsTitles.person.gender = this.$t('profile.person.gender');
+      this.fieldsTitles.person.birthPlace = this.$t('profile.person.birthPlace');
+
+      this.fieldsTitles.document.title = this.$t('profile.document.title');
+      this.fieldsTitles.document.expireDate = this.$t('profile.document.expireDate');
+      this.fieldsTitles.document.issueDate = this.$t('profile.document.issueDate');
+      this.fieldsTitles.document.number = this.$t('profile.document.number');
+      this.fieldsTitles.document.serie = this.$t('profile.document.serie');
+      this.fieldsTitles.document.type = this.$t('profile.document.type');
+      this.fieldsTitles.document.filePicker = this.$t('profile.document.filePicker');
+
+      this.fieldsTitles.location.title = this.$t('profile.location.title');
+      this.fieldsTitles.location.country = this.$t('profile.location.country');
+      this.fieldsTitles.location.state = this.$t('profile.location.state');
+      this.fieldsTitles.location.streetType = this.$t('profile.location.streetType');
+      this.fieldsTitles.location.streetName = this.$t('profile.location.streetName');
+      this.fieldsTitles.location.buildingNum = this.$t('profile.location.buildingNum');
+      this.fieldsTitles.location.unitNumber = this.$t('profile.location.unitNumber');
+      this.fieldsTitles.location.city = this.$t('profile.location.city');
+      this.fieldsTitles.location.zipCode = this.$t('profile.location.zipCode');
+      this.fieldsTitles.location.province = this.$t('profile.location.province');
+      this.fieldsTitles.location.houseExtension = this.$t('profile.location.houseExtension');
+
+      this.fieldsTitles.communication.title = this.$t('profile.communication.title');
+      this.fieldsTitles.communication.telephone = this.$t('profile.communication.telephone');
+      this.fieldsTitles.communication.cellphone = this.$t('profile.communication.cellphone');
+      this.fieldsTitles.communication.email = this.$t('profile.communication.email');
+      this.fieldsTitles.communication.ipAddress = this.$t('profile.communication.ipAddress');
     },
   },
   components: {

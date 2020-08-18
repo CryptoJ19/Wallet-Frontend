@@ -367,6 +367,16 @@
     "statusSuccess": "Success"
   },
   "profile": {
+    "gendersName": {
+      "M": "Male",
+      "F": "Female"
+    },
+    "streetTypes": [
+      "Str",
+      "Avenue"
+    ],
+    "req": "This field is required",
+    "chooseGender": "Choose gender",
     "progressVer": "Filling out the fields",
     "kysSuccess": "Your personal data have been successfully sent to KYC provider.",
     "kysSuccessTitle": "Success",
@@ -403,6 +413,7 @@
     },
     "location": {
       "title": "Location",
+      "country": "Country",
       "state": "State",
       "streetType": "Street type",
       "streetName": "Street name",
@@ -412,30 +423,6 @@
       "zipCode": "Postal (ZIP) code",
       "province": "Province",
       "houseExtension": "House extension"
-    },
-    "filed": {
-      "nickname": "Сash Flash name",
-      "firstName": "Name *",
-      "lastName": "Surname *",
-      "birthDate": "Date of birth *",
-      "birthPlace": "Place of birth *",
-      "telephone": "Telephone *",
-      "state": "State *",
-      "city": "City *",
-      "streetName": "Street name *",
-      "buildingNum": "Street number *",
-      "unitNumber": "Unit number *",
-      "zip": "ZIP code *",
-      "identityDocumentCountry": "Country *",
-      "identityDocument": "Identity document *",
-      "identityDocumentNumber": "Document № *",
-      "identityDocumentRelDate": "Issue date *",
-      "identityDocumentExpDate": "Expiration date *",
-      "docIdentCopyFile": "Choose file  *",
-      "tooLarge": "The file is too big",
-      "onlyTwo": "Only 2 files upload is available",
-      "req": "Required field",
-      "expiryExpired": "The document is overdue"
     },
     "edit": "Edit",
     "cancel": "Cancel",

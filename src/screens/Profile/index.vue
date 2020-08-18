@@ -442,7 +442,6 @@
                   >
                 </label>
               </div>
-
               <div
                 v-else-if="item === 'gender'"
                 class="user__input"
@@ -462,7 +461,9 @@
                     <div
                       v-else
                       class="vdd__title vdd__title_placeholder "
-                    />
+                    >
+                      {{ $t('profile.chooseGender') }}
+                    </div>
                     <div
                       v-if="userEditMode === 1"
                       class="vdd__icon"
@@ -596,6 +597,12 @@
                     >
                   </template>
                 </date-picker>
+              </div>
+              <div
+                v-else-if="item === 'country'"
+                class="user__input user__input_const"
+              >
+                {{ getProfile.countryCodes[getProfile.country] }}
               </div>
               <div
                 v-else

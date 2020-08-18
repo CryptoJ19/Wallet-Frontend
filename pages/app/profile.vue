@@ -13,12 +13,11 @@ export default {
     Profile,
   },
   data: () => ({
-    title: 'Profile',
+    title: '',
   }),
-  head() {
-    return {
-      title: this.title,
-    };
+  mounted() {
+    this.title = this.$t('main.menu.profile');
+    document.title = this.title;
   },
 };
 </script>

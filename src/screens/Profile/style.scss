@@ -182,8 +182,6 @@
   display: grid;
   grid-gap: 20px;
   grid-template-columns: minmax(auto, 349px)  auto;
-  //padding: 0 50px 50px;
-
   .tfa, .change-pass {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -212,7 +210,6 @@
   }
   .tfa {
     width: 100%;
-    //margin: 0 0 20px;
     &__title {
       color: #000000;
       font-weight: bold;
@@ -232,9 +229,6 @@
       display: flex;
       align-items: center;
       margin: 0 30px 0 0;
-      //&:first-child {
-      //  margin: 0 30px 0 0;
-      //}
     }
     &__text {
       margin: 0 0 0 20px;
@@ -325,7 +319,6 @@
       padding: 5px 15px;
     }
   }
-
   .ava {
     display: flex;
     align-items: center;
@@ -350,7 +343,6 @@
       align-items: center;
       justify-content: center;
       border-radius: 13px;
-      /* background-image: url(~assets/imgs/ava.png); */
       background-size: cover;
       background-position: center center;
     }
@@ -360,18 +352,11 @@
       margin-bottom: 40px;
       display: flex;
       justify-content: center;
-      //&:hover {
-      //  .ava__change {
-      //    opacity: 1;
-      //  }
-      //}
     }
     &__change {
       position: absolute;
       bottom: -20px;
-      //right: 8px;
       display: flex;
-      //opacity: 0;
       justify-content: center;
       align-items: center;
       border-radius: 100%;
@@ -383,16 +368,10 @@
       &:hover {
         background: #a8a8a8;
       }
-      img {
-        //width: 12px;
-      }
     }
   }
   .user {
-    //min-width: 612px;
-    //margin: 0 20px 0 0;
     position: relative;
-
     &__input {
       position: relative;
       display: flex;
@@ -402,10 +381,13 @@
           padding: 0 20px 0 110px;
         }
       }
+      &_const {
+        color: rgba(84, 89, 95, 0.5);
+        height: 44px;
+        font-size: 16px;
+        padding: 0 20px;
+      }
     }
-
-
-
     .header {
       position: relative;
       border-bottom: 1px solid $stroke;
