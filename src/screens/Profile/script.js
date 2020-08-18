@@ -370,8 +370,6 @@ export default {
               ...countryFields[itemTab],
               ...this.localFieldsValue[itemTab],
               [item]: profileForm[itemTab][item],
-
-
             };
           }
         });
