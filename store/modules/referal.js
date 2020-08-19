@@ -7,7 +7,7 @@ export default {
   },
   actions: {
 
-    async getReferalData(ctx) {
+    async fetchGetReferalData(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
         const rawResponse = await customFetch(

@@ -338,6 +338,7 @@
     &__tippy {
       position: absolute;
       right: -15px;
+      z-index: 1010;
     }
     &__border {
       width: 30px;

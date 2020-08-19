@@ -20,8 +20,6 @@ export default {
     er: [],
     payTab: 0,
 
-    rateEOS: 3,
-    rateCFT: 2,
 
     monthPool: [
       'January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -63,11 +61,24 @@ export default {
   }),
   mounted() {
     this.promoItems = this.$t('purchase.promo.items');
+
+    this.fetchGetPurchaseBonuses();
+    this.fetchGetCurrencies();
   },
   computed: {
     ...mapGetters([
       'getReferal',
+      'getCurrencies',
     ]),
+    rateCFT() {
+      return this.getCurrencies[3] && (this.getCurrencies[3].currentRate / 1000000) * this.rateEUR;
+    },
+    rateEUR() {
+      return this.getCurrencies[2] && (this.getCurrencies[2].currentRate / 1000000);
+    },
+    rateEOS() {
+      return this.getCurrencies[1] && (this.getCurrencies[1].currentRate / 1000000) * this.rateEUR;
+    },
     checkValidPay() {
       return (this.amountCFT !== '' && this.amountCFT !== 0);
     },
@@ -110,10 +121,11 @@ export default {
     },
   },
   methods: {
-    // fetchSendInvite
     ...mapActions([
       'fetchSendInvite',
-      'getReferalData',
+      'fetchGetReferalData',
+      'fetchGetPurchaseBonuses',
+      'fetchGetCurrencies',
     ]),
     getDeliveryDate() {
       const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
