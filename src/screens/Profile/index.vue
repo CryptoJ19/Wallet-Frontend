@@ -490,6 +490,56 @@
                 </div>
               </div>
               <div
+                v-else-if="item === 'country' && fieldsTabsKey[tab] === 'document'"
+                class="user__input"
+              >
+                <div class="vdd">
+                  <button
+                    v-click-outside="hideCountryDoc"
+                    class="vdd__btn"
+                    @click="toggleCountryDoc()"
+                  >
+                    <div
+                      v-if="fieldsDropDown.countryDoc !== ''"
+                      class="vdd__title"
+                    >
+                      {{ fieldsDropDown.countryDoc ?
+                        fieldsDropDown.countryDoc
+                        + ' ' +
+                        getProfile.countryCodes[fieldsDropDown.countryDoc]
+                        : '' }}
+                    </div>
+                    <div
+                      v-else
+                      class="vdd__title vdd__title_placeholder "
+                    />
+                    <div
+                      v-if="userEditMode === 1"
+                      class="vdd__icon"
+                    >
+                      <img
+                        src="~assets/imgs/icons/arrow_dd.svg"
+                        alt="arrow"
+                      >
+                    </div>
+                  </button>
+                  <div
+                    v-if="fieldsDropDown.countryDocShow"
+                    class="vdd__items"
+                  >
+                    <button
+                      v-for="(countryDoc, iCountryDoc) in getCountris"
+                      :key="`dd__item_gender_${iCountryDoc}`"
+                      class="vdd__item"
+                      @click="selectCountryDoc(countryDoc.short)"
+                    >
+                      {{ countryDoc.short }}
+                      {{ countryDoc.full }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
                 v-else-if="item === 'streetType'"
                 class="user__input"
               >

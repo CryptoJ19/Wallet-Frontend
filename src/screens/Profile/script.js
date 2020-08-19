@@ -17,16 +17,10 @@ export default {
     ClickOutside,
   },
   data: () => ({
-
     verStep: 0,
-
     tab: 0,
     now: moment(String(new Date())).format('DD/MM/YYYY'),
-
-
-    docTypes: [
-    ],
-
+    docTypes: [],
     genders: ['M', 'F'],
     gendersName: {},
     streetTypes: [],
@@ -34,26 +28,24 @@ export default {
     userEditMode: 0,
     localProfile: {},
     userLoader: false,
-
     erUser: [],
     erUserMsg: '',
-
     fieldsDropDown: {
       gender: '',
-      genderShow: '',
+      genderShow: false,
       type: '',
-      typeShow: '',
+      typeShow: false,
       streetType: '',
-      streetTypeShow: '',
+      streetTypeShow: false,
+      countryDoc: '',
+      countryDocShow: false,
     },
     fieldsDatePickerValue: {
       birthDate: '',
       expireDate: '',
       issueDate: '',
     },
-    localFieldsValue: {
-
-    },
+    localFieldsValue: {},
     fieldsTitles: {
       person: {
         title: '',
@@ -102,14 +94,11 @@ export default {
   mounted() {
     this.refrashFieldEr();
     this.setDefaultProfile();
-
     this.gendersName = this.$t('profile.gendersName');
     this.streetTypes = this.$t('profile.streetTypes');
     this.docTypes = this.$t('profile.docTypes');
-
-    this.fieldsRendered = true;
-
     this.setFieldsTitles();
+    this.fieldsRendered = true;
   },
   watch: {
     fieldsDropDown: {
@@ -118,6 +107,7 @@ export default {
         this.localFieldsValue.person.gender = value.gender;
         this.localFieldsValue.document.type = value.type;
         this.localFieldsValue.location.streetType = value.streetType;
+        this.localFieldsValue.document.country = value.countryDoc;
       },
     },
     fieldsDatePickerValue: {
@@ -168,8 +158,6 @@ export default {
         const arr = [...Object.keys(fields[itemTab])];
         const countryArr = countryFields[itemTab] || [];
         keys[itemTab] = [...new Set([...arr, ...countryArr])];
-        // console.log(arr, countryArr);
-        // console.log(keys[itemTab]);
       });
 
       keys.document.push('filePicker');
@@ -247,14 +235,12 @@ export default {
           const tabKey = this.fieldsTabsKey[tab];
           const data = {};
           Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-            if (this.localFieldsValue[tabKey][item] !== '') {
-              data[item] = this.localFieldsValue[tabKey][item];
-            }
+            data[item] = this.localFieldsValue[tabKey][item];
           });
           this.userLoader = true;
           const res = await this.fetchEditFormPerson({ data, tab: tabKey });
           this.userLoader = false;
-          if (!res.ok) {
+          if (!res.ok && res.code === 400000) {
             res.data.forEach((itemRes) => {
               this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
               const erCopy = {};
@@ -296,6 +282,7 @@ export default {
     changeTab(i) {
       this.setDefaultProfile();
       this.setUserEditMode(0);
+      this.refrashFieldEr();
       this.tab = i;
     },
     async sendVerified() {
@@ -360,17 +347,21 @@ export default {
       this.localProfile = {
         ...this.getProfile,
       };
+      this.setFields();
+      this.setDatePickers();
+      this.setDropDowns();
+    },
+    setFields() {
       const countryFields = {};
       Object.keys(this.getProfile.countryFields).forEach((itemTab) => {
         Object.keys(this.getProfile.countryFields[itemTab].fields).forEach((item) => {
           countryFields[itemTab] = { ...countryFields[itemTab], [item]: '' };
         });
       });
-      console.log(countryFields);
       const { profileForm } = this.getProfile;
       this.localFieldsValue = this.resetLocalFieldsValue();
       Object.keys(profileForm).forEach((itemTab) => {
-        Object.keys(this.localFieldsValue[itemTab]).forEach((item) => {
+        Object.keys(profileForm[itemTab]).forEach((item) => {
           if (profileForm[itemTab][item] !== '') {
             this.localFieldsValue[itemTab] = {
               ...countryFields[itemTab],
@@ -380,8 +371,6 @@ export default {
           }
         });
       });
-      this.setDatePickers();
-      this.setDropDowns();
     },
     resetLocalFieldsValue() {
       return {
@@ -418,6 +407,8 @@ export default {
     setDropDowns() {
       this.fieldsDropDown.gender = this.localFieldsValue.person.gender;
       this.fieldsDropDown.type = this.localFieldsValue.document.type;
+      this.fieldsDropDown.streetType = this.localFieldsValue.location.streetType;
+      this.fieldsDropDown.countryDoc = this.localFieldsValue.document.country;
     },
     setDatePickers() {
       this.fieldsDatePickerValue.birthDate = this.localFieldsValue.person.birthDate !== ''
@@ -465,14 +456,12 @@ export default {
         const tabKey = this.fieldsTabsKey[tab];
         const data = {};
         Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-          if (this.localFieldsValue[tabKey][item] !== '') {
-            data[item] = `${this.localFieldsValue[tabKey][item]}`;
-          }
+          data[item] = `${this.localFieldsValue[tabKey][item]}`;
         });
         this.userLoader = true;
         const res = await this.fetchEditFormPerson({ data, tab: tabKey });
         this.userLoader = false;
-        if (!res.ok) {
+        if (!res.ok && res.code === 400000) {
           res.data.forEach((itemRes) => {
             this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
             const erCopy = {};
@@ -497,6 +486,15 @@ export default {
     },
     selectGender(value) {
       this.fieldsDropDown.gender = value;
+    },
+    toggleCountryDoc() {
+      this.fieldsDropDown.countryDocShow = !this.fieldsDropDown.countryDocShow;
+    },
+    hideCountryDoc() {
+      this.fieldsDropDown.countryDocShow = false;
+    },
+    selectCountryDoc(value) {
+      this.fieldsDropDown.countryDoc = value;
     },
     toggleType() {
       this.fieldsDropDown.typeShow = !this.fieldsDropDown.typeShow;
