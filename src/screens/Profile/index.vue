@@ -345,7 +345,7 @@
           </div>
         </div>
         <div
-          v-if="getProfile.verificationStatus === -1"
+          v-if="getProfile.verificationStatus === -1 || getProfile.verificationStatus === 0"
           class="ver ver_red"
         >
           <div class="ver__text">

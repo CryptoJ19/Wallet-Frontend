@@ -21,15 +21,6 @@
       @showPayFailModal="showPayFailModal()"
     />
     <div class="promo">
-      <div>
-        {{ rateEUR }}
-      </div>
-      <div>
-        {{ rateCFT }}
-      </div>
-      <div>
-        {{ rateEOS }}
-      </div>
       <div class="promo__head">
         <div class="promo__title">
           {{ $t('purchase.promo.title') }}
