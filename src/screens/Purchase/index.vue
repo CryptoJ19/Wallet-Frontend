@@ -73,7 +73,8 @@
           </div>
         </div>
         <div class="pay__sum pay__sum_sm">
-          1 CFT = {{ EtC }} EOS = {{ rateCFT }} EURO
+          1 CFT = {{ (Math.ceil(EtC * 10000) / 10000) }}
+          EOS = {{ (Math.ceil(rateCFT * 100) / 100) }} EURO
         </div>
         <div class="pay__subtitle">
           {{ $t('purchase.amount') }} CFT
@@ -101,7 +102,7 @@
           {{ $t('purchase.total') }}
         </div>
         <div class="pay__sum">
-          {{ totalSum }} {{ $t('purchase.cur') }}
+          {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
         </div>
         <div class="reward">
           <div class="reward__item">
@@ -109,7 +110,7 @@
               Bonus amount
             </div>
             <div class="reward__value">
-              {{ bonus }} CFT
+              {{ (Math.ceil(bonus * 10000) / 10000) }} CFT
             </div>
           </div>
           <div class="reward__item">

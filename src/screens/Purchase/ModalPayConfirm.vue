@@ -18,7 +18,7 @@
           {{ $t('purchase.check.total') }}
         </div>
         <div class="pay__sum">
-          {{ amountCFT }} CFT
+          {{ (Math.ceil(amountCFT * 10000) / 10000) }} CFT
         </div>
         <div class="pay__items">
           <div class="pay__item">
@@ -26,7 +26,7 @@
               EOS amount
             </div>
             <div class="pay__value">
-              {{ amountEOS }} EOS
+              {{ (Math.ceil(amountEOS * 10000) / 10000) }} EOS
             </div>
           </div>
           <div class="pay__item">
@@ -34,7 +34,7 @@
               Euro amount
             </div>
             <div class="pay__value">
-              {{ totalSum }} {{ $t('purchase.cur') }}
+              {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
             </div>
           </div>
           <!--          <div class="pay__item">-->
