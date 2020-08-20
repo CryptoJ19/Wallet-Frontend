@@ -71,13 +71,13 @@ export default {
       'getCurrencies',
     ]),
     rateCFT() {
-      return this.getCurrencies[3] && (this.getCurrencies[3].currentRate / 1000000) * this.rateEUR;
+      return this.getCurrencies[3] && (this.getCurrencies[3].currentRate / 1000000) / this.rateEUR;
     },
     rateEUR() {
       return this.getCurrencies[2] && (this.getCurrencies[2].currentRate / 1000000);
     },
     rateEOS() {
-      return this.getCurrencies[1] && (this.getCurrencies[1].currentRate / 1000000) * this.rateEUR;
+      return this.getCurrencies[1] && (this.getCurrencies[1].currentRate / 1000000) / this.rateEUR;
     },
     checkValidPay() {
       return (this.amountCFT !== '' && this.amountCFT !== 0);

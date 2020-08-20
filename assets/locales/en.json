@@ -391,6 +391,12 @@
     "notVerified": "Not Verified",
     "pending": "Pending",
     "changeProfile": "Change",
+    "filed": {
+      "types": "Можно загружать только .jpg, .png, .pdf файлы",
+      "tooLarge": "The file is too heavy",
+      "onlyTwo": "Only 2 file upload is available",
+      "expiryExpired": "The document is overdue"
+    },
     "document": {
       "title": "Document",
       "expireDate": "Expiry date",

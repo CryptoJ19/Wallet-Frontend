@@ -24,7 +24,6 @@ export default {
     genders: ['M', 'F'],
     gendersName: {},
     streetTypes: [],
-
     userEditMode: 0,
     localProfile: {},
     userLoader: false,
@@ -218,13 +217,21 @@ export default {
       return changesFields;
     },
     refrashFieldEr() {
-      const { profileForm } = this.getProfile;
-      Object.keys(profileForm).forEach((itemForm) => {
+      Object.keys(this.fieldsKeys).forEach((itemForm) => {
         this.fieldsEr[itemForm] = {};
-        Object.keys(profileForm[itemForm]).forEach((item) => {
+        this.fieldsKeys[itemForm].forEach((item) => {
           this.fieldsEr[itemForm][item] = '';
         });
       });
+    },
+    setFieldEr(itemForm, item, value) {
+      const copy = this.fieldsEr[itemForm];
+      this.fieldsEr[itemForm] = {};
+      copy[item] = value;
+      this.fieldsEr = {
+        ...this.fieldsEr,
+        [itemForm]: copy,
+      };
     },
     async nextVerStep() {
       this.refrashFieldEr();
@@ -311,26 +318,24 @@ export default {
       this.userLoader = false;
     },
     async handleImageDoc(e) {
-      // this.userFieldsRules.docIdentCopyFile.er = '';
+      this.refrashFieldEr();
       const fileObj = e.target.files[0];
       if (document.getElementsByClassName('doc-file-input')[0]) document.getElementsByClassName('doc-file-input')[0].value = null;
       if (document.getElementsByClassName('doc-file-input')[1]) document.getElementsByClassName('doc-file-input')[1].value = null;
       if (e.currentTarget !== null) {
         if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
-          // this.userFieldsRules.docIdentCopyFile.er =
-          // 'Можно загружать только .jpg, .png, .pdf файлы';
+          this.setFieldEr('document', 'filePicker', this.$t('profile.filed.types'));
           return null;
         }
         if ((fileObj.size / 1024 / 1024) > 2) {
-          // this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.tooLarge');
+          this.setFieldEr('document', 'filePicker', this.$t('profile.filed.tooLarge'));
           return null;
         }
         if (this.getDocFile.length === 2) {
-          // this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.onlyTwo');
+          this.setFieldEr('document', 'filePicker', this.$t('profile.filed.onlyTwo'));
           return null;
         }
-        if (true
-          || this.userFieldsRules.docIdentCopyFile.er === '') {
+        if (this.fieldsEr.document.filePicker === '') {
           const formData = new FormData();
           formData.append('file', fileObj);
           this.userLoader = true;
@@ -434,6 +439,9 @@ export default {
             });
             this.fieldsEr = { ...erCopy };
           }
+          // if (tabKey === 'document' && item === 'expireDate') {
+          //
+          // }
           // if (item === 'identityDocumentExpDate' && this.localProfile[item]) {
           //   const now = this.now.split('/');
           //   const expDate = this.localProfile[item].split('/');
