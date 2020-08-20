@@ -69,6 +69,7 @@ export default {
     ...mapGetters([
       'getReferal',
       'getCurrencies',
+      'getBonuses',
     ]),
     rateCFT() {
       return this.getCurrencies[3] && (this.getCurrencies[3].currentRate / 1000000) / this.rateEUR;
@@ -93,10 +94,12 @@ export default {
     },
     bonus() {
       let bonus = '';
-      const { schema } = this;
-      schema.forEach((item, i) => {
-        if (this.totalSum > schema[i].from && this.totalSum <= schema[i].to) {
-          bonus = this.amountCFT * schema[0].bonus;
+      const { getBonuses } = this;
+      getBonuses.forEach((item, i) => {
+        if (this.totalSum > getBonuses[i].minAmount
+          && this.totalSum <= getBonuses[i].maxAmount
+          && getBonuses[i].reward !== 0) {
+          bonus = this.amountCFT * (getBonuses[i].reward / 100);
         }
       });
       return this.formatSum(bonus);

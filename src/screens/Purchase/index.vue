@@ -28,7 +28,7 @@
       </div>
       <div class="promo__items">
         <div
-          v-for="(item, i) in promoItems"
+          v-for="(item, i) in getBonuses"
           :key="`promoitem_${i}`"
           class="promo__item"
         >
@@ -37,8 +37,13 @@
           </div>
           <div
             class="promo__text"
-            v-html="item"
-          />
+          >
+            <strong>{{ item.minAmount }}€</strong>
+            {{ $t('purchase.promoTo') }}
+            <strong>{{ item.maxAmount }}€</strong>
+            {{ $t('purchase.promoExtra') }}
+            {{ item.reward }}%
+          </div>
         </div>
       </div>
     </div>

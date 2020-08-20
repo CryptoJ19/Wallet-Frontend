@@ -13,6 +13,7 @@ export default {
     docFiles: [],
     countries: {},
     currencies: [],
+    bonuses: [],
   },
   actions: {
     async fetchPostPurchaseBuycft(ctx, data) {
@@ -47,14 +48,14 @@ export default {
     },
 
     async fetchGetPurchaseBonuses(ctx) {
-      const res = await customFetchToken(ctx, async () => {
-        const rawResponse = await customFetch(
-          `${apiUrl}/purchase/bonuses`,
-          'GET',
-        );
-        const content = await rawResponse.json();
-        return content;
-      });
+      const rawResponse = await customFetch(
+        `${apiUrl}/purchase/bonuses`,
+        'GET',
+      );
+      const res = await rawResponse.json();
+      if (res.ok) {
+        ctx.commit('updateBonuses', res.result);
+      }
       return res;
     },
 
@@ -318,6 +319,7 @@ export default {
       state.docFiles = [];
       state.countries = {};
       state.currencies = [];
+      state.bonuses = [];
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');
@@ -354,6 +356,9 @@ export default {
     },
     updateCurrencies(state, value) {
       state.currencies = value;
+    },
+    updateBonuses(state, value) {
+      state.bonuses = value;
     },
   },
   getters: {
@@ -408,6 +413,9 @@ export default {
     },
     getCurrencies(state) {
       return state.currencies;
+    },
+    getBonuses(state) {
+      return state.bonuses;
     },
   },
 };
