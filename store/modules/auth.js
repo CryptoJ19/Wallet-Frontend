@@ -13,7 +13,6 @@ export default {
     docFiles: [],
     countries: {},
     currencies: [],
-    bonuses: [],
   },
   actions: {
     async fetchPostPurchaseBuycft(ctx, data) {
