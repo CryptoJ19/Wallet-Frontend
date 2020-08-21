@@ -17,7 +17,6 @@ export default {
     Reset,
   },
   data: () => ({
-    title: '',
     mode: 0,
     resetData: {},
   }),
@@ -30,9 +29,11 @@ export default {
     } else {
       this.mode = 1;
     }
-
-    this.title = 'CashFlash';
-    document.title = this.title;
+  },
+  head() {
+    return {
+      title: 'CashFlash',
+    };
   },
 };
 </script>

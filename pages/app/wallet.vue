@@ -12,12 +12,10 @@ export default {
     ContainerConsole,
     Wallet,
   },
-  data: () => ({
-    title: '',
-  }),
-  mounted() {
-    this.title = this.$t('main.menu.wallet');
-    document.title = this.title;
+  head() {
+    return {
+      title: this.$t('main.menu.wallet'),
+    };
   },
 };
 </script>

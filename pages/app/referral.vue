@@ -12,12 +12,10 @@ export default {
     ContainerConsole,
     Referal,
   },
-  data: () => ({
-    title: '',
-  }),
-  mounted() {
-    this.title = this.$t('main.menu.referal');
-    document.title = this.title;
+  head() {
+    return {
+      title: this.$t('main.menu.referal'),
+    };
   },
 };
 </script>

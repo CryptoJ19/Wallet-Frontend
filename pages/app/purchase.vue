@@ -12,12 +12,10 @@ export default {
     ContainerConsole,
     Purchase,
   },
-  data: () => ({
-    title: '',
-  }),
-  mounted() {
-    this.title = this.$t('main.menu.purchase');
-    document.title = this.title;
+  head() {
+    return {
+      title: this.$t('main.menu.purchase'),
+    };
   },
 };
 </script>

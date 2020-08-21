@@ -9,9 +9,6 @@ export default {
   components: {
     ContainerConsole,
   },
-  data: () => ({
-    title: '',
-  }),
   mounted() {
     console.log(window.location.host);
     if (getAccessToken() === false) {
@@ -19,8 +16,11 @@ export default {
     } else {
       document.location.replace(`http://${window.location.host}/app/wallet`);
     }
-    this.title = 'CashFlash';
-    document.title = this.title;
+  },
+  head() {
+    return {
+      title: 'CashFlash',
+    };
   },
 };
 </script>
