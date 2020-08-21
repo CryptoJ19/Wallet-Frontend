@@ -156,6 +156,11 @@
 }
 
 @mixin btn__dis {
-  background: #dcddde;
+  background: $grey-bg;
   cursor: default;
+  &:hover {
+    background: $grey-bg;
+
+
+  }
 }

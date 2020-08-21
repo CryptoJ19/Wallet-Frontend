@@ -391,6 +391,12 @@
     "notVerified": "Not Verified",
     "pending": "Pending",
     "changeProfile": "Change",
+    "filed": {
+      "types": "Можно загружать только .jpg, .png, .pdf файлы",
+      "tooLarge": "The file is too heavy",
+      "onlyTwo": "Only 2 file upload is available",
+      "expiryExpired": "The document is overdue"
+    },
     "document": {
       "title": "Document",
       "expireDate": "Expiry date",
@@ -494,16 +500,10 @@
   },
   "purchase": {
     "promo": {
-      "title": "Buy CFT tokens and get extra CFT tokens in 3 months according to the following scheme:",
-      "items": [
-        "<strong>1.000€</strong> to <strong>10.000€</strong> extra token 20%.",
-        "<strong>11.000€</strong> to <strong>50.000€</strong> extra token 25%",
-        "<strong>51.000€</strong> to <strong>200.000€</strong> extra token 30%",
-        "<strong>210.000€</strong> to <strong>500.000€</strong> extra token 40%",
-        "<strong>510.000€</strong> to <strong>5.000.000€</strong> extra token 50%",
-        "<strong>5.100.000€</strong> to <strong>150.000.000€</strong> extra token negotiable"
-      ]
+      "title": "Buy CFT tokens and get extra CFT tokens in 3 months according to the following scheme:"
     },
+    "promoTo": "to",
+    "promoExtra": "extra token",
     "modal": {
       "successText": "Success text",
       "successTitle": "Success",
@@ -542,6 +542,7 @@
     "amount": "Amount",
     "amountPlaceholder": "€1000",
     "total": "Total sum",
+    "comingSoon": "123 предлагаю разместить по центру окошко небольшое с текстом (2 -3 строки), что фича скоро будет",
     "cur": "€",
     "confirm": "Confirm",
     "steps": {

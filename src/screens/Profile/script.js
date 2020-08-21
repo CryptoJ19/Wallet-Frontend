@@ -17,43 +17,34 @@ export default {
     ClickOutside,
   },
   data: () => ({
-
     verStep: 0,
-
     tab: 0,
     now: moment(String(new Date())).format('DD/MM/YYYY'),
-
-
-    docTypes: [
-    ],
-
+    docTypes: [],
     genders: ['M', 'F'],
     gendersName: {},
     streetTypes: [],
-
     userEditMode: 0,
     localProfile: {},
     userLoader: false,
-
     erUser: [],
     erUserMsg: '',
-
     fieldsDropDown: {
       gender: '',
-      genderShow: '',
+      genderShow: false,
       type: '',
-      typeShow: '',
+      typeShow: false,
       streetType: '',
-      streetTypeShow: '',
+      streetTypeShow: false,
+      countryDoc: '',
+      countryDocShow: false,
     },
     fieldsDatePickerValue: {
       birthDate: '',
       expireDate: '',
       issueDate: '',
     },
-    localFieldsValue: {
-
-    },
+    localFieldsValue: {},
     fieldsTitles: {
       person: {
         title: '',
@@ -102,14 +93,11 @@ export default {
   mounted() {
     this.refrashFieldEr();
     this.setDefaultProfile();
-
     this.gendersName = this.$t('profile.gendersName');
     this.streetTypes = this.$t('profile.streetTypes');
     this.docTypes = this.$t('profile.docTypes');
-
-    this.fieldsRendered = true;
-
     this.setFieldsTitles();
+    this.fieldsRendered = true;
   },
   watch: {
     fieldsDropDown: {
@@ -118,6 +106,7 @@ export default {
         this.localFieldsValue.person.gender = value.gender;
         this.localFieldsValue.document.type = value.type;
         this.localFieldsValue.location.streetType = value.streetType;
+        this.localFieldsValue.document.country = value.countryDoc;
       },
     },
     fieldsDatePickerValue: {
@@ -168,8 +157,6 @@ export default {
         const arr = [...Object.keys(fields[itemTab])];
         const countryArr = countryFields[itemTab] || [];
         keys[itemTab] = [...new Set([...arr, ...countryArr])];
-        // console.log(arr, countryArr);
-        // console.log(keys[itemTab]);
       });
 
       keys.document.push('filePicker');
@@ -230,13 +217,21 @@ export default {
       return changesFields;
     },
     refrashFieldEr() {
-      const { profileForm } = this.getProfile;
-      Object.keys(profileForm).forEach((itemForm) => {
+      Object.keys(this.fieldsKeys).forEach((itemForm) => {
         this.fieldsEr[itemForm] = {};
-        Object.keys(profileForm[itemForm]).forEach((item) => {
+        this.fieldsKeys[itemForm].forEach((item) => {
           this.fieldsEr[itemForm][item] = '';
         });
       });
+    },
+    setFieldEr(itemForm, item, value) {
+      const copy = this.fieldsEr[itemForm];
+      this.fieldsEr[itemForm] = {};
+      copy[item] = value;
+      this.fieldsEr = {
+        ...this.fieldsEr,
+        [itemForm]: copy,
+      };
     },
     async nextVerStep() {
       this.refrashFieldEr();
@@ -247,14 +242,12 @@ export default {
           const tabKey = this.fieldsTabsKey[tab];
           const data = {};
           Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-            if (this.localFieldsValue[tabKey][item] !== '') {
-              data[item] = this.localFieldsValue[tabKey][item];
-            }
+            data[item] = this.localFieldsValue[tabKey][item];
           });
           this.userLoader = true;
           const res = await this.fetchEditFormPerson({ data, tab: tabKey });
           this.userLoader = false;
-          if (!res.ok) {
+          if (!res.ok && res.code === 400000) {
             res.data.forEach((itemRes) => {
               this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
               const erCopy = {};
@@ -296,6 +289,7 @@ export default {
     changeTab(i) {
       this.setDefaultProfile();
       this.setUserEditMode(0);
+      this.refrashFieldEr();
       this.tab = i;
     },
     async sendVerified() {
@@ -304,6 +298,8 @@ export default {
       this.userLoader = false;
       if (res.ok) {
         this.$bvModal.show('profile-verification-send-modal');
+      } else {
+        this.$bvModal.show('profile-verification-send-modal_fail');
       }
     },
     cutString(value) {
@@ -324,26 +320,24 @@ export default {
       this.userLoader = false;
     },
     async handleImageDoc(e) {
-      // this.userFieldsRules.docIdentCopyFile.er = '';
+      this.refrashFieldEr();
       const fileObj = e.target.files[0];
       if (document.getElementsByClassName('doc-file-input')[0]) document.getElementsByClassName('doc-file-input')[0].value = null;
       if (document.getElementsByClassName('doc-file-input')[1]) document.getElementsByClassName('doc-file-input')[1].value = null;
       if (e.currentTarget !== null) {
         if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
-          // this.userFieldsRules.docIdentCopyFile.er =
-          // 'Можно загружать только .jpg, .png, .pdf файлы';
+          this.setFieldEr('document', 'filePicker', this.$t('profile.filed.types'));
           return null;
         }
         if ((fileObj.size / 1024 / 1024) > 2) {
-          // this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.tooLarge');
+          this.setFieldEr('document', 'filePicker', this.$t('profile.filed.tooLarge'));
           return null;
         }
         if (this.getDocFile.length === 2) {
-          // this.userFieldsRules.docIdentCopyFile.er = this.$t('profile.filed.onlyTwo');
+          this.setFieldEr('document', 'filePicker', this.$t('profile.filed.onlyTwo'));
           return null;
         }
-        if (true
-          || this.userFieldsRules.docIdentCopyFile.er === '') {
+        if (this.fieldsEr.document.filePicker === '') {
           const formData = new FormData();
           formData.append('file', fileObj);
           this.userLoader = true;
@@ -360,17 +354,21 @@ export default {
       this.localProfile = {
         ...this.getProfile,
       };
+      this.setFields();
+      this.setDatePickers();
+      this.setDropDowns();
+    },
+    setFields() {
       const countryFields = {};
       Object.keys(this.getProfile.countryFields).forEach((itemTab) => {
         Object.keys(this.getProfile.countryFields[itemTab].fields).forEach((item) => {
           countryFields[itemTab] = { ...countryFields[itemTab], [item]: '' };
         });
       });
-      console.log(countryFields);
       const { profileForm } = this.getProfile;
       this.localFieldsValue = this.resetLocalFieldsValue();
       Object.keys(profileForm).forEach((itemTab) => {
-        Object.keys(this.localFieldsValue[itemTab]).forEach((item) => {
+        Object.keys(profileForm[itemTab]).forEach((item) => {
           if (profileForm[itemTab][item] !== '') {
             this.localFieldsValue[itemTab] = {
               ...countryFields[itemTab],
@@ -380,8 +378,6 @@ export default {
           }
         });
       });
-      this.setDatePickers();
-      this.setDropDowns();
     },
     resetLocalFieldsValue() {
       return {
@@ -418,6 +414,8 @@ export default {
     setDropDowns() {
       this.fieldsDropDown.gender = this.localFieldsValue.person.gender;
       this.fieldsDropDown.type = this.localFieldsValue.document.type;
+      this.fieldsDropDown.streetType = this.localFieldsValue.location.streetType;
+      this.fieldsDropDown.countryDoc = this.localFieldsValue.document.country;
     },
     setDatePickers() {
       this.fieldsDatePickerValue.birthDate = this.localFieldsValue.person.birthDate !== ''
@@ -443,6 +441,9 @@ export default {
             });
             this.fieldsEr = { ...erCopy };
           }
+          // if (tabKey === 'document' && item === 'expireDate') {
+          //
+          // }
           // if (item === 'identityDocumentExpDate' && this.localProfile[item]) {
           //   const now = this.now.split('/');
           //   const expDate = this.localProfile[item].split('/');
@@ -465,14 +466,12 @@ export default {
         const tabKey = this.fieldsTabsKey[tab];
         const data = {};
         Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-          if (this.localFieldsValue[tabKey][item] !== '') {
-            data[item] = `${this.localFieldsValue[tabKey][item]}`;
-          }
+          data[item] = `${this.localFieldsValue[tabKey][item]}`;
         });
         this.userLoader = true;
         const res = await this.fetchEditFormPerson({ data, tab: tabKey });
         this.userLoader = false;
-        if (!res.ok) {
+        if (!res.ok && res.code === 400000) {
           res.data.forEach((itemRes) => {
             this.fieldsEr[tabKey][itemRes.field] = `Server error: ${itemRes.reason}`;
             const erCopy = {};
@@ -497,6 +496,15 @@ export default {
     },
     selectGender(value) {
       this.fieldsDropDown.gender = value;
+    },
+    toggleCountryDoc() {
+      this.fieldsDropDown.countryDocShow = !this.fieldsDropDown.countryDocShow;
+    },
+    hideCountryDoc() {
+      this.fieldsDropDown.countryDocShow = false;
+    },
+    selectCountryDoc(value) {
+      this.fieldsDropDown.countryDoc = value;
     },
     toggleType() {
       this.fieldsDropDown.typeShow = !this.fieldsDropDown.typeShow;

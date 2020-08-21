@@ -28,7 +28,7 @@
       </div>
       <div class="promo__items">
         <div
-          v-for="(item, i) in promoItems"
+          v-for="(item, i) in getBonuses"
           :key="`promoitem_${i}`"
           class="promo__item"
         >
@@ -37,8 +37,13 @@
           </div>
           <div
             class="promo__text"
-            v-html="item"
-          />
+          >
+            <strong>{{ item.minAmount }}€</strong>
+            {{ $t('purchase.promoTo') }}
+            <strong>{{ item.maxAmount }}€</strong>
+            {{ $t('purchase.promoExtra') }}
+            {{ item.reward }}%
+          </div>
         </div>
       </div>
     </div>
@@ -72,64 +77,142 @@
             </div>
           </div>
         </div>
-        <div class="pay__sum pay__sum_sm">
-          1 CFT = {{ EtC }} EOS = {{ rateCFT }} EURO
-        </div>
-        <div class="pay__subtitle">
-          {{ $t('purchase.amount') }} CFT
-        </div>
-        <div class="pay__amount">
-          <input
-            v-model="amountCFT"
-            maxlength="40"
-            :placeholder="$t('wallet.modalSend.amount')"
-            type="number"
-          >
-        </div>
-        <div class="pay__subtitle">
-          {{ $t('purchase.amount') }} EOS
-        </div>
-        <div class="pay__amount">
-          <input
-            v-model="amountEOS"
-            maxlength="40"
-            :placeholder="$t('wallet.modalSend.amount')"
-            type="number"
-          >
-        </div>
-        <div class="pay__subtitle">
-          {{ $t('purchase.total') }}
-        </div>
-        <div class="pay__sum">
-          {{ totalSum }} {{ $t('purchase.cur') }}
-        </div>
-        <div class="reward">
-          <div class="reward__item">
-            <div class="reward__title">
-              Bonus amount
+        <div
+          v-if="payTab === 0"
+          class="pay__way"
+        >
+          <div class="pay__sum pay__sum_sm">
+            1 CFT = {{ (Math.ceil(EtC * 10000) / 10000) }}
+            EOS = {{ (Math.ceil(rateCFT * 100) / 100) }} EURO
+          </div>
+          <div class="pay__subtitle">
+            {{ $t('purchase.amount') }} CFT
+          </div>
+          <div class="pay__amount">
+            <input
+              v-model="amountCFT"
+              maxlength="40"
+              :placeholder="$t('wallet.modalSend.amount')"
+              type="number"
+              @input="onChangeField"
+            >
+          </div>
+          <div class="pay__subtitle">
+            {{ $t('purchase.amount') }} EOS
+          </div>
+          <div class="pay__amount">
+            <input
+              v-model="amountEOS"
+              maxlength="40"
+              :placeholder="$t('wallet.modalSend.amount')"
+              type="number"
+              @input="onChangeField"
+            >
+          </div>
+          <div class="pay__subtitle">
+            {{ $t('purchase.total') }}
+          </div>
+          <div class="pay__sum">
+            {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
+          </div>
+          <div class="reward">
+            <div class="reward__item">
+              <div class="reward__title">
+                Bonus amount
+              </div>
+              <div class="reward__value">
+                {{ (Math.ceil(bonus * 10000) / 10000) }} CFT
+              </div>
             </div>
-            <div class="reward__value">
-              {{ bonus }} CFT
+            <div class="reward__item">
+              <div class="reward__title">
+                Delivery date
+              </div>
+              <div class="reward__value">
+                {{ getDeliveryDate() }}
+              </div>
             </div>
           </div>
-          <div class="reward__item">
-            <div class="reward__title">
-              Delivery date
-            </div>
-            <div class="reward__value">
-              {{ getDeliveryDate() }}
-            </div>
+          <div class="pay__btns">
+            <button
+              class="pay__btn"
+              :class="{'pay__btn_dis': !checkValidPay}"
+              :disabled="!checkValidPay"
+              @click="showPayConfirmModal()"
+            >
+              {{ $t('purchase.confirm') }}
+            </button>
           </div>
         </div>
-        <div class="pay__btns">
-          <button
-            class="pay__btn"
-            :class="{'pay__btn_dis': !checkValidPay}"
-            :disabled="!checkValidPay"
-            @click="showPayConfirmModal()"
-          >
-            {{ $t('purchase.confirm') }}
-          </button>
+        <div
+          v-else
+          class="pay__way"
+        >
+          <div class="pay__sum pay__sum_sm">
+            1 CFT = {{ (Math.ceil(EtC * 10000) / 10000) }}
+            EOS = {{ (Math.ceil(rateCFT * 100) / 100) }} EURO
+          </div>
+          <div class="pay__subtitle">
+            {{ $t('purchase.amount') }} CFT
+          </div>
+          <div class="pay__amount">
+            <input
+              v-model="amountCFT"
+              maxlength="40"
+              :placeholder="$t('wallet.modalSend.amount')"
+              type="number"
+            >
+          </div>
+          <div class="pay__subtitle">
+            {{ $t('purchase.amount') }} EOS
+          </div>
+          <div class="pay__amount">
+            <input
+              v-model="amountEOS"
+              maxlength="40"
+              :placeholder="$t('wallet.modalSend.amount')"
+              type="number"
+            >
+          </div>
+          <div class="pay__subtitle">
+            {{ $t('purchase.total') }}
+          </div>
+          <div class="pay__sum">
+            {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
+          </div>
+          <div class="reward">
+            <div class="reward__item">
+              <div class="reward__title">
+                Bonus amount
+              </div>
+              <div class="reward__value">
+                {{ (Math.ceil(bonus * 10000) / 10000) }} CFT
+              </div>
+            </div>
+            <div class="reward__item">
+              <div class="reward__title">
+                Delivery date
+              </div>
+              <div class="reward__value">
+                {{ getDeliveryDate() }}
+              </div>
+            </div>
+          </div>
+          <div class="pay__btns">
+            <button
+              class="pay__btn"
+              :class="{'pay__btn_dis': !checkValidPay}"
+              :disabled="!checkValidPay"
+              @click="showPayConfirmModal()"
+            >
+              {{ $t('purchase.confirm') }}
+            </button>
+          </div>
+          <div class="pay__soon">
+            <span>
+              {{ $t('purchase.comingSoon') }}
+            </span>
+          </div>
         </div>
       </div>
       <div class="timer">

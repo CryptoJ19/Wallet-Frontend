@@ -24,7 +24,7 @@ export default {
     // fetchSendInvite
     ...mapActions([
       'fetchSendInvite',
-      'getReferalData',
+      'fetchGetReferalData',
     ]),
     copy(str) {
       const el = document.createElement('textarea');
@@ -63,7 +63,7 @@ export default {
         const res = await this.fetchSendInvite(data);
         this.sendLoading = false;
         if (res.ok) {
-          this.getReferalData();
+          this.fetchGetReferalData();
           this.showSendSuccessMsg = true;
           this.sendEmail = '';
           this.sendMsg = '';

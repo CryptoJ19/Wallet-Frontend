@@ -88,7 +88,7 @@ export default {
       'logout',
       'fetchCheckGA',
       'fetchGetTransactions',
-      'getReferalData',
+      'fetchGetReferalData',
       'fetchGetDocFiles',
     ]),
     async init() {
@@ -100,7 +100,7 @@ export default {
         // if (resCheckGA.ok && !resCheckGA.result.enabled) {
         //   await this.fetchTempGAToken();
         // }
-        const resGetReferalData = this.getReferalData();
+        const resGetReferalData = this.fetchGetReferalData();
         const resProfile = this.fetchGetProfile();
         const resFiles = this.fetchGetDocFiles();
         await Promise.all([resGetReferalData, resProfile, resFiles]);

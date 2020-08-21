@@ -8,12 +8,10 @@ export default {
   components: {
     Authorization,
   },
-  data: () => ({
-    title: '',
-  }),
-  mounted() {
-    this.title = 'Authorization';
-    document.title = this.title;
+  head() {
+    return {
+      title: 'Authorization',
+    };
   },
 };
 </script>

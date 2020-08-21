@@ -19,9 +19,7 @@ export default {
     showSendSuccessMsg: false,
     er: [],
     payTab: 0,
-
-    rateEOS: 3,
-    rateCFT: 2,
+    convertFlag: false,
 
     monthPool: [
       'January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -63,11 +61,25 @@ export default {
   }),
   mounted() {
     this.promoItems = this.$t('purchase.promo.items');
+
+    this.fetchGetPurchaseBonuses();
+    this.fetchGetCurrencies();
   },
   computed: {
     ...mapGetters([
       'getReferal',
+      'getCurrencies',
+      'getBonuses',
     ]),
+    rateCFT() {
+      return this.getCurrencies[3] && (this.getCurrencies[3].currentRate / 1000000) / this.rateEUR;
+    },
+    rateEUR() {
+      return this.getCurrencies[2] && (this.getCurrencies[2].currentRate / 1000000);
+    },
+    rateEOS() {
+      return this.getCurrencies[1] && (this.getCurrencies[1].currentRate / 1000000) / this.rateEUR;
+    },
     checkValidPay() {
       return (this.amountCFT !== '' && this.amountCFT !== 0);
     },
@@ -82,10 +94,12 @@ export default {
     },
     bonus() {
       let bonus = '';
-      const { schema } = this;
-      schema.forEach((item, i) => {
-        if (this.totalSum > schema[i].from && this.totalSum <= schema[i].to) {
-          bonus = this.amountCFT * schema[0].bonus;
+      const { getBonuses } = this;
+      getBonuses.forEach((item, i) => {
+        if (this.totalSum > getBonuses[i].minAmount
+          && this.totalSum <= getBonuses[i].maxAmount
+          && getBonuses[i].reward !== 0) {
+          bonus = this.amountCFT * (getBonuses[i].reward / 100);
         }
       });
       return this.formatSum(bonus);
@@ -93,28 +107,38 @@ export default {
   },
   watch: {
     amountEOS(value) {
-      const convert = value / this.EtC;
-      if (value === '') {
-        this.amountCFT = '';
-      } else if (this.amountCFT !== convert) {
-        this.amountCFT = convert;
+      const convert = Math.floor((value / this.EtC) * 100) / 100;
+      if (this.convertFlag === true) {
+        if (value === '') {
+          this.amountCFT = '';
+        } else if (this.amountCFT !== convert) {
+          this.amountCFT = convert;
+        }
+        this.convertFlag = false;
       }
     },
     amountCFT(value) {
-      const convert = value * this.EtC;
-      if (value === '') {
-        this.amountEOS = '';
-      } else if (this.amountEOS !== convert) {
-        this.amountEOS = convert;
+      const convert = Math.floor((value * this.EtC) * 100) / 100;
+      if (this.convertFlag === true) {
+        if (value === '') {
+          this.amountEOS = '';
+        } else if (this.amountEOS !== convert) {
+          this.amountEOS = convert;
+        }
+        this.convertFlag = false;
       }
     },
   },
   methods: {
-    // fetchSendInvite
     ...mapActions([
       'fetchSendInvite',
-      'getReferalData',
+      'fetchGetReferalData',
+      'fetchGetPurchaseBonuses',
+      'fetchGetCurrencies',
     ]),
+    onChangeField() {
+      this.convertFlag = true;
+    },
     getDeliveryDate() {
       const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
       return `${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]} ${datePlus.getFullYear()}`;

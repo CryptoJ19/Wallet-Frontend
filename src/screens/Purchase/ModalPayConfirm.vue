@@ -18,7 +18,7 @@
           {{ $t('purchase.check.total') }}
         </div>
         <div class="pay__sum">
-          {{ amountCFT }} CFT
+          {{ (Math.ceil(amountCFT * 10000) / 10000) }} CFT
         </div>
         <div class="pay__items">
           <div class="pay__item">
@@ -26,7 +26,7 @@
               EOS amount
             </div>
             <div class="pay__value">
-              {{ amountEOS }} EOS
+              {{ (Math.ceil(amountEOS * 10000) / 10000) }} EOS
             </div>
           </div>
           <div class="pay__item">
@@ -34,17 +34,17 @@
               Euro amount
             </div>
             <div class="pay__value">
-              {{ totalSum }} {{ $t('purchase.cur') }}
+              {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
             </div>
           </div>
-          <div class="pay__item">
-            <div class="pay__text">
-              My Cash Flash account name
-            </div>
-            <div class="pay__value">
-              MyNickname
-            </div>
-          </div>
+          <!--          <div class="pay__item">-->
+          <!--            <div class="pay__text">-->
+          <!--              My Cash Flash account name-->
+          <!--            </div>-->
+          <!--            <div class="pay__value">-->
+          <!--              MyNickname-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
         <div class="war">
           <div class="war__icon">
@@ -58,44 +58,42 @@
             v-html="$t('purchase.check.warText')"
           />
         </div>
-        <button
-          class="switch"
-          @click="toggleSwitch"
-        >
-          <div
-            class="Switch"
-            :class="{'Switch_toggled': this.switch}"
-          >
-            <div class="Switch__circle" />
-          </div>
-          <div class="switch__label">
-            Ok, i got it and agree
-          </div>
-        </button>
-        <div
-          v-if="this.switch"
-          class="address"
-        >
-          <div class="address__value">
-            {{ CFAddress }}
-          </div>
-          <button
-            class="address__copy"
-            @click="copy(CFAddress)"
-          >
-            <img
-              src="~assets/imgs/icons/copy.svg"
-              alt="close"
-            >
-          </button>
-        </div>
+        <!--        <button-->
+        <!--          class="switch"-->
+        <!--          @click="toggleSwitch"-->
+        <!--        >-->
+        <!--          <div-->
+        <!--            class="Switch"-->
+        <!--            :class="{'Switch_toggled': this.switch}"-->
+        <!--          >-->
+        <!--            <div class="Switch__circle" />-->
+        <!--          </div>-->
+        <!--          <div class="switch__label">-->
+        <!--            Ok, i got it and agree-->
+        <!--          </div>-->
+        <!--        </button>-->
+        <!--        <div-->
+        <!--          v-if="this.switch"-->
+        <!--          class="address"-->
+        <!--        >-->
+        <!--          <div class="address__value">-->
+        <!--            {{ CFAddress }}-->
+        <!--          </div>-->
+        <!--          <button-->
+        <!--            class="address__copy"-->
+        <!--            @click="copy(CFAddress)"-->
+        <!--          >-->
+        <!--            <img-->
+        <!--              src="~assets/imgs/icons/copy.svg"-->
+        <!--              alt="close"-->
+        <!--            >-->
+        <!--          </button>-->
+        <!--        </div>-->
       </div>
       <div class="mod__btns">
         <button
           class="mod__btn pay__btn"
-          :class="{'pay__btn_dis': !this.switch}"
-          :disabled="!this.switch"
-          @click="showPaySuccessModal()"
+          @click="preludeSendPay()"
         >
           I paid
         </button>
@@ -111,6 +109,7 @@
 </template>
 <script>
 
+import { mapActions } from 'vuex';
 import { CFAddress } from '../../../config';
 
 import Loader from '../../ui/Loader';
@@ -144,18 +143,32 @@ export default {
     loading: false,
   }),
   methods: {
+    ...mapActions([
+      'fetchPostPurchaseBuycft',
+    ]),
     refrashrModal() {
       this.loading = false;
     },
     toggleSwitch() {
       this.switch = !this.switch;
     },
-    showPaySuccessModal() {
+    async preludeSendPay() {
+      // const data = {
+      //   amount: this.amountCFT,
+      // };
+      const formData = new FormData();
+      formData.append('amount', this.amountCFT);
       this.loading = true;
-      setTimeout(() => {
+      const res = await this.fetchPostPurchaseBuycft(formData);
+      this.loading = false;
+      console.log(res);
+      if (res.ok) {
         this.close();
-        this.$emit('showPaySuccessModal');
-      }, 2000);
+        this.showPaySuccessModal();
+      }
+    },
+    showPaySuccessModal() {
+      this.$emit('showPaySuccessModal');
     },
     close() {
       this.$bvModal.hide('modal-pay-confirm');

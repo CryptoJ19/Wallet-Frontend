@@ -12,8 +12,53 @@ export default {
     isAuthorized: false,
     docFiles: [],
     countries: {},
+    currencies: [],
+    bonuses: [],
   },
   actions: {
+    async fetchPostPurchaseBuycft(ctx, data) {
+      console.log(data);
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetchFormdata(
+          `${apiUrl}/purchase/buy-cft`,
+          'POST',
+          header,
+          data,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      return res;
+    },
+
+    async fetchGetCurrencies(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const rawResponse = await customFetch(
+          `${apiUrl}/currencies`,
+          'GET',
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      if (res.ok) {
+        ctx.commit('updateCurrencies', res.result);
+      }
+      return res;
+    },
+
+    async fetchGetPurchaseBonuses(ctx) {
+      const rawResponse = await customFetch(
+        `${apiUrl}/purchase/bonuses`,
+        'GET',
+      );
+      const res = await rawResponse.json();
+      if (res.ok) {
+        ctx.commit('updateBonuses', res.result);
+      }
+      return res;
+    },
+
     async fetchGetCountries(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const rawResponse = await customFetch(
@@ -273,6 +318,8 @@ export default {
       state.referal = {};
       state.docFiles = [];
       state.countries = {};
+      state.currencies = [];
+      state.bonuses = [];
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');
@@ -306,6 +353,12 @@ export default {
     },
     updateCountries(state, value) {
       state.countries = value;
+    },
+    updateCurrencies(state, value) {
+      state.currencies = value;
+    },
+    updateBonuses(state, value) {
+      state.bonuses = value;
     },
   },
   getters: {
@@ -357,6 +410,12 @@ export default {
         newArr.push({ short: item, full: obj[item] });
       });
       return newArr;
+    },
+    getCurrencies(state) {
+      return state.currencies;
+    },
+    getBonuses(state) {
+      return state.bonuses;
     },
   },
 };

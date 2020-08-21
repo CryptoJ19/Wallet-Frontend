@@ -71,22 +71,22 @@ export default {
     ]),
     prevPage() {
       if (this.page > 1) {
-        this.page = this.page - 1;
+        this.page -= 1;
       }
     },
     nextPage() {
       if (this.page < this.totalPages) {
-        this.page = this.page + 1;
+        this.page += 1;
       }
     },
     prevRewardPage() {
       if (this.rewardPage > 0) {
-        this.rewardPage = this.rewardPage - 1;
+        this.rewardPage -= 1;
       }
     },
     nextRewardPage() {
       if (this.rewardPage < 4) {
-        this.rewardPage = this.rewardPage + 1;
+        this.rewardPage += 1;
       }
     },
     setMaxPage() {
