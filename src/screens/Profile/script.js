@@ -298,6 +298,8 @@ export default {
       this.userLoader = false;
       if (res.ok) {
         this.$bvModal.show('profile-verification-send-modal');
+      } else {
+        this.$bvModal.show('profile-verification-send-modal_fail');
       }
     },
     cutString(value) {

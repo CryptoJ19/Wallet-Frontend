@@ -94,6 +94,7 @@
               maxlength="40"
               :placeholder="$t('wallet.modalSend.amount')"
               type="number"
+              @input="onChangeField"
             >
           </div>
           <div class="pay__subtitle">
@@ -105,6 +106,7 @@
               maxlength="40"
               :placeholder="$t('wallet.modalSend.amount')"
               type="number"
+              @input="onChangeField"
             >
           </div>
           <div class="pay__subtitle">

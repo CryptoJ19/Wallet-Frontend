@@ -12,9 +12,15 @@ export default {
     ContainerConsole,
     Wallet,
   },
+  data: () => ({
+    title: '',
+  }),
+  mounted() {
+    this.title = this.$t('main.menu.wallet');
+  },
   head() {
     return {
-      title: this.$t('main.menu.wallet'),
+      title: this.title,
     };
   },
 };

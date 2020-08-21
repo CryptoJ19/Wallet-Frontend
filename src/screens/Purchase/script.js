@@ -19,7 +19,7 @@ export default {
     showSendSuccessMsg: false,
     er: [],
     payTab: 0,
-
+    convertFlag: false,
 
     monthPool: [
       'January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -107,19 +107,25 @@ export default {
   },
   watch: {
     amountEOS(value) {
-      const convert = value / this.EtC;
-      if (value === '') {
-        this.amountCFT = '';
-      } else if (this.amountCFT !== convert) {
-        this.amountCFT = convert;
+      const convert = Math.floor((value / this.EtC) * 100) / 100;
+      if (this.convertFlag === true) {
+        if (value === '') {
+          this.amountCFT = '';
+        } else if (this.amountCFT !== convert) {
+          this.amountCFT = convert;
+        }
+        this.convertFlag = false;
       }
     },
     amountCFT(value) {
-      const convert = value * this.EtC;
-      if (value === '') {
-        this.amountEOS = '';
-      } else if (this.amountEOS !== convert) {
-        this.amountEOS = convert;
+      const convert = Math.floor((value * this.EtC) * 100) / 100;
+      if (this.convertFlag === true) {
+        if (value === '') {
+          this.amountEOS = '';
+        } else if (this.amountEOS !== convert) {
+          this.amountEOS = convert;
+        }
+        this.convertFlag = false;
       }
     },
   },
@@ -130,6 +136,9 @@ export default {
       'fetchGetPurchaseBonuses',
       'fetchGetCurrencies',
     ]),
+    onChangeField() {
+      this.convertFlag = true;
+    },
     getDeliveryDate() {
       const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
       return `${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]} ${datePlus.getFullYear()}`;

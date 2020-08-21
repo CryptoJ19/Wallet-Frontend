@@ -15,9 +15,12 @@ export default {
   data: () => ({
     title: '',
   }),
+  mounted() {
+    this.title = this.$t('main.menu.profile');
+  },
   head() {
     return {
-      title: this.$t('main.menu.profile'),
+      title: this.title,
     };
   },
 };

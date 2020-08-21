@@ -12,9 +12,15 @@ export default {
     ContainerConsole,
     Purchase,
   },
+  data: () => ({
+    title: '',
+  }),
+  mounted() {
+    this.title = this.$t('main.menu.purchase');
+  },
   head() {
     return {
-      title: this.$t('main.menu.purchase'),
+      title: this.title,
     };
   },
 };
