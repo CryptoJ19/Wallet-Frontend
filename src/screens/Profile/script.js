@@ -242,7 +242,9 @@ export default {
           const tabKey = this.fieldsTabsKey[tab];
           const data = {};
           Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-            data[item] = this.localFieldsValue[tabKey][item];
+            if (this.localFieldsValue[tabKey][item] !== '') {
+              data[item] = `${this.localFieldsValue[tabKey][item]}`;
+            }
           });
           this.userLoader = true;
           const res = await this.fetchEditFormPerson({ data, tab: tabKey });
@@ -466,7 +468,9 @@ export default {
         const tabKey = this.fieldsTabsKey[tab];
         const data = {};
         Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
-          data[item] = `${this.localFieldsValue[tabKey][item]}`;
+          if (this.localFieldsValue[tabKey][item] !== '') {
+            data[item] = `${this.localFieldsValue[tabKey][item]}`;
+          }
         });
         this.userLoader = true;
         const res = await this.fetchEditFormPerson({ data, tab: tabKey });
