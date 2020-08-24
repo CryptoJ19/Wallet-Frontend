@@ -198,8 +198,9 @@ export default {
       if (this.fieldsDatePickerValue[item] === null || this.fieldsDatePickerValue[item] === false) {
         date = '';
       } else {
-        date = new Date(this.fieldsDatePickerValue[item])
-          .toISOString();
+        date = new Date(new Date(this.fieldsDatePickerValue[item])
+          - new Date(this.fieldsDatePickerValue[item])
+            .getTimezoneOffset() * 60 * 1000).toISOString();
       }
       return date;
     },
