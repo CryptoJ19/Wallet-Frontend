@@ -178,7 +178,7 @@ export default {
     ]),
   },
   mounted() {
-    this.fetchGetPurchaseBonuses();
+    this.fetchGetBonusesList();
 
     this.promoItems = this.$t('purchase.promo.items');
 
@@ -202,7 +202,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchGetPurchaseBonuses',
+      'fetchGetBonusesList',
     ]),
     formTime(value) {
       if (+value < 10) {

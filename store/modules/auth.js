@@ -14,6 +14,7 @@ export default {
     countries: {},
     currencies: [],
     bonuses: [],
+    myBonuses: [],
   },
   actions: {
     async fetchPostPurchaseBuycft(ctx, data) {
@@ -47,7 +48,24 @@ export default {
       return res;
     },
 
-    async fetchGetPurchaseBonuses(ctx) {
+    async fetchGetMyBonuses(ctx) {
+      const res = await customFetchToken(ctx, async () => {
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(
+          `${apiUrl}/purchase/my-bonuses`,
+          'GET',
+          header,
+        );
+        const content = await rawResponse.json();
+        return content;
+      });
+      if (res.ok) {
+        ctx.commit('updateMyBonuses', res.result);
+      }
+      return res;
+    },
+
+    async fetchGetBonusesList(ctx) {
       const rawResponse = await customFetch(
         `${apiUrl}/purchase/bonuses`,
         'GET',
@@ -320,6 +338,7 @@ export default {
       state.countries = {};
       state.currencies = [];
       state.bonuses = [];
+      state.myBonuses = [];
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       sessionStorage.removeItem('accessToken');
@@ -359,6 +378,9 @@ export default {
     },
     updateBonuses(state, value) {
       state.bonuses = value;
+    },
+    updateMyBonuses(state, value) {
+      state.myBonuses = value.bonuses;
     },
   },
   getters: {
@@ -416,6 +438,9 @@ export default {
     },
     getBonuses(state) {
       return state.bonuses;
+    },
+    getMyBonuses(state) {
+      return state.myBonuses.reverse();
     },
   },
 };

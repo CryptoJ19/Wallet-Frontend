@@ -90,6 +90,7 @@ export default {
       'fetchGetTransactions',
       'fetchGetReferalData',
       'fetchGetDocFiles',
+      'fetchGetMyBonuses',
     ]),
     async init() {
       if (getAccessToken() === false) {
@@ -103,7 +104,9 @@ export default {
         const resGetReferalData = this.fetchGetReferalData();
         const resProfile = this.fetchGetProfile();
         const resFiles = this.fetchGetDocFiles();
-        await Promise.all([resGetReferalData, resProfile, resFiles]);
+        const resMyBonuses = this.fetchGetMyBonuses();
+
+        await Promise.all([resGetReferalData, resProfile, resFiles, resMyBonuses]);
         this.globalLoader = false;
       } else {
         this.globalLoader = false;

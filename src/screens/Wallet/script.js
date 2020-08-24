@@ -26,15 +26,27 @@ export default {
     transactionsInterval: null,
     loadingTransactions: false,
     limit: transactionsItemsLength,
+    monthPool: [
+      'January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'October', 'November', 'December',
+    ],
   }),
   computed: {
     ...mapGetters([
       'getWallets',
       'getTransactionList',
       'getTransactionCount',
+      'getMyBonuses',
     ]),
     totalPages() {
       return Math.ceil(this.getTransactionCount / transactionsItemsLength);
+    },
+    getDeliveryDate() {
+      if (this.getMyBonuses.length !== 0) {
+        const datePlus = new Date(this.getMyBonuses[this.rewardPage].paymentDate);
+        return [`${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]}`, `${datePlus.getFullYear()}`];
+      }
+      return false;
     },
   },
   watch: {
@@ -52,6 +64,7 @@ export default {
     },
   },
   mounted() {
+
   },
   created() {
     this.transactionsInterval = setInterval(
@@ -85,7 +98,7 @@ export default {
       }
     },
     nextRewardPage() {
-      if (this.rewardPage < 4) {
+      if (this.rewardPage < this.getMyBonuses.length - 1) {
         this.rewardPage += 1;
       }
     },

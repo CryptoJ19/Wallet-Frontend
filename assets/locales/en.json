@@ -326,6 +326,10 @@
     "EOShash": "EOShash",
     "at": "at",
     "balance": "Balance",
+    "onReward": "123on123",
+    "labelReward": "First reward",
+    "ofReward": "of",
+    "descReward": "will be deposited to your wallet as purchase bonus",
     "eos": "EOS",
     "openExplorer": "open in block explorer",
     "send": "Send",
@@ -502,6 +506,7 @@
     "promo": {
       "title": "Buy CFT tokens and get extra CFT tokens in 3 months according to the following scheme:"
     },
+    "iPaid": " I paid",
     "promoTo": "to",
     "promoExtra": "extra token",
     "modal": {
