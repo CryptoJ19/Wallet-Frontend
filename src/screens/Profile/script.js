@@ -106,7 +106,9 @@ export default {
         this.localFieldsValue.person.gender = value.gender;
         this.localFieldsValue.document.type = value.type;
         this.localFieldsValue.location.streetType = value.streetType;
-        this.localFieldsValue.document.country = value.countryDoc;
+        if (value.countryDoc !== '') {
+          this.localFieldsValue.document.country = value.countryDoc;
+        }
       },
     },
     fieldsDatePickerValue: {
@@ -418,7 +420,7 @@ export default {
       this.fieldsDropDown.gender = this.localFieldsValue.person.gender;
       this.fieldsDropDown.type = this.localFieldsValue.document.type;
       this.fieldsDropDown.streetType = this.localFieldsValue.location.streetType;
-      this.fieldsDropDown.countryDoc = this.localFieldsValue.document.country;
+      this.fieldsDropDown.countryDoc = this.localFieldsValue.document.country || '';
     },
     setDatePickers() {
       this.fieldsDatePickerValue.birthDate = this.localFieldsValue.person.birthDate !== ''
