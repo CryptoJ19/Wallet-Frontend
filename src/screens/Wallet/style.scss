@@ -6,15 +6,19 @@
   &__item {
     border-radius: 13px;
     background: #FFF;
-
   }
 
   &__top {
-    //grid-column-start: 1;
-    //grid-column-end: 3;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+    display: flex;
+
+    .wallet__item {
+      width: 100%;
+      min-width: calc(33% - 40px);
+      max-width: calc(50% - 20px);
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
   }
 
   .reward {
@@ -26,10 +30,14 @@
     flex-direction: column;
     justify-content: space-between;
     &__cover {
+      overflow: hidden;
       position: absolute;
       top: 0;
       bottom: 0;
-      right: 25px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      width: 100px;
     }
     &__text {
       max-width: 253px;
@@ -43,7 +51,7 @@
       height: 123px;
       background: #F2F2F2;
       border-radius: 6px;
-      padding: 20px;
+      padding: 16px;
       &__top {
         display: flex;
         align-items: center;
@@ -110,7 +118,7 @@
       }
       &__text {
         font-weight: 800;
-        font-size: 30px;
+        font-size: 26px;
         line-height: 143.4%;
         /* identical to box height, or 43px */
 
@@ -386,7 +394,15 @@
     grid-template-columns: 1fr;
 
     &__top {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      .wallet__item {
+        width: 100%;
+        min-width: 100%;
+        &:not(:last-child) {
+          margin-right: 0px;
+          margin-bottom: 20px;
+        }
+      }
     }
     &__item {
       //grid-column-start: 1 !important;

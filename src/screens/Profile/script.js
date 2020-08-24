@@ -433,7 +433,7 @@ export default {
       Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
         if (this.fieldsRules[tabKey] && this.fieldsRules[tabKey][item]) {
           if (this.fieldsRules[tabKey][item].required && this.localFieldsValue[tabKey][item] === '') {
-            console.log(this.localFieldsValue[tabKey][item], tabKey, item, 'req');
+            // console.log(this.localFieldsValue[tabKey][item], tabKey, item, 'req');
             this.fieldsEr[tabKey][item] = this.$t('profile.req');
             const erCopy = {};
             Object.keys(this.fieldsEr).forEach((itemCopy) => {

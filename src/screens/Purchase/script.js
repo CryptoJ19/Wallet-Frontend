@@ -62,7 +62,7 @@ export default {
   mounted() {
     this.promoItems = this.$t('purchase.promo.items');
 
-    this.fetchGetPurchaseBonuses();
+    this.fetchGetBonusesList();
     this.fetchGetCurrencies();
   },
   computed: {
@@ -133,7 +133,7 @@ export default {
     ...mapActions([
       'fetchSendInvite',
       'fetchGetReferalData',
-      'fetchGetPurchaseBonuses',
+      'fetchGetBonusesList',
       'fetchGetCurrencies',
     ]),
     onChangeField() {

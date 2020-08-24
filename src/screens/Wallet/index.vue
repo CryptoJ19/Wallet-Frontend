@@ -115,11 +115,17 @@
           </div>
         </div>
       </div>
-      <div class="reward">
+      <div
+        v-if="getMyBonuses.length !== 0"
+        class="wallet__item reward"
+      >
         <div class="taber">
           <div class="taber__top">
             <div class="taber__title">
-              First reward <span class="taber__title_inv">(of 4)</span>
+              {{ $t('wallet.labelReward') }}
+              <span class="taber__title_inv">
+                ({{ $t('wallet.ofReward') }} {{ getMyBonuses.length }})
+              </span>
             </div>
             <div class="taber__btns">
               <button
@@ -147,26 +153,26 @@
               class="taber__items"
               :class="`taber__items_${rewardPage}`"
             >
-              <div class="taber__item taber__text">
-                <span>October 12 <span class="taber__text_thin">2020</span></span>
-              </div>
-              <div class="taber__item taber__text">
-                <span>October 12 <span class="taber__text_thin">2021</span></span>
-              </div>
-              <div class="taber__item taber__text">
-                <span>October 12 <span class="taber__text_thin">2022</span></span>
-              </div>
-              <div class="taber__item taber__text">
-                <span>October 12 <span class="taber__text_thin">2023</span></span>
-              </div>
-              <div class="taber__item taber__text">
-                <span>October 12 <span class="taber__text_thin">2024</span></span>
+              <div
+                v-for="(item, i) in getMyBonuses"
+                :key="`taber__item-${i}`"
+                class="taber__item taber__text"
+              >
+                <span>
+                  {{ getDeliveryDate[0] }}
+                  <span class="taber__text_thin">
+                    {{ getDeliveryDate[1] }}
+                  </span>
+                </span>
               </div>
             </div>
           </div>
-          <div class="taber__pager">
+          <div
+            v-if="getMyBonuses.length <= 5"
+            class="taber__pager"
+          >
             <div
-              v-for="rewardCircle in 5"
+              v-for="rewardCircle in getMyBonuses.length"
               :key="`taber__circle-${rewardCircle - 1}`"
               class="taber__circle"
               :class="{'taber__circle_active': rewardPage === rewardCircle - 1}"
@@ -174,8 +180,9 @@
           </div>
         </div>
         <div class="reward__text">
-          <span>on July 12, 2020. <strong>1500 CFT</strong>
-            will be deposited to your wallet as purchase bonus</span>
+          <span>{{ $t('wallet.onReward') }} {{ getDeliveryDate[0] }}, {{ getDeliveryDate[1] }}.
+            <strong>{{ getMyBonuses[rewardPage].reward }} CFT</strong>
+            {{ $t('wallet.descReward') }}</span>
         </div>
         <div class="reward__cover">
           <img
