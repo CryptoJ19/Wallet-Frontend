@@ -107,7 +107,7 @@ export default {
   },
   watch: {
     amountEOS(value) {
-      const convert = Math.floor((value / this.EtC) * 100) / 100;
+      const convert = Math.floor((value / this.EtC) * 10000) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
           this.amountCFT = '';
@@ -118,7 +118,7 @@ export default {
       }
     },
     amountCFT(value) {
-      const convert = Math.floor((value * this.EtC) * 100) / 100;
+      const convert = Math.floor((value * this.EtC) * 10000) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
           this.amountEOS = '';
