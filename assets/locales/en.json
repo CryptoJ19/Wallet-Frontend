@@ -492,7 +492,7 @@
     "title": "Share what is worth sharing",
     "sub": "This bonus is for you and your friends",
     "reward": "Your reward\nfor each referral",
-    "rewardNum": "10% of his/her purchase",
+    "rewardNum": "10% of his purchase",
     "invFriends": "Invite Your Friends",
     "inviteSuccesSent": "Invitation sent",
     "invBtn": "Send",
@@ -500,19 +500,19 @@
     "statSent": "Personal invititation sent",
     "statBonuses": "My bonuses",
     "statRef": "My referrals",
-    "someMsg": "Example: Hi my dear friend!..."
+    "someMsg": "Example: Hi, my dear friend!..."
   },
   "purchase": {
     "promo": {
       "title": "Buy CFT tokens and get extra CFT tokens in 3 months according to the following scheme:"
     },
-    "iPaid": " I paid",
+    "iPaid": " Pay",
     "promoTo": "to",
     "promoExtra": "extra token",
     "modal": {
-      "successText": "Success text",
+      "successText": "Thank you for the purchase. CFT tokens have been deposited to your wallet. Check your balances on the Wallet tab",
       "successTitle": "Success",
-      "failureText": "Failure text",
+      "failureText": "Something went wrong. Please try again in 30 minutes",
       "failureTitle": "Failure"
     },
     "check": {
@@ -523,7 +523,7 @@
         "Some data 2",
         "Some data 3"
       ],
-      "warText": "Send your EOS coins to the CashFlash EOS account name below.\nCaution! Type your personal CashFlash account name into the Memo field when sending EOS coins in order to allow us to track your payment.",
+      "warText": "After pressing the \"Pay\" button the purchase will be paid\nCaution! by EOS coins from your wallet.",
       "ok": "Ok"
     },
     "days": "Days",
@@ -547,7 +547,7 @@
     "amount": "Amount",
     "amountPlaceholder": "€1000",
     "total": "Total sum",
-    "comingSoon": "123 предлагаю разместить по центру окошко небольшое с текстом (2 -3 строки), что фича скоро будет",
+    "comingSoon": "We're working hard on the feature. Deposits in fiat currencies will be available very soon.",
     "cur": "€",
     "confirm": "Confirm",
     "steps": {

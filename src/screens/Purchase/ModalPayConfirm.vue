@@ -95,7 +95,7 @@
           class="mod__btn pay__btn"
           @click="preludeSendPay()"
         >
-          I paid
+          {{ $t('purchase.iPaid') }}
         </button>
       </div>
       <div
@@ -145,6 +145,7 @@ export default {
   methods: {
     ...mapActions([
       'fetchPostPurchaseBuycft',
+      'fetchGetProfile',
     ]),
     refrashrModal() {
       this.loading = false;
@@ -160,12 +161,13 @@ export default {
       formData.append('amount', this.amountCFT);
       this.loading = true;
       const res = await this.fetchPostPurchaseBuycft(formData);
-      this.loading = false;
       console.log(res);
       if (res.ok) {
+        await this.fetchGetProfile();
         this.close();
         this.showPaySuccessModal();
       }
+      this.loading = false;
     },
     showPaySuccessModal() {
       this.$emit('showPaySuccessModal');

@@ -72,13 +72,13 @@ export default {
       'getBonuses',
     ]),
     rateCFT() {
-      return this.getCurrencies[3] && (this.getCurrencies[3].currentRate / 1000000) / this.rateEUR;
+      return this.getCurrencyByName('CFT') && (this.getCurrencyByName('CFT').currentRate / 1000000) / this.rateEUR;
     },
     rateEUR() {
-      return this.getCurrencies[2] && (this.getCurrencies[2].currentRate / 1000000);
+      return this.getCurrencyByName('EUR') && (this.getCurrencyByName('EUR').currentRate / 1000000);
     },
     rateEOS() {
-      return this.getCurrencies[1] && (this.getCurrencies[1].currentRate / 1000000) / this.rateEUR;
+      return this.getCurrencyByName('EOS') && (this.getCurrencyByName('EOS').currentRate / 1000000) / this.rateEUR;
     },
     checkValidPay() {
       return (this.amountCFT !== '' && this.amountCFT !== 0);
@@ -136,6 +136,14 @@ export default {
       'fetchGetBonusesList',
       'fetchGetCurrencies',
     ]),
+    getCurrencyByName(currency) {
+      return this.getCurrencies.find((item) => {
+        if (item.id.toUpperCase() === currency) {
+          return item;
+        }
+        return false;
+      });
+    },
     onChangeField() {
       this.convertFlag = true;
     },
