@@ -64,15 +64,14 @@ export default {
     },
   },
   mounted() {
-
-  },
-  created() {
     this.transactionsInterval = setInterval(
       () => {
         this.getTransactions();
+        this.fetchGetProfile();
       }, 30000,
     );
-    return this.getTransactions();
+    this.getTransactions();
+    this.fetchGetProfile();
   },
   beforeDestroy() {
     clearInterval(this.transactionsInterval);
