@@ -118,7 +118,7 @@
           <div class="reward">
             <div class="reward__item">
               <div class="reward__title">
-                Bonus amount
+                {{ $t('purchase.bonusAmount') }}
               </div>
               <div class="reward__value">
                 {{ (Math.ceil(bonus * 10000) / 10000) }} CFT
@@ -126,10 +126,10 @@
             </div>
             <div class="reward__item">
               <div class="reward__title">
-                Delivery date
+                {{ $t('purchase.deliveryDate') }}
               </div>
               <div class="reward__value">
-                {{ getDeliveryDate() }}
+                {{ bonus === 0 ? '-' : getDeliveryDate() }}
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@
           <div class="reward">
             <div class="reward__item">
               <div class="reward__title">
-                Bonus amount
+                {{ $t('purchase.bonusAmount') }}
               </div>
               <div class="reward__value">
                 {{ (Math.ceil(bonus * 10000) / 10000) }} CFT
@@ -191,7 +191,7 @@
             </div>
             <div class="reward__item">
               <div class="reward__title">
-                Delivery date
+                {{ $t('purchase.deliveryDate') }}
               </div>
               <div class="reward__value">
                 {{ getDeliveryDate() }}

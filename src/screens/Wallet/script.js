@@ -24,9 +24,12 @@ export default {
     transactionsInterval: null,
     loadingTransactions: false,
     limit: transactionsItemsLength,
-    monthPool: [
-      'January', 'February', 'March', 'April', 'May', 'June', 'July',
-      'August', 'September', 'October', 'November', 'December',
+    test: [
+      {
+        currencyId: 'cft',
+        paymentDate: '2020-11-25T00:00:00.000Z',
+        reward: '0.48',
+      },
     ],
   }),
   computed: {
@@ -42,7 +45,7 @@ export default {
     getDeliveryDate() {
       if (this.getMyBonuses.length !== 0) {
         const datePlus = new Date(this.getMyBonuses[this.rewardPage].paymentDate);
-        return [`${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]}`, `${datePlus.getFullYear()}`];
+        return [`${this.monthPool[datePlus.getMonth()]} ${datePlus.getDate()}`, `${datePlus.getFullYear()}`];
       }
       return false;
     },
@@ -70,6 +73,7 @@ export default {
       }, 20000,
     );
     this.initWallet();
+    this.monthPool = this.$t('main.monthPool');
   },
   beforeDestroy() {
     clearInterval(this.transactionsInterval);

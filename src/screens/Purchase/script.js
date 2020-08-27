@@ -20,47 +20,10 @@ export default {
     er: [],
     payTab: 0,
     convertFlag: false,
-
-    monthPool: [
-      'January', 'February', 'March', 'April', 'May', 'June', 'July',
-      'August', 'September', 'October', 'November', 'December',
-    ],
-
-    schema: [
-      {
-        from: 1000,
-        to: 10000,
-        bonus: 0.2,
-      },
-      {
-        from: 10000,
-        to: 50000,
-        bonus: 0.25,
-      },
-      {
-        from: 50000,
-        to: 200000,
-        bonus: 0.30,
-      },
-      {
-        from: 200000,
-        to: 500000,
-        bonus: 0.40,
-      },
-      {
-        from: 500000,
-        to: 5000000,
-        bonus: 0.50,
-      },
-      {
-        from: 5000000,
-        to: 150000000,
-        bonus: 0.50,
-      },
-    ],
   }),
   mounted() {
     this.promoItems = this.$t('purchase.promo.items');
+    this.monthPool = this.$t('main.monthPool');
 
     this.fetchGetBonusesList();
     this.fetchGetCurrencies();
@@ -149,7 +112,7 @@ export default {
     },
     getDeliveryDate() {
       const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
-      return `${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]} ${datePlus.getFullYear()}`;
+      return `${this.monthPool[datePlus.getMonth()]} ${datePlus.getDate()}, ${datePlus.getFullYear()}`;
     },
     formatSum(value) {
       let res;

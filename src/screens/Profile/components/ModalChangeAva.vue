@@ -10,7 +10,7 @@
     <div class="mod">
       <div class="mod__head">
         <div class="mod__title">
-          Set avatar
+          {{ $t('profile.setAvatar') }}
         </div>
         <button
           class="mod__closs"
@@ -25,15 +25,13 @@
       <div class="mod__body">
         <div class="change__body">
           <div class="change__text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Ad architecto aspernatur maxime mollitia nam
-            perspiciatis porro quasi quisquam, rem repudiandae!
+            {{ $t('profile.avatarDesc') }}
           </div>
           <label
             class="change__label"
             for="set-avatar-input"
           >
-            Uppload file
+            {{ $t('profile.uploadAva') }}
           </label>
           <div
             v-if="er.length !== 0"
@@ -43,7 +41,7 @@
               v-if="getEr(1)"
               class="vtext__red"
             >
-              Размер файла не должен превышать 5 мб
+              {{ $t('profile.sizeEr') }}
             </div>
           </div>
         </div>
