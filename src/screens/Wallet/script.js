@@ -20,9 +20,7 @@ export default {
     rewardPage: 0,
     page: 1,
     modalSendCurrency: '',
-    time1: null,
-    time2: null,
-    time3: null,
+    loadingWallet: true,
     transactionsInterval: null,
     loadingTransactions: false,
     limit: transactionsItemsLength,
@@ -56,7 +54,7 @@ export default {
           this.setMaxPage();
         }
         if (i <= this.totalPages && iOld <= this.totalPages && (i !== 0 && iOld !== '')) {
-          console.log(i, iOld);
+          // console.log(i, iOld);
           this.loadingTransactions = true;
           this.getTransactions();
         }
@@ -68,10 +66,10 @@ export default {
       () => {
         this.getTransactions();
         this.fetchGetProfile();
-      }, 30000,
+        this.fetchGetMyBonuses();
+      }, 20000,
     );
-    this.getTransactions();
-    this.fetchGetProfile();
+    this.initWallet();
   },
   beforeDestroy() {
     clearInterval(this.transactionsInterval);
@@ -80,7 +78,16 @@ export default {
     ...mapActions([
       'fetchGetTransactions',
       'fetchGetProfile',
+      'fetchGetMyBonuses',
     ]),
+    async initWallet() {
+      const resBonuses = this.fetchGetMyBonuses();
+      const resTrans = this.getTransactions();
+      const resProfile = this.fetchGetProfile();
+
+      await Promise.all([resBonuses, resProfile, resTrans]);
+      this.loadingWallet = false;
+    },
     prevPage() {
       if (this.page > 1) {
         this.page -= 1;
