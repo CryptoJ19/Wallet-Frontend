@@ -1,3 +1,3 @@
 export const CFAddress = 'ldzytcplohsk';
-export const apiUrl = 'http://localhost:3010/api';
+export const apiUrl = 'https://test.cashflash.io/api';
 export const transactionsItemsLength = 10;
