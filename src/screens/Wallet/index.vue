@@ -425,6 +425,12 @@
         <Loader />
       </div>
     </div>
+    <div
+      class="loader__body wallet__loader"
+      :class="{'loader__body_show': loadingWallet}"
+    >
+      <Loader />
+    </div>
   </div>
 </template>
 <script src="./script.js" />

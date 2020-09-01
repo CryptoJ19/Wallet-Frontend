@@ -270,7 +270,21 @@
       "profile": "Profile",
       "referal": "Referral",
       "purchase": "Purchase"
-    }
+    },
+    "monthPool": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
   },
   "auth": {
     "welcome": "Welcome to\nCashFlash",
@@ -371,6 +385,10 @@
     "statusSuccess": "Success"
   },
   "profile": {
+    "setAvatar": "Set avatar",
+    "avatarDesc": "Добавьте аватарку",
+    "uploadAva": "Uppload file",
+    "sizeEr": "Размер файла не должен превышать 5 мб",
     "gendersName": {
       "M": "Male",
       "F": "Female"
@@ -506,6 +524,8 @@
     "promo": {
       "title": "Buy CFT tokens and get extra CFT tokens in 3 months according to the following scheme:"
     },
+    "bonusAmount": "Bonus amount",
+    "deliveryDate": "Delivery date",
     "iPaid": " Pay",
     "promoTo": "to",
     "promoExtra": "extra token",

@@ -20,15 +20,16 @@ export default {
     rewardPage: 0,
     page: 1,
     modalSendCurrency: '',
-    time1: null,
-    time2: null,
-    time3: null,
+    loadingWallet: true,
     transactionsInterval: null,
     loadingTransactions: false,
     limit: transactionsItemsLength,
-    monthPool: [
-      'January', 'February', 'March', 'April', 'May', 'June', 'July',
-      'August', 'September', 'October', 'November', 'December',
+    test: [
+      {
+        currencyId: 'cft',
+        paymentDate: '2020-11-25T00:00:00.000Z',
+        reward: '0.48',
+      },
     ],
   }),
   computed: {
@@ -44,7 +45,7 @@ export default {
     getDeliveryDate() {
       if (this.getMyBonuses.length !== 0) {
         const datePlus = new Date(this.getMyBonuses[this.rewardPage].paymentDate);
-        return [`${datePlus.getDate()} ${this.monthPool[datePlus.getMonth()]}`, `${datePlus.getFullYear()}`];
+        return [`${this.monthPool[datePlus.getMonth()]} ${datePlus.getDate()}`, `${datePlus.getFullYear()}`];
       }
       return false;
     },
@@ -56,7 +57,7 @@ export default {
           this.setMaxPage();
         }
         if (i <= this.totalPages && iOld <= this.totalPages && (i !== 0 && iOld !== '')) {
-          console.log(i, iOld);
+          // console.log(i, iOld);
           this.loadingTransactions = true;
           this.getTransactions();
         }
@@ -64,15 +65,15 @@ export default {
     },
   },
   mounted() {
-
-  },
-  created() {
     this.transactionsInterval = setInterval(
       () => {
         this.getTransactions();
-      }, 30000,
+        this.fetchGetProfile();
+        this.fetchGetMyBonuses();
+      }, 20000,
     );
-    return this.getTransactions();
+    this.initWallet();
+    this.monthPool = this.$t('main.monthPool');
   },
   beforeDestroy() {
     clearInterval(this.transactionsInterval);
@@ -81,7 +82,16 @@ export default {
     ...mapActions([
       'fetchGetTransactions',
       'fetchGetProfile',
+      'fetchGetMyBonuses',
     ]),
+    async initWallet() {
+      const resBonuses = this.fetchGetMyBonuses();
+      const resTrans = this.getTransactions();
+      const resProfile = this.fetchGetProfile();
+
+      await Promise.all([resBonuses, resProfile, resTrans]);
+      this.loadingWallet = false;
+    },
     prevPage() {
       if (this.page > 1) {
         this.page -= 1;
