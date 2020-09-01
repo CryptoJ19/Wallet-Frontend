@@ -82,8 +82,8 @@
           class="pay__way"
         >
           <div class="pay__sum pay__sum_sm">
-            1 CFT = {{ (Math.ceil(EtC * 10000) / 10000) }}
-            EOS = {{ (Math.ceil(rateCFT * 100) / 100) }} EURO
+            1 CFT = {{ (Math.floor(EtC * 10000) / 10000) }}
+            EOS = {{ (Math.floor(rateCFT * 100) / 100) }} EURO
           </div>
           <div class="pay__subtitle">
             {{ $t('purchase.amount') }} CFT

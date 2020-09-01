@@ -35,13 +35,13 @@ export default {
       'getBonuses',
     ]),
     rateCFT() {
-      return this.getCurrencyByName('CFT') && (this.getCurrencyByName('CFT').currentRate / 1000000) / this.rateEUR;
+      return this.getCurrencyByName('CFT') && (this.getCurrencyByName('CFT').currentRate / this.getCurrencyByName('EUR').currentRate);
     },
     rateEUR() {
       return this.getCurrencyByName('EUR') && (this.getCurrencyByName('EUR').currentRate / 1000000);
     },
     rateEOS() {
-      return this.getCurrencyByName('EOS') && (this.getCurrencyByName('EOS').currentRate / 1000000) / this.rateEUR;
+      return this.getCurrencyByName('EOS') && (this.getCurrencyByName('EOS').currentRate / this.getCurrencyByName('EUR').currentRate);
     },
     checkValidPay() {
       return (this.amountCFT !== '' && this.amountCFT !== 0);
