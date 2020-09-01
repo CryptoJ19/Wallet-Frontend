@@ -64,6 +64,9 @@ export default {
       }
     },
   },
+  created() {
+    this.monthPool = this.$t('main.monthPool');
+  },
   mounted() {
     this.transactionsInterval = setInterval(
       () => {
@@ -73,7 +76,6 @@ export default {
       }, 20000,
     );
     this.initWallet();
-    this.monthPool = this.$t('main.monthPool');
   },
   beforeDestroy() {
     clearInterval(this.transactionsInterval);
