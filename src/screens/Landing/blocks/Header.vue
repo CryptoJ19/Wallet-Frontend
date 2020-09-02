@@ -138,7 +138,7 @@
           </div>
           <div class="promo__items">
             <div
-              v-for="(item, i) in getBonuses"
+              v-for="(item, i) in promoItems"
               :key="`promoitem_${i}`"
               class="promo__item"
             >
@@ -146,6 +146,7 @@
                 {{ i+1 }}
               </div>
               <div
+                v-if="+item.maxAmount !== 0 && +item.reward !== 0"
                 class="promo__text"
               >
                 <strong>{{ item.minAmount }}€</strong>
@@ -153,6 +154,10 @@
                 <strong>{{ item.maxAmount }}€</strong>
                 {{ $t('purchase.promoExtra') }}
                 {{ item.reward }}%
+              </div>
+              <div v-else>
+                <strong>{{ item.minAmount }}€</strong>
+                {{ $t('purchase.andMore') }}
               </div>
             </div>
           </div>
@@ -170,7 +175,26 @@ export default {
     h: '00',
     m: '00',
     s: '00',
-    promoItems: [],
+    promoItems: [
+      {
+        level: 1, currencyId: 'eur', minAmount: '1000', maxAmount: '10000', reward: '20',
+      },
+      {
+        level: 2, currencyId: 'eur', minAmount: '11000', maxAmount: '50000', reward: '25',
+      },
+      {
+        level: 3, currencyId: 'eur', minAmount: '51000', maxAmount: '200000', reward: '30',
+      },
+      {
+        level: 4, currencyId: 'eur', minAmount: '201000', maxAmount: '500000', reward: '40',
+      },
+      {
+        level: 5, currencyId: 'eur', minAmount: '501000', maxAmount: '5000000', reward: '50',
+      },
+      {
+        level: 6, currencyId: 'eur', minAmount: '5001000', maxAmount: '0', reward: '0',
+      },
+    ],
   }),
   computed: {
     ...mapGetters([
@@ -180,14 +204,16 @@ export default {
   mounted() {
     this.fetchGetBonusesList();
 
-    this.promoItems = this.$t('purchase.promo.items');
+    // this.promoItems = this.$t('purchase.promo.items');
 
     function diffSubtract(date1, date2) {
       return date2 - date1;
     }
     const timer = setInterval(() => {
       const now = new Date();
-      const date = new Date('Tue Jul 29 2020 15:49:60 GMT+0700 (GMT+07:00)');
+      const date = new Date('9 15 2020 00:00:00 GMT+0000 (GMT+00:00)');
+
+      // const date = new Date('Tue Jul 29 2020 15:49:60 GMT+0700 (GMT+07:00)');
       const msLeft = diffSubtract(now, date);
       if (msLeft <= 0) {
         clearInterval(timer);

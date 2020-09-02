@@ -6,7 +6,7 @@
     <Map />
     <What />
     <Paper />
-    <Team />
+    <!--    <Team />-->
     <Footer />
   </div>
 </template>

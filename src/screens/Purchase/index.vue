@@ -36,6 +36,7 @@
             {{ i+1 }}
           </div>
           <div
+            v-if="+item.maxAmount !== 0 && +item.reward !== 0"
             class="promo__text"
           >
             <strong>{{ item.minAmount }}€</strong>
@@ -43,6 +44,10 @@
             <strong>{{ item.maxAmount }}€</strong>
             {{ $t('purchase.promoExtra') }}
             {{ item.reward }}%
+          </div>
+          <div v-else>
+            <strong>{{ item.minAmount }}€</strong>
+            {{ $t('purchase.andMore') }}
           </div>
         </div>
       </div>

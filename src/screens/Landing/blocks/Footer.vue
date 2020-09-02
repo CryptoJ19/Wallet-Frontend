@@ -9,18 +9,18 @@
           >
         </div>
         <div class="address">
-          <div class="address__item">
-            <div class="address__icon">
-              <img
-                src="~assets/imgs/Landing/address.svg"
-                alt="img"
-              >
-            </div>
-            <div
-              class="address__text"
-              v-html="$t('land.footer.address')"
-            />
-          </div>
+          <!--          <div class="address__item">-->
+          <!--            <div class="address__icon">-->
+          <!--              <img-->
+          <!--                src="~assets/imgs/Landing/address.svg"-->
+          <!--                alt="img"-->
+          <!--              >-->
+          <!--            </div>-->
+          <!--            <div-->
+          <!--              class="address__text"-->
+          <!--              v-html="$t('land.footer.address')"-->
+          <!--            />-->
+          <!--          </div>-->
           <div class="address__item">
             <div class="address__icon">
               <img

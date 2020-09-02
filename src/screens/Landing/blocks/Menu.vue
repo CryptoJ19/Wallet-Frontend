@@ -37,12 +37,12 @@
             >
               {{ $t('land.menu.items[3].title') }}
             </a>
-            <a
-              :href="`#${$t('land.menu.items[4].anchor')}`"
-              class="menu__item"
-            >
-              {{ $t('land.menu.items[4].title') }}
-            </a>
+            <!--            <a-->
+            <!--              :href="`#${$t('land.menu.items[4].anchor')}`"-->
+            <!--              class="menu__item"-->
+            <!--            >-->
+            <!--              {{ $t('land.menu.items[4].title') }}-->
+            <!--            </a>-->
           </div>
           <a
             :href="`/app`"
@@ -119,13 +119,13 @@
             >
               {{ $t('land.menu.items[3].title') }}
             </a>
-            <a
-              :href="`#${$t('land.menu.items[4].anchor')}`"
-              class="menu__item"
-              @click="hideMenu"
-            >
-              {{ $t('land.menu.items[4].title') }}
-            </a>
+            <!--            <a-->
+            <!--              :href="`#${$t('land.menu.items[4].anchor')}`"-->
+            <!--              class="menu__item"-->
+            <!--              @click="hideMenu"-->
+            <!--            >-->
+            <!--              {{ $t('land.menu.items[4].title') }}-->
+            <!--            </a>-->
           </div>
         </div>
       </div>
