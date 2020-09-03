@@ -1,6 +1,4 @@
-import { apiUrl } from '../config';
-
-// const apiUrl = process.env.BASE_URL;
+const apiUrl = process.env.BASE_URL;
 
 const getAccessToken = () => {
   if (localStorage.getItem('accessToken') !== null) {

@@ -1,3 +1,2 @@
-export const CFAddress = 'ldzytcplohsk';
-export const apiUrl = 'https://test.cashflash.io/api';
+// eslint-disable-next-line import/prefer-default-export
 export const transactionsItemsLength = 10;

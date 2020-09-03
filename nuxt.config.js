@@ -77,7 +77,8 @@ module.exports = {
     },
   },
   env: {
-    BASE_URL: 'https://test.cashflash.io/api',
+    BASE_URL: process.env.BASE_URL,
+    EOS_ADDRESS: process.env.EOS_ADDRESS,
   },
   buildModules: [
     ['@nuxtjs/dotenv'],

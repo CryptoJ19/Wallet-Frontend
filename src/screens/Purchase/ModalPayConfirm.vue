@@ -110,10 +110,9 @@
 <script>
 
 import { mapActions } from 'vuex';
-import { CFAddress } from '../../../config';
-
 import Loader from '../../ui/Loader';
 
+const CFAddress = process.env.EOS_ADDRESS;
 
 export default {
   components: {

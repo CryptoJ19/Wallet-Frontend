@@ -263,6 +263,7 @@
     "serverEr": "Server error"
   },
   "main": {
+    "pageNotFound": "This page not found(",
     "connectedTo": "connected to",
     "mainnetEOS": "EOS MAINNET",
     "menu": {
