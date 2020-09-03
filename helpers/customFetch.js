@@ -57,7 +57,6 @@ const customFetch = (url, method, header = null, data = null) => {
 const customFetchToken = async (ctx, callback) => {
   const res = await callback();
   if (res.code === 401001) {
-    console.log('токен истек');
     let token;
     let session = false;
     if (localStorage.getItem('refreshToken') !== null) {
