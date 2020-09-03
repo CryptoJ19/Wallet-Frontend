@@ -10,7 +10,10 @@
         <div class="mod__title">
           {{ title }}
         </div>
-        <div class="mod__closs">
+        <div
+          v-if="!noIcon"
+          class="mod__closs"
+        >
           <img
             v-if="success"
             src="~assets/imgs/icons/v_green.svg"
@@ -43,6 +46,10 @@
 
 export default {
   props: {
+    noIcon: {
+      type: Boolean,
+      default: false,
+    },
     id: {
       type: String,
       default: '',

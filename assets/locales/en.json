@@ -263,6 +263,8 @@
     "serverEr": "Server error"
   },
   "main": {
+    "pageNotAvailabelModalTitle": "Cooming soon",
+    "pageNotAvailabelModalText": "We're working hard on the feature. CFT tokens Purchase will be available very soon.",
     "pageNotFound": "This page not found(",
     "connectedTo": "connected to",
     "mainnetEOS": "EOS MAINNET",

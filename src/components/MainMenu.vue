@@ -3,6 +3,12 @@
     class="main-menu"
     :class="{'main-menu_show': showMenu}"
   >
+    <ModalResponse
+      :id="'page-not-available-modal'"
+      :text="$t('main.pageNotAvailabelModalText')"
+      :title="$t('main.pageNotAvailabelModalTitle')"
+      :no-icon="true"
+    />
     <div class="main-menu__top">
       <div class="main-menu__logo">
         <img
@@ -14,9 +20,11 @@
         <nuxt-link
           v-for="item in menuItems"
           :key="`nav-${item.router}`"
-          :to="`/app/${item.router}`"
-          class="main-menu__item "
-          :class="navItemClass(item, title)"
+          :to="!item.disable ? `/app/${item.router}` : ''"
+
+          class="main-menu__item"
+          :class="[navItemClass(item, title), {'main-menu__item_disable': item.disable}]"
+          @click.native="clickOnMenu(item)"
         >
           <div class="main-menu__title">
             {{ item.title }}
@@ -48,7 +56,12 @@
   </div>
 </template>
 <script>
+import ModalResponse from './ModalResponse';
+
 export default {
+  components: {
+    ModalResponse,
+  },
   props: {
     title: {
       type: String,
@@ -70,10 +83,18 @@ export default {
       { title: this.$t('main.menu.wallet'), router: 'wallet' },
       { title: this.$t('main.menu.profile'), router: 'profile' },
       { title: this.$t('main.menu.referal'), router: 'referral' },
-      { title: this.$t('main.menu.purchase'), router: 'purchase' },
+      { title: this.$t('main.menu.purchase'), router: 'purchase', disable: true },
     ];
   },
   methods: {
+    showModal(value) {
+      this.$bvModal.show(value);
+    },
+    clickOnMenu(item) {
+      if (item.disable) {
+        this.showModal('page-not-available-modal');
+      }
+    },
     navItemClass: (item, title) => ({ 'main-menu__item_active': item.title === title }),
     imagePath(i, active = false) {
       if (active) {
@@ -126,6 +147,10 @@ export default {
       justify-content: space-between;
       align-items: center;
       position: relative;
+      &_disable {
+        background: rgba($grey, .08);
+        //pointer-events: none;
+      }
     }
     &__title {
       font-weight: bold;
