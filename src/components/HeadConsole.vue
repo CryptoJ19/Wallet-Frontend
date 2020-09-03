@@ -82,6 +82,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
+const apiUrl = process.env.BASE_URL;
+
 export default {
   props: {
     title: {
@@ -92,7 +94,7 @@ export default {
   computed: {
     ...mapGetters(['getProfile', 'getAvatar']),
     avatarBg() {
-      if (this.getAvatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+      if (this.getAvatar === `${apiUrl}/profile/avatar/null` || this.getAvatar === null) {
         return `background-image: url(${this.imagePath()})`;
       }
       return `background-image: url(${this.getAvatar})`;

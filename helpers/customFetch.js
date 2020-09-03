@@ -74,7 +74,7 @@ const customFetchToken = async (ctx, callback) => {
       header,
     );
     const contentResresh = await rawResponseRefresh.json();
-    if (contentResresh.code === 401001) {
+    if (contentResresh.code === 401001 || contentResresh.code === 401000) {
       document.location.replace(`http://${window.location.host}/app/authorization`);
       ctx.commit('logout');
       return false;

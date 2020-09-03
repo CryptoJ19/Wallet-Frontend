@@ -12,6 +12,8 @@ import Loader from '~/src/ui/Loader';
 import ModalDisableGA from './components/ModalDisableGA';
 import ModalResponse from '../../components/ModalResponse';
 
+const apiUrl = process.env.BASE_URL;
+
 export default {
   directives: {
     ClickOutside,
@@ -178,7 +180,7 @@ export default {
       return Object.keys(profileForm);
     },
     avatarBg() {
-      if (this.getAvatar === 'https://test.cashflash.io/api/profile/avatar/null') {
+      if (this.getAvatar === `${apiUrl}/profile/avatar/null` || this.getAvatar === null) {
         return `background-image: url(${this.imagePath()})`;
       }
       return `background-image: url(${this.getAvatar})`;
