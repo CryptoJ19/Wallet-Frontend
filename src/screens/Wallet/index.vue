@@ -398,7 +398,7 @@
             </div>
             <div class="table__item">
               <a
-                target="_blank"
+                v-if="true || item.meta.tx_id"
                 :href="`${EosUrl}${item.meta.tx_id}`"
                 class="table__btn"
               >

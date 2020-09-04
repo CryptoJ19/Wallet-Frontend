@@ -184,9 +184,9 @@
       "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
       "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
       "items": [
-        { "title": "Italiano", "link": "https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf" },
-        { "title": "English", "link": "https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf" },
-        { "title": "Français", "link": "https://test.cashflash.io/Whitepaper-Cash-Flash-English-3.pdf" }
+        { "title": "Italiano", "link": "Whitepaper-Cash-Flash-English.pdf" },
+        { "title": "English", "link": "Whitepaper-Cash-Flash-English.pdf" },
+        { "title": "Français", "link": "Whitepaper-Cash-Flash-English.pdf" }
       ]
     },
     "team": {

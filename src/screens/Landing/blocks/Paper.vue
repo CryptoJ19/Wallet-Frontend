@@ -47,7 +47,7 @@
                 {{ item.title }}
               </div>
               <a
-                :href="item.link"
+                :href="`${window.location.host}/${item.link}`"
                 class="flag__load"
               >
                 <img
