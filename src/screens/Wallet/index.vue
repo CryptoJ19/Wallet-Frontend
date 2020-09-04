@@ -397,16 +397,16 @@
               </div>
             </div>
             <div class="table__item">
-              <a
+              <button
                 v-if="true || item.meta.tx_id"
-                :href="`${EosUrl}${item.meta.tx_id}`"
                 class="table__btn"
+                @click="goTo(`${EosUrl}${item.meta.tx_id}`)"
               >
                 <img
                   src="~assets/imgs/icons/arrow__transaction.svg"
                   alt="arrow"
                 >
-              </a>
+              </button>
             </div>
           </div>
         </div>

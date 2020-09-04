@@ -75,7 +75,7 @@ export default {
       return require(`assets/imgs/Landing/flag_${i + 1}.svg`);
     },
     paperLink(item) {
-      return `${window.location.host}/${item.link}`;
+      return `/${item.link}`;
     },
   },
 };

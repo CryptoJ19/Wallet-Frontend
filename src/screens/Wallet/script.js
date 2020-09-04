@@ -87,6 +87,9 @@ export default {
       'fetchGetProfile',
       'fetchGetMyBonuses',
     ]),
+    goTo(value) {
+      document.location.replace(value);
+    },
     async initWallet() {
       const resBonuses = this.fetchGetMyBonuses();
       const resTrans = this.getTransactions();
