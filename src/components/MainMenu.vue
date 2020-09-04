@@ -83,8 +83,11 @@ export default {
       { title: this.$t('main.menu.wallet'), router: 'wallet' },
       { title: this.$t('main.menu.profile'), router: 'profile' },
       { title: this.$t('main.menu.referal'), router: 'referral' },
-      { title: this.$t('main.menu.purchase'), router: 'purchase', disable: true },
+      { title: this.$t('main.menu.purchase'), router: 'purchase' },
     ];
+    if (this.BaseUrl === 'https://cashflash.io/api') {
+      this.menuItems[3].disable = true;
+    }
   },
   methods: {
     showModal(value) {

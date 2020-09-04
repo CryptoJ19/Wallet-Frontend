@@ -16,7 +16,9 @@ export default {
     title: '',
   }),
   mounted() {
-    document.location.replace(`http://${window.location.host}/app/`);
+    if (this.BaseUrl === 'https://cashflash.io/api') {
+      document.location.replace(`http://${window.location.host}/app/`);
+    }
     this.title = this.$t('main.menu.purchase');
   },
   head() {
