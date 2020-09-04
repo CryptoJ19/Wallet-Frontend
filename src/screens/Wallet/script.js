@@ -76,6 +76,7 @@ export default {
       }, 20000,
     );
     this.initWallet();
+    console.log(this.EosUrl);
   },
   beforeDestroy() {
     clearInterval(this.transactionsInterval);
