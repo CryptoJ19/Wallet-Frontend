@@ -31,8 +31,8 @@ jobs:
             TARGET=${{ secrets.TARGET }} \
             BASE_URL=${{ secrets.BASE_URL }} \
             BASE_WSS_URL=${{ secrets.BASE_WSS_URL }} \
-            EOS_URL==${{ secrets.EOS_URL }} \
-            EOS_ACCOUNT==${{ secrets.EOS_ACCOUNT }} \
+            EOS_URL=${{ secrets.EOS_URL }} \
+            EOS_ACCOUNT=${{ secrets.EOS_ACCOUNT }} \
             SRC_DIR=${{ github.workspace }}/" website-update.yml;
 
   deploy-develop:
@@ -61,6 +61,6 @@ jobs:
             TARGET=${{ secrets.TARGET_TEST }} \
             BASE_URL=${{ secrets.BASE_URL_TEST }} \
             BASE_WSS_URL=${{ secrets.BASE_WSS_URL_TEST }} \
-            EOS_URL==${{ secrets.EOS_URL_TEST }} \
-            EOS_ACCOUNT==${{ secrets.EOS_ACCOUNT_TEST }} \
+            EOS_URL=${{ secrets.EOS_URL_TEST }} \
+            EOS_ACCOUNT=${{ secrets.EOS_ACCOUNT_TEST }} \
             SRC_DIR=${{ github.workspace }}/" website-update.yml;
