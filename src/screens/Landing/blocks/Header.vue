@@ -149,14 +149,14 @@
                 v-if="+item.maxAmount !== 0 && +item.reward !== 0"
                 class="promo__text"
               >
-                <strong>{{ item.minAmount }}€</strong>
+                <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
                 {{ $t('purchase.promoTo') }}
-                <strong>{{ item.maxAmount }}€</strong>
+                <strong>{{ NumberWithCommas(item.maxAmount) }}€</strong>
                 {{ $t('purchase.promoExtra') }}
                 {{ item.reward }}%
               </div>
               <div v-else>
-                <strong>{{ item.minAmount }}€</strong>
+                <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
                 {{ $t('purchase.andMore') }}
               </div>
             </div>
@@ -180,19 +180,19 @@ export default {
         level: 1, currencyId: 'eur', minAmount: '1000', maxAmount: '10000', reward: '20',
       },
       {
-        level: 2, currencyId: 'eur', minAmount: '11000', maxAmount: '50000', reward: '25',
+        level: 2, currencyId: 'eur', minAmount: '10001', maxAmount: '50000', reward: '25',
       },
       {
-        level: 3, currencyId: 'eur', minAmount: '51000', maxAmount: '200000', reward: '30',
+        level: 3, currencyId: 'eur', minAmount: '50001', maxAmount: '200000', reward: '30',
       },
       {
-        level: 4, currencyId: 'eur', minAmount: '201000', maxAmount: '500000', reward: '40',
+        level: 4, currencyId: 'eur', minAmount: '200001', maxAmount: '1000000', reward: '40',
       },
       {
-        level: 5, currencyId: 'eur', minAmount: '501000', maxAmount: '5000000', reward: '50',
+        level: 5, currencyId: 'eur', minAmount: '1000001', maxAmount: '5000000', reward: '50',
       },
       {
-        level: 6, currencyId: 'eur', minAmount: '5001000', maxAmount: '0', reward: '0',
+        level: 6, currencyId: 'eur', minAmount: '5000001', maxAmount: '0', reward: '0',
       },
     ],
   }),

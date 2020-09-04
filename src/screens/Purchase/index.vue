@@ -39,14 +39,14 @@
             v-if="+item.maxAmount !== 0 && +item.reward !== 0"
             class="promo__text"
           >
-            <strong>{{ item.minAmount }}€</strong>
+            <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
             {{ $t('purchase.promoTo') }}
-            <strong>{{ item.maxAmount }}€</strong>
+            <strong>{{ NumberWithCommas(item.maxAmount) }}€</strong>
             {{ $t('purchase.promoExtra') }}
             {{ item.reward }}%
           </div>
           <div v-else>
-            <strong>{{ item.minAmount }}€</strong>
+            <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
             {{ $t('purchase.andMore') }}
           </div>
         </div>
@@ -118,7 +118,7 @@
             {{ $t('purchase.total') }}
           </div>
           <div class="pay__sum">
-            {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
+            {{ totalSum }}{{ $t('purchase.cur') }}
           </div>
           <div class="reward">
             <div class="reward__item">
@@ -141,8 +141,8 @@
           <div class="pay__btns">
             <button
               class="pay__btn"
-              :class="{'pay__btn_dis': !checkValidPay}"
-              :disabled="!checkValidPay"
+              :class="{'pay__btn_dis': checkValidPay}"
+              :disabled="checkValidPay"
               @click="showPayConfirmModal()"
             >
               {{ $t('purchase.confirm') }}

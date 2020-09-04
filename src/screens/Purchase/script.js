@@ -10,7 +10,26 @@ export default {
     ModalPayConfirm,
   },
   data: () => ({
-    promoItems: [],
+    promoItems: [
+      {
+        level: 1, currencyId: 'eur', minAmount: '1000', maxAmount: '10000', reward: '20',
+      },
+      {
+        level: 2, currencyId: 'eur', minAmount: '10001', maxAmount: '50000', reward: '25',
+      },
+      {
+        level: 3, currencyId: 'eur', minAmount: '50001', maxAmount: '200000', reward: '30',
+      },
+      {
+        level: 4, currencyId: 'eur', minAmount: '200001', maxAmount: '1000000', reward: '40',
+      },
+      {
+        level: 5, currencyId: 'eur', minAmount: '1000001', maxAmount: '5000000', reward: '50',
+      },
+      {
+        level: 6, currencyId: 'eur', minAmount: '5000001', maxAmount: '0', reward: '0',
+      },
+    ],
     amountEOS: '',
     amountCFT: '',
     sendEmail: '',
@@ -22,7 +41,7 @@ export default {
     convertFlag: false,
   }),
   mounted() {
-    this.promoItems = this.$t('purchase.promo.items');
+    // this.promoItems = this.$t('purchase.promo.items');
     this.monthPool = this.$t('main.monthPool');
 
     this.fetchGetBonusesList();
@@ -32,8 +51,11 @@ export default {
     ...mapGetters([
       'getReferal',
       'getCurrencies',
-      'getBonuses',
+      // 'getBonuses',
     ]),
+    getBonuses() {
+      return this.promoItems;
+    },
     rateCFT() {
       return this.getCurrencyByName('CFT') && (this.getCurrencyByName('CFT').currentRate / this.getCurrencyByName('EUR').currentRate);
     },
@@ -44,7 +66,7 @@ export default {
       return this.getCurrencyByName('EOS') && (this.getCurrencyByName('EOS').currentRate / this.getCurrencyByName('EUR').currentRate);
     },
     checkValidPay() {
-      return (this.amountCFT !== '' && this.amountCFT !== 0);
+      return (this.amountCFT === '' || this.amountCFT === 0 || this.getBonuses[5].minAmount <= this.totalSum);
     },
     getReferalLink() {
       return `${window.location.host}/?ref=${this.getReferal.refLink}`;
@@ -59,7 +81,7 @@ export default {
       let bonus = '';
       const { getBonuses } = this;
       getBonuses.forEach((item, i) => {
-        if (this.totalSum > getBonuses[i].minAmount
+        if (this.totalSum >= getBonuses[i].minAmount
           && this.totalSum <= getBonuses[i].maxAmount
           && getBonuses[i].reward !== 0) {
           bonus = this.amountCFT * (getBonuses[i].reward / 100);
@@ -121,7 +143,8 @@ export default {
       } else {
         res = +value;
       }
-      return (Math.ceil(res * 100) / 100);
+      // return (Math.floor(res * 100) / 100);
+      return Math.floor(res);
     },
     setPayTab(i) {
       this.payTab = i;
