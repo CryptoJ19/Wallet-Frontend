@@ -47,7 +47,7 @@
                 {{ item.title }}
               </div>
               <a
-                :href="`${window.location.host}/${item.link}`"
+                :href="paperLink(item)"
                 class="flag__load"
               >
                 <img
@@ -73,6 +73,9 @@ export default {
   methods: {
     imagePath(i) {
       return require(`assets/imgs/Landing/flag_${i + 1}.svg`);
+    },
+    paperLink(item) {
+      return `${window.location.host}/${item.link}`;
     },
   },
 };
