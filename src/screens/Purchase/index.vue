@@ -139,8 +139,6 @@
             </div>
           </div>
           <div class="pay__btns">
-            {{ getBonuses[5].minAmount }}
-            {{ totalSum }}
             <button
               class="pay__btn"
               :class="{'pay__btn_dis': checkValidPay}"
