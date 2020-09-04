@@ -5,6 +5,9 @@ Vue.mixin({
     BaseUrl() {
       return process.env.BASE_URL;
     },
+    EosUrl() {
+      return process.env.EOS_URL;
+    },
   },
   methods: {
     NumberWithCommas(value) {

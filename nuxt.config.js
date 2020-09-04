@@ -79,6 +79,7 @@ module.exports = {
   env: {
     BASE_URL: process.env.BASE_URL,
     EOS_ACCOUNT: process.env.EOS_ACCOUNT,
+    EOS_URL: process.env.EOS_URL,
   },
   buildModules: [
     ['@nuxtjs/dotenv'],

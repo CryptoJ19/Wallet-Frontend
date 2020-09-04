@@ -1,57 +1,58 @@
 name: Node-CI
 
-on: 
+on:
   push:
     branches: [ master, develop ]
 
 jobs:
   deploy-master:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Copy code files to container
         uses: actions/checkout@v2
 
       - name: Environment preparation
-        run: |        
+        run: |
           mkdir -p ~/.ssh/
           touch ~/.ssh/id_rsa
           chmod -R go= ~/.ssh
           chmod 600 ~/.ssh/id_rsa
-          echo "${{ secrets.SERVER_SSH_KEY }}" >> ~/.ssh/id_rsa          
-          sudo apt-add-repository -y -u ppa:ansible/ansible          
+          echo "${{ secrets.SERVER_SSH_KEY }}" >> ~/.ssh/id_rsa
+          sudo apt-add-repository -y -u ppa:ansible/ansible
           sudo apt-get install -y rsync
           sudo apt-get install -y ansible
-      
+
       - name: Deploy to Server
-        run: |            
+        run: |
           chmod 700 ci-scripts
           cd ci-scripts
           ansible-playbook -i "${{ secrets.REMOTE_HOST }}" -e "ansible_user=${{ secrets.REMOTE_USER }} \
             TARGET=${{ secrets.TARGET }} \
             BASE_URL=${{ secrets.BASE_URL }} \
             BASE_WSS_URL=${{ secrets.BASE_WSS_URL }} \
+            EOS_URL==${{ secrets.EOS_URL }} \
             EOS_ACCOUNT==${{ secrets.EOS_ACCOUNT }} \
             SRC_DIR=${{ github.workspace }}/" website-update.yml;
 
   deploy-develop:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     steps:
       - name: Copy code files to container
         uses: actions/checkout@v2
 
       - name: Environment preparation
-        run: |        
+        run: |
           mkdir -p ~/.ssh/
           touch ~/.ssh/id_rsa
           chmod -R go= ~/.ssh
           chmod 600 ~/.ssh/id_rsa
-          echo "${{ secrets.SERVER_SSH_KEY }}" >> ~/.ssh/id_rsa          
-          sudo apt-add-repository -y -u ppa:ansible/ansible          
+          echo "${{ secrets.SERVER_SSH_KEY }}" >> ~/.ssh/id_rsa
+          sudo apt-add-repository -y -u ppa:ansible/ansible
           sudo apt-get install -y rsync
           sudo apt-get install -y ansible
-      
+
       - name: Deploy to Server
         run: |
           chmod 700 ci-scripts
@@ -60,5 +61,6 @@ jobs:
             TARGET=${{ secrets.TARGET_TEST }} \
             BASE_URL=${{ secrets.BASE_URL_TEST }} \
             BASE_WSS_URL=${{ secrets.BASE_WSS_URL_TEST }} \
+            EOS_URL==${{ secrets.EOS_URL_TEST }} \
             EOS_ACCOUNT==${{ secrets.EOS_ACCOUNT_TEST }} \
             SRC_DIR=${{ github.workspace }}/" website-update.yml;
