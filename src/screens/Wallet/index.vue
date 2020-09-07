@@ -398,7 +398,7 @@
             </div>
             <div class="table__item">
               <button
-                v-if="true || item.meta.tx_id"
+                v-if="item.meta.tx_id"
                 class="table__btn"
                 @click="goTo(`${EosUrl}${item.meta.tx_id}`)"
               >
