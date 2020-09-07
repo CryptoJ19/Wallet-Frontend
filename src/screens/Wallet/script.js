@@ -88,7 +88,7 @@ export default {
       'fetchGetMyBonuses',
     ]),
     goTo(value) {
-      document.location.replace(value);
+      window.open(value, '_blank');
     },
     async initWallet() {
       const resBonuses = this.fetchGetMyBonuses();
