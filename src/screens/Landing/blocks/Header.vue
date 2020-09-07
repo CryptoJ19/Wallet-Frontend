@@ -57,7 +57,7 @@
           </div>
           <div class="pdf">
             <a
-              href="https://test.cashflash.io/Whitepaper-Cash-Flash-English.pdf"
+              :href="`${LocalHostUrl}/Whitepaper-Cash-Flash-English.pdf`"
               target="_blank"
               class="pdf__item"
             >
@@ -72,7 +72,7 @@
               </div>
             </a>
             <a
-              href="https://test.cashflash.io/Cash-Flash-Contract-ENG.pdf"
+              :href="`${LocalHostUrl}/Cash-Flash-Contract-ENG.pdf`"
               target="_blank"
               class="pdf__item"
             >
@@ -87,7 +87,7 @@
               </div>
             </a>
             <a
-              href="https://test.cashflash.io/Cash-Flash-KYC-ENG.pdf"
+              :href="`${LocalHostUrl}/Cash-Flash-KYC-ENG.pdf`"
               target="_blank"
               class="pdf__item"
             >

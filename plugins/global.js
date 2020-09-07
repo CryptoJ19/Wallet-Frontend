@@ -8,6 +8,12 @@ Vue.mixin({
     EosUrl() {
       return process.env.EOS_URL;
     },
+    LocalHostUrl() {
+      if (!process.server) {
+        return `${window.location.host}`;
+      }
+      return '';
+    },
   },
   methods: {
     NumberWithCommas(value) {
