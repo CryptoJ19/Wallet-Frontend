@@ -51,11 +51,11 @@ export default {
     ...mapGetters([
       'getReferal',
       'getCurrencies',
-      // 'getBonuses',
+      'getBonuses',
     ]),
-    getBonuses() {
-      return this.promoItems;
-    },
+    // getBonuses() {
+    //   return this.promoItems;
+    // },
     rateCFT() {
       return this.getCurrencyByName('CFT') && (this.getCurrencyByName('CFT').currentRate / this.getCurrencyByName('EUR').currentRate);
     },
