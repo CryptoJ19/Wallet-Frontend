@@ -66,7 +66,11 @@ export default {
       return this.getCurrencyByName('EOS') && (this.getCurrencyByName('EOS').currentRate / this.getCurrencyByName('EUR').currentRate);
     },
     checkValidPay() {
-      return (this.amountCFT === '' || this.amountCFT === 0 || this.getBonuses[5].minAmount <= this.totalSum);
+      return (this.amountCFT === ''
+        || this.amountCFT === 0
+        || this.getBonuses[5].minAmount <= this.totalSum
+        || this.totalSum > this.getBonuses[4].maxAmount
+      );
     },
     getReferalLink() {
       return `${window.location.host}/?ref=${this.getReferal.refLink}`;
