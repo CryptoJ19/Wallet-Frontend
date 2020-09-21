@@ -211,7 +211,7 @@ export default {
     }
     const timer = setInterval(() => {
       const now = new Date();
-      const date = new Date('9 15 2020 00:00:00 GMT+0100 (GMT+01:00)');
+      const date = new Date('12 15 2020 00:00:00 GMT+0100 (GMT+01:00)');
       const msLeft = diffSubtract(now, date);
       if (msLeft <= 0) {
         clearInterval(timer);

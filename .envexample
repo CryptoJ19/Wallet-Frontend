@@ -1,0 +1,3 @@
+BASE_URL = 'https://test.cashflash.io/api'
+EOS_ACCOUNT = 'ldzytcplohsk'
+EOS_URL = 'https://testnet.eos.io/transaction/'
