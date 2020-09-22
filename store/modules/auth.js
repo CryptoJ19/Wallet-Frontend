@@ -441,5 +441,11 @@ export default {
     getMyBonuses(state) {
       return state.myBonuses.reverse();
     },
+    getCurrencyByName: (state) => (currency) => state.currencies.find((item) => {
+      if (item.id.toUpperCase() === currency) {
+        return item;
+      }
+      return false;
+    }),
   },
 };

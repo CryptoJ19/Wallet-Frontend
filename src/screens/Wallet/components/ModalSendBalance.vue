@@ -111,7 +111,7 @@
               {{ $t('wallet.modalSend.fee') }}
             </div>
             <div class="vinput__fake">
-              {{ Config.sendFee }}
+              {{ feeComp }}
             </div>
           </div>
           <div class="form__er">
@@ -171,7 +171,12 @@ export default {
     ...mapGetters([
       'getProfile',
       'getWallets',
+      'getCurrencyByName',
     ]),
+    feeComp() {
+      return this.getCurrencyByName(this.currency).txLimits.withdrawCommissionFixed
+        / (10 ** this.getCurrencyByName(this.currency).decimals);
+    },
   },
   methods: {
     ...mapActions([
@@ -212,7 +217,8 @@ export default {
       }, 200);
     },
     shownModal() {
-      this.getWithdrawData();
+      this.loading = false;
+      // this.getWithdrawData();
     },
     async getWithdrawData() {
       const res = await this.fetchGetWithdraw(this.currency);
