@@ -362,6 +362,7 @@
       "close": "Close"
     },
     "modalSend": {
+      "fee": "Fee",
       "title": "Send",
       "subtext": "The sender should send funds to EOS account name above. Memo field must be filled out with your personal CashFlash account name. Otherwise the funds won't be deposited to your account.",
       "close": "Close",

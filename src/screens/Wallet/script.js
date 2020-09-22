@@ -6,7 +6,7 @@ import ModalSendBalance from './components/ModalSendBalance';
 import ModalRecieve from './components/ModalRecieve';
 import ModalSuccessSend from './components/ModalSuccessSend';
 import Loader from '../../ui/Loader';
-import { transactionsItemsLength } from '../../../config';
+import { config } from '../../../config';
 
 export default {
   components: {
@@ -23,14 +23,14 @@ export default {
     loadingWallet: true,
     transactionsInterval: null,
     loadingTransactions: false,
-    limit: transactionsItemsLength,
-    test: [
-      {
-        currencyId: 'cft',
-        paymentDate: '2020-11-25T00:00:00.000Z',
-        reward: '0.48',
-      },
-    ],
+    limit: config.transactionsItemsLength,
+    // test: [
+    //   {
+    //     currencyId: 'cft',
+    //     paymentDate: '2020-11-25T00:00:00.000Z',
+    //     reward: '0.48',
+    //   },
+    // ],
   }),
   computed: {
     ...mapGetters([
@@ -40,7 +40,7 @@ export default {
       'getMyBonuses',
     ]),
     totalPages() {
-      return Math.ceil(this.getTransactionCount / transactionsItemsLength);
+      return Math.ceil(this.getTransactionCount / this.limit);
     },
     getDeliveryDate() {
       if (this.getMyBonuses.length !== 0) {

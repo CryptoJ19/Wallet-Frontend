@@ -1,7 +1,11 @@
 import Vue from 'vue';
+import { config } from '../config';
 
 Vue.mixin({
   computed: {
+    Config() {
+      return config;
+    },
     BaseUrl() {
       return process.env.BASE_URL;
     },

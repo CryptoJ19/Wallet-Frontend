@@ -108,10 +108,10 @@
             class="mod__item mod__input"
           >
             <div class="vinput__title">
-              Fee
+              {{ $t('wallet.modalSend.fee') }}
             </div>
             <div class="vinput__fake">
-              0.3
+              {{ Config.sendFee }}
             </div>
           </div>
           <div class="form__er">

@@ -1,2 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-export const transactionsItemsLength = 10;
+export const config = {
+  transactionsItemsLength: 10,
+  sendFee: 0.1,
+};
