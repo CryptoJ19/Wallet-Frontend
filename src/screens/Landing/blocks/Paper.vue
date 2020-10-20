@@ -6,7 +6,7 @@
     <div class="paper__l">
       <img
         class="paper__img"
-        src="~assets/imgs/Landing/paper_1.png"
+        src="~assets/imgs/Landing/paper_1.svg"
         alt="img"
       >
       <img
@@ -184,6 +184,7 @@ export default {
           padding: 40px 0 0 30px;
           position: absolute;
           display: flex;
+          max-height: 300px;
         }
       }
     }

@@ -16,11 +16,13 @@
     </div>
     <div class="land__container">
       <div class="advan__body">
-        <div class="advan__logo">
-          <img
-            src="~assets/imgs/Landing/advan_logo.svg"
-            alt="img"
-          >
+        <div class="advan__logo advan__video">
+          <client-only>
+            <div
+              v-video-player:myVideoPlayer="{ ...playerOptions, height: '300' }"
+              class="video-player-box vjs-big-play-centered video-promo"
+            />
+          </client-only>
         </div>
         <div class="advan__line" />
         <div class="advan__items">
@@ -113,13 +115,24 @@
   </div>
 </template>
 <script>
+
 export default {
   data: () => ({
     items: [
     ],
+    playerOptions: {},
   }),
-  mounted() {
+  created() {
     this.items = this.$t('land.adv.items');
+    this.playerOptions = {
+      language: 'en',
+      playbackRates: [0.7, 1.0, 1.5, 2.0],
+      sources: [{
+        type: 'video/mp4',
+        src: `http://${this.LocalHostUrl}/cashflash-promo.mp4`,
+      }],
+      poster: `http://${this.LocalHostUrl}/cashflash-promo__poster.png`,
+    };
   },
   methods: {
     imagePath(i) {
@@ -128,7 +141,33 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@media (max-width: 767px) {
+  .video-promo {
+    max-width: 320px;
+  }
+  .video-player-box .video-js {
+    max-width: 320px;
+    max-height: 180px;
+  }
+}
+
+</style>
 <style lang="scss" scoped>
+.video {
+  //&_md {
+  //  display: none;
+  //}
+  //@media (max-width: 1400px) {
+  //  &_lg {
+  //    display: none;
+  //  }
+  //  &_md {
+  //    display: flex;
+  //  }
+  //}
+}
   .land .advan {
     position: relative;
     margin-bottom: 254px;
@@ -136,6 +175,17 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__video {
+      //.video-player-box, .video-js, .vjs-tech {
+      //  max-width: 300px;
+      //  max-height: 200px;
+      //}
+      //width: 200px;
+      //height: 200px;
+      border-radius: 15px;
+      overflow: hidden;
+
+    }
     &__maintitle {
       line-height: 58.4%;
       margin: 0 0 90px;
@@ -212,7 +262,7 @@ export default {
       }
     }
     &__item {
-      &:nth-child(2), &:nth-child(6) {
+      &:nth-child(2), &:nth-child(4) {
         .shape {
           flex-direction: row-reverse;
           &__col {
@@ -222,7 +272,7 @@ export default {
           }
         }
       }
-      &:nth-child(5), &:nth-child(6) {
+      &:nth-child(3), &:nth-child(4) {
         .shape {
           &__col {
             position: relative;
@@ -234,13 +284,13 @@ export default {
           }
         }
       }
-      &:nth-child(3), &:nth-child(4) {
-        .shape {
-          &__col {
-            display: none;
-            }
-          }
-      }
+      //&:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+      //  .shape {
+      //    &__col {
+      //      display: none;
+      //    }
+      //  }
+      //}
     }
     &__point {
       position: absolute;
@@ -324,7 +374,7 @@ export default {
       }
       &__items {
         grid-column-gap: 200px;
-        grid-row-gap: 110px;
+        grid-row-gap: 340px;
       }
     }
     @media (max-width: 1199px) {
@@ -354,17 +404,17 @@ export default {
     @media (max-width: 991px) {
       margin-bottom: 150px;
       &__logo {
-        display: none;
+        //display: none;
       }
       &__logo_mob {
-        padding: 20px 0 10px;
-        width: 100%;
-        justify-content: center;
-        background: #F4F4F4;
-        position: relative;
-        z-index: 90;
-        display: flex;
-        margin: 0 0 25px;
+        //padding: 20px 0 10px;
+        //width: 100%;
+        //justify-content: center;
+        //background: #F4F4F4;
+        //position: relative;
+        //z-index: 90;
+        //display: flex;
+        //margin: 0 0 25px;
       }
       &__link {
         width: 60px;
@@ -387,13 +437,14 @@ export default {
         position: absolute;
         background: #F4F4F4;
         bottom: 0;
-        top: -40px;
+        top: 0px;
         width: 3px;
       }
       &__items {
         position: relative;
         display: flex;
         flex-direction: column;
+        grid-row-gap: 30px;
       }
       &__logo {
         position: relative;

@@ -27,6 +27,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-useless-escape': 'off',
     'no-console': 'off',
-    'func-names': 'off'
+    'func-names': 'off',
+    'linebreak-style': 'off'
   }
 }
