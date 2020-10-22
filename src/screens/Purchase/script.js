@@ -45,13 +45,13 @@ export default {
     this.monthPool = this.$t('main.monthPool');
 
     this.fetchGetBonusesList();
-    this.fetchGetCurrencies();
   },
   computed: {
     ...mapGetters([
       'getReferal',
       'getCurrencies',
       'getBonuses',
+      'getCurrencyByName',
     ]),
     // getBonuses() {
     //   return this.promoItems;
@@ -123,16 +123,7 @@ export default {
       'fetchSendInvite',
       'fetchGetReferalData',
       'fetchGetBonusesList',
-      'fetchGetCurrencies',
     ]),
-    getCurrencyByName(currency) {
-      return this.getCurrencies.find((item) => {
-        if (item.id.toUpperCase() === currency) {
-          return item;
-        }
-        return false;
-      });
-    },
     onChangeField() {
       this.convertFlag = true;
     },
