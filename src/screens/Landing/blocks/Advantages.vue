@@ -155,19 +155,7 @@ export default {
 
 </style>
 <style lang="scss" scoped>
-.video {
-  //&_md {
-  //  display: none;
-  //}
-  //@media (max-width: 1400px) {
-  //  &_lg {
-  //    display: none;
-  //  }
-  //  &_md {
-  //    display: flex;
-  //  }
-  //}
-}
+
   .land .advan {
     position: relative;
     margin-bottom: 254px;
