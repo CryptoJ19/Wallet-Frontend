@@ -21,7 +21,6 @@
     "nuxt-i18n": "^6.6.0",
     "vue-click-outside": "^1.1.0",
     "vue-tippy": "^4.4.0",
-    "vue-video-player": "^5.0.2",
     "vue2-datepicker": "^3.6.0"
   },
   "devDependencies": {

@@ -9,7 +9,6 @@ module.exports = {
     '~plugins/vue-js-modal',
     '~plugins/bootstrap-vue',
     '~plugins/global.js',
-    { src: '~plugins/nuxt-video-player-plugin.js', ssr: false },
   ],
   head: {
     title: 'CashFlash',
@@ -49,7 +48,6 @@ module.exports = {
   css: [
     '~assets/scss/global.scss',
     '~assets/scss/vars.scss',
-    'video.js/dist/video-js.css',
   ],
   modules: [
     '@nuxtjs/style-resources',

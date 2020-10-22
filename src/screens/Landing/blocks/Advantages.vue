@@ -18,9 +18,10 @@
       <div class="advan__body">
         <div class="advan__logo advan__video">
           <client-only>
-            <div
-              v-video-player:myVideoPlayer="{ ...playerOptions, height: '300' }"
-              class="video-player-box vjs-big-play-centered video-promo"
+            <iframe
+              class="advan__frame"
+              :src="`https://www.youtube.com/embed/aPRHc98Cxg0`"
+              allowfullscreen
             />
           </client-only>
         </div>
@@ -124,15 +125,6 @@ export default {
   }),
   created() {
     this.items = this.$t('land.adv.items');
-    this.playerOptions = {
-      language: 'en',
-      playbackRates: [0.7, 1.0, 1.5, 2.0],
-      sources: [{
-        type: 'video/mp4',
-        src: `http://${this.LocalHostUrl}/cashflash-promo.mp4`,
-      }],
-      poster: `http://${this.LocalHostUrl}/cashflash-promo__poster.png`,
-    };
   },
   methods: {
     imagePath(i) {
@@ -141,21 +133,7 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@media (max-width: 767px) {
-  .video-promo {
-    max-width: 320px;
-  }
-  .video-player-box .video-js {
-    max-width: 320px;
-    max-height: 180px;
-  }
-}
-
-</style>
 <style lang="scss" scoped>
-
   .land .advan {
     position: relative;
     margin-bottom: 254px;
@@ -163,22 +141,16 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    &__video {
-      //.video-player-box, .video-js, .vjs-tech {
-      //  max-width: 300px;
-      //  max-height: 200px;
-      //}
-      //width: 200px;
-      //height: 200px;
-      border-radius: 15px;
-      overflow: hidden;
-
+    &__frame {
+      $size: 420px;
+      height: calc(#{$size} / 1.69);
+      width: $size;
+      border: none;
     }
     &__maintitle {
       line-height: 58.4%;
       margin: 0 0 90px;
-    }
-    &__header {
+    }    &__header {
       display: none;
     }
     &__links {
@@ -448,6 +420,12 @@ export default {
       &__maintitle {
         margin: 0 0 40px;
         text-align: center;
+      }
+      &__frame {
+        $size: 220px;
+        height: calc(#{$size} / 1.69);
+        width: $size;
+        border: none;
       }
     }
     @media (max-width: 480px) {
