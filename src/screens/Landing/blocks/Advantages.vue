@@ -20,7 +20,7 @@
           <client-only>
             <iframe
               class="advan__frame"
-              :src="`https://www.youtube.com/embed/aPRHc98Cxg0`"
+              :src="`https://www.youtube.com/embed/SOB3By6lMVo`"
               allowfullscreen
             />
           </client-only>
@@ -141,11 +141,16 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__video {
+      display: flex;
+    }
     &__frame {
-      $size: 420px;
+      $size: 520px;
       height: calc(#{$size} / 1.69);
       width: $size;
       border: none;
+      border-radius: 10px;
+      overflow: hidden;
     }
     &__maintitle {
       line-height: 58.4%;
