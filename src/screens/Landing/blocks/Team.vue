@@ -29,7 +29,7 @@
             >
               <div class="person__ava">
                 <img
-                  :src="imagePath(+item.image)"
+                  :src="imagePath(item.image)"
                   alt="img"
                 >
               </div>
@@ -84,7 +84,7 @@
             >
               <div class="person__ava">
                 <img
-                  :src="imagePath(+item.image)"
+                  :src="imagePath(item.image)"
                   alt="img"
                 >
               </div>
@@ -139,7 +139,7 @@
             >
               <div class="person__ava">
                 <img
-                  :src="imagePath(+item.image)"
+                  :src="imagePath(item.image)"
                   alt="img"
                 >
               </div>
@@ -195,7 +195,7 @@
             >
               <div class="person__ava">
                 <img
-                  :src="imagePath(+item.image)"
+                  :src="imagePath(item.image)"
                   alt="img"
                 >
               </div>
@@ -250,7 +250,7 @@
             >
               <div class="person__ava">
                 <img
-                  :src="imagePath(+item.image)"
+                  :src="imagePath(item.image)"
                   alt="img"
                 >
               </div>
@@ -333,7 +333,7 @@ export default {
       }
     },
     imagePath(i) {
-      return require(`assets/imgs/Landing/ava_${i + 1}.png`);
+      return require(`assets/imgs/Landing/ava_${i}.png`);
     },
   },
 };
