@@ -11,7 +11,10 @@
           </div>
         </div>
         <div class="desk__r">
-          <div class="menu__items">
+          <div
+            v-if="mode !== 'nav-off'"
+            class="menu__items"
+          >
             <a
               :href="`#${$t('land.menu.items[0].anchor')}`"
               class="menu__item"
@@ -61,6 +64,7 @@
         >
           <div class="mobile__l">
             <button
+              v-if="mode !== 'nav-off'"
               class="mobile__burger"
               @click="toggleMenu()"
             >
@@ -139,6 +143,12 @@ export default {
   directives: {
     ClickOutside,
   },
+  props: {
+    mode: {
+      type: String,
+      default: '',
+    },
+  },
   data: () => ({
     show: false,
   }),
@@ -195,7 +205,7 @@ export default {
       display: none;
     }
     .desk {
-      margin: 24px 0 0;
+      margin: 24px 0;
       width: 100%;
       display: flex;
       justify-content: space-between;

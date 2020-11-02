@@ -184,60 +184,149 @@
     "team": {
       "title": "Team",
       "text": "Cash Flash, unlike other projects in the sector, wants to give the opportunity to all the most competent people to be part of our team, with the aim of welcoming the project, excellences of all nations, to become a global project . Cash Flash was born from the entrepreneurial idea of Andrea Cerato, who shares the vision of a project focused on the opportunity to create a real ecosystem in the world of cryptocurrencies. Through the blockchain, new services are created both for the customer and for the company, creating a shorter and more performing supply chain.",
-      "items": [
+      "founders": "Founder and Investor",
+      "board": "Board members",
+      "business":"Business development",
+      "financial": "Financial department",
+      "advisor": "Advisor sales team",
+      "items": {
+        "founders": [
+          {
+            "title": "Andrea CERATO",
+            "sub": "Founder and Investor",
+            "in": "https://www.linkedin.com/in/andrea-cerato-447b1119a/",
+            "mail": "andreacerato@cashflash.io",
+            "image": "1"
+
+          },
+          {
+            "title": "Luca CERATO",
+            "sub": "Founder and Investor",
+            "in": "https://www.linkedin.com/company/cashflash/",
+            "mail": "info@cashflash.io",
+            "image": "2"
+          }
+        ],
+        "board": [
+          {
+            "title": "Roberto BARON",
+            "sub": "Board Member",
+            "in": "https://www.linkedin.com/in/roberto-baron-3902a7168/",
+            "mail": "robertobaron@cashflash.io",
+            "image": "3"
+          },
+          {
+            "title": "Iris Collu",
+            "sub": "Board Member",
+            "in": "https://www.linkedin.com/in/iris-c-a5b403191/",
+            "mail": "info@cashflash.io",
+            "image": "4"
+          },
+          {
+            "title": "Giancarlo Giacomelli",
+            "sub": "Board Member",
+            "in": "https://www.linkedin.com/company/cashflash/",
+            "mail": "info@cashflash.io",
+            "image": "5"
+          }
+        ],
+        "business": [
+          {
+            "title": "Simone DI SABATO",
+            "sub": "Business Development Manager",
+            "in": "https://www.linkedin.com/in/simone-di-sabato-18204aaa/",
+            "mail": "simonedisabato@cashflash.io",
+            "image": "6"
+          }
+        ],
+        "financial": [
+          {
+            "title": "Roberto Pisa",
+            "sub": "Financial Director",
+            "in": "https://www.linkedin.com/company/cashflash/",
+            "mail": "info@cashflash.io",
+            "image": "7"
+          },
+          {
+            "title": "Pietro Carlini",
+            "sub": "Sales Advisor",
+            "in": "https://www.linkedin.com/company/cashflash/",
+            "mail": "info@cashflash.io",
+            "image": "8"
+          },
+          {
+            "title": "Carlo Antonio Mazzola",
+            "sub": "Financial Advisor",
+            "in": "https://www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
+            "mail": "info@cashflash.io",
+            "image": "9"
+
+          }
+        ],
+        "advisor": [
+          {
+            "title": "Massimo Camminati",
+            "sub": "Sales",
+            "in": "https://www.linkedin.com/company/cashflash/",
+            "mail": "info@cashflash.io",
+            "image": "10"
+
+          }
+        ]
+      },
+      "itemsOld": [
         {
           "title": "Andrea CERATO",
-          "sub": "FOUNDER",
+          "sub": "Founder and Investor",
           "in": "https://www.linkedin.com/in/andrea-cerato-447b1119a/",
           "mail": "andreacerato@cashflash.io"
         },
         {
-          "title": "Cav. Mauro MARASCA",
-          "sub": "CEO",
-          "in": "https://www.linkedin.com/in/cav-mauro-marasca-8a6aa4130/",
-          "mail": "mauromarasca@cashflash.io"
+          "title": "Luca CERATO",
+          "sub": "Founder and Investor",
+          "in": "https://www.linkedin.com/company/cashflash/",
+          "mail": "info@cashflash.io"
         },
         {
           "title": "Roberto BARON",
-          "sub": "MINOR SHAREHOLDER",
+          "sub": "Board Member",
           "in": "https://www.linkedin.com/in/roberto-baron-3902a7168/",
           "mail": "robertobaron@cashflash.io"
         },
         {
+          "title": "Iris Collu",
+          "sub": "Board Member",
+          "in": "https://www.linkedin.com/in/iris-c-a5b403191/",
+          "mail": "info@cashflash.io"
+        },
+        {
+          "title": "Giancarlo Giacomelli",
+          "sub": "Board Member",
+          "in": "https://www.linkedin.com/company/cashflash/",
+          "mail": "info@cashflash.io"
+        },
+        {
+          "title": "Roberto Pisa",
+          "sub": "Financial Director",
+          "in": "https://www.linkedin.com/company/cashflash/",
+          "mail": "info@cashflash.io"
+        },
+        {
           "title": "Simone DI SABATO",
-          "sub": "BUSINESS DEVELOPMENT MANAGER",
+          "sub": "Business Development Manager",
           "in": "https://www.linkedin.com/in/simone-di-sabato-18204aaa/",
           "mail": "simonedisabato@cashflash.io"
         },
         {
-          "title": "Roberto Pisa",
-          "sub": "FINANCIAL DIRECTOR",
-          "in": "https://www.linkedin.com/company/cashflash/",
-          "mail": "info@cashflash.io"
-        },
-        {
           "title": "Carlo Antonio Mazzola",
-          "sub": "FINANCIAL ADVISOR",
+          "sub": "Financial Advisor",
           "in": "https://www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
           "mail": "info@cashflash.io"
         },
         {
-          "title": "Aliou Cisse",
-          "sub": "FRENCH SALES",
+          "title": "Pietro Carlini",
+          "sub": "Sales Advisor",
           "in": "https://www.linkedin.com/company/cashflash/",
-          "mail": "info@cashflash.io"
-        },
-        {
-          "title": "Iris Collu",
-          "sub": "COMPANY COORDINATOR",
-          "in": "https://www.linkedin.com/in/iris-c-a5b403191/",
-          "mail": "info@cashflash.io"
-
-        },
-        {
-          "title": "Joshua Ehigie",
-          "sub": "ENGLISH COMMERCIAL",
-          "in": "https://www.linkedin.com/in/joshua-ehigie-1728b919b/",
           "mail": "info@cashflash.io"
         }
       ]

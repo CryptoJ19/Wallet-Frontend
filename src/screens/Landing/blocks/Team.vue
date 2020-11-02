@@ -13,52 +13,277 @@
       </div>
       <div class="team__body">
         <div
-          class="team__items"
-          :class="[
-            {'team__items_two': page === 1},
-            {'team__items_three': page === 2}
-          ]"
+          v-if="persons.founders"
+          class="team__role"
         >
+          <div class="team__subtitle">
+            {{ $t('land.team.founders') }}
+          </div>
           <div
-            v-for="(item, i) in persons"
-            :key="`person_${i}`"
-            class="person"
+            class="team__items"
           >
-            <div class="person__ava">
-              <img
-                :src="imagePath(i)"
-                alt="img"
-              >
+            <div
+              v-for="(item, i) in persons.founders"
+              :key="`person_${i}`"
+              class="person team__item"
+            >
+              <div class="person__ava">
+                <img
+                  :src="imagePath(+item.image)"
+                  alt="img"
+                >
+              </div>
+              <div class="person__info">
+                <div class="person__title">
+                  {{ item.title }}
+                </div>
+                <div class="person__sub">
+                  {{ item.sub }}
+                </div>
+                <div class="person__links">
+                  <a
+                    v-if="item.in"
+                    :href="item.in"
+                    class="person__link"
+                    target="_blank"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/advan__links_in.svg"
+                      alt="img"
+                    >
+                  </a>
+                  <a
+                    v-if="item.mail"
+                    :href="`mailto:${item.mail}`"
+                    class="person__link"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/mail.svg"
+                      alt="img"
+                    >
+                  </a>
+                </div>
+              </div>
             </div>
-            <div class="person__info">
-              <div class="person__title">
-                {{ item.title }}
-              </div>
-              <div class="person__sub">
-                {{ item.sub }}
-              </div>
-              <div class="person__links">
-                <a
-                  v-if="item.in"
-                  :href="item.in"
-                  class="person__link"
-                  target="_blank"
+          </div>
+        </div>
+        <div
+          v-if="persons.board"
+          class="team__role"
+        >
+          <div class="team__subtitle">
+            {{ $t('land.team.board') }}
+          </div>
+          <div
+            class="team__items"
+          >
+            <div
+              v-for="(item, i) in persons.board"
+              :key="`person_${i}`"
+              class="person team__item"
+            >
+              <div class="person__ava">
+                <img
+                  :src="imagePath(+item.image)"
+                  alt="img"
                 >
-                  <img
-                    src="~assets/imgs/Landing/advan__links_in.svg"
-                    alt="img"
+              </div>
+              <div class="person__info">
+                <div class="person__title">
+                  {{ item.title }}
+                </div>
+                <div class="person__sub">
+                  {{ item.sub }}
+                </div>
+                <div class="person__links">
+                  <a
+                    v-if="item.in"
+                    :href="item.in"
+                    class="person__link"
+                    target="_blank"
                   >
-                </a>
-                <a
-                  v-if="item.mail"
-                  :href="`mailto:${item.mail}`"
-                  class="person__link"
+                    <img
+                      src="~assets/imgs/Landing/advan__links_in.svg"
+                      alt="img"
+                    >
+                  </a>
+                  <a
+                    v-if="item.mail"
+                    :href="`mailto:${item.mail}`"
+                    class="person__link"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/mail.svg"
+                      alt="img"
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          v-if="persons.business"
+          class="team__role"
+        >
+          <div class="team__subtitle">
+            {{ $t('land.team.business') }}
+          </div>
+          <div
+            class="team__items"
+          >
+            <div
+              v-for="(item, i) in persons.business"
+              :key="`person_${i}`"
+              class="person team__item"
+            >
+              <div class="person__ava">
+                <img
+                  :src="imagePath(+item.image)"
+                  alt="img"
                 >
-                  <img
-                    src="~assets/imgs/Landing/mail.svg"
-                    alt="img"
+              </div>
+              <div class="person__info">
+                <div class="person__title">
+                  {{ item.title }}
+                </div>
+                <div class="person__sub">
+                  {{ item.sub }}
+                </div>
+                <div class="person__links">
+                  <a
+                    v-if="item.in"
+                    :href="item.in"
+                    class="person__link"
+                    target="_blank"
                   >
-                </a>
+                    <img
+                      src="~assets/imgs/Landing/advan__links_in.svg"
+                      alt="img"
+                    >
+                  </a>
+                  <a
+                    v-if="item.mail"
+                    :href="`mailto:${item.mail}`"
+                    class="person__link"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/mail.svg"
+                      alt="img"
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          v-if="persons.financial"
+          class="team__role"
+        >
+          <div class="team__subtitle">
+            {{ $t('land.team.financial') }}
+          </div>
+          <div
+            class="team__items"
+          >
+            <div
+              v-for="(item, i) in persons.financial"
+              :key="`person_${i}`"
+              class="person team__item"
+            >
+              <div class="person__ava">
+                <img
+                  :src="imagePath(+item.image)"
+                  alt="img"
+                >
+              </div>
+              <div class="person__info">
+                <div class="person__title">
+                  {{ item.title }}
+                </div>
+                <div class="person__sub">
+                  {{ item.sub }}
+                </div>
+                <div class="person__links">
+                  <a
+                    v-if="item.in"
+                    :href="item.in"
+                    class="person__link"
+                    target="_blank"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/advan__links_in.svg"
+                      alt="img"
+                    >
+                  </a>
+                  <a
+                    v-if="item.mail"
+                    :href="`mailto:${item.mail}`"
+                    class="person__link"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/mail.svg"
+                      alt="img"
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          v-if="persons.advisor"
+          class="team__role"
+        >
+          <div class="team__subtitle">
+            {{ $t('land.team.advisor') }}
+          </div>
+          <div
+            class="team__items"
+          >
+            <div
+              v-for="(item, i) in persons.advisor"
+              :key="`person_${i}`"
+              class="person team__item"
+            >
+              <div class="person__ava">
+                <img
+                  :src="imagePath(+item.image)"
+                  alt="img"
+                >
+              </div>
+              <div class="person__info">
+                <div class="person__title">
+                  {{ item.title }}
+                </div>
+                <div class="person__sub">
+                  {{ item.sub }}
+                </div>
+                <div class="person__links">
+                  <a
+                    v-if="item.in"
+                    :href="item.in"
+                    class="person__link"
+                    target="_blank"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/advan__links_in.svg"
+                      alt="img"
+                    >
+                  </a>
+                  <a
+                    v-if="item.mail"
+                    :href="`mailto:${item.mail}`"
+                    class="person__link"
+                  >
+                    <img
+                      src="~assets/imgs/Landing/mail.svg"
+                      alt="img"
+                    >
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -129,12 +354,30 @@ export default {
       max-width: 1220px;
       margin: 0 auto 50px;
     }
+    &__subtitle {
+      font-weight: bold;
+      font-size: 40px;
+      color: #000000;
+      margin-bottom: 30px;
+    }
+    &__role {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 60px;
+    }
     &__items {
       position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-row-gap: 60px;
-      grid-column-gap: 80px;
+      display: flex;
+      //display: grid;
+      //grid-template-columns: repeat(3, 1fr);
+      //grid-row-gap: 60px;
+      //grid-column-gap: 80px;
+    }
+    &__item {
+      &:not(:last-child) {
+        margin-right: 60px;
+      }
     }
     &__arrows {
       display: none;
