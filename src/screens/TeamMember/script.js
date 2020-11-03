@@ -7,13 +7,24 @@ export default {
     Menu,
     Footer,
   },
-  data: () => ({
-  }),
+  props: {
+    person: {
+      type: Object,
+      default: () => {},
+    },
+  },
   computed: {
-
+    languages() {
+      return [
+        'ITA',
+        'GBR',
+        'FRA',
+      ];
+    },
   },
-  mounted() {
-
+  methods: {
+    imagePath(name) {
+      return require(`assets/imgs/members/${name}.jpg`);
+    },
   },
-  methods: {},
 };

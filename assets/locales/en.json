@@ -186,148 +186,97 @@
       "text": "Cash Flash, unlike other projects in the sector, wants to give the opportunity to all the most competent people to be part of our team, with the aim of welcoming the project, excellences of all nations, to become a global project . Cash Flash was born from the entrepreneurial idea of Andrea Cerato, who shares the vision of a project focused on the opportunity to create a real ecosystem in the world of cryptocurrencies. Through the blockchain, new services are created both for the customer and for the company, creating a shorter and more performing supply chain.",
       "founders": "Founder and Investor",
       "board": "Board members",
-      "business":"Business development",
       "financial": "Financial department",
       "advisor": "Advisor sales team",
-      "items": {
-        "founders": [
-          {
-            "title": "Andrea CERATO",
-            "sub": "Founder and Investor",
-            "in": "https://www.linkedin.com/in/andrea-cerato-447b1119a/",
-            "mail": "andreacerato@cashflash.io",
-            "image": "1"
-
-          },
-          {
-            "title": "Luca CERATO",
-            "sub": "Founder and Investor",
-            "in": "https://www.linkedin.com/company/cashflash/",
-            "mail": "info@cashflash.io",
-            "image": "2"
-          }
-        ],
-        "board": [
-          {
-            "title": "Roberto BARON",
-            "sub": "Board Member",
-            "in": "https://www.linkedin.com/in/roberto-baron-3902a7168/",
-            "mail": "robertobaron@cashflash.io",
-            "image": "3"
-          },
-          {
-            "title": "Iris Collu",
-            "sub": "Board Member",
-            "in": "https://www.linkedin.com/in/iris-c-a5b403191/",
-            "mail": "info@cashflash.io",
-            "image": "4"
-          },
-          {
-            "title": "Giancarlo Giacomelli",
-            "sub": "Board Member",
-            "in": "https://www.linkedin.com/company/cashflash/",
-            "mail": "info@cashflash.io",
-            "image": "5"
-          }
-        ],
-        "business": [
-          {
-            "title": "Simone DI SABATO",
-            "sub": "Business Development Manager",
-            "in": "https://www.linkedin.com/in/simone-di-sabato-18204aaa/",
-            "mail": "simonedisabato@cashflash.io",
-            "image": "6"
-          }
-        ],
-        "financial": [
-          {
-            "title": "Roberto Pisa",
-            "sub": "Financial Director",
-            "in": "https://www.linkedin.com/company/cashflash/",
-            "mail": "info@cashflash.io",
-            "image": "7"
-          },
-          {
-            "title": "Pietro Carlini",
-            "sub": "Sales Advisor",
-            "in": "https://www.linkedin.com/company/cashflash/",
-            "mail": "info@cashflash.io",
-            "image": "8"
-          },
-          {
-            "title": "Carlo Antonio Mazzola",
-            "sub": "Financial Advisor",
-            "in": "https://www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
-            "mail": "info@cashflash.io",
-            "image": "9"
-
-          }
-        ],
-        "advisor": [
-          {
-            "title": "Massimo Camminati",
-            "sub": "Sales",
-            "in": "https://www.linkedin.com/company/cashflash/",
-            "mail": "info@cashflash.io",
-            "image": "10"
-
-          }
-        ]
-      },
-      "itemsOld": [
+      "items": [
         {
           "title": "Andrea CERATO",
           "sub": "Founder and Investor",
           "in": "https://www.linkedin.com/in/andrea-cerato-447b1119a/",
-          "mail": "andreacerato@cashflash.io"
+          "inNick": "www.linkedin.com/in/iris-c-a5b403191",
+          "mail": "andreacerato@cashflash.io",
+          "image": "1",
+          "role":"founders",
+          "description": "some text",
+          "language": {
+            "GBR": "79",
+            "ITA": "20",
+            "FRA": "98"
+          },
+          "education": {
+            "0": {
+              "title": "Univer 1",
+              "text": "qweqwqweqwe"
+            },
+            "1": {
+              "title": "Univer 2",
+              "text": "qweqwqweqwe 123123 123123"
+            }
+          }
         },
         {
           "title": "Luca CERATO",
           "sub": "Founder and Investor",
           "in": "https://www.linkedin.com/company/cashflash/",
-          "mail": "info@cashflash.io"
+          "mail": "info@cashflash.io",
+          "image": "2",
+          "role": "founders"
         },
         {
           "title": "Roberto BARON",
           "sub": "Board Member",
           "in": "https://www.linkedin.com/in/roberto-baron-3902a7168/",
-          "mail": "robertobaron@cashflash.io"
+          "mail": "robertobaron@cashflash.io",
+          "image": "3",
+          "role": "board"
         },
         {
           "title": "Iris Collu",
           "sub": "Board Member",
           "in": "https://www.linkedin.com/in/iris-c-a5b403191/",
-          "mail": "info@cashflash.io"
+          "mail": "info@cashflash.io",
+          "image": "4",
+          "role":  "board"
         },
         {
           "title": "Giancarlo Giacomelli",
           "sub": "Board Member",
           "in": "https://www.linkedin.com/company/cashflash/",
-          "mail": "info@cashflash.io"
+          "mail": "info@cashflash.io",
+          "image": "5",
+          "role":  "board"
         },
         {
           "title": "Roberto Pisa",
           "sub": "Financial Director",
           "in": "https://www.linkedin.com/company/cashflash/",
-          "mail": "info@cashflash.io"
-        },
-        {
-          "title": "Simone DI SABATO",
-          "sub": "Business Development Manager",
-          "in": "https://www.linkedin.com/in/simone-di-sabato-18204aaa/",
-          "mail": "simonedisabato@cashflash.io"
-        },
-        {
-          "title": "Carlo Antonio Mazzola",
-          "sub": "Financial Advisor",
-          "in": "https://www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
-          "mail": "info@cashflash.io"
+          "mail": "info@cashflash.io",
+          "image": "7",
+          "role": "financial"
         },
         {
           "title": "Pietro Carlini",
           "sub": "Sales Advisor",
           "in": "https://www.linkedin.com/company/cashflash/",
-          "mail": "info@cashflash.io"
+          "mail": "info@cashflash.io",
+          "image": "8",
+          "role": "financial"
+        },
+        {
+          "title": "Carlo Antonio Mazzola",
+          "sub": "Financial Advisor",
+          "in": "https://www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
+          "mail": "info@cashflash.io",
+          "image": "9",
+          "role": "financial"
+        },
+        {
+          "title": "Massimo Camminati",
+          "sub": "Sales",
+          "in": "https://www.linkedin.com/company/cashflash/",
+          "mail": "info@cashflash.io",
+          "image": "10",
+          "role": "advisor"
         }
       ]
     },
@@ -344,6 +293,11 @@
     "serverEr": "Server error"
   },
   "main": {
+    "languages": {
+      "FRA": "Franch",
+      "GBR": "English",
+      "ITA": "Italian"
+    },
     "pageNotAvailabelModalTitle": "Cooming soon",
     "pageNotAvailabelModalText": "We're working hard on the feature. CFT tokens Purchase will be available very soon.",
     "pageNotFound": "This page not found(",
@@ -450,7 +404,6 @@
       "sendCashFlash": "Send within CashFlash",
       "sendOutCashFlash": "Send outside CashFlash",
       "code": "Code",
-      "fee": "Fee",
       "recipient": "Recipient",
       "sendBtn": "Send",
       "successTitle": "Success",

@@ -24,16 +24,15 @@
             class="team__items"
           >
             <div
-              v-for="(item, i) in persons[role]"
+              v-for="(item, i) in getPersonsByRole(role)"
               :key="`person_${i}`"
               class="person team__item"
+              @click="toMember(item.index)"
             >
-              <div class="person__ava">
-                <img
-                  :src="imagePath(item.image)"
-                  alt="img"
-                >
-              </div>
+              <div
+                class="person__ava"
+                :style="`background-image: url(${imagePath(item.image)})`"
+              />
               <div class="person__info">
                 <div class="person__title">
                   {{ item.title }}
@@ -100,15 +99,20 @@ export default {
     roles: [
       'founders',
       'board',
-      'business',
       'financial',
       'advisor',
     ],
   }),
   mounted() {
-    this.persons = this.$t('land.team.items');
+    this.persons = this.$t('land.team.items').map((item, i) => ({ ...item, index: i }));
   },
   methods: {
+    getPersonsByRole(role) {
+      return this.persons.filter((item) => item.role === role);
+    },
+    toMember(i) {
+      this.$router.push(`/member/${i}`);
+    },
     setPrevPage() {
       if (this.page !== 0) {
         this.page -= 1;
@@ -119,8 +123,8 @@ export default {
         this.page += 1;
       }
     },
-    imagePath(i) {
-      return require(`assets/imgs/Landing/ava_${i}.png`);
+    imagePath(name) {
+      return require(`assets/imgs/members/${name}.jpg`);
     },
   },
 };
@@ -171,6 +175,7 @@ export default {
       display: none;
     }
     .person {
+      cursor: pointer;
       background: $grey-bg;
       border-radius: 30px;
       display: flex;
@@ -193,6 +198,12 @@ export default {
         border: 3px solid $grey;
         border-radius: 34px;
         overflow: hidden;
+        width: 185px;
+        height: 185px;
+        background-size: cover;
+        background-position: center center;
+        img {
+        }
       }
       &__info {
         margin: 0 0 0 36px;
