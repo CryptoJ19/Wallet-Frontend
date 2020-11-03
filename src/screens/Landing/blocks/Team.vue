@@ -228,6 +228,11 @@ export default {
       }
     }
     @media (max-width: 1700px) {
+      &__item {
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
       .person {
         padding: 12px;
         &__title {
@@ -239,7 +244,7 @@ export default {
           margin: 0 0 10px;
         }
         &__ava {
-          width: 110px;
+          //width: 110px;
         }
         &__info {
           margin: 0 0 0 22px;
@@ -321,6 +326,16 @@ export default {
       //  min-width: 1780px;
       //}
     }
+    @media (max-width: 575px) {
+      .person {
+        border-radius: 10px;
 
+        &__ava {
+          width: 100px;
+          height: 100px;
+          border-radius: 10px;
+        }
+      }
+    }
   }
 </style>
