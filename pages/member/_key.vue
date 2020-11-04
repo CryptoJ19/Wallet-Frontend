@@ -20,6 +20,9 @@ export default {
     },
   },
   mounted() {
+    if (this.BaseUrl === 'https://cashflash.io/api') {
+      this.$router.push('/');
+    }
     if (this.$route.params.key === undefined
       || this.persons[this.$route.params.key] === undefined) {
       this.$router.push('/');
