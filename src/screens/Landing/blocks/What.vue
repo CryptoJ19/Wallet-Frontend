@@ -87,6 +87,7 @@
           padding: 40px 0 0 60px;
           position: absolute;
           display: flex;
+          max-width: 330px;
         }
       }
       &__preface {
