@@ -111,9 +111,7 @@ export default {
       return this.persons.filter((item) => item.role === role);
     },
     toMember(i) {
-      if (this.BaseUrl !== 'https://cashflash.io/api') {
-        this.$router.push(`/member/${i}`);
-      }
+      this.$router.push(`/member/${i}`);
     },
     setPrevPage() {
       if (this.page !== 0) {
