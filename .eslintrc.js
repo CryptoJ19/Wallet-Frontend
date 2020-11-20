@@ -28,6 +28,7 @@ module.exports = {
     'no-useless-escape': 'off',
     'no-console': 'off',
     'func-names': 'off',
-    'linebreak-style': 'off'
+    'linebreak-style': 'off',
+    'consistent-return': 'off'
   }
 }

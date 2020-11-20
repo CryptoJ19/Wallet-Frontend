@@ -13,16 +13,14 @@ export default {
       default: () => {},
     },
   },
-  computed: {
-    languages() {
-      return [
-        'ITA',
-        'GBR',
-        'FRA',
-      ];
-    },
-  },
   methods: {
+    getFlagImg(language) {
+      try {
+        return require(`assets/imgs/flags/${language}.svg`);
+      } catch {
+        return '';
+      }
+    },
     imagePath(name) {
       return require(`assets/imgs/members/${name}.jpg`);
     },

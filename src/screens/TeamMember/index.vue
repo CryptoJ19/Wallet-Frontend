@@ -51,17 +51,17 @@
                     {{ person.mail }}
                   </div>
                 </div>
-                <div class="contact__item">
-                  <div class="contact__icon">
-                    <img
-                      src="~assets/imgs/icons/member__global.svg"
-                      alt="bg"
-                    >
-                  </div>
-                  <div class="contact__value">
-                    example@email.ru
-                  </div>
-                </div>
+                <!--                <div class="contact__item">-->
+                <!--                  <div class="contact__icon">-->
+                <!--                    <img-->
+                <!--                      src="~assets/imgs/icons/member__global.svg"-->
+                <!--                      alt="bg"-->
+                <!--                    >-->
+                <!--                  </div>-->
+                <!--                  <div class="contact__value">-->
+                <!--                    example@email.ru-->
+                <!--                  </div>-->
+                <!--                </div>-->
                 <div
                   v-if="person.inNick"
                   class="contact__item"
@@ -73,20 +73,25 @@
                     >
                   </div>
                   <div class="contact__value">
-                    {{ person.inNick }}
-                  </div>
-                </div>
-                <div class="contact__item">
-                  <div class="contact__icon">
-                    <img
-                      src="~assets/imgs/icons/member__map.svg"
-                      alt="bg"
+                    <a
+                      target="_blank"
+                      :href="`http://${person.inNick}`"
                     >
-                  </div>
-                  <div class="contact__value">
-                    example@email.ru
+                      {{ person.inNick }}
+                    </a>
                   </div>
                 </div>
+                <!--                <div class="contact__item">-->
+                <!--                  <div class="contact__icon">-->
+                <!--                    <img-->
+                <!--                      src="~assets/imgs/icons/member__map.svg"-->
+                <!--                      alt="bg"-->
+                <!--                    >-->
+                <!--                  </div>-->
+                <!--                  <div class="contact__value">-->
+                <!--                    example@email.ru-->
+                <!--                  </div>-->
+                <!--                </div>-->
               </div>
               <div
                 v-if="person.education && Object.keys(person.education).length !== 0"
@@ -139,7 +144,7 @@
                   >
                     <div class="language__icon">
                       <img
-                        :src="require(`assets/imgs/flags/${language}.svg`)"
+                        :src="getFlagImg(language)"
                         alt="flag"
                       >
                     </div>

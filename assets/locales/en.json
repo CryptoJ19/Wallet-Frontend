@@ -193,24 +193,38 @@
           "title": "Andrea CERATO",
           "sub": "Founder and Investor",
           "in": "https://www.linkedin.com/in/andrea-cerato-447b1119a/",
-          "inNick": "www.linkedin.com/in/iris-c-a5b403191",
+          "inNick": "www.linkedin.com/in/andrea-cerato-447b1119a/",
           "mail": "andreacerato@cashflash.io",
           "image": "1",
           "role":"founders",
-          "description": "some text",
+          "description": "35 years of Verona, graduated civil and industrial electronic expert, he subsequently attended the Cybernetic school in Bucharest with a specialization in computer programming. Specialized in the development of programming in payment systems, including both banking and military software, also specialized in algorithms for military use. In 2006 he created Gray screen, an efficient encrypted system never violated. Specialized in large public contracts such as construction of hospitals, churches and highways. He also designed and created roundabouts and roundabouts. Specialized in anti-fraud security systems, such as ATM and Pos with advanced technologies, such as tamper-proof optical sensors, intelligent micro sensors and sensors. Creator of the first self-control systems with remote RS232 port with GSM Telit modules, creation of GPS and environmental listening with GSM modules for satellites, micro-lights and remote control for the control of remote self-control on multiple industrial machinery, such as washing machines , alarms, emergency sensors, water flooding, gas leaks, etc.Consultant in government negotiations with various foreign states and top secret military entities, contracts for the procurement of bridges, schools, aqueducts, churches and optical fiber in underdeveloped countries and finally negotiations for sales of mines in gold, diamond and oil fields.Through his knowledge, he knows payment methods for the management of cash flows, he widely knows the need and the gaps of the global financial system, in 2019 he decides to found Cash Flash, wanting to contribute with all his know-how to create a cryptocurrency and related blockchain to improve the current state of world marketing.",
           "language": {
-            "GBR": "79",
-            "ITA": "20",
-            "FRA": "98"
+            "ITA": "100",
+            "GBR": "75",
+            "SPA": "100",
+            "ROM": "100",
+            "POR": "90"
           },
           "education": {
             "0": {
-              "title": "Univer 1",
-              "text": "qweqwqweqwe"
+              "title": "Computer programming",
+              "text": "Faculty of Cybernetics, University of Bucharest"
             },
             "1": {
-              "title": "Univer 2",
-              "text": "qweqwqweqwe 123123 123123"
+              "title": "Payment systems development",
+              "text": "Creating algorithms for security"
+            },
+            "2": {
+              "title": "Protection systems development",
+              "text": "Computer encryption, Infrastructure Security"
+            },
+            "3": {
+              "title": "Security systems development",
+              "text": "Creating anti-fraud systems, For ATM security, POS"
+            },
+            "4": {
+              "title": "Protection systems development",
+              "text": "Autocontrollo for satellites, Infrastructure Security"
             }
           }
         },
@@ -218,65 +232,226 @@
           "title": "Luca CERATO",
           "sub": "Founder and Investor",
           "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
           "mail": "info@cashflash.io",
           "image": "2",
-          "role": "founders"
+          "role":"founders",
+          "description": "",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": "European Computer License",
+              "text": "E.C.D.L."
+            },
+            "1": {
+              "title": "Security course",
+              "text": "Security Supervisor, London"
+            },
+            "2": {
+              "title": "Security course",
+              "text": "C.C.T.V. Operator"
+            }
+          }
         },
         {
           "title": "Roberto BARON",
           "sub": "Board Member",
           "in": "https://www.linkedin.com/in/roberto-baron-3902a7168/",
+          "inNick": "www.linkedin.com/in/roberto-baron-3902a7168/",
           "mail": "robertobaron@cashflash.io",
           "image": "3",
-          "role": "board"
+          "role":"board",
+          "description": "33 years of Noventa Vicentina. Graduated as an electronic expert, entrepreneur since 2004 he has embarked on the IT path aimed at the security of multinational companies, concerning industrial espionage and advanced alarms. This activity led him to London, where he still lives today, successfully managing IT security companies. Passionate about crypto currencies since 2015, he wants to participate in creating an innovative service to be used every day for each commercial sector, facilitating its customers but also helping to improve families in daily use.",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         },
         {
-          "title": "Iris Collu",
+          "title": "Iris COLLU",
           "sub": "Board Member",
           "in": "https://www.linkedin.com/in/iris-c-a5b403191/",
+          "inNick": "www.linkedin.com/in/iris-c-a5b403191/",
           "mail": "info@cashflash.io",
           "image": "4",
-          "role":  "board"
+          "role":"board",
+          "description": "",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         },
         {
-          "title": "Giancarlo Giacomelli",
+          "title": "Giancarlo GIACOMELLI",
           "sub": "Board Member",
           "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
           "mail": "info@cashflash.io",
           "image": "5",
-          "role":  "board"
+          "role":"board",
+          "description": "",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         },
         {
-          "title": "Roberto Pisa",
+          "title": "Roberto PISA",
           "sub": "Financial Director",
           "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
           "mail": "info@cashflash.io",
           "image": "7",
-          "role": "financial"
+          "role":"financial",
+          "description": "58 years old, born in New York to an English mother and an Italian father, he lived for over two years in New York, London, Athens, Beijing, Rome, Strasbourg, Brussels and in the United States (Hendersonville NC- Fairfield CT). He obtained French Maurità (Bac Mathematics section), a degree from Bocconi University in Political Economy, an MBA while working at the University of Leuven (B), a PIM diploma from the HEC in Paris.In 2013 he founded the CL Partners company, which operates as Advisory in operational and financial restructuring projects, for Banks, Funds or industrial companies.Previously he worked for 7 years in one of the major European PE funds as Senior Partner, where he managed the restructuring of portfolio companies and where he followed some investment initiatives. He also worked for several industrial companies for 22 years and was, among other things, President and CEO of GE Lighting Systems, Chief Executive Officer of Pirelli SpA, CEO of Euralcom, CRO of the Fiat Group, CEO of Sirti SpA.Early in his career, he worked for McKinsey & Co.Known languages: Italian, English and French.",
+          "language": {
+            "ITA": "100",
+            "GBR": "75",
+            "FRA": "100"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         },
         {
-          "title": "Pietro Carlini",
+          "title": "Pietro CARLINI",
           "sub": "Sales Advisor",
           "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
           "mail": "info@cashflash.io",
           "image": "8",
-          "role": "financial"
+          "role":"financial",
+          "description": "",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         },
         {
-          "title": "Carlo Antonio Mazzola",
+          "title": "Carlo Antonio MAZZOLLA",
           "sub": "Financial Advisor",
           "in": "https://www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
+          "inNick": "www.linkedin.com/in/carlo-a-mazzola-5a117b2/",
           "mail": "info@cashflash.io",
           "image": "9",
-          "role": "financial"
+          "role":"financial",
+          "description": "",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         },
         {
-          "title": "Massimo Camminati",
+          "title": "Massimo CAMMINATI",
           "sub": "Sales",
           "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
           "mail": "info@cashflash.io",
           "image": "10",
-          "role": "advisor"
+          "role":"advisor",
+          "description": "",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         }
       ]
     },
@@ -296,7 +471,10 @@
     "languages": {
       "FRA": "Franch",
       "GBR": "English",
-      "ITA": "Italian"
+      "ITA": "Italian",
+      "SPA": "Spain",
+      "ROM": "Romanian",
+      "POR": "Portuguese"
     },
     "pageNotAvailabelModalTitle": "Cooming soon",
     "pageNotAvailabelModalText": "We're working hard on the feature. CFT tokens Purchase will be available very soon.",
