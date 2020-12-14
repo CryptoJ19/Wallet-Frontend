@@ -120,6 +120,17 @@
   }
 }
 
+@mixin btn-disabled {
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  background: rgba(84, 89, 95, 0.5);;
+  height: 56px;
+  padding: 0 55px;
+  transition: .3s;
+}
+
 @mixin btn-yellow-out {
   border-radius: 20px;
   font-weight: bold;
