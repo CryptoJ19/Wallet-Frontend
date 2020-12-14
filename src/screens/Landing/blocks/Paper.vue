@@ -100,11 +100,11 @@ export default {
       height: 25px;
       margin: 0 0 0 20px;
       &--disabled{
+        @include btn-disabled;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 100%;
-        @include btn-disabled;
         padding: 0;
         width: 25px;
         height: 25px;
