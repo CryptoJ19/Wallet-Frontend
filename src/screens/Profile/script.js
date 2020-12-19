@@ -1,4 +1,4 @@
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import ClickOutside from 'vue-click-outside';
 import DatePicker from 'vue2-datepicker';
 import moment from 'moment';
@@ -129,6 +129,9 @@ export default {
       'getGAEnabled',
       'getDocFile',
       'getCountris',
+      'verificationError',
+      'verificationErrorReasons',
+      'defaultVerificationError',
     ]),
     fieldsRules() {
       const { countryFields } = this.getProfile;
@@ -139,8 +142,9 @@ export default {
           // console.log(countryFields[itemTab]);
           rules[itemTab][item] = {
             type: countryFields[itemTab].fields[item],
-            required: countryFields[itemTab].required
-              && countryFields[itemTab].required.indexOf(item) !== -1,
+            required:
+              countryFields[itemTab].required &&
+              countryFields[itemTab].required.indexOf(item) !== -1,
           };
         });
       });
@@ -196,15 +200,18 @@ export default {
       'fetchDelDocFiles',
       'fetchEditFormPerson',
       'fetchVerifyProfile',
+      'setErrorTextFromResponse',
     ]),
+    ...mapMutations(['setVerificationError', 'setDefaultVerificationError']),
     createDate(item) {
       let date;
       if (this.fieldsDatePickerValue[item] === null || this.fieldsDatePickerValue[item] === false) {
         date = '';
       } else {
-        date = new Date(new Date(this.fieldsDatePickerValue[item])
-          - new Date(this.fieldsDatePickerValue[item])
-            .getTimezoneOffset() * 60 * 1000).toISOString();
+        date = new Date(
+          new Date(this.fieldsDatePickerValue[item]) -
+            new Date(this.fieldsDatePickerValue[item]).getTimezoneOffset() * 60 * 1000,
+        ).toISOString();
       }
       return date;
     },
@@ -213,8 +220,7 @@ export default {
       const changesFields = [];
       const formKey = Object.keys(profileForm)[i];
       Object.keys(profileForm[formKey]).forEach((item) => {
-        if (this.localFieldsValue[formKey][item]
-          !== this.getProfile.profileForm[formKey][item]) {
+        if (this.localFieldsValue[formKey][item] !== this.getProfile.profileForm[formKey][item]) {
           changesFields.push(item);
         }
       });
@@ -306,14 +312,18 @@ export default {
       if (res.ok) {
         this.$bvModal.show('profile-verification-send-modal');
       } else {
-        this.$bvModal.show('profile-verification-send-modal_fail');
+        await this.setErrorTextFromResponse(res);
+        this.showVerificationErrorModal();
       }
     },
     cutString(value) {
       const centerIndex = Math.ceil(value.length / 2);
       if (value.length > 12) {
         const lengthPoints = value.length - 10;
-        return `${value.substr(0, centerIndex - (lengthPoints / 2))}${'.'.repeat(3)}${value.substr(centerIndex + (lengthPoints / 2), value.length)}`;
+        return `${value.substr(0, centerIndex - lengthPoints / 2)}${'.'.repeat(3)}${value.substr(
+          centerIndex + lengthPoints / 2,
+          value.length,
+        )}`;
       }
       return value;
     },
@@ -329,14 +339,20 @@ export default {
     async handleImageDoc(e) {
       this.refrashFieldEr();
       const fileObj = e.target.files[0];
-      if (document.getElementsByClassName('doc-file-input')[0]) document.getElementsByClassName('doc-file-input')[0].value = null;
-      if (document.getElementsByClassName('doc-file-input')[1]) document.getElementsByClassName('doc-file-input')[1].value = null;
+      if (document.getElementsByClassName('doc-file-input')[0])
+        document.getElementsByClassName('doc-file-input')[0].value = null;
+      if (document.getElementsByClassName('doc-file-input')[1])
+        document.getElementsByClassName('doc-file-input')[1].value = null;
       if (e.currentTarget !== null) {
-        if (fileObj.type !== 'image/png' && fileObj.type !== 'image/jpeg' && fileObj.type !== 'application/pdf') {
+        if (
+          fileObj.type !== 'image/png' &&
+          fileObj.type !== 'image/jpeg' &&
+          fileObj.type !== 'application/pdf'
+        ) {
           this.setFieldEr('document', 'filePicker', this.$t('profile.filed.types'));
           return null;
         }
-        if ((fileObj.size / 1024 / 1024) > 2) {
+        if (fileObj.size / 1024 / 1024 > 2) {
           this.setFieldEr('document', 'filePicker', this.$t('profile.filed.tooLarge'));
           return null;
         }
@@ -425,21 +441,24 @@ export default {
       this.fieldsDropDown.countryDoc = this.localFieldsValue.document.country || '';
     },
     setDatePickers() {
-      this.fieldsDatePickerValue.birthDate = this.localFieldsValue.person.birthDate !== ''
-        && new Date(Date
-          .parse(this.localFieldsValue.person.birthDate));
-      this.fieldsDatePickerValue.expireDate = this.localFieldsValue.document.expireDate !== ''
-        && new Date(Date
-          .parse(this.localFieldsValue.document.expireDate));
-      this.fieldsDatePickerValue.issueDate = this.localFieldsValue.document.issueDate !== ''
-        && new Date(Date
-          .parse(this.localFieldsValue.document.issueDate));
+      this.fieldsDatePickerValue.birthDate =
+        this.localFieldsValue.person.birthDate !== '' &&
+        new Date(Date.parse(this.localFieldsValue.person.birthDate));
+      this.fieldsDatePickerValue.expireDate =
+        this.localFieldsValue.document.expireDate !== '' &&
+        new Date(Date.parse(this.localFieldsValue.document.expireDate));
+      this.fieldsDatePickerValue.issueDate =
+        this.localFieldsValue.document.issueDate !== '' &&
+        new Date(Date.parse(this.localFieldsValue.document.issueDate));
     },
     checkEr(tab) {
       const tabKey = this.fieldsTabsKey[tab];
       Object.keys(this.localFieldsValue[tabKey]).forEach((item) => {
         if (this.fieldsRules[tabKey] && this.fieldsRules[tabKey][item]) {
-          if (this.fieldsRules[tabKey][item].required && this.localFieldsValue[tabKey][item] === '') {
+          if (
+            this.fieldsRules[tabKey][item].required &&
+            this.localFieldsValue[tabKey][item] === ''
+          ) {
             // console.log(this.localFieldsValue[tabKey][item], tabKey, item, 'req');
             this.fieldsEr[tabKey][item] = this.$t('profile.req');
             const erCopy = {};
@@ -462,9 +481,10 @@ export default {
           // }
         }
       });
-      const isEr = (Object.keys(this.fieldsEr[tabKey])
-        .map((item) => this.fieldsEr[tabKey][item] !== '').indexOf(true) === -1
-      );
+      const isEr =
+        Object.keys(this.fieldsEr[tabKey])
+          .map((item) => this.fieldsEr[tabKey][item] !== '')
+          .indexOf(true) === -1;
       return isEr;
     },
     async saveUser(tab) {
@@ -558,9 +578,7 @@ export default {
 
       this.setDefaultProfile();
     },
-    clearEr() {
-
-    },
+    clearEr() {},
     setUserEditMode(i) {
       this.userEditMode = i;
     },
@@ -624,6 +642,9 @@ export default {
       this.fieldsTitles.communication.cellphone = this.$t('profile.communication.cellphone');
       this.fieldsTitles.communication.email = this.$t('profile.communication.email');
       this.fieldsTitles.communication.ipAddress = this.$t('profile.communication.ipAddress');
+    },
+    showVerificationErrorModal() {
+      this.$bvModal.show('profile-verification-send-modal_fail');
     },
   },
   components: {

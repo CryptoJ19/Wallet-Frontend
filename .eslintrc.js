@@ -4,18 +4,13 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
-  extends: [
-    'plugin:vue/recommended',
-    'airbnb-base'
-  ],
-  plugins: [
-    'vue'
-  ],
+  extends: ['plugin:vue/recommended', 'airbnb-base', 'prettier'],
+  plugins: ['vue'],
   rules: {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
@@ -29,6 +24,6 @@ module.exports = {
     'no-console': 'off',
     'func-names': 'off',
     'linebreak-style': 'off',
-    'consistent-return': 'off'
-  }
-}
+    'consistent-return': 'off',
+  },
+};
