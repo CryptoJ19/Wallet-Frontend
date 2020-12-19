@@ -10,10 +10,10 @@ export default {
   actions: {
     setErrorTextFromResponse({ commit, getters }, res) {
       if (
-        res?.data?.errors &&
-        res?.data?.errors[0] &&
-        res?.data?.errors[0]?.field &&
-        res?.data?.errors[0]?.reason
+        res?.data?.errors
+        && res?.data?.errors[0]
+        && res?.data?.errors[0]?.field
+        && res?.data?.errors[0]?.reason
       ) {
         const error = res.data?.errors[0];
         const errorText = `Please check field ${
