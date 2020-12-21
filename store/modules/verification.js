@@ -8,19 +8,12 @@ export default {
     },
   },
   actions: {
-    setErrorTextFromResponse({ commit, getters }, res) {
-      if (
-        res?.data?.errors &&
-        res?.data?.errors[0] &&
-        res?.data?.errors[0]?.field &&
-        res?.data?.errors[0]?.reason
-      ) {
-        const error = res.data?.errors[0];
-        const errorText = `Please check field ${
-          error.field
-        }. Reason: ${getters.verificationErrorReason(error.reason)}`;
+    setErrorTextFromResponse({ commit }, res) {
+      try {
+        const errorText = `Verification error. ${res.data.data.Record.DatasourceResults[0].Errors[0].Message}`;
+        if (!errorText) throw new Error('Verification error');
         commit('setVerificationError', errorText);
-      } else {
+      } catch (error) {
         commit('setDefaultVerificationError');
       }
     },
