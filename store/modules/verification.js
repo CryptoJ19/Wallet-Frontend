@@ -8,20 +8,32 @@ export default {
     },
   },
   actions: {
-    setErrorTextFromResponse({ commit, getters }, res) {
-      if (
-        res?.data?.errors
-        && res?.data?.errors[0]
-        && res?.data?.errors[0]?.field
-        && res?.data?.errors[0]?.reason
-      ) {
-        const error = res.data?.errors[0];
-        const errorText = `Please check field ${
-          error.field
-        }. Reason: ${getters.verificationErrorReason(error.reason)}`;
-        commit('setVerificationError', errorText);
-      } else {
-        commit('setDefaultVerificationError');
+    async setErrorTextFromResponse({ commit, dispatch }, res) {
+      const erorrText = await dispatch('tryToGetErrors', res);
+      const otherErrors = await dispatch('tryToGetOTherErrors', res);
+
+      const result = erorrText || otherErrors || null;
+      if (result) commit('setVerificationError', result);
+      else commit('setDefaultVerificationError');
+    },
+    tryToGetErrors(_, res) {
+      try {
+        const errorText = `Verification error. ${res.data.data.Record.DatasourceResults[0].Errors[0].Message}`;
+        return errorText;
+      } catch (error) {
+        return null;
+      }
+    },
+    tryToGetOTherErrors(_, res) {
+      try {
+        const array = res.data.data.Record.DatasourceResults[0].DatasourceFields;
+        const field = array.find((el) => el.Status === 'nomatch' || el.Status === 'missing');
+        if (field) {
+          return `Verification error. Please check field ${field.FieldName}`;
+        }
+        return null;
+      } catch (error) {
+        return null;
       }
     },
   },
