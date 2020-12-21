@@ -8,13 +8,32 @@ export default {
     },
   },
   actions: {
-    setErrorTextFromResponse({ commit }, res) {
+    async setErrorTextFromResponse({ commit, dispatch }, res) {
+      const erorrText = await dispatch('tryToGetErrors', res);
+      const otherErrors = await dispatch('tryToGetOTherErrors', res);
+
+      const result = erorrText || otherErrors || null;
+      if (result) commit('setVerificationError', result);
+      else commit('setDefaultVerificationError');
+    },
+    tryToGetErrors(_, res) {
       try {
         const errorText = `Verification error. ${res.data.data.Record.DatasourceResults[0].Errors[0].Message}`;
-        if (!errorText) throw new Error('Verification error');
-        commit('setVerificationError', errorText);
+        return errorText;
       } catch (error) {
-        commit('setDefaultVerificationError');
+        return null;
+      }
+    },
+    tryToGetOTherErrors(_, res) {
+      try {
+        const array = res.data.data.Record.DatasourceResults[0].DatasourceFields;
+        const field = array.find((el) => el.Status === 'nomatch' || el.Status === 'missing');
+        if (field) {
+          return `Verification error. Please check field ${field.FieldName}`;
+        }
+        return null;
+      } catch (error) {
+        return null;
       }
     },
   },
