@@ -1,5 +1,8 @@
 import {
-  customFetch, customFetchToken, getHeaderWithToken, customFetchFormdata,
+  customFetch,
+  customFetchToken,
+  getHeaderWithToken,
+  customFetchFormdata,
 } from '../../helpers/customFetch';
 
 const apiUrl = process.env.BASE_URL;
@@ -7,6 +10,7 @@ const apiUrl = process.env.BASE_URL;
 export default {
   state: {
     profile: {},
+    countryFields: {},
     transactions: {},
     isAuthorized: false,
     docFiles: [],
@@ -34,10 +38,7 @@ export default {
 
     async fetchGetCurrencies(ctx) {
       const res = await customFetchToken(ctx, async () => {
-        const rawResponse = await customFetch(
-          `${apiUrl}/currencies`,
-          'GET',
-        );
+        const rawResponse = await customFetch(`${apiUrl}/currencies`, 'GET');
         const content = await rawResponse.json();
         return content;
       });
@@ -50,11 +51,7 @@ export default {
     async fetchGetMyBonuses(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/purchase/my-bonuses`,
-          'GET',
-          header,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/purchase/my-bonuses`, 'GET', header);
         const content = await rawResponse.json();
         return content;
       });
@@ -65,10 +62,7 @@ export default {
     },
 
     async fetchGetBonusesList(ctx) {
-      const rawResponse = await customFetch(
-        `${apiUrl}/purchase/bonuses`,
-        'GET',
-      );
+      const rawResponse = await customFetch(`${apiUrl}/purchase/bonuses`, 'GET');
       const res = await rawResponse.json();
       if (res.ok) {
         ctx.commit('updateBonuses', res.result);
@@ -78,10 +72,7 @@ export default {
 
     async fetchGetCountries(ctx) {
       const res = await customFetchToken(ctx, async () => {
-        const rawResponse = await customFetch(
-          `${apiUrl}/auth/get-countries`,
-          'GET',
-        );
+        const rawResponse = await customFetch(`${apiUrl}/auth/get-countries`, 'GET');
         const content = await rawResponse.json();
         return content;
       });
@@ -108,11 +99,7 @@ export default {
     async fetchVerifyProfile(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/profile/verify`,
-          'PUT',
-          header,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/profile/verify`, 'PUT', header);
         const content = await rawResponse.json();
         return content;
       });
@@ -124,11 +111,7 @@ export default {
     async fetchGetDocFiles(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/profile/me/documents`,
-          'GET',
-          header,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/profile/me/documents`, 'GET', header);
         const content = await rawResponse.json();
         return content;
       });
@@ -173,12 +156,7 @@ export default {
     async fetchEditProfilePassword(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/profile/me/password`,
-          'PUT',
-          header,
-          data,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/profile/me/password`, 'PUT', header, data);
         const content = await rawResponse.json();
         return content;
       });
@@ -205,12 +183,7 @@ export default {
     async fetchEditProfile(ctx, data) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/profile/me`,
-          'PUT',
-          header,
-          data,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/profile/me`, 'PUT', header, data);
         const content = await rawResponse.json();
         return content;
       });
@@ -221,11 +194,7 @@ export default {
     async fetchSendValidation(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/auth/send-validation`,
-          'GET',
-          header,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/auth/send-validation`, 'GET', header);
         const content = await rawResponse.json();
         return content;
       });
@@ -239,11 +208,7 @@ export default {
     async fetchGetProfile(ctx) {
       const res = await customFetchToken(ctx, async () => {
         const header = getHeaderWithToken();
-        const rawResponse = await customFetch(
-          `${apiUrl}/profile/me`,
-          'GET',
-          header,
-        );
+        const rawResponse = await customFetch(`${apiUrl}/profile/me`, 'GET', header);
         const content = await rawResponse.json();
         return content;
       });
@@ -254,35 +219,20 @@ export default {
       return res;
     },
     async fetchForgotChange(ctx, data) {
-      const rawResponse = await customFetch(
-        `${apiUrl}/auth/restore/change`,
-        'POST',
-        null,
-        data,
-      );
+      const rawResponse = await customFetch(`${apiUrl}/auth/restore/change`, 'POST', null, data);
       const content = await rawResponse.json();
       console.log('fetchForgotChange', content);
       return content;
     },
 
     async fetchForgotSend(ctx, data) {
-      const rawResponse = await customFetch(
-        `${apiUrl}/auth/restore/send`,
-        'POST',
-        null,
-        data,
-      );
+      const rawResponse = await customFetch(`${apiUrl}/auth/restore/send`, 'POST', null, data);
       const content = await rawResponse.json();
       console.log('fetchForgotSend', content);
       return content;
     },
     async fetchSignin(ctx, data) {
-      const rawResponse = await customFetch(
-        `${apiUrl}/auth/login`,
-        'POST',
-        null,
-        data.data,
-      );
+      const rawResponse = await customFetch(`${apiUrl}/auth/login`, 'POST', null, data.data);
       const content = await rawResponse.json();
 
       if (content.ok) {
@@ -298,12 +248,7 @@ export default {
       return content;
     },
     async fetchSignup(ctx, data) {
-      const rawResponse = await customFetch(
-        `${apiUrl}/auth/register`,
-        'POST',
-        null,
-        data,
-      );
+      const rawResponse = await customFetch(`${apiUrl}/auth/register`, 'POST', null, data);
       const content = await rawResponse.json();
       console.log('fetchSignup', content);
       if (content.ok) {
@@ -381,6 +326,9 @@ export default {
     updateMyBonuses(state, value) {
       state.myBonuses = value.bonuses;
     },
+    updateCountryFields(state, value) {
+      state.countryFields = { ...value };
+    },
   },
   getters: {
     getTransactionCount(state) {
@@ -441,11 +389,15 @@ export default {
     getMyBonuses(state) {
       return state.myBonuses.reverse();
     },
-    getCurrencyByName: (state) => (currency) => state.currencies.find((item) => {
-      if (item.id.toUpperCase() === currency) {
-        return item;
-      }
-      return false;
-    }),
+    getCountryFields(state) {
+      return state.countryFields;
+    },
+    getCurrencyByName: (state) => (currency) =>
+      state.currencies.find((item) => {
+        if (item.id.toUpperCase() === currency) {
+          return item;
+        }
+        return false;
+      }),
   },
 };
