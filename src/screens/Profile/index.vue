@@ -15,7 +15,7 @@
     />
     <ModalResponse
       :id="'profile-verification-send-modal_fail'"
-      :text="verificationError || 'Verification error'"
+      :text="verificationError || 'Verification error. Please check all fields'"
       :title="$t('profile.progressVer')"
     />
     <div v-if="false && getProfile.verificationStatus === 0" class="steps">

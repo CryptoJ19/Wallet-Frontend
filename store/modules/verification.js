@@ -1,7 +1,7 @@
 export default {
   state: {
-    defaultVerificationError: 'Verification error',
-    verificationError: 'Verification error', // to display in Modal
+    defaultVerificationError: 'Verification error. Please check all fields',
+    verificationError: 'Verification error. Please check all fields', // to display in Modal
     verificationErrorReasons: {
       required: 'The field is required',
       invalid: 'The field was filled with an incorrect value',
@@ -9,20 +9,19 @@ export default {
   },
   actions: {
     setErrorTextFromResponse({ commit, getters }, res) {
-      if (
-        res?.data?.errors &&
-        res?.data?.errors[0] &&
-        res?.data?.errors[0]?.field &&
-        res?.data?.errors[0]?.reason
-      ) {
-        const error = res.data?.errors[0];
-        const errorText = `Please check field ${
-          error.field
-        }. Reason: ${getters.verificationErrorReason(error.reason)}`;
-        commit('setVerificationError', errorText);
-      } else {
-        commit('setDefaultVerificationError');
+      let errorText = '';
+      try {
+        const errors = res.data.data.errors;
+        Object.keys(errors).forEach(el => {
+          if (errors[el].length > 0) {
+            errorText = errors[el][0]
+          }
+        })
+      } catch (error) {
+        errorText = res.msg || getters.defaultVerificationError;
       }
+      // errorText = errorText ? (res.msg || getters.defaultVerificationError) : getters.defaultVerificationError;
+      commit('setVerificationError', errorText);
     },
   },
   mutations: {
