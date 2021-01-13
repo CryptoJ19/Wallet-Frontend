@@ -315,6 +315,8 @@ export default {
         await this.setErrorTextFromResponse(res);
         this.showVerificationErrorModal();
       }
+      await this.fetchGetProfile();
+      // await this.getProfile();
     },
     cutString(value) {
       const centerIndex = Math.ceil(value.length / 2);
