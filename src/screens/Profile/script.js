@@ -132,6 +132,7 @@ export default {
       'verificationError',
       'verificationErrorReasons',
       'defaultVerificationError',
+      'getCountryFields',
     ]),
     fieldsRules() {
       const { countryFields } = this.getProfile;
@@ -155,9 +156,10 @@ export default {
       const keys = {};
       const fields = this.resetLocalFieldsValue();
       const countryFields = {};
-      Object.keys(this.getProfile.countryFields).forEach((itemTab) => {
+      const self = this;
+      Object.keys(self.getCountryFields).forEach((itemTab) => {
         countryFields[itemTab] = [];
-        Object.keys(this.getProfile.countryFields[itemTab].fields).forEach((item) => {
+        Object.keys(self.getCountryFields[itemTab].fields).forEach((item) => {
           countryFields[itemTab].push(item);
         });
       });

@@ -25,5 +25,6 @@ module.exports = {
     'func-names': 'off',
     'linebreak-style': 'off',
     'consistent-return': 'off',
+    'prefer-destructuring': 'off',
   },
 };
