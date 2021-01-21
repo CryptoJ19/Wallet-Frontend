@@ -12,14 +12,8 @@
         <div class="mod__title">
           {{ $t('wallet.modalRecieve.title') }}
         </div>
-        <button
-          class="mod__closs"
-          @click="closeRecieve()"
-        >
-          <img
-            src="~assets/imgs/icons/cross.svg"
-            alt="close"
-          >
+        <button class="mod__closs" @click="closeRecieve()">
+          <img src="~assets/imgs/icons/cross.svg" alt="close" />
         </button>
       </div>
       <div class="recieve">
@@ -32,14 +26,8 @@
               <div class="address__value">
                 {{ addressCF }}
               </div>
-              <button
-                class="address__btn"
-                @click="copy(addressCF)"
-              >
-                <img
-                  src="~assets/imgs/icons/copy.svg"
-                  alt="close"
-                >
+              <button class="address__btn" @click="copy(addressCF)">
+                <img src="~assets/imgs/icons/copy.svg" alt="close" />
               </button>
             </div>
             <div class="qr__code">
@@ -49,27 +37,10 @@
                 :options="{ width: 230 }"
               />
               <div v-else-if="addressCF === ''" />
-              <div
-                v-else
-                class="qr__hide-text"
-              >
-                QR code hiden
-              </div>
-              <button
-                class="qr__eye"
-                :class="{'qr__eye_show': showQrOne}"
-                @click="toggleShowQrOne"
-              >
-                <img
-                  v-if="showQrOne"
-                  src="~assets/imgs/icons/eye_b__open.svg"
-                  alt="eye"
-                >
-                <img
-                  v-else
-                  src="~assets/imgs/icons/eye_b__close.svg"
-                  alt="eye"
-                >
+              <div v-else class="qr__hide-text">QR code hiden</div>
+              <button class="qr__eye" :class="{ qr__eye_show: showQrOne }" @click="toggleShowQrOne">
+                <img v-if="showQrOne" src="~assets/imgs/icons/eye_b__open.svg" alt="eye" />
+                <img v-else src="~assets/imgs/icons/eye_b__close.svg" alt="eye" />
               </button>
             </div>
           </div>
@@ -81,14 +52,8 @@
               <div class="address__value">
                 {{ addressEOS }}
               </div>
-              <button
-                class="address__btn"
-                @click="copy(addressEOS)"
-              >
-                <img
-                  src="~assets/imgs/icons/copy.svg"
-                  alt="close"
-                >
+              <button class="address__btn" @click="copy(addressEOS)">
+                <img src="~assets/imgs/icons/copy.svg" alt="close" />
               </button>
             </div>
             <div class="qr__code">
@@ -98,27 +63,10 @@
                 :options="{ width: 230 }"
               />
               <div v-else-if="addressEOS === ''" />
-              <div
-                v-else
-                class="qr__hide-text"
-              >
-                QR code hiden
-              </div>
-              <button
-                class="qr__eye"
-                :class="{'qr__eye_show': showQrTwo}"
-                @click="toggleShowQrTwo"
-              >
-                <img
-                  v-if="showQrTwo"
-                  src="~assets/imgs/icons/eye_b__open.svg"
-                  alt="eye"
-                >
-                <img
-                  v-else
-                  src="~assets/imgs/icons/eye_b__close.svg"
-                  alt="eye"
-                >
+              <div v-else class="qr__hide-text">QR code hiden</div>
+              <button class="qr__eye" :class="{ qr__eye_show: showQrTwo }" @click="toggleShowQrTwo">
+                <img v-if="showQrTwo" src="~assets/imgs/icons/eye_b__open.svg" alt="eye" />
+                <img v-else src="~assets/imgs/icons/eye_b__close.svg" alt="eye" />
               </button>
             </div>
           </div>
@@ -128,18 +76,12 @@
         </div>
       </div>
       <div class="mod__btns">
-        <button
-          class="mod__btn"
-          @click="closeRecieve()"
-        >
+        <button class="mod__btn" @click="closeRecieve()">
           {{ $t('wallet.modalRecieve.close') }}
         </button>
       </div>
     </div>
-    <div
-      class="loader__body"
-      :class="{'loader__body_show': loading}"
-    >
+    <div class="loader__body" :class="{ loader__body_show: loading }">
       <Loader />
     </div>
   </b-modal>
@@ -148,7 +90,6 @@
 import VueQrcode from '@chenfengyuan/vue-qrcode';
 import { mapActions } from 'vuex';
 import Loader from '../../../ui/Loader';
-
 
 export default {
   components: {
@@ -163,9 +104,7 @@ export default {
     showQrTwo: false,
   }),
   methods: {
-    ...mapActions([
-      'fetchGetDeposit',
-    ]),
+    ...mapActions(['fetchGetDeposit']),
     toggleShowQrOne() {
       this.showQrOne = !this.showQrOne;
     },
@@ -199,7 +138,7 @@ export default {
     },
     async getDeposit() {
       const resEOS = this.fetchGetDeposit('EOS');
-      const resCF = this.fetchGetDeposit('TNT');
+      const resCF = this.fetchGetDeposit('CFT');
 
       const promiseAll = await Promise.all([resEOS, resCF]);
       this.loading = false;
