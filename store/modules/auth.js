@@ -63,7 +63,8 @@ export default {
 
     async fetchGetBonusesList(ctx) {
       const res = await customFetchToken(ctx, async () => {
-        const rawResponse = await customFetch(`${apiUrl}/purchase/bonuses`, 'GET');
+        const header = getHeaderWithToken();
+        const rawResponse = await customFetch(`${apiUrl}/purchase/bonuses`, 'GET', header);
         const data = await rawResponse.json();
         return data;
       });
