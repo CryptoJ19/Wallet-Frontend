@@ -62,8 +62,11 @@ export default {
     },
 
     async fetchGetBonusesList(ctx) {
-      const rawResponse = await customFetch(`${apiUrl}/purchase/bonuses`, 'GET');
-      const res = await rawResponse.json();
+      const res = await customFetchToken(ctx, async () => {
+        const rawResponse = await customFetch(`${apiUrl}/purchase/bonuses`, 'GET');
+        const data = await rawResponse.json();
+        return data;
+      });
       if (res.ok) {
         ctx.commit('updateBonuses', res.result);
       }
