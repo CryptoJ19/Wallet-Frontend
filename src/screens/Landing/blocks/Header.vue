@@ -195,7 +195,7 @@ export default {
     ...mapGetters(['getBonuses']),
   },
   mounted() {
-    // this.fetchGetBonusesList();
+    this.fetchGetBonusesList();
 
     // this.promoItems = this.$t('purchase.promo.items');
 
