@@ -47,11 +47,7 @@
             </div>
           </div>
           <div class="pdf">
-            <a
-              :href="`${LocalHostUrl}/Whitepaper-Cash-Flash-English.pdf`"
-              target="_blank"
-              class="pdf__item"
-            >
+            <a href="/" target="_blank" class="pdf__item">
               <div class="pdf__title">
                 {{ $t('land.header.whitepaper') }}
               </div>
