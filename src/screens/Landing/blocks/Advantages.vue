@@ -20,7 +20,7 @@
           <client-only>
             <iframe
               class="advan__frame"
-              :src="`https://www.youtube.com/embed/NWbAtVoSbFM`"
+              :src="`https://www.youtube.com/embed/iHsch1PVFn0`"
               allowfullscreen
             />
           </client-only>
