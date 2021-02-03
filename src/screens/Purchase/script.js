@@ -12,22 +12,46 @@ export default {
   data: () => ({
     promoItems: [
       {
-        level: 1, currencyId: 'eur', minAmount: '1000', maxAmount: '10000', reward: '20',
+        level: 1,
+        currencyId: 'eur',
+        minAmount: '1000',
+        maxAmount: '10000',
+        reward: '20',
       },
       {
-        level: 2, currencyId: 'eur', minAmount: '10001', maxAmount: '50000', reward: '25',
+        level: 2,
+        currencyId: 'eur',
+        minAmount: '10001',
+        maxAmount: '50000',
+        reward: '25',
       },
       {
-        level: 3, currencyId: 'eur', minAmount: '50001', maxAmount: '200000', reward: '30',
+        level: 3,
+        currencyId: 'eur',
+        minAmount: '50001',
+        maxAmount: '200000',
+        reward: '30',
       },
       {
-        level: 4, currencyId: 'eur', minAmount: '200001', maxAmount: '1000000', reward: '40',
+        level: 4,
+        currencyId: 'eur',
+        minAmount: '200001',
+        maxAmount: '1000000',
+        reward: '40',
       },
       {
-        level: 5, currencyId: 'eur', minAmount: '1000001', maxAmount: '5000000', reward: '50',
+        level: 5,
+        currencyId: 'eur',
+        minAmount: '1000001',
+        maxAmount: '5000000',
+        reward: '50',
       },
       {
-        level: 6, currencyId: 'eur', minAmount: '5000001', maxAmount: '0', reward: '0',
+        level: 6,
+        currencyId: 'eur',
+        minAmount: '5000001',
+        maxAmount: '0',
+        reward: '0',
       },
     ],
     amountEOS: '',
@@ -47,29 +71,31 @@ export default {
     this.fetchGetBonusesList();
   },
   computed: {
-    ...mapGetters([
-      'getReferal',
-      'getCurrencies',
-      'getBonuses',
-      'getCurrencyByName',
-    ]),
+    ...mapGetters(['getReferal', 'getCurrencies', 'getBonuses', 'getCurrencyByName']),
     // getBonuses() {
     //   return this.promoItems;
     // },
     rateCFT() {
-      return this.getCurrencyByName('CFT') && (this.getCurrencyByName('CFT').currentRate / this.getCurrencyByName('EUR').currentRate);
+      return (
+        this.getCurrencyByName('CFT') &&
+        this.getCurrencyByName('CFT').currentRate / this.getCurrencyByName('EUR').currentRate
+      );
     },
     rateEUR() {
-      return this.getCurrencyByName('EUR') && (this.getCurrencyByName('EUR').currentRate / 1000000);
+      return this.getCurrencyByName('EUR') && this.getCurrencyByName('EUR').currentRate / 1000000;
     },
     rateEOS() {
-      return this.getCurrencyByName('EOS') && (this.getCurrencyByName('EOS').currentRate / this.getCurrencyByName('EUR').currentRate);
+      return (
+        this.getCurrencyByName('EOS') &&
+        this.getCurrencyByName('EOS').currentRate / this.getCurrencyByName('EUR').currentRate
+      );
     },
     checkValidPay() {
-      return (this.amountCFT === ''
-        || this.amountCFT === 0
-        || this.getBonuses[5].minAmount <= this.totalSum
-        || this.totalSum > this.getBonuses[4].maxAmount
+      return (
+        this.amountCFT === '' ||
+        this.amountCFT === 0 ||
+        this.getBonuses[5].minAmount <= this.totalSum ||
+        this.totalSum > this.getBonuses[4].maxAmount
       );
     },
     getReferalLink() {
@@ -85,9 +111,11 @@ export default {
       let bonus = '';
       const { getBonuses } = this;
       getBonuses.forEach((item, i) => {
-        if (this.totalSum >= getBonuses[i].minAmount
-          && this.totalSum <= getBonuses[i].maxAmount
-          && getBonuses[i].reward !== 0) {
+        if (
+          this.totalSum >= getBonuses[i].minAmount &&
+          this.totalSum <= getBonuses[i].maxAmount &&
+          getBonuses[i].reward !== 0
+        ) {
           bonus = this.amountCFT * (getBonuses[i].reward / 100);
         }
       });
@@ -107,7 +135,7 @@ export default {
       }
     },
     amountCFT(value) {
-      const convert = Math.floor((value * this.EtC) * 10000) / 10000;
+      const convert = Math.floor(value * this.EtC * 10000) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
           this.amountEOS = '';
@@ -119,17 +147,15 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
-      'fetchSendInvite',
-      'fetchGetReferalData',
-      'fetchGetBonusesList',
-    ]),
+    ...mapActions(['fetchSendInvite', 'fetchGetReferalData', 'fetchGetBonusesList']),
     onChangeField() {
       this.convertFlag = true;
     },
     getDeliveryDate() {
       const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
-      return `${this.monthPool[datePlus.getMonth()]} ${datePlus.getDate()}, ${datePlus.getFullYear()}`;
+      return `${
+        this.monthPool[datePlus.getMonth()]
+      } ${datePlus.getDate()}, ${datePlus.getFullYear()}`;
     },
     formatSum(value) {
       let res;

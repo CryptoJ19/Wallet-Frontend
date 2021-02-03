@@ -17,24 +17,16 @@
         <div class="pay__subtitle">
           {{ $t('purchase.check.total') }}
         </div>
-        <div class="pay__sum">
-          {{ (Math.ceil(amountCFT * 10000) / 10000) }} CFT
-        </div>
+        <div class="pay__sum">{{ Math.ceil(amountCFT * 10000) / 10000 }} CFT</div>
         <div class="pay__items">
           <div class="pay__item">
-            <div class="pay__text">
-              EOS amount
-            </div>
-            <div class="pay__value">
-              {{ (Math.ceil(amountEOS * 10000) / 10000) }} EOS
-            </div>
+            <div class="pay__text">EOS amount</div>
+            <div class="pay__value">{{ Math.ceil(amountEOS * 10000) / 10000 }} EOS</div>
           </div>
           <div class="pay__item">
-            <div class="pay__text">
-              Euro amount
-            </div>
+            <div class="pay__text">Euro amount</div>
             <div class="pay__value">
-              {{ (Math.ceil(totalSum * 100) / 100) }} {{ $t('purchase.cur') }}
+              {{ Math.ceil(totalSum * 100) / 100 }} {{ $t('purchase.cur') }}
             </div>
           </div>
           <!--          <div class="pay__item">-->
@@ -48,15 +40,9 @@
         </div>
         <div class="war">
           <div class="war__icon">
-            <img
-              src="~assets/imgs/icons/warning.svg"
-              alt="icon"
-            >
+            <img src="~assets/imgs/icons/warning.svg" alt="icon" />
           </div>
-          <div
-            class="war__text"
-            v-html="$t('purchase.check.warText')"
-          />
+          <div class="war__text" v-html="$t('purchase.check.warText')" />
         </div>
         <!--        <button-->
         <!--          class="switch"-->
@@ -91,24 +77,17 @@
         <!--        </div>-->
       </div>
       <div class="mod__btns">
-        <button
-          class="mod__btn pay__btn"
-          @click="preludeSendPay()"
-        >
+        <button class="mod__btn pay__btn" @click="preludeSendPay()">
           {{ $t('purchase.iPaid') }}
         </button>
       </div>
-      <div
-        class="loader__body"
-        :class="{'loader__body_show': loading}"
-      >
+      <div class="loader__body" :class="{ loader__body_show: loading }">
         <Loader />
       </div>
     </div>
   </b-modal>
 </template>
 <script>
-
 import { mapActions } from 'vuex';
 import Loader from '../../ui/Loader';
 
@@ -142,10 +121,7 @@ export default {
     loading: false,
   }),
   methods: {
-    ...mapActions([
-      'fetchPostPurchaseBuycft',
-      'fetchGetProfile',
-    ]),
+    ...mapActions(['fetchPostPurchaseBuycft', 'fetchGetProfile']),
     refrashrModal() {
       this.loading = false;
     },
@@ -188,127 +164,127 @@ export default {
 </script>
 
 <style lang="scss">
-  #modal-pay-confirm {
-    .pay {
-      /*font-family: Roboto;*/
-      /*&__filds {*/
-      /*  d*/
-      /*}*/
-      &__btn {
-        &_dis {
-          @include btn__dis;
-        }
-      }
-      &__subtitle {
-        font-size: 16px;
-        line-height: 143.4%;
-        color: rgba(#54595F, 0.4);
-        margin: 0 0 11px;
-        font-family: Roboto;
-      }
-      &__sum {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 50px;
-        line-height: 143.4%;
-        color: #2F80ED;
-        padding: 0 0 15px;
-        margin: 0 0 20px;
-        border-bottom: 1px solid rgba(#54595F, 0.05);
-      }
-      &__text {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        color: rgba(#54595F, 0.4);
-      }
-      &__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        &:not(:last-child) {
-          margin: 0 0 15px;
-        }
-      }
-      &__value {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        color: #000000;
-      }
-      &__items {
-        margin: 0 0 20px;
+#modal-pay-confirm {
+  .pay {
+    /*font-family: Roboto;*/
+    /*&__filds {*/
+    /*  d*/
+    /*}*/
+    &__btn {
+      &_dis {
+        @include btn__dis;
       }
     }
-    .war {
-      display: flex;
-      margin-bottom: 20px;
-      padding-top: 20px;
-      border-top: 1px solid $stroke;
-      &__icon {
-        min-width: 20px;
-        margin: 5px 0 0;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-      }
-      &__text {
-        white-space: pre-line;
-        margin: 0 0 0 15px;
-        font-family: Raleway;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 143.4%;
-        color: $red;
-      }
+    &__subtitle {
+      font-size: 16px;
+      line-height: 143.4%;
+      color: rgba(#54595f, 0.4);
+      margin: 0 0 11px;
+      font-family: Roboto;
     }
-    .address {
+    &__sum {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 50px;
+      line-height: 143.4%;
+      color: #2f80ed;
+      padding: 0 0 15px;
+      margin: 0 0 20px;
+      border-bottom: 1px solid rgba(#54595f, 0.05);
+    }
+    &__text {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      color: rgba(#54595f, 0.4);
+    }
+    &__item {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      background: #F2F2F2;
-      /*border: 1px solid #EBEBEB;*/
-      border-radius: 15px;
-      padding: 0 18px;
-      margin: 0 0 37px;
-      height: 102px;
-      &__value {
-        word-break: break-word;
-        font-family: Raleway;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        letter-spacing: 0.22em;
-        color: #000000;
-        margin: 0 20px 0 0;
-      }
-      &__copy {
-        @include btn;
-        padding: 8px;
-        border-radius: 8px;
-        transition: .5s;
-        min-width: 30px;
-        &:active {
-          transition: 0s;
-          background: $yellow;
-        }
-      }
-    }
-    .mod__btn {
-      width: 100%;
-    }
-    .switch {
-      margin-bottom: 20px;
-      display: flex;
       align-items: center;
-      &__label {
-        font-weight: 600;
-        font-size: 14px;
-        color: #000000;
-        margin-left: 8px;
-        font-family: Raleway;
+      &:not(:last-child) {
+        margin: 0 0 15px;
+      }
+    }
+    &__value {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      color: #000000;
+    }
+    &__items {
+      margin: 0 0 20px;
+    }
+  }
+  .war {
+    display: flex;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid $stroke;
+    &__icon {
+      min-width: 20px;
+      margin: 5px 0 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    &__text {
+      white-space: pre-line;
+      margin: 0 0 0 15px;
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 143.4%;
+      color: $red;
+    }
+  }
+  .address {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f2f2f2;
+    /*border: 1px solid #EBEBEB;*/
+    border-radius: 15px;
+    padding: 0 18px;
+    margin: 0 0 37px;
+    height: 102px;
+    &__value {
+      word-break: break-word;
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      letter-spacing: 0.22em;
+      color: #000000;
+      margin: 0 20px 0 0;
+    }
+    &__copy {
+      @include btn;
+      padding: 8px;
+      border-radius: 8px;
+      transition: 0.5s;
+      min-width: 30px;
+      &:active {
+        transition: 0s;
+        background: $yellow;
       }
     }
   }
+  .mod__btn {
+    width: 100%;
+  }
+  .switch {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    &__label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #000000;
+      margin-left: 8px;
+      font-family: Raleway;
+    }
+  }
+}
 </style>
