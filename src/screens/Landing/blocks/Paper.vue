@@ -1,35 +1,23 @@
 <template>
   <div :id="$t('land.menu.items[3].anchor')" class="paper land__anchor">
     <div class="paper__l">
-      <img
-        class="paper__img"
-        src="~assets/imgs/Landing/paper_1.svg"
-        alt="img"
-      />
-      <img
-        class="paper__img"
-        src="~assets/imgs/Landing/paper_2.svg"
-        alt="img"
-      />
+      <img class="paper__img" src="~assets/imgs/Landing/paper_1.svg" alt="img" />
+      <img class="paper__img" src="~assets/imgs/Landing/paper_2.svg" alt="img" />
     </div>
     <div class="land__container">
       <div class="paper__r">
         <div class="paper__preface land__preface">
-          {{ $t("land.paper.sub") }}
+          {{ $t('land.paper.sub') }}
         </div>
         <div class="paper__title land__title" v-html="$t('land.paper.title')" />
         <div class="paper__text land__text">
-          {{ $t("land.paper.text") }}
+          {{ $t('land.paper.text') }}
         </div>
         <div class="paper__sub land__sub">
-          {{ $t("land.paper.sub") }}
+          {{ $t('land.paper.sub') }}
         </div>
         <div class="flag">
-          <div
-            v-for="(item, i) in flags"
-            :key="`flag__item_${i}`"
-            class="flag__item"
-          >
+          <div v-for="(item, i) in flags" :key="`flag__item_${i}`" class="flag__item">
             <div class="flag__cover">
               <img :src="imagePath(i)" alt="img" />
             </div>
@@ -38,8 +26,8 @@
                 {{ item.title }}
               </div>
               <a
-                :href="paperAcrive ? paperLink(item) : `#${$t('land.menu.items[3].anchor')}`"
-                :class="paperAcrive ? 'flag__load' : 'flag__load--disabled'"
+                :href="item.link ? paperLink(item) : `#${$t('land.menu.items[3].anchor')}`"
+                :class="item.link ? 'flag__load' : 'flag__load--disabled'"
               >
                 <img src="~assets/imgs/Landing/down.svg" alt="img" />
               </a>
@@ -54,7 +42,6 @@
 export default {
   data: () => ({
     flags: [],
-    paperAcrive: false,
   }),
   mounted() {
     this.flags = this.$t('land.paper.items');
@@ -99,7 +86,7 @@ export default {
       width: 25px;
       height: 25px;
       margin: 0 0 0 20px;
-      &--disabled{
+      &--disabled {
         @include btn-disabled;
         display: flex;
         justify-content: center;

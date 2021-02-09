@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="pdf">
-            <a href="/" target="_blank" class="pdf__item">
+            <a :href="`${LocalHostUrl}/Whitepaper-English.pdf`" target="_blank" class="pdf__item">
               <div class="pdf__title">
                 {{ $t('land.header.whitepaper') }}
               </div>

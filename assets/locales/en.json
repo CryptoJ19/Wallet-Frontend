@@ -216,9 +216,9 @@
       "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
       "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
       "items": [
-        { "title": "Italiano", "link": "Whitepaper-Cash-Flash-English.pdf" },
-        { "title": "English", "link": "Whitepaper-Cash-Flash-English.pdf" },
-        { "title": "Français", "link": "Whitepaper-Cash-Flash-English.pdf" }
+        { "title": "Italiano", "link": "Whitepaper-Italian.pdf" },
+        { "title": "English", "link": "Whitepaper-English.pdf" },
+        { "title": "Français", "link": "" }
       ]
     },
     "team": {
