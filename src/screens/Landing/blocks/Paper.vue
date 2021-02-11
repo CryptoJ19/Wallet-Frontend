@@ -17,21 +17,41 @@
           {{ $t('land.paper.sub') }}
         </div>
         <div class="flag">
-          <div v-for="(item, i) in flags" :key="`flag__item_${i}`" class="flag__item">
+          <div v-for="(item, i) in mainFlags" :key="`flag__item_${i}`" class="flag__item">
             <div class="flag__cover">
-              <img :src="imagePath(i)" alt="img" />
+              <img :src="imagePath(item.image)" alt="img" />
             </div>
             <div class="flag__desc">
               <div class="flag__title">
                 {{ item.title }}
               </div>
               <a
-                :href="item.link ? paperLink(item) : `#${$t('land.menu.items[3].anchor')}`"
+                :href="item.link ? paperLink(item.link) : `#${$t('land.menu.items[3].anchor')}`"
                 :class="item.link ? 'flag__load' : 'flag__load--disabled'"
+                target="_blank"
               >
                 <img src="~assets/imgs/Landing/down.svg" alt="img" />
               </a>
             </div>
+          </div>
+        </div>
+        <div class="sub-flag">
+          <div class="sub-flag__title land__text">{{ $t('land.paper.otherLanguagesTitle') }}</div>
+          <div v-if="showOtherCountries" class="sub-flag__image-container">
+            <div v-for="(item, i) in otherFlags" :key="`sub-flag__item_${i}`" class="sub-flag__item">
+              <div class="sub-flag__cover">
+                <a :href="paperLink(item.link)" target="_blank">
+                  <img :src="imagePath(item.image)" :alt="item.title" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            v-else
+            class="sub-flag__show-all"
+            @click="showOtherCountries = true"
+          >
+            {{ $t('land.paper.showAll') }}
           </div>
         </div>
       </div>
@@ -41,17 +61,21 @@
 <script>
 export default {
   data: () => ({
-    flags: [],
+    mainFlags: [],
+    otherFlags: [],
+    showOtherCountries: false,
   }),
   mounted() {
-    this.flags = this.$t('land.paper.items');
+    this.mainFlags = this.$t('land.paper.items').slice(0, 3);
+    this.otherFlags = this.$t('land.paper.items').slice(3);
+    console.log(this.otherFlags);
   },
   methods: {
-    imagePath(i) {
-      return require(`assets/imgs/Landing/flag_${i + 1}.svg`);
+    imagePath(image) {
+      return require(`assets/imgs/paper-flags/${image}.svg`);
     },
-    paperLink(item) {
-      return `/${item.link}`;
+    paperLink(link) {
+      return `/docs/${link}`;
     },
   },
 };
@@ -75,6 +99,11 @@ export default {
       &:not(:last-child) {
         margin: 0 60px 0 0;
       }
+    }
+    &__cover img{
+      border-radius: 10px;
+      width: 127px;
+      height: 63px;
     }
     &__load {
       display: flex;
@@ -108,6 +137,29 @@ export default {
       margin: 17px 0 0;
       display: flex;
       align-items: center;
+    }
+  }
+  .sub-flag{
+    margin-top: 30px;
+    &__title{
+      margin: 20px 0;
+    }
+    &__image-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    &__show-all{
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #000;
+      background: #fee802;
+      padding: 8px 26px;
+      transition: .3s;
     }
   }
   &__preface {

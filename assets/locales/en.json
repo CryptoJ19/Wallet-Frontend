@@ -215,10 +215,27 @@
       "title": "White Paper",
       "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
       "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
+      "otherLanguagesTitle": "+ 14 languages",
+      "showAll": "Show all",
       "items": [
-        { "title": "Italiano", "link": "Whitepaper-Italian.pdf" },
-        { "title": "English", "link": "Whitepaper-English.pdf" },
-        { "title": "Français", "link": "" }
+        { "title": "Italiano", "link": "Whitepaper-Italiano-okok.pdf", "image": "ITA" },
+        { "title": "English", "link": "Whitepaper-Inglese-okok.pdf", "image": "GBR" },
+        { "title": "Lietuviškas", "link": "Whitepaper-Lituano-okok.pdf", "image": "LTU" },
+
+        { "title": "Arabic", "link": "Whitepaper-Arabo-okok.pdf", "image": "ARE"},
+        { "title": "Chinese", "link": "Whitepaper-Cinese-okok.pdf", "image": "CHN" },
+        { "title": "Korean", "link": "Whitepape- Coreano-okok.pdf", "image": "KOR" },
+        { "title": "Japanese", "link": "Whitepaper-Giapponese-okok.pdf", "image": "JPN" },
+        { "title": "Hindi", "link": "Whitepaper-Indiano-okok.pdf", "image": "IND" },
+        { "title": "Maltese", "link": "Whitepaper-Maltese-okok.pdf", "image": "MLT" },
+        { "title": "German", "link": "Whitepaper-Tedesco-okok.pdf", "image": "GER" },
+        { "title": "Polish", "link": "Whitepaper-Polacco-okok.pdf", "image": "POL" },
+        { "title": "Portuguese", "link": "Whitepaper-Portoghese-okok.pdf", "image": "PRT" },
+        { "title": "Romanian", "link": "Whitepaper-Rumeno-okok.pdf", "image": "ROU" },
+        { "title": "Russian", "link": "Whitepaper-Russo-okok.pdf", "image": "RUS" },
+        { "title": "Spanish", "link": "Whitepaper-Spagnolo-okok.pdf", "image": "ESP" },
+        { "title": "Dutch", "link": "Whitepaper-Olandese-okok.pdf", "image": "NLD" },
+        { "title": "Turkish", "link": "Whitepaper-Turco-okok.pdf", "image": "TUR" }
       ]
     },
     "team": {
