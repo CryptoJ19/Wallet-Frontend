@@ -518,7 +518,8 @@
       "title": "Newsletter",
       "sub": "Stay updated on the news of Cash Flash",
       "subBtn": "Subscribe",
-      "mailInput": "Email"
+      "mailInput": "Email",
+      "copyright": "All rights reserved for CashFlash UAB"
     }
   },
   "default": {

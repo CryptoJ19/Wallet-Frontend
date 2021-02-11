@@ -24,13 +24,13 @@
           <div class="address__item">
             <div class="address__icon">
               <img
-                src="~assets/imgs/Landing/mail.svg"
+                src="~assets/imgs/Landing/copyright.svg"
                 alt="img"
               >
             </div>
             <div
               class="address__text"
-              v-html="$t('land.footer.mail')"
+              v-html="$t('land.footer.copyright')"
             />
           </div>
         </div>
