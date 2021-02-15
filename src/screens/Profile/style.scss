@@ -7,8 +7,8 @@
   padding: 0 0 0 12px;
   height: 44px;
   border: 1px solid $stroke;
-  transition: .2s;
-  background: #FFFFFF;
+  transition: 0.2s;
+  background: #ffffff;
   input {
     position: absolute;
     width: 0;
@@ -47,7 +47,7 @@
     width: 16px;
     height: 16px;
     border-radius: 100%;
-    background: #FFF;
+    background: #fff;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 2px 2px rgba(103, 90, 23, 0.28);
@@ -80,7 +80,7 @@
     }
   }
   &__top {
-    border-bottom: 1px solid rgba($grey, .1);
+    border-bottom: 1px solid rgba($grey, 0.1);
     display: grid;
     grid-template-columns: 1fr 460px 1fr;
     padding-bottom: 45px;
@@ -149,7 +149,7 @@
       align-items: center;
       height: 9px;
       width: 33%;
-      background: #FFFFFF;
+      background: #ffffff;
       &:last-child {
         width: 1%;
       }
@@ -168,11 +168,12 @@
       font-size: 14px;
       color: #000000;
 
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 36px;
     }
     &_active {
-      .prog__circle, &.prog__item {
+      .prog__circle,
+      &.prog__item {
         background: $yellow;
       }
     }
@@ -181,8 +182,9 @@
 .pro {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: minmax(auto, 349px)  auto;
-  .tfa, .change-pass {
+  grid-template-columns: minmax(auto, 349px) auto;
+  .tfa,
+  .change-pass {
     grid-column-start: 1;
     grid-column-end: 3;
   }
@@ -190,7 +192,7 @@
     width: 100%;
   }
   &__item {
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 13px;
     padding: 30px;
   }
@@ -243,7 +245,7 @@
     }
     &__sub_green {
       opacity: 1;
-      color: #27AE60;
+      color: #27ae60;
     }
     .btn {
       @include btn-yellow;
@@ -253,7 +255,7 @@
     }
   }
   .ver {
-    background: #6FCF97;
+    background: #6fcf97;
     border-radius: 22px;
     display: flex;
     align-items: center;
@@ -265,14 +267,14 @@
       font-weight: bold;
       font-size: 16px;
       line-height: 143.4%;
-      color: #FFFFFF;
+      color: #ffffff;
       margin: 0 12px 0 0;
     }
     &_red {
       background: $red;
     }
     &_yellow {
-      background: #F2C94C;
+      background: #f2c94c;
     }
   }
   .red-mes {
@@ -280,7 +282,7 @@
     font-size: 16px;
     background: $red;
     border-radius: 11px;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-top: 20px;
   }
   .dd {
@@ -309,10 +311,10 @@
       border-radius: 13px;
       position: absolute;
       top: calc(100% + 4px);
-      background: #FFF;
+      background: #fff;
       width: 100%;
       max-width: 100%;
-      box-shadow: 0 2px 15px -5px rgba(#000, .15);
+      box-shadow: 0 2px 15px -5px rgba(#000, 0.15);
       padding: 5px 0;
     }
     &__item {
@@ -333,7 +335,7 @@
     }
     &__email {
       font-size: 14px;
-      color: #54595F;
+      color: #54595f;
       margin-bottom: 20px;
     }
     &__img {
@@ -363,8 +365,8 @@
       background: #000000;
       width: 40px;
       height: 40px;
-      transition: .3s;
-      border: 4px solid #FFFFFF;
+      transition: 0.3s;
+      border: 4px solid #ffffff;
       &:hover {
         background: #a8a8a8;
       }
@@ -418,9 +420,9 @@
         background: $stroke;
         width: 30px;
         height: 30px;
-        transition: .3s;
+        transition: 0.3s;
         &:hover {
-          background: rgba(#000, .8);
+          background: rgba(#000, 0.8);
         }
         img {
           width: 12px;
@@ -468,7 +470,8 @@
       input {
         //color: rgba($grey, .5);
         font-weight: normal;
-        &:focus, &:hover {
+        &:focus,
+        &:hover {
           color: #000;
         }
       }
@@ -477,24 +480,28 @@
         .dd__title {
           color: rgba(84, 89, 95, 0.5);
         }
-        .vdd__title {
-          color: rgba($grey, .5);
-        }
-        .vdd__btn {
-          border-color: transparent;
+        .vdd {
+          &__title {
+            color: rgba($grey, 0.5);
+          }
+          &__btn {
+            border-color: transparent;
+          }
         }
         .dd__btn {
-          background: #FFF;
-          &:focus, &:hover {
-            background: #FFF;
+          background: #fff;
+          &:focus,
+          &:hover {
+            background: #fff;
           }
         }
         input {
           border-color: transparent;
           cursor: default;
-          color: rgba($grey, .5);
-          &:focus, &:hover {
-            color: rgba($grey, .5);
+          color: rgba($grey, 0.5);
+          &:focus,
+          &:hover {
+            color: rgba($grey, 0.5);
           }
         }
         .file {
@@ -615,14 +622,13 @@
   }
 }
 
-
 @media (max-width: 1499px) {
-
 }
 @media (max-width: 1199px) {
   .pro {
     grid-template-columns: 1fr;
-    .tfa, .change-pass {
+    .tfa,
+    .change-pass {
       grid-column-start: 1;
       grid-column-end: 2;
     }
@@ -745,7 +751,8 @@
         }
       }
     }
-    .tfa, .change-pass {
+    .tfa,
+    .change-pass {
       .btn {
         width: 100%;
       }

@@ -154,6 +154,7 @@
                 <button
                   v-for="(country, iCountris) in getCountriesRegSort"
                   :key="`dd__item_country_${iCountris}`"
+                  style="z-index: 9999"
                   class="vdd__item"
                   @click="selectDD('country', country.short)"
                 >

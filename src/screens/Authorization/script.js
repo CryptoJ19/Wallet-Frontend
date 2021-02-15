@@ -54,7 +54,6 @@ export default {
       country: '',
     },
 
-
     forgot: {
       email: '',
       code: '',
@@ -66,17 +65,17 @@ export default {
   }),
   computed: {
     ...mapGetters(['getCountriesReg', 'getCountriesRegSort']),
-    authBtnClass: ({ mode }) => ([
-      { menu__item_active: (mode === 0) },
-      { menu__item_active: (mode === 1) },
-      { forgot_active: (mode === 2) || (mode === 3) },
-    ]),
-    authFormClass: ({ mode }) => ([
-      { form_active: (mode === 0) },
-      { form_active: (mode === 1) },
-      { form_active: (mode === 2) },
-      { form_active: (mode === 3) },
-    ]),
+    authBtnClass: ({ mode }) => [
+      { menu__item_active: mode === 0 },
+      { menu__item_active: mode === 1 },
+      { forgot_active: mode === 2 || mode === 3 },
+    ],
+    authFormClass: ({ mode }) => [
+      { form_active: mode === 0 },
+      { form_active: mode === 1 },
+      { form_active: mode === 2 },
+      { form_active: mode === 3 },
+    ],
   },
   mounted() {
     if (getAccessToken() !== false) {
@@ -114,6 +113,7 @@ export default {
       'fetchGetCountries',
     ]),
     toggleDD(key) {
+      alert('toggled');
       this.ddShow[key] = !this.ddShow[key];
     },
     hideDDCountries() {
@@ -179,12 +179,7 @@ export default {
       return this.er.indexOf(i) !== -1;
     },
     trimSignup() {
-      const {
-        firstName,
-        lastName,
-        email,
-        memo,
-      } = this.signup;
+      const { firstName, lastName, email, memo } = this.signup;
       const firstNameLocal = firstName.trim();
       const lastNameLocal = lastName.trim();
       const emailLocal = email.trim();
@@ -198,9 +193,7 @@ export default {
       };
     },
     trimSignin() {
-      const {
-        email,
-      } = this.signin;
+      const { email } = this.signin;
       const emailLocal = email.trim();
       this.signin = {
         ...this.signin,
@@ -220,17 +213,10 @@ export default {
     checkSignin() {
       this.er = [];
       const emailRegex = /^[a-zA-Z0-9!#$%&'*+\\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;
-      const {
-        email,
-        password,
-        GAEnabled,
-        GACode,
-      } = this.signin;
+      const { email, password, GAEnabled, GACode } = this.signin;
       if (email === '') {
         this.er.push(0);
-      } else if (
-        email.match(emailRegex) === null
-      ) {
+      } else if (email.match(emailRegex) === null) {
         this.er.push(1);
       }
       if (password === '') {
@@ -252,14 +238,7 @@ export default {
       const passRegexLower = /[a-z]+/;
       const passRegexSpaces = /\s+/g;
       const memoRegex = /^[a-z1-5]{12}$/g;
-      const {
-        firstName,
-        lastName,
-        email,
-        password,
-        memo,
-        country,
-      } = this.signup;
+      const { firstName, lastName, email, password, memo, country } = this.signup;
       if (firstName === '') {
         this.er.push(0);
       }
@@ -268,35 +247,23 @@ export default {
       }
       if (email === '') {
         this.er.push(2);
-      } else if (
-        email.match(emailRegex) === null
-      ) {
+      } else if (email.match(emailRegex) === null) {
         this.er.push(4);
       }
       if (password === '') {
         this.er.push(3);
-      } else if (
-        password.match(passRegexSpecial) === null
-      ) {
+      } else if (password.match(passRegexSpecial) === null) {
         this.er.push(5);
-      } else if (
-        password.match(passRegexUpper) === null
-      ) {
+      } else if (password.match(passRegexUpper) === null) {
         this.er.push(6);
-      } else if (
-        password.match(passRegexLower) === null
-      ) {
+      } else if (password.match(passRegexLower) === null) {
         this.er.push(7);
-      } else if (
-        password.match(passRegexSpaces) !== null
-      ) {
+      } else if (password.match(passRegexSpaces) !== null) {
         this.er.push(8);
       }
       if (memo === '') {
         this.er.push(9);
-      } else if (
-        memo.match(memoRegex) === null
-      ) {
+      } else if (memo.match(memoRegex) === null) {
         this.er.push(10);
       }
       if (country === '') {
@@ -309,14 +276,7 @@ export default {
       this.erMes = '';
       this.trimSignup();
       if (this.checkSignup()) {
-        const {
-          firstName,
-          lastName,
-          email,
-          password,
-          memo,
-          country,
-        } = this.signup;
+        const { firstName, lastName, email, password, memo, country } = this.signup;
 
         this.loader = true;
         const data = {
@@ -347,13 +307,7 @@ export default {
       this.erMes = '';
       this.trimSignin();
       if (this.checkSignin()) {
-        const {
-          email,
-          password,
-          remember,
-          GACode,
-          GAEnabled,
-        } = this.signin;
+        const { email, password, remember, GACode, GAEnabled } = this.signin;
         this.loader = true;
         let data;
         if (GAEnabled) {
