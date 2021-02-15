@@ -47,32 +47,9 @@
             </div>
           </div>
           <div class="pdf">
-            <a :href="`${LocalHostUrl}/Whitepaper-English.pdf`" target="_blank" class="pdf__item">
+            <a href="#whitepaper" class="pdf__item">
               <div class="pdf__title">
                 {{ $t('land.header.whitepaper') }}
-              </div>
-              <div class="pdf__icon">
-                <img src="~assets/imgs/Landing/pdf.svg" alt="pdf" />
-              </div>
-            </a>
-            <a
-              :href="`${LocalHostUrl}/Cash-Flash-Contract-ENG.pdf`"
-              target="_blank"
-              class="pdf__item"
-            >
-              <div class="pdf__title">
-                {{ $t('land.header.contract') }}
-              </div>
-              <div class="pdf__icon">
-                <img src="~assets/imgs/Landing/pdf.svg" alt="pdf" />
-              </div>
-            </a>
-            <a :href="`${LocalHostUrl}/Cash-Flash-KYC-ENG.pdf`" target="_blank" class="pdf__item">
-              <div class="pdf__title">
-                {{ $t('land.header.kyc') }}
-              </div>
-              <div class="pdf__icon">
-                <img src="~assets/imgs/Landing/pdf.svg" alt="pdf" />
               </div>
             </a>
           </div>
@@ -356,6 +333,7 @@ export default {
           font-weight: bold;
           color: $grey;
           line-height: 30px;
+          margin: 0 auto;
         }
         &__icon {
         }
