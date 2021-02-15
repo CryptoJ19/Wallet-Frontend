@@ -124,7 +124,12 @@ export default {
   },
   watch: {
     amountEOS(value) {
-      const convert = Math.floor((value / this.EtC) * 10000) / 10000;
+      const convert =
+        Math.ceil(
+          ((value * this.getCurrencyByName('EOS').currentRate) /
+            this.getCurrencyByName('CFT').currentRate) *
+            10000,
+        ) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
           this.amountCFT = '';
@@ -135,7 +140,12 @@ export default {
       }
     },
     amountCFT(value) {
-      const convert = Math.floor(value * this.EtC * 10000) / 10000;
+      const convert =
+        Math.ceil(
+          ((value * this.getCurrencyByName('CFT').currentRate) /
+            this.getCurrencyByName('EOS').currentRate) *
+            10000,
+        ) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
           this.amountEOS = '';
