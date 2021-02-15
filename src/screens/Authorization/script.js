@@ -113,7 +113,6 @@ export default {
       'fetchGetCountries',
     ]),
     toggleDD(key) {
-      alert('toggled');
       this.ddShow[key] = !this.ddShow[key];
     },
     hideDDCountries() {
