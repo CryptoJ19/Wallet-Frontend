@@ -222,7 +222,7 @@
         { "title": "English", "link": "Whitepaper-Inglese-okok.pdf", "image": "GBR" },
         { "title": "Lietuviškas", "link": "Whitepaper-Lituano-okok.pdf", "image": "LTU" },
 
-        { "title": "Arabic", "link": "Whitepaper-Arabo-okok.pdf", "image": "ARE"},
+        { "title": "Arabic", "link": "Whitepaper-Arabo-okok.pdf", "image": "ARE" },
         { "title": "Chinese", "link": "Whitepaper-Cinese-okok.pdf", "image": "CHN" },
         { "title": "Korean", "link": "Whitepape- Coreano-okok.pdf", "image": "KOR" },
         { "title": "Japanese", "link": "Whitepaper-Giapponese-okok.pdf", "image": "JPN" },
@@ -513,7 +513,7 @@
       ]
     },
     "footer": {
-      "address": "Immeuble SKYLINE\n22 Mail Pablo Picasso\n44000 Nantes (France)",
+      "address": "CashFlash UAB, Didžioji st. 18, Vilnius 01128, Lithuania.",
       "mail": "info@cashflash.io",
       "title": "Newsletter",
       "sub": "Stay updated on the news of Cash Flash",

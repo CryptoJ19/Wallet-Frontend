@@ -8,7 +8,6 @@ import Paper from './blocks/Paper';
 import Team from './blocks/Team';
 import Footer from './blocks/Footer';
 
-
 export default {
   components: {
     Loader,
@@ -21,13 +20,8 @@ export default {
     Team,
     Footer,
   },
-  data: () => ({
-  }),
-  computed: {
-
-  },
-  mounted() {
-
-  },
+  data: () => ({}),
+  computed: {},
+  mounted() {},
   methods: {},
 };
