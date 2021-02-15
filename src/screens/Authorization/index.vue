@@ -7,46 +7,28 @@
     />
     <div class="auth__main container">
       <div class="auth__box">
-        <div
-          class="auth__title"
-          v-html="$t('auth.welcome')"
-        />
+        <div class="auth__title" v-html="$t('auth.welcome')" />
         <div class="menu">
           <div class="menu__items">
-            <button
-              :class="authBtnClass[0]"
-              class="menu__item"
-              @click="setMode(0)"
-            >
+            <button :class="authBtnClass[0]" class="menu__item" @click="setMode(0)">
               {{ $t('auth.signin') }}
             </button>
-            <button
-              :class="authBtnClass[1]"
-              class="menu__item"
-              @click="setMode(1)"
-            >
+            <button :class="authBtnClass[1]" class="menu__item" @click="setMode(1)">
               {{ $t('auth.signup') }}
             </button>
           </div>
-          <button
-            :class="authBtnClass[2]"
-            class="menu__forgot"
-            @click="setMode(2)"
-          >
+          <button :class="authBtnClass[2]" class="menu__forgot" @click="setMode(2)">
             {{ $t('auth.forgotPassword') }}
           </button>
         </div>
-        <div
-          class="form"
-          :class="authFormClass[0]"
-        >
+        <div class="form" :class="authFormClass[0]">
           <div class="form__item">
             <input
               v-model="signin.email"
               maxlength="40"
               :placeholder="$t('auth.email')"
               type="text"
-            >
+            />
             <div class="form__er">
               <div v-if="getEr(0)">
                 {{ $t('auth.er.enterEmail') }}
@@ -63,21 +45,14 @@
                 maxlength="40"
                 :placeholder="$t('auth.password')"
                 :type="signin.passwordType"
-              >
-              <button
-                class="password-hide"
-                @click="togglePasswordType()"
-              >
+              />
+              <button class="password-hide" @click="togglePasswordType()">
                 <img
                   v-if="signin.passwordType === 'password'"
                   src="~assets/imgs/icons/eye__open.svg"
                   alt="eye"
-                >
-                <img
-                  v-else
-                  src="~assets/imgs/icons/eye__close.svg"
-                  alt="eye"
-                >
+                />
+                <img v-else src="~assets/imgs/icons/eye__close.svg" alt="eye" />
               </button>
             </div>
             <div class="form__er">
@@ -90,52 +65,31 @@
             </div>
           </div>
           <div class="check">
-            <label
-              class="check__label"
-              for="form-auth"
-            >
-              <input
-                id="form-auth"
-                v-model="signin.remember"
-                type="checkbox"
-              >
+            <label class="check__label" for="form-auth">
+              <input id="form-auth" v-model="signin.remember" type="checkbox" />
               <span class="check__box">
-                <img
-                  class="check__icon"
-                  src="~assets/imgs/icons/check.svg"
-                  alt="v"
-                >
+                <img class="check__icon" src="~assets/imgs/icons/check.svg" alt="v" />
               </span>
               <span class="check__title">
                 {{ $t('auth.rememberMe') }}
               </span>
             </label>
           </div>
-          <div
-            v-if="signin.GAEnabled"
-            class="form__item"
-          >
+          <div v-if="signin.GAEnabled" class="form__item">
             <div class="password-hide__p ui-input__body">
               <input
                 v-model="signin.GACode"
                 maxlength="40"
                 :placeholder="$t('auth.codeAuth')"
                 :type="signin.GACodeType"
-              >
-              <button
-                class="password-hide"
-                @click="toggleGACodeType()"
-              >
+              />
+              <button class="password-hide" @click="toggleGACodeType()">
                 <img
                   v-if="signin.passwordType === 'password'"
                   src="~assets/imgs/icons/eye__open.svg"
                   alt="eye"
-                >
-                <img
-                  v-else
-                  src="~assets/imgs/icons/eye__close.svg"
-                  alt="eye"
-                >
+                />
+                <img v-else src="~assets/imgs/icons/eye__close.svg" alt="eye" />
               </button>
             </div>
             <div class="form__er">
@@ -146,25 +100,19 @@
             </div>
           </div>
           <div class="auth__btns">
-            <button
-              class="auth__btn"
-              @click="preludeSignin()"
-            >
+            <button class="auth__btn" @click="preludeSignin()">
               {{ $t('auth.signin_btn') }}
             </button>
           </div>
         </div>
-        <div
-          class="form"
-          :class="authFormClass[1]"
-        >
+        <div class="form" :class="authFormClass[1]">
           <div class="form__item">
             <input
               v-model="signup.firstName"
               maxlength="40"
               :placeholder="$t('auth.firstName')"
               type="text"
-            >
+            />
             <div class="form__er">
               <div v-if="getEr(0)">
                 {{ $t('auth.er.enterFirstName') }}
@@ -177,49 +125,32 @@
               maxlength="40"
               :placeholder="$t('auth.lastName')"
               type="text"
-            >
+            />
             <div class="form__er">
               <div v-if="getEr(1)">
                 {{ $t('auth.er.enterSecondName') }}
               </div>
             </div>
           </div>
-          <div
-            v-if="getCountriesReg !== {}"
-            class="form__item"
-          >
+          <div v-if="getCountriesReg !== {}" class="form__item">
             <div class="vdd">
               <button
                 v-click-outside="hideDDCountries"
                 class="vdd__btn"
                 @click="toggleDD('countries')"
               >
-                <div
-                  v-if="signup['country'] !== ''"
-                  class="vdd__title"
-                >
+                <div v-if="signup['country'] !== ''" class="vdd__title">
                   {{ getCountriesReg[signup['country']] }}
                   {{ signup['country'] }}
                 </div>
-                <div
-                  v-else
-                  class="vdd__title vdd__title_placeholder"
-                >
+                <div v-else class="vdd__title vdd__title_placeholder">
                   {{ $t('auth.country') }}
                 </div>
-                <div
-                  class="vdd__icon"
-                >
-                  <img
-                    src="~assets/imgs/icons/arrow_dd.svg"
-                    alt="arrow"
-                  >
+                <div class="vdd__icon">
+                  <img src="~assets/imgs/icons/arrow_dd.svg" alt="arrow" />
                 </div>
               </button>
-              <div
-                v-if="ddShow['countries']"
-                class="vdd__items"
-              >
+              <div v-if="ddShow['countries']" class="vdd__items">
                 <button
                   v-for="(country, iCountris) in getCountriesRegSort"
                   :key="`dd__item_country_${iCountris}`"
@@ -243,7 +174,7 @@
               maxlength="12"
               :placeholder="$t('auth.nickname')"
               type="text"
-            >
+            />
             <div class="form__er">
               <div v-if="getEr(9)">
                 {{ $t('auth.er.enterNickname') }}
@@ -262,7 +193,7 @@
               maxlength="40"
               :placeholder="$t('auth.email')"
               type="text"
-            >
+            />
             <div class="form__er">
               <div v-if="getEr(2)">
                 {{ $t('auth.er.enterEmail') }}
@@ -282,21 +213,14 @@
                 maxlength="40"
                 :placeholder="$t('auth.password')"
                 :type="signup.passwordType"
-              >
-              <button
-                class="password-hide"
-                @click="togglePasswordType()"
-              >
+              />
+              <button class="password-hide" @click="togglePasswordType()">
                 <img
                   v-if="signup.passwordType === 'password'"
                   src="~assets/imgs/icons/eye__open.svg"
                   alt="eye"
-                >
-                <img
-                  v-else
-                  src="~assets/imgs/icons/eye__close.svg"
-                  alt="eye"
-                >
+                />
+                <img v-else src="~assets/imgs/icons/eye__close.svg" alt="eye" />
               </button>
             </div>
             <div class="form__er">
@@ -319,25 +243,19 @@
           </div>
 
           <div class="auth__btns">
-            <button
-              class="auth__btn"
-              @click="preludeSignup()"
-            >
+            <button class="auth__btn" @click="preludeSignup()">
               {{ $t('auth.signup_btn') }}
             </button>
           </div>
         </div>
-        <div
-          class="form"
-          :class="authFormClass[2]"
-        >
+        <div class="form" :class="authFormClass[2]">
           <div class="form__item">
             <input
               v-model="forgot.email"
               maxlength="40"
               :placeholder="$t('auth.email')"
               type="text"
-            >
+            />
             <div class="form__er">
               <div v-if="getEr(0)">
                 {{ $t('auth.er.enterEmail') }}
@@ -346,35 +264,23 @@
             </div>
           </div>
           <div class="auth__btns">
-            <button
-              class="auth__btn"
-              @click="preludeForgotSend()"
-            >
+            <button class="auth__btn" @click="preludeForgotSend()">
               {{ $t('auth.forgotPassword__send') }}
             </button>
           </div>
         </div>
-        <div
-          class="form"
-          :class="authFormClass[3]"
-        >
+        <div class="form" :class="authFormClass[3]">
           <div class="form__text">
             {{ $t('auth.checkEmailToRestorePass') }}
           </div>
         </div>
       </div>
-      <div
-        class="auth__loader"
-        :class="{'auth__loader_show': loader}"
-      >
+      <div class="auth__loader" :class="{ auth__loader_show: loader }">
         <Loader />
       </div>
     </div>
     <div class="auth__bg">
-      <img
-        src="~assets/imgs/auth-coin.svg"
-        alt="background"
-      >
+      <img src="~assets/imgs/auth-coin.svg" alt="background" />
     </div>
   </div>
 </template>
