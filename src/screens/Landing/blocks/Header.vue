@@ -129,23 +129,23 @@ export default {
 
     // this.promoItems = this.$t('purchase.promo.items');
 
-    function diffSubtract(date1, date2) {
-      return date2 - date1;
-    }
-    const timer = setInterval(() => {
-      const now = new Date();
-      const date = new Date('12 15 2020 00:00:00 GMT+0100 (GMT+01:00)');
-      const msLeft = diffSubtract(now, date);
-      if (msLeft <= 0) {
-        clearInterval(timer);
-      } else {
-        const res = new Date(msLeft);
-        this.d = this.formTime(Math.floor(res / 1000 / 60 / 60 / 24));
-        this.h = this.formTime(res.getUTCHours());
-        this.m = this.formTime(res.getUTCMinutes());
-        this.s = this.formTime(res.getUTCSeconds());
-      }
-    }, 1000);
+    // function diffSubtract(date1, date2) {
+    //   return date2 - date1;
+    // }
+    // const timer = setInterval(() => {
+    //   const now = new Date();
+    //   const date = new Date('12 15 2020 00:00:00 GMT+0100 (GMT+01:00)');
+    //   const msLeft = diffSubtract(now, date);
+    //   if (msLeft <= 0) {
+    //     clearInterval(timer);
+    //   } else {
+    //     const res = new Date(msLeft);
+    //     this.d = this.formTime(Math.floor(res / 1000 / 60 / 60 / 24));
+    //     this.h = this.formTime(res.getUTCHours());
+    //     this.m = this.formTime(res.getUTCMinutes());
+    //     this.s = this.formTime(res.getUTCSeconds());
+    //   }
+    // }, 1000);
   },
   methods: {
     ...mapActions(['fetchGetBonusesList']),
