@@ -123,6 +123,7 @@ export default {
     },
     selectDD(key, value) {
       this.signup[key] = value;
+      this.hideDDCountries();
     },
     toggleGACodeType() {
       if (this.signin.GACodeType === 'password') {
