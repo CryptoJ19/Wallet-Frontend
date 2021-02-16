@@ -94,6 +94,9 @@ export default {
     this.loader = false;
   },
   watch: {
+    // 'ddShow.countries': function (val) {
+    //   alert(val);
+    // },
     'signin.email': function () {
       this.signin.GAEnabled = false;
     },

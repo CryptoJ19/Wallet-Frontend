@@ -134,11 +134,7 @@
           </div>
           <div v-if="getCountriesReg !== {}" class="form__item">
             <div class="vdd">
-              <button
-                v-click-outside="hideDDCountries"
-                class="vdd__btn"
-                @click="toggleDD('countries')"
-              >
+              <button class="vdd__btn" @click="toggleDD('countries')">
                 <div v-if="signup['country'] !== ''" class="vdd__title">
                   {{ getCountriesReg[signup['country']] }}
                   {{ signup['country'] }}
