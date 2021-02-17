@@ -37,21 +37,31 @@
         </div>
         <div class="sub-flag">
           <div class="sub-flag__title land__text">{{ $t('land.paper.otherLanguagesTitle') }}</div>
-          <div v-if="showOtherCountries" class="sub-flag__image-container">
-            <div v-for="(item, i) in otherFlags" :key="`sub-flag__item_${i}`" class="sub-flag__item">
-              <div class="sub-flag__cover">
-                <a :href="paperLink(item.link)" target="_blank">
-                  <img :src="imagePath(item.image)" :alt="item.title" />
-                </a>
+          <div class="sub-flag__container">
+            <div class="vdd sub-flag__dropdown">
+              <button class="vdd__btn" @click="showLanguages = !showLanguages">
+                <div class="vdd__title vdd__button-container">
+                  <img class="vdd__country-circle" :src="selectedLanguage ? imagePath(selectedLanguage.image) : ''" alt="Image" />
+                  <span>{{ selectedLanguage ? selectedLanguage.title : $t('land.paper.selectTheCountry') }}</span>
+                </div>
+                <div class="vdd__icon">
+                  <img src="~assets/imgs/icons/arrow_dd.svg" alt="arrow" />
+                </div>
+              </button>
+              <div v-if="showLanguages" class="vdd__items">
+                <button
+                  v-for="(language, index) in otherFlags"
+                  :key="`dd__item_country_${index}`"
+                  class="vdd__item vdd__button-container"
+                  @click="selectLanguage(language)"
+                >
+                  <img class="vdd__country-circle" :src="imagePath(language.image)" :alt="language.title" />{{ language.title }}
+                </button>
               </div>
             </div>
-          </div>
-          <div
-            v-else
-            class="sub-flag__show-all"
-            @click="showOtherCountries = true"
-          >
-            {{ $t('land.paper.showAll') }}
+            <a :href="selectedLanguage ? paperLink(selectedLanguage.link) : '#'" class="sub-flag__download" target="_blank">
+              {{ $t('land.paper.download') }}
+            </a>
           </div>
         </div>
       </div>
@@ -63,11 +73,13 @@ export default {
   data: () => ({
     mainFlags: [],
     otherFlags: [],
-    showOtherCountries: false,
+    showLanguages: false,
+    selectedLanguage: undefined,
   }),
   mounted() {
     this.mainFlags = this.$t('land.paper.items').slice(0, 3);
     this.otherFlags = this.$t('land.paper.items').slice(3);
+    this.selectedLanguage = this.otherFlags[0];
     console.log(this.otherFlags);
   },
   methods: {
@@ -77,10 +89,29 @@ export default {
     paperLink(link) {
       return `/docs/${link}`;
     },
+    selectLanguage(language){
+      this.selectedLanguage = language;
+      this.showLanguages = false;
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
+.vdd{
+  &__btn{
+    cursor: pointer;
+  }
+  &__button-container{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  &__country-circle{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+  }
+}
 .land .paper {
   position: relative;
   width: 100%;
@@ -100,7 +131,7 @@ export default {
         margin: 0 60px 0 0;
       }
     }
-    &__cover img{
+    &__cover img {
       border-radius: 10px;
       width: 127px;
       height: 63px;
@@ -139,9 +170,17 @@ export default {
       align-items: center;
     }
   }
-  .sub-flag{
+  .sub-flag {
     margin-top: 30px;
-    &__title{
+    &__container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &__dropdown{
+      margin-right: 30px;
+    }
+    &__title {
       margin: 20px 0;
     }
     &__image-container {
@@ -149,7 +188,8 @@ export default {
       flex-direction: row;
       justify-content: space-between;
     }
-    &__show-all{
+    &__download {
+      text-decoration: none;
       display: inline-block;
       text-align: center;
       cursor: pointer;
@@ -159,7 +199,16 @@ export default {
       color: #000;
       background: #fee802;
       padding: 8px 26px;
-      transition: .3s;
+      transition: 0.3s;
+    }
+    &__country-circle{
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    &__button-container{
+      display: flex;
+      align-items: center;
     }
   }
   &__preface {

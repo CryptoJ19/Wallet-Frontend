@@ -215,8 +215,9 @@
       "title": "White Paper",
       "sub": "Official company program viewable and downloadable in pdf, choose the language most convenient to you:",
       "text": "Terms of service are rules by which you must agree to abide by to use a service. The terms of service may also simply be a disclaimer, particularly regarding the use of the websites.",
-      "otherLanguagesTitle": "+ 14 languages",
-      "showAll": "Show all",
+      "otherLanguagesTitle": "or choose the language from the list below",
+      "selectTheCountry": "Select the country",
+      "download": "Download",
       "items": [
         { "title": "Italiano", "link": "Whitepaper-Italiano-okok.pdf", "image": "ITA" },
         { "title": "English", "link": "Whitepaper-Inglese-okok.pdf", "image": "GBR" },
