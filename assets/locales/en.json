@@ -660,7 +660,7 @@
   },
   "profile": {
     "setAvatar": "Set avatar",
-    "avatarDesc": "Добавьте аватарку",
+    "avatarDesc": "Upload profile image",
     "uploadAva": "Uppload file",
     "sizeEr": "Размер файла не должен превышать 5 мб",
     "gendersName": {
