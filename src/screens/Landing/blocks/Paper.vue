@@ -55,7 +55,7 @@
                   class="vdd__item vdd__button-container"
                   @click="selectLanguage(language)"
                 >
-                  <img class="vdd__country-circle" :src="imagePath(language.image)" :alt="language.title" />{{ language.title }}
+                  <img class="vdd__country-circle" :src="language.image ? imagePath(language.image) : ''" :alt="language.title" />{{ language.title }}
                 </button>
               </div>
             </div>

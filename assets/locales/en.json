@@ -236,7 +236,19 @@
         { "title": "Russian", "link": "Whitepaper-Russo-okok.pdf", "image": "RUS" },
         { "title": "Spanish", "link": "Whitepaper-Spagnolo-okok.pdf", "image": "ESP" },
         { "title": "Dutch", "link": "Whitepaper-Olandese-okok.pdf", "image": "NLD" },
-        { "title": "Turkish", "link": "Whitepaper-Turco-okok.pdf", "image": "TUR" }
+        { "title": "Turkish", "link": "Whitepaper-Turco-okok.pdf", "image": "TUR" },
+        { "title": "Bulgarian", "link": "Whitepaper-Bulgaro-okok.pdf", "image": "BGR" },
+        { "title": "Czech", "link": "Whitepaper-Ceco-okok.pdf", "image": "CZE" },
+        { "title": "Estonian", "link": "Whitepaper-Estone-okok.pdf", "image": "EST" },
+        { "title": "Finnish", "link": "Whitepaper-Finlandese-okok.pdf", "image": "FIN" },
+        { "title": "Latvian", "link": "Whitepaper-Lettone-okok.pdf", "image": "LVA" },
+        { "title": "Norwegian", "link": "Whitepaper-Norvegese.pdf", "image": "NOR" },
+        { "title": "Serbian", "link": "Whitepaper-Serbo-okok.pdf", "image": "SRB" },
+        { "title": "Slovak", "link": "Whitepaper-Slovacco.pdf", "image": "SVK" },
+        { "title": "Slovenia", "link": "Whitepaper-Sloveno-okok.pdf", "image": "SVN" },
+        { "title": "Swedish", "link": "Whitepaper-Svedese-okok.pdf", "image": "SWE" },
+        { "title": "Ukrainian", "link": "Whitepaper-Ucraino-okok.pdf", "image": "UKR" },
+        { "title": "Hungarian", "link": "Whitepaper-Ungherese-okok.pdf", "image": "HUN" }
       ]
     },
     "team": {
