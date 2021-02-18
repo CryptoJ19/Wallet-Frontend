@@ -10,6 +10,10 @@ export default {
     ModalPayConfirm,
   },
   data: () => ({
+    d: '00',
+    h: '00',
+    m: '00',
+    s: '00',
     promoItems: [
       {
         level: 1,
@@ -67,6 +71,24 @@ export default {
   mounted() {
     // this.promoItems = this.$t('purchase.promo.items');
     this.monthPool = this.$t('main.monthPool');
+
+    const icoTime = new Date(1638637200000); // Dec 5
+    const timer = setInterval(() => {
+      const now = new Date();
+      const difference = icoTime - now;
+      if (difference < 0){
+        this.d = '00';
+        this.h = '00';
+        this.m = '00';
+        this.s = '00'
+        clearInterval(timer);
+      }
+      const calculated = this.calculateTime(icoTime, now);
+      this.d = this.minTwoDigits(calculated.days);
+      this.h = this.minTwoDigits(calculated.hours);
+      this.m = this.minTwoDigits(calculated.minutes);
+      this.s = this.minTwoDigits(calculated.seconds);
+    }, 1000);
 
     this.fetchGetBonusesList();
   },
@@ -159,6 +181,22 @@ export default {
   },
   methods: {
     ...mapActions(['fetchSendInvite', 'fetchGetReferalData', 'fetchGetBonusesList']),
+    minTwoDigits(n) {
+      return (n < 10 ? '0' : '') + n;
+    },
+    calculateTime(icoTime, now){
+      const difference = icoTime - now;
+      let seconds = Math.floor(( icoTime - (now) ) / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+
+      hours -= (days * 24);
+      minutes = minutes - (days * 24 * 60) - (hours * 60);
+      seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+      days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+      return {days, hours, minutes, seconds}
+    },
     onChangeField() {
       this.convertFlag = true;
     },

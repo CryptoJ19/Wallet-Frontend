@@ -200,7 +200,7 @@
         <img src="~assets/imgs/timer-bg.svg" alt="bg" class="timer__bg" />
         <div class="timer__box">
           <div class="timer__item">
-            <div class="timer__num">38</div>
+            <div class="timer__num">{{ d }}</div>
             <div class="timer__title">
               {{ $t('purchase.days') }}
             </div>
@@ -210,7 +210,7 @@
           </div>
           <div class="timer__points">:</div>
           <div class="timer__item">
-            <div class="timer__num">12</div>
+            <div class="timer__num">{{ h }}</div>
             <div class="timer__title">
               {{ $t('purchase.hours') }}
             </div>
@@ -220,7 +220,7 @@
           </div>
           <div class="timer__points">:</div>
           <div class="timer__item">
-            <div class="timer__num">12</div>
+            <div class="timer__num">{{ m }}</div>
             <div class="timer__title">
               {{ $t('purchase.minutes') }}
             </div>
@@ -230,7 +230,7 @@
           </div>
           <div class="timer__points">:</div>
           <div class="timer__item">
-            <div class="timer__num">12</div>
+            <div class="timer__num">{{ s }}</div>
             <div class="timer__title">
               {{ $t('purchase.seconds') }}
             </div>

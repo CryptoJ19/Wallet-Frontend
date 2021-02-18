@@ -4,7 +4,10 @@
       <div class="header__left">
         <div class="start">
           <div class="start__bg">
-            <img src="~assets/imgs/Landing/lighting.svg" alt="img" />
+            <img
+              src="~assets/imgs/Landing/lighting.svg"
+              alt="img"
+            >
           </div>
           <div class="start__title">
             {{ $t('land.header.title') }}
@@ -18,7 +21,9 @@
                 {{ $t('land.header.days') }}
               </div>
             </div>
-            <div class="counter__colon">:</div>
+            <div class="counter__colon">
+              :
+            </div>
             <div class="counter__item">
               <div class="counter__num">
                 {{ h }}
@@ -27,7 +32,9 @@
                 {{ $t('land.header.hours') }}
               </div>
             </div>
-            <div class="counter__colon">:</div>
+            <div class="counter__colon">
+              :
+            </div>
             <div class="counter__item">
               <div class="counter__num">
                 {{ m }}
@@ -36,7 +43,9 @@
                 {{ $t('land.header.minutes') }}
               </div>
             </div>
-            <div class="counter__colon">:</div>
+            <div class="counter__colon">
+              :
+            </div>
             <div class="counter__item">
               <div class="counter__num">
                 {{ s }}
@@ -47,7 +56,10 @@
             </div>
           </div>
           <div class="pdf">
-            <a href="#whitepaper" class="pdf__item">
+            <a
+              href="#whitepaper"
+              class="pdf__item"
+            >
               <div class="pdf__title">
                 {{ $t('land.header.whitepaper') }}
               </div>
@@ -88,11 +100,18 @@
             </div>
           </div>
           <div class="promo__items">
-            <div v-for="(item, i) in promoItems" :key="`promoitem_${i}`" class="promo__item">
+            <div
+              v-for="(item, i) in promoItems"
+              :key="`promoitem_${i}`"
+              class="promo__item"
+            >
               <div class="promo__num">
                 {{ i + 1 }}
               </div>
-              <div v-if="+item.maxAmount !== 0 && +item.reward !== 0" class="promo__text">
+              <div
+                v-if="+item.maxAmount !== 0 && +item.reward !== 0"
+                class="promo__text"
+              >
                 <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
                 {{ $t('purchase.promoTo') }}
                 <strong>{{ NumberWithCommas(item.maxAmount) }}€</strong>
@@ -126,29 +145,42 @@ export default {
   },
   mounted() {
     this.getBonusesListAsync();
-
-    // this.promoItems = this.$t('purchase.promo.items');
-
-    // function diffSubtract(date1, date2) {
-    //   return date2 - date1;
-    // }
-    // const timer = setInterval(() => {
-    //   const now = new Date();
-    //   const date = new Date('12 15 2020 00:00:00 GMT+0100 (GMT+01:00)');
-    //   const msLeft = diffSubtract(now, date);
-    //   if (msLeft <= 0) {
-    //     clearInterval(timer);
-    //   } else {
-    //     const res = new Date(msLeft);
-    //     this.d = this.formTime(Math.floor(res / 1000 / 60 / 60 / 24));
-    //     this.h = this.formTime(res.getUTCHours());
-    //     this.m = this.formTime(res.getUTCMinutes());
-    //     this.s = this.formTime(res.getUTCSeconds());
-    //   }
-    // }, 1000);
+    const icoTime = new Date(1638637200000); // Dec 5
+    const timer = setInterval(() => {
+      const now = new Date();
+      const difference = icoTime - now;
+      if (difference < 0){
+        this.d = '00';
+        this.h = '00';
+        this.m = '00';
+        this.s = '00'
+        clearInterval(timer);
+      }
+      const calculated = this.calculateTime(icoTime, now);
+      this.d = this.minTwoDigits(calculated.days);
+      this.h = this.minTwoDigits(calculated.hours);
+      this.m = this.minTwoDigits(calculated.minutes);
+      this.s = this.minTwoDigits(calculated.seconds);
+    }, 1000);
   },
   methods: {
     ...mapActions(['fetchGetBonusesList']),
+    minTwoDigits(n) {
+      return (n < 10 ? '0' : '') + n;
+    },
+    calculateTime(icoTime, now){
+      const difference = icoTime - now;
+      let seconds = Math.floor(( icoTime - (now) ) / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+
+      hours -= (days * 24);
+      minutes = minutes - (days * 24 * 60) - (hours * 60);
+      seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+      days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+      return {days, hours, minutes, seconds}
+    },
     formTime(value) {
       if (+value < 10) {
         return `0${value}`;
@@ -257,7 +289,7 @@ export default {
         }
         &__num {
           font-weight: 300;
-          font-size: 120px;
+          font-size: 80px;
           color: $grey;
           font-family: Gilroy;
           font-weight: 300;
@@ -489,7 +521,7 @@ export default {
         }
         .counter {
           &__num {
-            font-size: 70px;
+            font-size: 50px;
             width: 70px;
           }
           &__label {
@@ -535,6 +567,10 @@ export default {
         }
         .counter {
           justify-content: center;
+          &__num{
+            font-size: 43px;
+            width: 55px;
+          }
           &__item {
             flex-direction: column-reverse;
           }
@@ -636,7 +672,7 @@ export default {
         .counter {
           margin: 0 0 30px;
           &__num {
-            font-size: 55px;
+            font-size: 40px;
             width: 55px;
           }
           &__label {
@@ -665,7 +701,7 @@ export default {
         }
         .counter {
           &__num {
-            font-size: 40px;
+            font-size: 28px;
             width: 40px;
           }
           &__label {

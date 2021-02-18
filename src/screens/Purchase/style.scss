@@ -458,6 +458,9 @@
       }
     }
     .timer {
+      &__num{
+        font-size: 45px;
+      }
       &__title {
         display: none;
         &_mob {
@@ -490,7 +493,7 @@
     }
     .timer {
       &__num {
-        font-size: 34px;
+        font-size: 28px;
         width: 28px;
       }
       &__title {
