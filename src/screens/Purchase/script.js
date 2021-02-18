@@ -14,50 +14,7 @@ export default {
     h: '00',
     m: '00',
     s: '00',
-    promoItems: [
-      {
-        level: 1,
-        currencyId: 'eur',
-        minAmount: '1000',
-        maxAmount: '10000',
-        reward: '20',
-      },
-      {
-        level: 2,
-        currencyId: 'eur',
-        minAmount: '10001',
-        maxAmount: '50000',
-        reward: '25',
-      },
-      {
-        level: 3,
-        currencyId: 'eur',
-        minAmount: '50001',
-        maxAmount: '200000',
-        reward: '30',
-      },
-      {
-        level: 4,
-        currencyId: 'eur',
-        minAmount: '200001',
-        maxAmount: '1000000',
-        reward: '40',
-      },
-      {
-        level: 5,
-        currencyId: 'eur',
-        minAmount: '1000001',
-        maxAmount: '5000000',
-        reward: '50',
-      },
-      {
-        level: 6,
-        currencyId: 'eur',
-        minAmount: '5000001',
-        maxAmount: '0',
-        reward: '0',
-      },
-    ],
+    promoItems: [],
     amountEOS: '',
     amountCFT: '',
     sendEmail: '',
@@ -90,13 +47,10 @@ export default {
       this.s = this.minTwoDigits(calculated.seconds);
     }, 1000);
 
-    this.fetchGetBonusesList();
+    this.getBonusesListAsync();
   },
   computed: {
     ...mapGetters(['getReferal', 'getCurrencies', 'getBonuses', 'getCurrencyByName']),
-    // getBonuses() {
-    //   return this.promoItems;
-    // },
     rateCFT() {
       return (
         this.getCurrencyByName('CFT') &&
@@ -181,6 +135,14 @@ export default {
   },
   methods: {
     ...mapActions(['fetchSendInvite', 'fetchGetReferalData', 'fetchGetBonusesList']),
+    async getBonusesListAsync() {
+      try {
+        const res = await this.fetchGetBonusesList();
+        this.promoItems = [...res.result];
+      } catch (error) {
+        console.log(error);
+      }
+    },
     minTwoDigits(n) {
       return (n < 10 ? '0' : '') + n;
     },
