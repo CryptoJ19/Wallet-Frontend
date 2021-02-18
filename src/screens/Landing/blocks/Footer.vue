@@ -109,7 +109,7 @@
       margin: 0 0 50px;
     }
     &__l {
-      width: 50%;
+      width: 80%;
       display: flex;
       justify-content: space-between;
       padding: 0 100px 0 0;
@@ -194,11 +194,11 @@
         // display: none;
       }
       &__l {
-        width: 38%;
+        width: 50%;
         padding: 0 30px 0 0;
       }
       &__r {
-        width: 62%;
+        width: 50%;
       }
     }
     @media (max-width: 1400px) {
