@@ -105,7 +105,8 @@ export default {
       return this.rateEOS / this.rateCFT;
     },
     totalSum() {
-      return this.formatSum(this.amountCFT * this.rateCFT);
+      return this.amountCFT * this.rateCFT
+      // return this.formatSum(this.amountCFT * this.rateCFT);
     },
     bonus() {
       let bonus = '';

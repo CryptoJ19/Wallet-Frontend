@@ -101,7 +101,7 @@
           <div class="pay__subtitle">
             {{ $t('purchase.total') }}
           </div>
-          <div class="pay__sum">{{ totalSum }}{{ $t('purchase.cur') }}</div>
+          <div class="pay__sum">{{ Math.ceil(totalSum * 100) / 100 }}{{ $t('purchase.cur') }}</div>
           <div class="reward">
             <div class="reward__item">
               <div class="reward__title">
