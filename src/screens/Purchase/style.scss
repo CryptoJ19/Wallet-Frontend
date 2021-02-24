@@ -235,16 +235,24 @@
     }
   }
   .step {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 84px;
-    grid-gap: 20px;
-    padding: 0 32px;
-    height: 149px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 32px;
     border-radius: 20px;
+    &__title{
+      display: flex;
+      img{
+        margin-right: 5px;
+      }
+    }
     &__item {
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+        font-weight: 600;
+        font-size: 18px;
+        color: #000000;
       &:nth-child(1) {
         .step__title {
           font-weight: bold;
@@ -254,27 +262,6 @@
         .step__sub {
           font-size: 12px;
           color: rgba(#000000, 0.5);
-        }
-      }
-      &:nth-child(2) {
-        font-weight: 600;
-        font-size: 18px;
-        color: #000000;
-      }
-      &:nth-child(3) {
-        font-size: 18px;
-        color: rgba(#000000, .5);
-      }
-      &:nth-child(4) {
-        align-items: flex-end;
-        .step__title {
-          font-weight: 600;
-          font-size: 30px;
-          color: #000000;
-        }
-        .step__sub {
-          font-size: 14px;
-          color: $grey;
         }
       }
     }
@@ -288,16 +275,26 @@
     display: flex;
     padding: 30px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     &__items {
-      display: grid;
-      grid-gap: 20px;
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
     }
     &__title {
       font-style: normal;
       font-weight: bold;
       font-size: 22px;
       color: #000000;
+    }
+    &__header{
+      display: flex;
+      justify-content: space-between;
+      width: 95%;
+      margin: 20px auto;
+      font-size: 14px;
+      font-weight: 400;
+      color: $grey;
     }
   }
   .progress {
@@ -433,7 +430,7 @@
       padding: 30px;
     }
     .step {
-      grid-template-columns: 1fr 1fr 1fr 84px;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
   @media (max-width: 767px) {
@@ -472,16 +469,16 @@
       grid-template-columns: 1fr 1fr;
       height: initial;
       padding: 20px;
-      &__item {
-        &:nth-child(2) {
-          justify-content: flex-start;
-          align-items: flex-end;
-          font-size: 14px;
-        }
-        &:nth-child(3) {
-          font-size: 12px;
-        }
-      }
+      //&__item {
+      //  &:nth-child(2) {
+      //    justify-content: flex-start;
+      //    align-items: flex-end;
+      //    font-size: 14px;
+      //  }
+      //  &:nth-child(3) {
+      //    font-size: 12px;
+      //  }
+      //}
     }
   }
   @media (max-width: 575px) {

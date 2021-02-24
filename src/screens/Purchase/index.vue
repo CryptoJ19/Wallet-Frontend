@@ -287,36 +287,51 @@
 
       <div class="steps">
         <div class="steps__title">
-          {{ $t('purchase.steps.title') }}
+          {{ $t('purchase.currencies.title') }}
         </div>
         <div class="steps__items">
+          <div class="steps__header">
+            <div class="steps__column-name">{{ $t('purchase.currencies.columns.currency') }}</div>
+            <div class="steps__column-name">{{ $t('purchase.currencies.columns.price') }}</div>
+            <div class="steps__column-name">{{ $t('purchase.currencies.columns.change') }}</div>
+          </div>
           <div
-            v-for="(item, i) in 3"
+            v-for="(item, i) in currencies"
             :key="`steps__item${i}`"
             class="step"
-            :class="{ step_active: i === 2 }"
+            :class="{ step_active: i === 0 }"
           >
             <div class="step__item">
               <div class="step__title">
-                {{ $t(`purchase.steps.items[${i}].round`) }}
+                {{ item.name }}
               </div>
-              <div class="step__sub">
-                {{ $t(`purchase.steps.items[${i}].date`) }}
-              </div>
+<!--              <div class="step__sub">-->
+<!--                {{ $t(`purchase.steps.items[${i}].date`) }}-->
+<!--              </div>-->
             </div>
             <div class="step__item">
-              {{ $t(`purchase.steps.items[${i}].extra`) }}
+              ${{ item.price.toLocaleString() }}
             </div>
-            <div class="step__item">
-              {{ $t(`purchase.steps.items[${i}].released`) }}
-            </div>
+<!--            <div class="step__item">-->
+<!--              {{ $t(`purchase.steps.items[${i}].released`) }}-->
+<!--            </div>-->
             <div class="step__item">
               <div class="step__title">
-                {{ $t(`purchase.steps.items[${i}].sum`) }}
+                <img
+                  v-if="item.change > 0"
+                  src="~assets/imgs/icons/arrow_up.svg"
+                  alt="img"
+                >
+                <img
+                  v-if="item.change < 0"
+                  src="~assets/imgs/icons/arrow_down.svg"
+                  alt="img"
+                >
+                {{ Math.abs(item.change) }}%
               </div>
-              <div class="step__sub">
-                {{ $t(`purchase.steps.items[${i}].token`) }}
-              </div>
+<!--              <div class="step__sub">-->
+<!--                {{ $t(`purchase.steps.items[${i}].token`) }}-->
+<!--              </div>-->
             </div>
           </div>
         </div>

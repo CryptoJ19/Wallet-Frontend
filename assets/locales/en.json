@@ -843,9 +843,25 @@
     "comingSoon": "We're working hard on the feature. Deposits in fiat currencies will be available very soon.",
     "cur": "€",
     "confirm": "Confirm",
+    "currencies": {
+      "columns": {
+        "currency": "Currency",
+        "price": "Price",
+        "change": "Change"
+      },
+      "title": "Exchange rates"
+    },
     "steps": {
       "title": "Steps",
       "items": [
+        {
+          "round": "1 Round",
+          "date": "January 13 - February 13",
+          "extra": "50% extra token",
+          "released": "released 3 months later the end of the ICO",
+          "sum": "$ 1",
+          "token": "For token"
+        },
         {
           "round": "1 Round",
           "date": "January 13 - February 13",

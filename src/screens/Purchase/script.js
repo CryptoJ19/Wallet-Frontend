@@ -24,6 +24,27 @@ export default {
     er: [],
     payTab: 0,
     convertFlag: false,
+    currencies: [
+      {
+        name: 'BTC',
+        price: 50000,
+        change: 5,
+      },
+      {
+        name: 'CFT',
+        price: 50000,
+        change: -5,
+      },
+      {
+        name: 'CFT',
+        price: 50000,
+        change: -5,
+      },{
+        name: 'CFT',
+        price: 50000,
+        change: -5,
+      }
+    ]
   }),
   mounted() {
     // this.promoItems = this.$t('purchase.promo.items');
