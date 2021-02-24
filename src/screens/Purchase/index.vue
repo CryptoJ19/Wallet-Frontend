@@ -27,6 +27,14 @@
         </div>
       </div>
       <div class="promo__items">
+        <div class="promo__box">
+          <div class="promo__box-container">
+            <div class="promo__box-title">Limited offer</div>
+            <div class="promo__box-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing imperdiet bibendum.</div>
+            <div v-if="getBonuses[0]" class="promo__box-offer"><strong>{{ NumberWithCommas(getBonuses[0].minAmount) }}€</strong> to <strong>{{ NumberWithCommas(getBonuses[0].maxAmount) }}€</strong> <div>extra token 20%</div></div>
+          </div>
+          <img src="~assets/imgs/promo_bg.svg" alt="">
+        </div>
         <div v-for="(item, i) in getBonuses" :key="`promoitem_${i}`" class="promo__item">
           <div class="promo__num">
             {{ i + 1 }}
