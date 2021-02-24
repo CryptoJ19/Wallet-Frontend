@@ -322,7 +322,7 @@
               </div>
             </div>
             <div class="step__item">
-              ${{ NumberWithCommas(item.price) }}
+              €{{ NumberWithCommas(item.price) }}
             </div>
             <div class="step__item">
               <div class="step__title">

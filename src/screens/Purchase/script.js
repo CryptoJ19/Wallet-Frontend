@@ -146,7 +146,12 @@ export default {
       }
     },
     processCurrencies(){
-      this.currencies = this.getCurrencies.map(el => ({name: el.symbol, price: Math.ceil(el.currentRate / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100}))
+      const eur = this.getCurrencies.find(el => el.id === 'eur');
+      this.currencies = this.getCurrencies.filter(el => el.id !== eur.id);
+      this.currencies = this.currencies.map((el) =>
+         ({name: el.symbol, price: Math.ceil(el.currentRate / (eur.currentRate / 1000000) / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100})
+      );
+      this.currencies = [...this.currencies, {name: 'USD', price: Math.ceil(1 / (eur.currentRate / 1000000) * 100) / 100, change: -Math.ceil(eur.change * 100) / 100}];
     },
     minTwoDigits(n) {
       return (n < 10 ? '0' : '') + n;
