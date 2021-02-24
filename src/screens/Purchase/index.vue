@@ -305,16 +305,10 @@
               <div class="step__title">
                 {{ item.name }}
               </div>
-<!--              <div class="step__sub">-->
-<!--                {{ $t(`purchase.steps.items[${i}].date`) }}-->
-<!--              </div>-->
             </div>
             <div class="step__item">
               ${{ item.price.toLocaleString() }}
             </div>
-<!--            <div class="step__item">-->
-<!--              {{ $t(`purchase.steps.items[${i}].released`) }}-->
-<!--            </div>-->
             <div class="step__item">
               <div class="step__title">
                 <img
@@ -329,9 +323,6 @@
                 >
                 {{ Math.abs(item.change) }}%
               </div>
-<!--              <div class="step__sub">-->
-<!--                {{ $t(`purchase.steps.items[${i}].token`) }}-->
-<!--              </div>-->
             </div>
           </div>
         </div>

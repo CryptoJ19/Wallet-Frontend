@@ -24,27 +24,7 @@ export default {
     er: [],
     payTab: 0,
     convertFlag: false,
-    currencies: [
-      {
-        name: 'BTC',
-        price: 50000,
-        change: 5,
-      },
-      {
-        name: 'CFT',
-        price: 50000,
-        change: -5,
-      },
-      {
-        name: 'CFT',
-        price: 50000,
-        change: -5,
-      },{
-        name: 'CFT',
-        price: 50000,
-        change: -5,
-      }
-    ]
+    currencies: [],
   }),
   mounted() {
     // this.promoItems = this.$t('purchase.promo.items');
@@ -69,6 +49,7 @@ export default {
     }, 1000);
 
     this.getBonusesListAsync();
+    this.processCurrencies();
   },
   computed: {
     ...mapGetters(['getReferal', 'getCurrencies', 'getBonuses', 'getCurrencyByName']),
@@ -163,6 +144,9 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    processCurrencies(){
+      this.currencies = this.getCurrencies.map(el => ({name: el.symbol, price: el.currentRate, change: Math.ceil(el.change * 100) / 100}))
     },
     minTwoDigits(n) {
       return (n < 10 ? '0' : '') + n;
