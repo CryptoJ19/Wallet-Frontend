@@ -42,7 +42,7 @@
           </div>
           <img src="~assets/imgs/promo_bg.svg" alt="">
         </div>
-        <div v-for="(item, i) in getBonuses" :key="`promoitem_${i}`" class="promo__item">
+        <div v-for="(item, i) in getBonuses.slice(1)" :key="`promoitem_${i}`" class="promo__item">
           <div class="promo__num">
             {{ i + 1 }}
           </div>
@@ -50,12 +50,12 @@
             <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
             {{ $t('purchase.promoTo') }}
             <strong>{{ NumberWithCommas(item.maxAmount) }}€</strong>
-            {{ $t('purchase.promoExtra') }}
-            {{ item.reward }}%
+            <div>{{ $t('purchase.promoExtra') }}
+              {{ item.reward }}%</div>
           </div>
           <div v-else>
             <strong>{{ NumberWithCommas(item.minAmount) }}€</strong>
-            {{ $t('purchase.andMore') }}
+            <div>{{ $t('purchase.andMore') }}</div>
           </div>
         </div>
       </div>
