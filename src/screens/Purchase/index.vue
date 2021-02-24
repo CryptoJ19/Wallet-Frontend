@@ -33,7 +33,12 @@
             <div class="promo__box-description">
               {{$t('purchase.specialOfferDescription')}}
             </div>
-            <div v-if="getBonuses[0]" class="promo__box-offer"><strong>{{ NumberWithCommas(getBonuses[0].minAmount) }}€</strong> {{ $t('purchase.promoTo') }} <strong>{{ NumberWithCommas(getBonuses[0].maxAmount) }}€</strong> <div>{{ $t('purchase.promoExtra') }} {{ getBonuses[0].reward }}%</div></div>
+            <div v-if="getBonuses[0]" class="promo__box-offer">
+              <strong>{{ NumberWithCommas(getBonuses[0].minAmount) }}€</strong>
+              {{ $t('purchase.promoTo') }}
+              <strong>{{ NumberWithCommas(getBonuses[0].maxAmount) }}€</strong>
+              <div>{{ $t('purchase.promoExtra') }} {{ getBonuses[0].reward }}%</div>
+            </div>
           </div>
           <img src="~assets/imgs/promo_bg.svg" alt="">
         </div>
@@ -317,7 +322,7 @@
               </div>
             </div>
             <div class="step__item">
-              ${{ item.price.toLocaleString() }}
+              ${{ NumberWithCommas(item.price) }}
             </div>
             <div class="step__item">
               <div class="step__title">
