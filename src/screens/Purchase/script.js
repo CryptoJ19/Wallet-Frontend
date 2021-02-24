@@ -146,7 +146,7 @@ export default {
       }
     },
     processCurrencies(){
-      this.currencies = this.getCurrencies.map(el => ({name: el.symbol, price: el.currentRate, change: Math.ceil(el.change * 100) / 100}))
+      this.currencies = this.getCurrencies.map(el => ({name: el.symbol, price: Math.ceil(el.currentRate / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100}))
     },
     minTwoDigits(n) {
       return (n < 10 ? '0' : '') + n;
