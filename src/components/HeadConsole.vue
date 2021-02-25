@@ -171,6 +171,7 @@ export default {
     &__burger {
       display: flex;
       margin: 0 25px 0 0;
+      cursor: pointer;
     }
   }
   @media (max-width: 991px) {

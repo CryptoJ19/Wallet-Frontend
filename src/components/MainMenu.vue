@@ -8,7 +8,9 @@
     />
     <div class="main-menu__top">
       <div class="main-menu__logo">
-        <img src="~assets/imgs/logo.svg" alt="CashFlash" />
+        <nuxt-link to="/">
+          <img src="~assets/imgs/logo.svg" alt="CashFlash" />
+        </nuxt-link>
       </div>
       <div class="main-menu__items">
         <nuxt-link
@@ -106,6 +108,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 188px;
+    cursor: pointer;
   }
   &__items {
     border-top: 1px solid rgba($grey, 0.1);
@@ -187,9 +190,6 @@ export default {
     }
     &__items {
       padding: 0;
-    }
-    &__logo {
-      display: none;
     }
   }
 }
