@@ -89,9 +89,6 @@ export default {
     this.docTypes = this.$t('profile.docTypes');
     this.setFieldsTitles();
     this.fieldsRendered = true;
-    setInterval(() => {
-      console.log(this.fieldsKeys, this.getProfile, this.fieldsTabsKey, this.tab);
-    }, 4000)
   },
   watch: {
     fieldsDropDown: {
