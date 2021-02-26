@@ -26,6 +26,7 @@ export default {
     convertFlag: false,
     currencies: [],
     currenciesOrder: ['cft', 'eos', 'eth', 'btc', 'usd'],
+    mockBtcAddress: 'dfkdf;lgd;flgs;436lkl45j2jlk;25774kf6lkl45j2jlk;25774kf',
   }),
   mounted() {
     // this.promoItems = this.$t('purchase.promo.items');
@@ -224,5 +225,22 @@ export default {
     hideModal(value) {
       this.$bvModal.hide(value);
     },
+    copy(str){
+      const el = document.createElement('textarea');
+      el.style.opacity = '0';
+      el.value = str;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    },
+    rate(first, second){
+      return this.getCurrencyByName(first) && this.getCurrencyByName(second) && this.getCurrencyByName(first).currentRate / this.getCurrencyByName(second).currentRate
+    },
+    round(number, decimals){
+      const numb = Number(number);
+      // eslint-disable-next-line no-restricted-globals
+      return !isNaN(numb) ? Math.ceil(numb * 10 ** decimals) / 10 ** decimals : '';
+    }
   },
 };

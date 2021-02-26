@@ -903,11 +903,15 @@
     "specify": "Specify a number",
     "choose": "Choose a payment method",
     "EOS": "EOS (from your CF wallet)",
-    "stripe": "Stripe/Visa/Mastercard",
+    "stripe": "BTC/ETH",
     "amount": "Amount",
     "amountPlaceholder": "€1000",
     "total": "Total sum",
     "comingSoon": "We're working hard on the feature. Deposits in fiat currencies will be available very soon.",
+    "paymentBtcEth": {
+      "title": "Buy with",
+      "address": "address"
+    },
     "cur": "€",
     "confirm": "Confirm",
     "currencies": {

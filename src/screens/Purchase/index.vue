@@ -145,69 +145,33 @@
           </div>
         </div>
         <div v-else class="pay__way">
-          <div class="pay__sum pay__sum_sm">
-            1 CFT =
-            {{
-              Math.ceil(
-                (this.getCurrencyByName('CFT').currentRate /
-                  this.getCurrencyByName('EOS').currentRate) *
-                  10000,
-              ) / 10000
-            }}
-            EOS = {{ Math.ceil(rateCFT * 100) / 100 }} EUR
-          </div>
-          <div class="pay__subtitle">{{ $t('purchase.amount') }} CFT</div>
-          <div class="pay__amount">
-            <input
-              v-model="amountCFT"
-              maxlength="40"
-              :placeholder="$t('wallet.modalSend.amount')"
-              type="number"
-            />
-          </div>
-          <div class="pay__subtitle">{{ $t('purchase.amount') }} EOS</div>
-          <div class="pay__amount">
-            <input
-              v-model="amountEOS"
-              maxlength="40"
-              :placeholder="$t('wallet.modalSend.amount')"
-              type="number"
-            />
-          </div>
-          <div class="pay__subtitle">
-            {{ $t('purchase.total') }}
-          </div>
-          <div class="pay__sum">{{ Math.ceil(totalSum * 100) / 100 }} {{ $t('purchase.cur') }}</div>
-          <div class="reward">
-            <div class="reward__item">
-              <div class="reward__title">
-                {{ $t('purchase.bonusAmount') }}
-              </div>
-              <div class="reward__value">{{ Math.ceil(bonus * 10000) / 10000 }} CFT</div>
-            </div>
-            <div class="reward__item">
-              <div class="reward__title">
-                {{ $t('purchase.deliveryDate') }}
-              </div>
-              <div class="reward__value">
-                {{ getDeliveryDate() }}
-              </div>
+          <div class="payment">
+            <div class="payment__title">{{ $t('purchase.paymentBtcEth.title') }} BTC</div>
+            <div class="payment__rates">1 CFT = {{ round(rate('CFT', 'BTC'), 8) }} BTC = {{ rate('CFT', 'EUR') }} EUR</div>
+            <div class="payment__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nec augue</div>
+            <div class="payment__address-title">BTC {{ $t('purchase.paymentBtcEth.address') }}</div>
+            <div class="payment__address">
+              <input type="text" disabled v-model="mockBtcAddress">
+              <button class="payment__copy" @click="copy(mockBtcAddress)">
+                <div class="payment__copy-active">
+                  <img src="~assets/imgs/icons/copy.svg" alt="close" />
+                </div>
+              </button>
             </div>
           </div>
-          <div class="pay__btns">
-            <button
-              class="pay__btn"
-              :class="{ pay__btn_dis: !checkValidPay }"
-              :disabled="!checkValidPay"
-              @click="showPayConfirmModal()"
-            >
-              {{ $t('purchase.confirm') }}
-            </button>
-          </div>
-          <div class="pay__soon">
-            <span>
-              {{ $t('purchase.comingSoon') }}
-            </span>
+          <div class="payment">
+            <div class="payment__title">{{ $t('purchase.paymentBtcEth.title') }} ETH</div>
+            <div class="payment__rates">1 CFT = {{ round(rate('CFT', 'ETH'), 8) }} ETH = {{ rate('CFT', 'EUR') }} EUR</div>
+            <div class="payment__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nec augue</div>
+            <div class="payment__address-title">ETH {{ $t('purchase.paymentBtcEth.address') }}</div>
+            <div class="payment__address">
+              <input type="text" disabled v-model="mockBtcAddress">
+              <button class="payment__copy" @click="copy(mockBtcAddress)">
+                <div class="payment__copy-active">
+                  <img src="~assets/imgs/icons/copy.svg" alt="close" />
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
