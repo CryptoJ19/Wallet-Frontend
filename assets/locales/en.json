@@ -76,20 +76,34 @@
       },
       "items": [
         {
-          "title": "WALLET",
-          "sub": "SCOPRI"
+          "title": "Wallet",
+          "sub": "Wallet",
+          "image": "wallet-icon"
         },
         {
-          "title": "TECHNOLOGY",
-          "sub": "SCOPRI"
+          "title": "Shop",
+          "sub": "Marketplace",
+          "image": "market-icon"
         },
         {
-          "title": "SHOP",
-          "sub": "SCOPRI"
+          "title": "Technology",
+          "sub": "Anti-fraud protection",
+          "image": "lamp-icon"
+        },
+        {
+          "title": "E-Bank",
+          "sub": "Credit cards on blockchain",
+          "image": "bank-icon"
+        },
+        {
+          "title": "Blockchain",
+          "sub": "The only interlinked blockchain",
+          "image": "chain-icon"
         },
         {
           "title": "MOBILE",
-          "sub": "SCOPRI"
+          "sub": "App mobile",
+          "image": "phone-icon"
         }
       ]
     },
@@ -532,7 +546,10 @@
       "sub": "Stay updated on the news of Cash Flash",
       "subBtn": "Subscribe",
       "mailInput": "Email",
-      "copyright": "All rights reserved for CashFlash UAB"
+      "copyright": "All rights reserved for CashFlash UAB",
+      "contacts": "Contacts",
+      "usefulLinksTitle": "Useful links",
+      "usefulLinks": ["https://eos.io", "https://bloks.io/account/cftcashflash", "https://coinmarketcap.com", "https://coingecko.com"]
     }
   },
   "default": {

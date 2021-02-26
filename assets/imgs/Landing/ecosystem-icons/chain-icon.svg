@@ -1,0 +1,7 @@
+<svg width="50" height="33" viewBox="0 0 50 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M43 4L31.2609 4L21.0377 16L7 16" stroke="black" stroke-width="2.5"/>
+  <path d="M43 29L30.8696 29L21.0377 16L7 16" stroke="black" stroke-width="2.5"/>
+  <circle cx="46" cy="4" r="2.75" transform="rotate(90 46 4)" stroke="black" stroke-width="2.5"/>
+  <circle cx="46" cy="29" r="2.75" transform="rotate(90 46 29)" stroke="black" stroke-width="2.5"/>
+  <circle cx="4" cy="16" r="2.75" transform="rotate(90 4 16)" stroke="black" stroke-width="2.5"/>
+</svg>

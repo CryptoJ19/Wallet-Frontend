@@ -35,7 +35,7 @@
             <div class="advan__border">
               <div class="advan__icon">
                 <img
-                  :src="imagePath(i)"
+                  :src="imagePath(item)"
                   alt="img"
                 >
               </div>
@@ -53,9 +53,9 @@
               <div class="shape__hor">
                 <div class="shape__item" />
               </div>
-              <div class="shape__col">
-                <div class="shape__item" />
-              </div>
+<!--              <div class="shape__col">-->
+<!--                <div class="shape__item" />-->
+<!--              </div>-->
             </div>
           </div>
         </div>
@@ -127,8 +127,8 @@ export default {
     this.items = this.$t('land.adv.items');
   },
   methods: {
-    imagePath(i) {
-      return require(`assets/imgs/Landing/advan_${i + 1}.svg`);
+    imagePath(item) {
+      return require(`assets/imgs/Landing/ecosystem-icons/${item.image}.svg`);
     },
   },
 };
@@ -270,7 +270,7 @@ export default {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-column-gap: 350px;
-      grid-row-gap: 110px;
+      grid-row-gap: 30px;
     }
     &__text {
       margin: 0 0 0 20px;
@@ -282,7 +282,7 @@ export default {
     }
     &__sub {
       font-weight: 600;
-      font-size: 15px;
+      font-size: 13px;
       color: #FFCB23;
     }
     &__icon {
@@ -332,22 +332,44 @@ export default {
       }
     }
     @media (max-width: 1400px) {
+      margin-bottom: 150px;
       &__logo {
+        position: relative;
+        margin: 0 0 25px;
+        z-index: 90;
         img {
           max-width: 400px;
         }
       }
       &__items {
-        grid-column-gap: 200px;
-        grid-row-gap: 340px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 30px;
+      }
+      &__item {
+        justify-content: center;
+        &:not(:last-child) {
+          margin: 0 0 25px;
+        }
+      }
+      .shape {
+        display: none;
+      }
+      &__body {
+        position: relative;
+        margin: 0 0 57px;
+      }
+      &__line {
+        position: absolute;
+        background: #F4F4F4;
+        bottom: 0;
+        top: 0px;
+        width: 3px;
       }
     }
     @media (max-width: 1199px) {
-      &__logo {
-        img {
-          max-width: 300px;
-        }
-      }
+      margin-bottom: 150px;
       &__title {
         font-size: 22px;
       }

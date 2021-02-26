@@ -5,7 +5,11 @@
         <div class="footer__logo">
           <img src="~assets/imgs/logo.svg" alt="CashFlash" />
         </div>
+<!--        <div class="footer__column">-->
+<!--          -->
+<!--        </div>-->
         <div class="address">
+          <div class="address__title">{{$t('land.footer.contacts')}}</div>
           <div class="address__item">
             <div class="address__icon">
               <img src="~assets/imgs/Landing/address.svg" alt="img" />
@@ -17,6 +21,15 @@
               <img src="~assets/imgs/Landing/mail.svg" alt="img" />
             </div>
             <div class="address__text" v-html="$t('land.footer.mail')" />
+          </div>
+        </div>
+        <div class="address">
+          <div class="address__title">{{$t('land.footer.usefulLinksTitle')}}</div>
+          <div v-for="(item,i) in $t('land.footer.usefulLinks')" :key="i" class="address__item--no-bottom">
+            <div class="address__icon">
+              <img src="~assets/imgs/Landing/internet.svg" alt="img" />
+            </div>
+            <a :href="item" target="_blank" class="address__text address__text--link">{{item}}</a>
           </div>
         </div>
       </div>
@@ -109,13 +122,13 @@
       margin: 0 0 50px;
     }
     &__l {
-      width: 80%;
+      flex: 3;
       display: flex;
       justify-content: space-between;
       padding: 0 100px 0 0;
     }
     &__r {
-      width: 50%;
+      flex: 2;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -167,6 +180,13 @@
     }
     .address {
       display: flex;
+      flex-direction: column;
+      &__title{
+        font-size: 18px;
+        color: #54595F;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
       &__icon {
         margin: 4px 13px 0 0;
         width: 10px;
@@ -176,7 +196,13 @@
         }
       }
       &__item {
+        margin: 5px 0;
         display: flex;
+        &--no-bottom{
+          margin: 0;
+          display: flex;
+          align-items: center;
+        }
         &:not(:last-child) {
           margin: 0 40px 0 0;
         }
@@ -187,6 +213,11 @@
         font-size: 16px;
         line-height: 143.4%;
         color: $grey;
+        text-decoration: none;
+        &--link:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
     }
     @media (max-width: 1700px) {
