@@ -17,10 +17,22 @@
     <div class="land__container">
       <div class="advan__body">
         <div class="advan__logo advan__video">
+          <div class="switcher">
+            <div class="switcher__container">
+              <div class="switcher__button">
+                <div class="switcher__text">Italian</div>
+                <img class="switcher__image" src="~assets/imgs/Landing/italian-video.svg" alt="" @click="switchVideo('ita')">
+              </div>
+              <div class="switcher__button">
+                <div class="switcher__text">English</div>
+                <img class="switcher__image" src="~assets/imgs/Landing/english-video.svg" alt="" @click="switchVideo('gbr')">
+              </div>
+            </div>
+          </div>
           <client-only>
             <iframe
               class="advan__frame"
-              :src="`https://www.youtube.com/embed/iHsch1PVFn0`"
+              :src="videoLink"
               allowfullscreen
             />
           </client-only>
@@ -118,11 +130,15 @@
 <script>
 
 export default {
-  data: () => ({
-    items: [
-    ],
-    playerOptions: {},
-  }),
+  data(){
+    return {
+      items: [],
+      playerOptions: {},
+      englishVideoLink: 'https://www.youtube.com/embed/iHsch1PVFn0',
+      italianVideoLink: 'https://www.youtube.com/embed/cvKUOB58xoM',
+      videoLink: 'https://www.youtube.com/embed/iHsch1PVFn0',
+    }
+  },
   created() {
     this.items = this.$t('land.adv.items');
   },
@@ -130,6 +146,13 @@ export default {
     imagePath(item) {
       return require(`assets/imgs/Landing/ecosystem-icons/${item.image}.svg`);
     },
+    switchVideo(lang){
+      if (lang === 'ita'){
+        this.videoLink = this.italianVideoLink;
+      } else if (lang === 'gbr'){
+        this.videoLink = this.englishVideoLink;
+      }
+    }
   },
 };
 </script>
@@ -199,6 +222,39 @@ export default {
     }
     &__logo_mob {
       display: none;
+    }
+    .switcher{
+      position: absolute;
+      bottom: -55px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      &__container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      &__button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &:not(:last-child){
+          margin-right: 30px;
+        }
+      }
+      &__text{
+        font-weight: normal;
+        font-size: 18px;
+        color: #54595F;
+        margin-right: 15px;
+      }
+      &__image{
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+      }
     }
     .shape {
       width: 100%;
@@ -333,6 +389,9 @@ export default {
     }
     @media (max-width: 1400px) {
       margin-bottom: 150px;
+      .switcher {
+        top: -40px;
+      }
       &__logo {
         position: relative;
         margin: 0 0 25px;
@@ -444,6 +503,27 @@ export default {
     }
     @media (max-width: 767px) {
       margin-bottom: 60px;
+      .switcher {
+        top: 30px;
+        right: -270px;
+        width: auto;
+        &__container{
+          flex-direction: column;
+        }
+        &__button{
+          &:not(:last-child){
+            margin-bottom: 7px;
+            margin-right: 0;
+          }
+        }
+        &__text{
+          display: none;
+        }
+        &__image{
+          width: 30px;
+          height: 30px;
+        }
+      }
       &__maintitle {
         margin: 0 0 40px;
         text-align: center;
