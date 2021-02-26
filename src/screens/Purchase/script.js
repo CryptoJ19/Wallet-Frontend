@@ -25,6 +25,7 @@ export default {
     payTab: 0,
     convertFlag: false,
     currencies: [],
+    currenciesOrder: ['cft', 'eos', 'eth', 'btc', 'usd'],
   }),
   mounted() {
     // this.promoItems = this.$t('purchase.promo.items');
@@ -149,9 +150,20 @@ export default {
       const eur = this.getCurrencies.find(el => el.id === 'eur');
       this.currencies = this.getCurrencies.filter(el => el.id !== eur.id);
       this.currencies = this.currencies.map((el) =>
-         ({name: el.symbol, price: Math.ceil(el.currentRate / (eur.currentRate / 1000000) / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100})
+         ({id: el.id, name: el.symbol, price: Math.ceil(el.currentRate / (eur.currentRate / 1000000) / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100})
       );
-      this.currencies = [...this.currencies, {name: 'USD', price: Math.ceil(1 / (eur.currentRate / 1000000) * 100) / 100, change: -Math.ceil(eur.change * 100) / 100}];
+      this.currencies = [...this.currencies, {id: 'usd', name: 'USD', price: Math.ceil(1 / (eur.currentRate / 1000000) * 100) / 100, change: -Math.ceil(eur.change * 100) / 100}];
+      this.sortCurrencies();
+    },
+    sortCurrencies(){
+      const newArray = [];
+      this.currenciesOrder.forEach((curId) => {
+        const currencyToPaste = this.currencies.find(el => el.id === curId);
+        if (currencyToPaste){
+          newArray.push({...currencyToPaste});
+        }
+      })
+      this.currencies = [...newArray];
     },
     minTwoDigits(n) {
       return (n < 10 ? '0' : '') + n;

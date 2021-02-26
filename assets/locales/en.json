@@ -536,6 +536,60 @@
               "text": " "
             }
           }
+        },
+        {
+          "title": "Denise ZUPCANOVA",
+          "sub": "Sales",
+          "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
+          "mail": "info@cashflash.io",
+          "image": "11",
+          "role": "advisor",
+          "description": "SPECIALIZED IN PAYMENT SYSTEMS AND CRYPTO CURRENCIES\nGREAT SUCCESSFUL WOMAN WITH GREAT WORK EXPERIENCE\nGERMAN MULTINATIONALS AND EUROPE IN THE DEVELOPMENT OF PAYMENT SYSTEMS AND\nINDUSTRIAL",
+          "language": {
+            "ITA": "100",
+            "GBR": "75"
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
+        },
+        {
+          "title": "Milan PESIC",
+          "sub": "Sales",
+          "in": "https://www.linkedin.com/company/cashflash/",
+          "inNick": "www.linkedin.com/company/cashflash/",
+          "mail": "info@cashflash.io",
+          "image": "12",
+          "role": "advisor",
+          "description": "WORKING EXPERIENCE: \n-Director of the customs administration of the Republic\nSlovenia, organizes transit documents, import-export, transport,\nI work with international clients from all over the world.\n-work at the Instituto of Knowledge Europe",
+          "language": {
+          },
+          "education": {
+            "0": {
+              "title": " ",
+              "text": " "
+            },
+            "1": {
+              "title": " ",
+              "text": " "
+            },
+            "2": {
+              "title": " ",
+              "text": " "
+            }
+          }
         }
       ]
     },
