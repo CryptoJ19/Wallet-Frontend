@@ -38,13 +38,9 @@ export default {
       typeShow: false,
       streetType: '',
       streetTypeShow: false,
-      countryDoc: '',
-      countryDocShow: false,
     },
     fieldsDatePickerValue: {
       birthDate: '',
-      expireDate: '',
-      issueDate: '',
     },
     localFieldsValue: {},
     fieldsTitles: {
@@ -58,14 +54,7 @@ export default {
         middleName: '',
       },
       document: {
-        title: '',
-        expireDate: '',
-        issueDate: '',
         number: '',
-        serie: '',
-        type: '',
-        filePicker: '',
-        country: '',
       },
       communication: {
         title: '',
@@ -100,13 +89,15 @@ export default {
     this.docTypes = this.$t('profile.docTypes');
     this.setFieldsTitles();
     this.fieldsRendered = true;
+    setInterval(() => {
+      console.log(this.fieldsKeys, this.getProfile, this.fieldsTabsKey, this.tab);
+    }, 4000)
   },
   watch: {
     fieldsDropDown: {
       deep: true,
       handler(value) {
         this.localFieldsValue.person.gender = value.gender;
-        this.localFieldsValue.document.type = value.type;
         this.localFieldsValue.location.streetType = value.streetType;
         if (value.countryDoc !== '') {
           this.localFieldsValue.document.country = value.countryDoc;
@@ -117,8 +108,6 @@ export default {
       deep: true,
       handler() {
         this.localFieldsValue.person.birthDate = this.createDate('birthDate');
-        this.localFieldsValue.document.expireDate = this.createDate('expireDate');
-        this.localFieldsValue.document.issueDate = this.createDate('issueDate');
       },
     },
   },
@@ -169,7 +158,6 @@ export default {
         keys[itemTab] = [...new Set([...arr, ...countryArr])];
       });
 
-      keys.document.push('filePicker');
       keys.location.unshift('country');
 
       return keys;
@@ -417,11 +405,7 @@ export default {
           gender: '',
         },
         document: {
-          type: '',
-          serie: '',
           number: '',
-          issueDate: '',
-          expireDate: '',
         },
         communication: {
           telephone: '',

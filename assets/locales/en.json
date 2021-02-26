@@ -772,13 +772,7 @@
     },
     "document": {
       "title": "Document",
-      "expireDate": "Expiry date",
-      "issueDate": "Issue date",
-      "number": "Number",
-      "serie": "Series",
-      "type": "Document type",
-      "filePicker": "Upload a scan",
-      "country": "Passport country"
+      "number": "Number"
     },
     "person": {
       "title": "Person",

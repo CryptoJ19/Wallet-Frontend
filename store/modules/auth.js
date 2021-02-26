@@ -215,6 +215,7 @@ export default {
       if (res.ok) {
         ctx.commit('updateProfile', res.result);
         ctx.commit('updateIsAuthorized', true);
+        ctx.commit('updateCountry', res.result?.country);
       }
       return res;
     },
@@ -273,6 +274,9 @@ export default {
     },
   },
   mutations: {
+    updateCountry(state, country){
+      state.country = country;
+    },
     logout(state) {
       state.profile = {};
       state.transactions = {};
