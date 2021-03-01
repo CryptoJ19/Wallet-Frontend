@@ -82,6 +82,8 @@ export default {
     fieldsRendered: false,
   }),
   mounted() {
+    this.fetchTempGAToken();
+    this.fetchCheckGA();
     this.refrashFieldEr();
     this.setDefaultProfile();
     this.gendersName = this.$t('profile.gendersName');
@@ -188,6 +190,8 @@ export default {
       'fetchEditFormPerson',
       'fetchVerifyProfile',
       'setErrorTextFromResponse',
+      'fetchCheckGA',
+      'fetchTempGAToken',
     ]),
     ...mapMutations(['setVerificationError', 'setDefaultVerificationError']),
     createDate(item) {

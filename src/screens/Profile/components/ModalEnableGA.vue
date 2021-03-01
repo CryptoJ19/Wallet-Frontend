@@ -291,13 +291,11 @@ export default {
 
     },
   },
-  created() {
-    this.fetchTempGAToken();
-  },
   methods: {
     ...mapActions([
       'fetchTempGAToken',
       'fetchСonfirmationGA',
+      'fetchCheckGA',
     ]),
     async onChangeCode(e) {
       const { id } = e.target;
@@ -374,6 +372,7 @@ export default {
       this.step -= 1;
     },
     close() {
+      this.fetchCheckGA();
       this.$bvModal.hide('modal-enable-ga');
     },
     getUserEr(i) {
