@@ -97,6 +97,7 @@ export default {
       return state.GAEnabled;
     },
     getGAToken(state) {
+      console.log(state);
       return state.GAToken;
     },
   },

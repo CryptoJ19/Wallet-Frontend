@@ -291,6 +291,9 @@ export default {
 
     },
   },
+  created() {
+    this.fetchTempGAToken();
+  },
   methods: {
     ...mapActions([
       'fetchTempGAToken',
