@@ -145,7 +145,7 @@ export default {
   },
   mounted() {
     this.getBonusesListAsync();
-    const icoTime = new Date(1638637200000); // Dec 5
+    const icoTime = new Date('04/01/2021'); // Apr 1
     const timer = setInterval(() => {
       const now = new Date();
       const difference = icoTime - now;

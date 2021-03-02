@@ -148,7 +148,8 @@
           <div class="payment">
             <div class="payment__title">{{ $t('purchase.paymentBtcEth.title') }} BTC</div>
             <div class="payment__rates">1 CFT = {{ round(rate('CFT', 'BTC'), 8) }} BTC = {{ rate('CFT', 'EUR') }} EUR</div>
-            <div class="payment__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nec augue</div>
+            <div class="payment__text" v-html="$t('purchase.paymentBtcEth.description')">
+            </div>
             <div class="payment__address-title">BTC {{ $t('purchase.paymentBtcEth.address') }}</div>
             <div class="payment__address">
               <input type="text" disabled v-model="mockBtcAddress">
@@ -162,7 +163,7 @@
           <div class="payment">
             <div class="payment__title">{{ $t('purchase.paymentBtcEth.title') }} ETH</div>
             <div class="payment__rates">1 CFT = {{ round(rate('CFT', 'ETH'), 8) }} ETH = {{ rate('CFT', 'EUR') }} EUR</div>
-            <div class="payment__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus nec augue</div>
+            <div class="payment__text" v-html="$t('purchase.paymentBtcEth.description')"></div>
             <div class="payment__address-title">ETH {{ $t('purchase.paymentBtcEth.address') }}</div>
             <div class="payment__address">
               <input type="text" disabled v-model="mockBtcAddress">

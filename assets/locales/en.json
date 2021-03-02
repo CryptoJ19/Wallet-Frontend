@@ -910,7 +910,8 @@
     "comingSoon": "We're working hard on the feature. Deposits in fiat currencies will be available very soon.",
     "paymentBtcEth": {
       "title": "Buy with",
-      "address": "address"
+      "address": "address",
+      "description": "<div>Minimum purchase EUR 1000</div><div>1- provide Txn hash of payment to info@cashflash.io with Nickname ID#</div><div>2- after 6 confirmation on Blockchain CFT will be deposited in account</div>"
     },
     "cur": "€",
     "confirm": "Confirm",
