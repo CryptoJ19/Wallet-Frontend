@@ -107,6 +107,7 @@ export default {
         const resFiles = this.fetchGetDocFiles();
         const resMyBonuses = this.fetchGetMyBonuses();
         const resCurrencies = this.fetchGetCurrencies();
+        this.fetchCheckGA();
 
         await Promise.all([resGetReferalData, resProfile, resFiles, resMyBonuses, resCurrencies]);
         this.globalLoader = false;

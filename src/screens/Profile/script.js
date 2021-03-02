@@ -83,7 +83,6 @@ export default {
   }),
   mounted() {
     this.fetchTempGAToken();
-    this.fetchCheckGA();
     this.refrashFieldEr();
     this.setDefaultProfile();
     this.gendersName = this.$t('profile.gendersName');
@@ -201,7 +200,7 @@ export default {
       } else {
         date = new Date(
           new Date(this.fieldsDatePickerValue[item]) -
-            new Date(this.fieldsDatePickerValue[item]).getTimezoneOffset() * 60 * 1000,
+          new Date(this.fieldsDatePickerValue[item]).getTimezoneOffset() * 60 * 1000,
         ).toISOString();
       }
       return date;
@@ -567,7 +566,7 @@ export default {
 
       this.setDefaultProfile();
     },
-    clearEr() {},
+    clearEr() { },
     setUserEditMode(i) {
       this.userEditMode = i;
     },
