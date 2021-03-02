@@ -4,8 +4,8 @@
   </ContainerConsole>
 </template>
 <script>
-import ContainerConsole from '~/src/components/ContainerConsole';
 import { mapActions } from 'vuex';
+import ContainerConsole from '~/src/components/ContainerConsole';
 import Profile from '~/src/screens/Profile';
 
 export default {

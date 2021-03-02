@@ -772,7 +772,7 @@
     },
     "document": {
       "title": "Document",
-      "number": "Number"
+      "number": "Personal ID (SSN)"
     },
     "person": {
       "title": "Person",
