@@ -17,6 +17,12 @@ export default {
   }),
   mounted() {
     this.title = this.$t('main.menu.profile');
+    this.fetchCheckGA();
+  },
+  methods: {
+    ...mapActions([
+      'fetchCheckGA',
+    ]),
   },
   head() {
     return {
