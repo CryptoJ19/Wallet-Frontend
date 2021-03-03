@@ -236,7 +236,6 @@
               <div
                 v-for="(item, i) in 3"
                 :key="`line__point_${i}`"
-                :class="{ line__point_active: i === 0 }"
                 class="line__point"
               >
                 <tippy
