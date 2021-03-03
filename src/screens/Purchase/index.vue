@@ -261,7 +261,7 @@
               <div class="line__point" />
             </div>
           </div>
-          <div class="line__per">35%</div>
+          <div class="line__per">5%</div>
         </div>
       </div>
 
