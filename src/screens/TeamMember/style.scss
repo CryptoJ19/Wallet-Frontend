@@ -62,6 +62,9 @@
     font-size: 18px;
     color: #54595F;
   }
+  &__mobile-title{
+    display: none;
+  }
 }
 .language {
   font-size: 18px;
@@ -175,5 +178,36 @@
     height: 2px;
     border-radius: 100%;
     background: #54595F;
+  }
+}
+@media (max-width: 769px) {
+  .member{
+    &__content{
+      grid-template-columns: none;
+      grid-template-rows: none;
+      grid-column-gap: 0;
+    }
+    &__nav {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    &__header {
+      grid-column: auto;
+      grid-row: auto;
+      display: none;
+    }
+    &__main {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    &__cloud {
+      grid-column: auto;
+      grid-row: auto;
+      margin: 0 auto;
+      width: 380px;
+    }
+    &__mobile-title{
+      display: block;
+    }
   }
 }

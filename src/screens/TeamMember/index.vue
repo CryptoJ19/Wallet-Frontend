@@ -21,6 +21,7 @@
           <div class="cloud">
             <div class="cloud__ava" :style="`background-image: url(${imagePath(person.image)})`" />
             <div class="cloud__content">
+              <div class="member__title member__mobile-title">{{person.title}}</div>
               <div class="member__title">Contacts</div>
               <div class="contact contact__items">
                 <div v-if="person.mail" class="contact__item">
