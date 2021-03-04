@@ -166,6 +166,9 @@ export default {
     align-items: center;
     &__video {
       display: flex;
+      iframe{
+        z-index: 1;
+      }
     }
     &__frame {
       $size: 520px;
@@ -229,6 +232,7 @@ export default {
       left: 0;
       right: 0;
       width: 100%;
+      z-index: 0;
       &__container{
         display: flex;
         flex-direction: row;
