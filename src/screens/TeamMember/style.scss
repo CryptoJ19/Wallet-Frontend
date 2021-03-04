@@ -181,6 +181,9 @@
   }
 }
 @media (max-width: 769px) {
+  .land__container{
+    padding: 0;
+  }
   .member{
     &__content{
       grid-template-columns: none;
@@ -203,11 +206,20 @@
     &__cloud {
       grid-column: auto;
       grid-row: auto;
-      margin: 0 auto;
-      width: 380px;
+      width: 100%;
+      .cloud{
+        width: 100%;
+      }
     }
     &__mobile-title{
       display: block;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .cloud{
+    &__content{
+      padding: 40px 10px 50px;
     }
   }
 }
