@@ -184,6 +184,9 @@
             </div>
           </div>
           <div class="form__item">
+            <div>
+              <Dropdown label="Country" :items="[{key: '1', value: '11'},{key: 'ALB', value: 'Albania ALB'},{key: 'BEL', value: 'Belgium BEL'}]" :setValue="() => {}" />
+            </div>
             <input
               v-model="signup.email"
               maxlength="40"

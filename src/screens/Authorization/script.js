@@ -2,6 +2,7 @@ import { mapActions, mapGetters } from 'vuex';
 import ClickOutside from 'vue-click-outside';
 import ModalCheckEmail from './ModalCheckEmail';
 import Loader from '../../ui/Loader';
+import Dropdown from '../../components/Dropdown';
 import { getAccessToken } from '~/helpers/customFetch';
 
 export default {
@@ -11,6 +12,7 @@ export default {
   components: {
     ModalCheckEmail,
     Loader,
+    Dropdown
   },
   data: () => ({
     mode: 0,
