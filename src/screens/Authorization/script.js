@@ -127,6 +127,9 @@ export default {
       this.signup[key] = value;
       this.hideDDCountries();
     },
+    selectCountry(country){
+      this.signup.country = country.key;
+    },
     toggleGACodeType() {
       if (this.signin.GACodeType === 'password') {
         this.signin.GACodeType = 'text';

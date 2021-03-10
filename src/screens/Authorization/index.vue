@@ -132,32 +132,8 @@
               </div>
             </div>
           </div>
-          <div v-if="getCountriesReg !== {}" class="form__item">
-            <div class="vdd">
-              <button class="vdd__btn" @click="toggleDD('countries')">
-                <div v-if="signup['country'] !== ''" class="vdd__title">
-                  {{ getCountriesReg[signup['country']] }}
-                  {{ signup['country'] }}
-                </div>
-                <div v-else class="vdd__title vdd__title_placeholder">
-                  {{ $t('auth.country') }}
-                </div>
-                <div class="vdd__icon">
-                  <img src="~assets/imgs/icons/arrow_dd.svg" alt="arrow" />
-                </div>
-              </button>
-              <div v-if="ddShow['countries']" class="vdd__items">
-                <button
-                  v-for="(country, iCountris) in getCountriesRegSort"
-                  :key="`dd__item_country_${iCountris}`"
-                  class="vdd__item"
-                  @click="selectDD('country', country.short)"
-                >
-                  {{ country.full }}
-                  {{ country.short }}
-                </button>
-              </div>
-            </div>
+          <div class="form__item">
+            <Dropdown label="Country" :items="getCountriesRegSort" passedKeyField="short" passedValueField="full" :setValue="selectCountry" />
             <div class="form__er">
               <div v-if="getEr(13)">
                 {{ $t('auth.er.enterCountry') }}
@@ -184,9 +160,6 @@
             </div>
           </div>
           <div class="form__item">
-            <div>
-              <Dropdown label="Country" :items="[{key: '1', value: '11'},{key: 'ALB', value: 'Albania ALB'},{key: 'BEL', value: 'Belgium BEL'}]" :setValue="() => {}" />
-            </div>
             <input
               v-model="signup.email"
               maxlength="40"
