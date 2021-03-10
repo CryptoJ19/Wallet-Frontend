@@ -131,7 +131,7 @@ export default {
   max-height: 300px;
   overflow: auto;
   &__item {
-    margin: 7px 20px;
+    padding: 7px 20px !important;
   }
 }
 </style>
