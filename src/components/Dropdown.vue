@@ -130,10 +130,7 @@ export default {
   flex-direction: column;
   max-height: 300px;
   overflow: auto;
-  border: none;
   &__item {
-    display: flex;
-    align-content: flex-start;
     padding: 7px 20px;
   }
 }
