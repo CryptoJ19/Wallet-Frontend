@@ -110,7 +110,7 @@ export default {
   data: () => ({
     mainFlags: [],
     otherFlags: [],
-    showLanguages: true,
+    showLanguages: false,
     selectedLanguage: undefined,
   }),
   mounted() {
@@ -195,7 +195,7 @@ export default {
   max-height: 300px;
   overflow: auto;
   &__item {
-    padding: 7px 20px !important;
+    margin: 7px 20px !important;
   }
 }
 .land .paper {
