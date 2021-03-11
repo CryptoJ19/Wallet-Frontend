@@ -111,6 +111,9 @@ export default {
     width: 30px;
     margin-right: 10px;
   }
+  &__item{
+    padding: 10px 30px !important;
+  }
 }
 .land .paper {
   position: relative;
