@@ -32,7 +32,7 @@ export default {
     // this.promoItems = this.$t('purchase.promo.items');
     this.monthPool = this.$t('main.monthPool');
 
-    const icoTime = new Date('04/01/2021'); // Apr 1
+    const icoTime = new Date('07/29/2021'); // Apr 1
     const timer = setInterval(() => {
       const now = new Date();
       const difference = icoTime - now;
