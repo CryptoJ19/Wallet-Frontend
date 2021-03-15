@@ -212,6 +212,9 @@
                 {{ $t('auth.er.enterPassSpace') }}
               </div>
             </div>
+            <div class="auth__kyc">
+              {{ $t('auth.kyc') }}
+            </div>
           </div>
 
           <div class="auth__btns">

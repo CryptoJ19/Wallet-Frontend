@@ -690,7 +690,8 @@
       "incorrectTotp": "2FA code is invalid",
       "incorrectCode": "Email confirmation code is invalid",
       "enterCountry": "Enter country"
-    }
+    },
+    "kyc": "You are required to pass KYC/AML"
   },
   "wallet": {
     "history": "History",

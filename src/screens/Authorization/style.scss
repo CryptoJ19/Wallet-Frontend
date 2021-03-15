@@ -4,6 +4,12 @@
   display: flex;
   height: 100vh;
   overflow: hidden;
+  &__kyc{
+    font-size: 16px;
+    color: #54595F;
+    padding: 0 20px;
+    margin-top: 20px;
+  }
   &__main {
     overflow: auto;
     width: 906px;
