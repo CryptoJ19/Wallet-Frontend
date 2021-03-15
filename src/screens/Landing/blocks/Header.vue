@@ -351,7 +351,7 @@ export default {
         border-radius: 10px;
         background: $yellow;
         height: 14px;
-        width: 10%;
+        width: 32%;
       }
       &__points {
         top: -5px;
