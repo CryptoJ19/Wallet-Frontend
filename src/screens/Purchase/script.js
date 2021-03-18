@@ -32,11 +32,11 @@ export default {
     // this.promoItems = this.$t('purchase.promo.items');
     this.monthPool = this.$t('main.monthPool');
 
-    const icoTime = new Date('07/29/2021'); // Apr 1
+    const icoTime = new Date('07/01/2021'); // Apr 1
     const timer = setInterval(() => {
       const now = new Date();
       const difference = icoTime - now;
-      if (difference < 0){
+      if (difference < 0) {
         this.d = '00';
         this.h = '00';
         this.m = '00';
@@ -109,7 +109,7 @@ export default {
         Math.ceil(
           ((value * this.getCurrencyByName('EOS').currentRate) /
             this.getCurrencyByName('CFT').currentRate) *
-            10000,
+          10000,
         ) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
@@ -125,7 +125,7 @@ export default {
         Math.ceil(
           ((value * this.getCurrencyByName('CFT').currentRate) /
             this.getCurrencyByName('EOS').currentRate) *
-            10000,
+          10000,
         ) / 10000;
       if (this.convertFlag === true) {
         if (value === '') {
@@ -147,21 +147,21 @@ export default {
         console.log(error);
       }
     },
-    processCurrencies(){
+    processCurrencies() {
       const eur = this.getCurrencies.find(el => el.id === 'eur');
       this.currencies = this.getCurrencies.filter(el => el.id !== eur.id);
       this.currencies = this.currencies.map((el) =>
-         ({id: el.id, name: el.symbol, price: Math.ceil(el.currentRate / (eur.currentRate / 1000000) / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100})
+        ({ id: el.id, name: el.symbol, price: Math.ceil(el.currentRate / (eur.currentRate / 1000000) / 1000000 * 100) / 100, change: Math.ceil(el.change * 100) / 100 })
       );
-      this.currencies = [...this.currencies, {id: 'usd', name: 'USD', price: Math.ceil(1 / (eur.currentRate / 1000000) * 100) / 100, change: -Math.ceil(eur.change * 100) / 100}];
+      this.currencies = [...this.currencies, { id: 'usd', name: 'USD', price: Math.ceil(1 / (eur.currentRate / 1000000) * 100) / 100, change: -Math.ceil(eur.change * 100) / 100 }];
       this.sortCurrencies();
     },
-    sortCurrencies(){
+    sortCurrencies() {
       const newArray = [];
       this.currenciesOrder.forEach((curId) => {
         const currencyToPaste = this.currencies.find(el => el.id === curId);
-        if (currencyToPaste){
-          newArray.push({...currencyToPaste});
+        if (currencyToPaste) {
+          newArray.push({ ...currencyToPaste });
         }
       })
       this.currencies = [...newArray];
@@ -169,9 +169,9 @@ export default {
     minTwoDigits(n) {
       return (n < 10 ? '0' : '') + n;
     },
-    calculateTime(icoTime, now){
+    calculateTime(icoTime, now) {
       const difference = icoTime - now;
-      let seconds = Math.floor(( icoTime - (now) ) / 1000);
+      let seconds = Math.floor((icoTime - (now)) / 1000);
       let minutes = Math.floor(seconds / 60);
       let hours = Math.floor(minutes / 60);
       let days = Math.floor(hours / 24);
@@ -180,16 +180,15 @@ export default {
       minutes = minutes - (days * 24 * 60) - (hours * 60);
       seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
       days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-      return {days, hours, minutes, seconds}
+      return { days, hours, minutes, seconds }
     },
     onChangeField() {
       this.convertFlag = true;
     },
     getDeliveryDate() {
       const datePlus = new Date(Date.now() + 3600 * 24 * 1000 * 31 * 3);
-      return `${
-        this.monthPool[datePlus.getMonth()]
-      } ${datePlus.getDate()}, ${datePlus.getFullYear()}`;
+      return `${this.monthPool[datePlus.getMonth()]
+        } ${datePlus.getDate()}, ${datePlus.getFullYear()}`;
     },
     formatSum(value) {
       let res;
@@ -225,7 +224,7 @@ export default {
     hideModal(value) {
       this.$bvModal.hide(value);
     },
-    copy(str){
+    copy(str) {
       const el = document.createElement('textarea');
       el.style.opacity = '0';
       el.value = str;
@@ -234,10 +233,10 @@ export default {
       document.execCommand('copy');
       document.body.removeChild(el);
     },
-    rate(first, second){
+    rate(first, second) {
       return this.getCurrencyByName(first) && this.getCurrencyByName(second) && this.getCurrencyByName(first).currentRate / this.getCurrencyByName(second).currentRate
     },
-    round(number, decimals){
+    round(number, decimals) {
       const numb = Number(number);
       // eslint-disable-next-line no-restricted-globals
       return !isNaN(numb) ? Math.ceil(numb * 10 ** decimals) / 10 ** decimals : '';
