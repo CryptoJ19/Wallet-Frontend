@@ -603,7 +603,34 @@
       "copyright": "All rights reserved for CashFlash UAB",
       "contacts": "Contacts",
       "usefulLinksTitle": "Useful links",
-      "usefulLinks": ["https://eos.io", "https://bloks.io/account/cftcashflash", "https://coinmarketcap.com", "https://coingecko.com"]
+      "usefulLinks": [
+        {
+          "label": "https://eos.io",
+          "link": "https://eos.io"
+        },
+        {
+          "label": "https://bloks.io/account/cftcashflash",
+          "link": "https://bloks.io/account/cftcashflash"
+        },
+        {
+          "label": "https://coinmarketcap.com",
+          "link": "https://coinmarketcap.com"
+        },
+        {
+          "label": "https://coingecko.com",
+          "link": "https://coingecko.com"
+        },
+        {
+          "label": "https://cashflashadviser.com",
+          "link": "https://cashflashadviser.com"
+        },{
+          "label": "https://github.com/cashflashuab",
+          "link": "https://github.com/cashflashuab"
+        },{
+          "label": "https://github.com/CashFlashCFT",
+          "link": "https://github.com/CashFlashCFT/TheFutureIsNow/wiki/CFT-The-Cash-Flash-Crypto-Project"
+        }
+      ]
     }
   },
   "default": {

@@ -29,7 +29,7 @@
             <div class="address__icon">
               <img src="~assets/imgs/Landing/internet.svg" alt="img" />
             </div>
-            <a :href="item" target="_blank" class="address__text address__text--link">{{item}}</a>
+            <a :href="item.link" target="_blank" class="address__text address__text--link">{{item.label}}</a>
           </div>
         </div>
       </div>

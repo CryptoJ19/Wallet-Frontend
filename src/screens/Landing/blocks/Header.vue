@@ -351,7 +351,7 @@ export default {
         border-radius: 10px;
         background: $yellow;
         height: 14px;
-        width: 32%;
+        width: 52%;
       }
       &__points {
         top: -5px;
@@ -615,7 +615,7 @@ export default {
           margin: 0 25px 0 0;
         }
         &__filling {
-          height: 20%;
+          height: 52%;
           width: 100%;
         }
         &__points {
