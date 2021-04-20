@@ -176,6 +176,7 @@ export default {
   }
   @media (max-width: 991px) {
     .dd-user {
+      padding: 0 4px 0 5px;
       &__name {
         display: none;
       }

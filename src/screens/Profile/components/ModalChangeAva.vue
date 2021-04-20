@@ -4,7 +4,6 @@
     centered
     hide-header
     hide-footer
-    no-close-on-backdrop
     @hidden="resetModal()"
   >
     <div class="mod">

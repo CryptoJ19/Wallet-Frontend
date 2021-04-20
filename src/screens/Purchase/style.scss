@@ -578,6 +578,15 @@
     }
   }
   @media (max-width: 575px) {
+    .tab {
+      &__box {
+        height: 47px;
+      }
+      &__shape {
+        height: 47px;
+      }
+    }
+
     .promo__box-container{
       width: 100%;
     }
