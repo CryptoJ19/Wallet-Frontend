@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="land__container">
+    <div class="land__container footer__main">
       <div class="footer__l">
         <div class="footer__logo">
           <img src="~assets/imgs/logo.svg" alt="CashFlash" />
@@ -225,11 +225,11 @@
         // display: none;
       }
       &__l {
-        width: 50%;
+        width: 70%;
         padding: 0 30px 0 0;
       }
       &__r {
-        width: 50%;
+        width: 30%;
       }
     }
     @media (max-width: 1400px) {
@@ -241,6 +241,7 @@
       &__l {
         /*width: 30%;*/
         padding: 0 30px 0 0;
+        flex: 5;
       }
       &__r {
         /*width: 70%;*/
@@ -261,10 +262,17 @@
       }
     }
     @media (max-width: 991px) {
+      .address {
+        margin-right: 15px;
+      }
+      &__main {
+        width: 100%;
+        max-width: unset;
+      }
       &__l {
-        width: initial;
         margin: 0 0 26px;
         padding: 0;
+        width: 78%;
       }
       &__r {
         /*align-items: center;*/
@@ -276,6 +284,9 @@
       .land__container {
         flex-direction: column;
       }
+      &__logo {
+        margin-right: 15px;
+      }
       .form {
         &__input {
           padding-right: 140px;
@@ -286,6 +297,14 @@
       }
     }
     @media (max-width: 767px) {
+      &__l {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      &__logo {
+        grid-column: 1/3;
+        margin-bottom: 30px;
+      }
       &__r {
         width: 100%;
       }
@@ -309,6 +328,26 @@
           height: 56px;
         }
       }
+    }
+    @media (max-width: 605px) {
+      &__l {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 auto;
+        width: 100%;
+      }
+      &__logo {
+        grid-column: 1/1;
+        margin: 10px auto;
+      }
+      .address {
+        width: 300px;
+        margin: 10px auto;
+      }
+      &__main {
+        display: block !important;
+      }
+
     }
     &__second {
       border-top: 2px solid #f2f2f2;
