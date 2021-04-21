@@ -32,24 +32,13 @@
                     {{ person.mail }}
                   </div>
                 </div>
-                <!--                <div class="contact__item">-->
-                <!--                  <div class="contact__icon">-->
-                <!--                    <img-->
-                <!--                      src="~assets/imgs/icons/member__global.svg"-->
-                <!--                      alt="bg"-->
-                <!--                    >-->
-                <!--                  </div>-->
-                <!--                  <div class="contact__value">-->
-                <!--                    example@email.ru-->
-                <!--                  </div>-->
-                <!--                </div>-->
                 <div v-if="person.inNick" class="contact__item">
                   <div class="contact__icon">
                     <img src="~assets/imgs/icons/member__in.svg" alt="bg" />
                   </div>
                   <div class="contact__value">
                     <a target="_blank" :href="`http://${person.inNick}`">
-                      {{ person.inNick }}
+                      www.linkedin.com
                     </a>
                   </div>
                 </div>
