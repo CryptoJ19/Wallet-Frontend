@@ -105,7 +105,7 @@
                 </div>
               </div>
               <div
-                v-if="person.education && Object.keys(person.education).length !== 0"
+                v-if="person.education"
                 class="education"
               >
                 <div class="member__title">
