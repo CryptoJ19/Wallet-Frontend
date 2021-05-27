@@ -366,7 +366,6 @@
     }
     &__copyright-text {
       white-space: pre-line;
-      max-width: 180px;
       font-size: 16px;
       line-height: 143.4%;
       color: $grey;

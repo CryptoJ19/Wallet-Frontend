@@ -49,7 +49,7 @@
                 @click="showRecieve()"
               >
                 <div>
-                  {{ $t('wallet.recieve') }}
+                  {{ $t('wallet.receive') }}
                 </div>
                 <div class="icon">
                   <img
@@ -102,7 +102,7 @@
                 @click="showRecieve()"
               >
                 <div>
-                  {{ $t('wallet.recieve') }}
+                  {{ $t('wallet.receive') }}
                 </div>
                 <div class="icon">
                   <img
