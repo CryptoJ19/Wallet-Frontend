@@ -512,9 +512,6 @@
         },{
           "label": "https://github.com/cashflashuab",
           "link": "https://github.com/cashflashuab"
-        },{
-          "label": "https://github.com/CashFlashCFT",
-          "link": "https://github.com/CashFlashCFT/TheFutureIsNow/wiki/CFT-The-Cash-Flash-Crypto-Project"
         }
       ]
     }
@@ -625,12 +622,12 @@
     "eos": "EOS",
     "openExplorer": "open in block explorer",
     "send": "Send",
-    "recieve": "Recieve",
+    "receive": "Receive",
     "amount": "Amount",
     "date": "Date",
     "status": "Status",
-    "modalRecieve": {
-      "title": "Recieve",
+    "modalReceive": {
+      "title": "Receive",
       "cashFlash": "CashFlash",
       "eos": "EOS",
       "subtext": "The sender should send funds to EOS account name above. Memo field must be filled out with your personal CashFlash account name. Otherwise the funds won't be deposited to your account.",
